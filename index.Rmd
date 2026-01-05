@@ -1,15 +1,13 @@
 ---
 title: "La Casa de Datos - Blog"
-image: "frank.jpg"
+image: "images/logo.png"
 links:
-  - label: LinkedIn
-    url: "https://linkedin.com/"
-  - label: Twitter
-    url: "https://twitter.com/"
-  - label: GitHub
-    url: "https://github.com/"
-  - label: Email
-    url: "mailto:email@email.com"
+  - label: '<i class="fas fa-home"></i> Web de Casa de Lletres'
+    url: "https://casadelletres.eu/ target='_blank'"
+  - label: '<i class="fab fa-github"></i> GitHub'
+    url: "https://github.com/lacasadedatos/ target='_blank'"
+  - label: '<i class="fas fa-envelope"></i> Contacto'
+    url: "mailto:erick.garcia@casadelletres.eu"
 output:
   postcards::trestles
 site: distill::distill_website
