@@ -6,8 +6,11 @@ output_dir: "docs"
 theme: my_blog_theme.css
 navbar:
   right:
-    - text: "Home"
-      href: index.html
+    # - text: "Home"
+    #   href: index.html
+    - text: "Machine Learning"
+      href: machine_learning.html
     - text: "About"
       href: about.html
+    
 output: distill::distill_article

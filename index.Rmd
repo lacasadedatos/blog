@@ -12,28 +12,33 @@ output:
   postcards::trestles
 site: distill::distill_website
 ---
- 
+
 ## Bio
 
-Frank Hermosillo studies neural networks and their applications at Google 
-Brain. His research focuses on differentiable network pruning approximation and 
-decentralized gradient inversion mechanics. He frequently collaborates with 
-researchers who study machine learning, computer vision, and cognitive science.
-His work has been featured in WIRED, The Atlantic, Newsweek, and The New York 
-Times Magazine.
+La Casa de Datos es Erick García-García, Ph.D., Editor Principal de Casa de Lletres - Academic Editing Services y Científico de Datos.
 
-## Education
+## Educación
 
-**Massachusetts Institute of Technology** | Cambridge, MA
+**Certificado profesional como Científico de Datos** \| 2021 - 2025
 
-Ph.D. in Computer Science | September 2009 - May 2014
+```         
+Universidad de Harvard - HarvardX \| Boston, USA
+```
 
-**The University of California, Berkeley** | Berkeley, CA
+**Doctorado en Ciencias Biomédicas** \| 2002 - 2005
 
-B.S. in Computer Science | September 2005 - May 2009
+```         
+Universidad Nacional Autónoma de México \| CDMX, México.
+```
 
-## Experience
+**Licenciatura en Ciencias Biomédicas** \| 1997 - 2001
 
-**Google Brain** | Principal Investigator | January 2018 - Present
+```         
+Universidad Nacional Autónoma de México \| CDMX, México.
+```
 
-**Netflix** | Research Scientist | June 2014 - December 2017
+## Experiencia
+
+**Google Brain** \| Principal Investigator \| January 2018 - Present
+
+**Netflix** \| Research Scientist \| June 2014 - December 2017
