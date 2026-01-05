@@ -3,6 +3,7 @@ title: "La Casa de Datos - Blog"
 description: |
   La Casa de Datos - Blog
 output_dir: "docs"
+theme: my_blog_theme.css
 navbar:
   right:
     - text: "Home"
