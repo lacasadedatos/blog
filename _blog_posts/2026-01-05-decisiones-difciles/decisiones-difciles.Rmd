@@ -1,0 +1,14 @@
+---
+title: "Decisiones Difíciles"
+description: |
+  A short description of the post.
+author:
+  - name: Erick García-García, Ph.D.
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    self_contained: false
+---
+
+# Decisiones chungas
+Este es el primer post

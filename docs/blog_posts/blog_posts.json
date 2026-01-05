@@ -1,0 +1,19 @@
+[
+  {
+    "path": "blog_posts/2026-01-05-decisiones-difciles/",
+    "title": "Decisiones Difíciles",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Erick García-García, Ph.D.",
+        "url": {}
+      }
+    ],
+    "date": "2026-01-05",
+    "categories": [],
+    "contents": "\nDecisiones chungas\nEste es el primer post\n\n\n\n",
+    "preview": {},
+    "last_modified": "2026-01-05T22:16:20+01:00",
+    "input_file": "decisiones-difciles.knit.md"
+  }
+]

@@ -1,7 +1,7 @@
 ---
 title: "Machine Learning"
 description: |
-  Resolviendo problemas complejos a través del Aprendizaje Automático.
+  <!-- Resolviendo problemas complejos a través del Aprendizaje Automático. -->
 author:
   - name: Erick García García, Ph.D. 
     # url: https://example.com/norajones
