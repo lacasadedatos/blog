@@ -7,6 +7,15 @@ author:
 date: "`r Sys.Date()`"
 output: 
   distill::distill_article:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    collapsed: true
+    smooth_scroll: true
+    #theme: spacelab
+    highlight: pygments
+    df_print: paged
+    #code_folding: show
     self_contained: false
 ---
 
@@ -89,3 +98,4 @@ num_DF[c(start:end, target)] %>%
 ```
 
 **Figura1**. Correlación del PIB (gdpp) con las otras variables socioeconómicas.
+
