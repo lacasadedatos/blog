@@ -17,6 +17,16 @@ site: distill::distill_website
 
 La Casa de Datos es Erick García-García, Ph.D., Editor Principal de Casa de Lletres - Academic Editing Services y Científico de Datos.
 
+:::: {.center data-latex=""}
+
+::: {.minipage data-latex="{.5\linewidth}"}
+This paragraph will be centered on the page, and
+its width is 50% of the width of its parent element.
+:::
+
+::::
+
+
 # Educación
 
 **Certificado profesional como Científico de Datos** \| 2021 - 2025
