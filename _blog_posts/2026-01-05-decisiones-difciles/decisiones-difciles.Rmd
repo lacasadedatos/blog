@@ -19,8 +19,6 @@ output:
     self_contained: false
 ---
 
-# Decisiones difíciles
-
 ```{r}
 #| label: load libraries
 #| message: false
@@ -30,16 +28,22 @@ library(tidyverse)
 library(flextable)
 library(gridExtra)
 library(ggplot2)
-library(patchwork)
-
 `%notin%` <- Negate(`%in%`)
 ```
 
-[HELP International](https://www.helpinternational.org/en/)
+# Decisiones difíciles
 
-**Variables**:
+[HELP International](https://www.helpinternational.org/en/) es una ONG humanitaria internacional que la lucha contra la pobreza y proporciona servicios básicos y socorro a la población de los países atrasados, especialmente frente a desastres naturales.
+
+HELP International recaudó alrededor de \$10 millones USD y quiere utilizar ese dinero de forma estratégica para desarrollar campañas de ayuda en los países que más lo necesiten.
+
+**¿Cómo decidimos qué países necesitan más ayuda?**
+
+HELP International contaba con una tabla de datos sociodemográficos ([descargar](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/data)) de 167 países candidatos con las siguientes variables:
 
 -   País (country): Nombre del país.
+
+<!-- -->
 
 -   Mortalidad infantil (child_mort): Muerte de niños menores de 5 años por cada 1.000 nacidos vivos
 
@@ -59,10 +63,11 @@ library(patchwork)
 
 -   Producto interno bruto (gdpp): PIB per cápita. Calculado como el PIB total dividido por la población total.
 
-Tabla de datos ([descargar](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/data)).
+------------------------------------------------------------------------
 
-```{r}
-#| label: tbl-Países con el PIB más bajo.
+**Tabla 1.** Países con el PIB más bajo (15 últimos).
+
+```{r países con pib más bajo}
 #| message: false
 #| warning: false
 #| echo: false
@@ -76,10 +81,14 @@ DF %>%
   select(country, gdpp, everything()) %>%
   arrange(gdpp) %>%
   head(15) %>%
-  flextable()
+  flextable() %>%
+  flextable::autofit() %>%
+  theme_zebra()
 ```
 
-El PIB puede ser un buen criterio de selección.
+------------------------------------------------------------------------
+
+El PIB podría ser un buen criterio de selección, así que lo primero que haremos será correlacionarlo con el resto de nuestras variables.
 
 ```{r echo=FALSE}
 start <- 2 # 1st col
@@ -99,3 +108,41 @@ num_DF[c(start:end, target)] %>%
 
 **Figura1**. Correlación del PIB (gdpp) con las otras variables socioeconómicas.
 
+La figura 1 muestra que el PIB tiene diferentes grados de correlación con el resto de las variables por lo que podría utilizarse como un criterio de selección, eligiendo simplemente los países con los valores más bajos.
+
+```{r echo=FALSE}
+ggplot(num_DF) +
+  aes(
+    x = health,
+    y = life_expec,
+    colour = income,
+    size = gdpp
+  ) +
+  geom_point() +
+  scale_color_distiller(palette = "Oranges", direction = 1) +
+  ggtitle("A. Gasto en salud y esperanza de vida") +
+  theme_minimal()
+
+ggplot(num_DF) +
+  aes(
+    x = health,
+    y = child_mort,
+    colour = income,
+    size = gdpp
+  ) +
+  geom_point() +
+  scale_color_distiller(palette = "Oranges", direction = 1) +
+  ggtitle("B. Gasto en salud y mortalidad infantil") +
+  theme_minimal()
+
+```
+
+> ¿Podemos hacer algo mejor que elegir de acuerdo al PIB? ¿Cómo integramos el resto de las variables en un criterio de selección?
+
+# Análisis de grupos por k-medias
+
+La agrupación (clustering) es una técnica de aprendizaje automático que nos ayuda descubrir patrones y estructuras ocultas en los datos. La técnica k-medias (k-means) agrupa conjuntos de casos similares (por ejemplo países) utilizando variables numéricas (también llamadas dimensiones). La agrupación se lleva a cabo a minimizando las distancias entre *k* grupos de casos (clústers), siendo *k* un número entero que conocemos de antemano o que podemos llegar a estimar (Fig. 2)
+
+![](images/kmeans_clustering_cartoon.png)
+
+**Figura 2**. Agrupación de casos en dos grupos (*k* = 2). Cada uno de los ejes corresponde a una variable numérica. La distancia media entre los puntos rojos y azules y el centro de cada clúster (puntos verdes) sirve para llevar a cabo la agrupación.
