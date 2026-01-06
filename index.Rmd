@@ -15,16 +15,16 @@ site: distill::distill_website
 
 La Casa de Datos es Erick García-García, Ph.D.
 
-**Bio**
+# **Bio**
 
 Me gustan los tacos
 
 Editor Principal de Casa de Lletres - Academic Editing Services y Científico de Datos.
 
-**Educación**
+# **Educación**
 
 ad aldkjñadsjñalsdkj añldsj añlsdjkñaldjk
 
-**Experiencia**
+# **Experiencia**
 
-ads aslñdjkalñsdjkñaldsjañlkdjñadjñk 
+ads aslñdjkalñsdjkñaldsjañlkdjñadjñk
