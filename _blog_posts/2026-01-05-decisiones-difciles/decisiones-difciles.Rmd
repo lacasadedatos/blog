@@ -69,3 +69,23 @@ DF %>%
   head(15) %>%
   flextable()
 ```
+
+El PIB puede ser un buen criterio de selección.
+
+```{r echo=FALSE}
+start <- 2 # 1st col
+end <- 5 # last col
+target <- 1 # target col
+
+num_DF[c(start:end, target)] %>%
+  explore::explore_all(target = gdpp)# name of the target
+
+start <- 6 # 1st col
+end <- 9 # last col
+target <- 1 # target col
+
+num_DF[c(start:end, target)] %>%
+  explore::explore_all(target = gdpp)
+```
+
+**Figura1**. Correlación del PIB (gdpp) con las otras variables socioeconómicas.
