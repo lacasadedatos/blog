@@ -9,7 +9,7 @@ links:
   - label: '<i class="fas fa-envelope"></i> Contacto'
     url: "mailto:erick.garcia@casadelletres.eu"
 output:
-  postcards::trestles
+  postcards::solana
 site: distill::distill_website
 ---
 
