@@ -10,5 +10,62 @@ output:
     self_contained: false
 ---
 
-# Decisiones chungas
-Este es el primer post
+# Decisiones difíciles
+
+```{r}
+#| label: load libraries
+#| message: false
+#| warning: false
+#| echo: false
+library(tidyverse)
+library(flextable)
+library(gridExtra)
+library(ggplot2)
+library(patchwork)
+
+`%notin%` <- Negate(`%in%`)
+```
+
+[HELP International](https://www.helpinternational.org/en/)
+
+**Variables**:
+
+-   País (country): Nombre del país.
+
+-   Mortalidad infantil (child_mort): Muerte de niños menores de 5 años por cada 1.000 nacidos vivos
+
+-   Exportaciones (export): Exportaciones de bienes y servicios per cápita. Dado el porcentaje del PIB per cápita
+
+-   Salud (health): gasto total en salud per cápita. Dado el porcentaje del PIB per cápita
+
+-   Importaciones (import): Importaciones de bienes y servicios per cápita. Dado el porcentaje del PIB per cápita
+
+-   Ingresos (income): Ingresos netos por persona
+
+-   Inflación (inflation): Inflación en relación al crecimiento anual del PIB total
+
+-   Esperanza de vida (life_expec): Promedio de años que viviría un niño recién nacido si los patrones actuales de mortalidad sigan siendo los mismos
+
+-   Fertilidad (tot_fert): Número de hijos que nacería de cada mujer si las tasas actuales de fecundidad por edad siguen siendo las mismas.
+
+-   Producto interno bruto (gdpp): PIB per cápita. Calculado como el PIB total dividido por la población total.
+
+Tabla de datos ([descargar](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/data)).
+
+```{r}
+#| label: tbl-Países con el PIB más bajo.
+#| message: false
+#| warning: false
+#| echo: false
+DF <- read_csv("Country-data.csv")
+num_DF <- DF %>%
+  column_to_rownames(var = "country") %>%
+  select(gdpp, everything()) #use country column as row names
+
+
+DF %>%
+  select(country, gdpp, everything()) %>%
+  arrange(gdpp) %>%
+  head(15) %>%
+  flextable()
+```
