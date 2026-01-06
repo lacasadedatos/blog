@@ -1,5 +1,5 @@
 ---
-title: "La Casa de Datos - Blog"
+title: ""
 image: "images/logo.png"
 links:
   - label: '<i class="fas fa-home"></i> Web de Casa de Lletres'
@@ -13,11 +13,11 @@ output:
 site: distill::distill_website
 ---
 
-## Bio
+# Bio
 
 La Casa de Datos es Erick García-García, Ph.D., Editor Principal de Casa de Lletres - Academic Editing Services y Científico de Datos.
 
-## Educación
+# Educación
 
 **Certificado profesional como Científico de Datos** \| 2021 - 2025
 
@@ -37,7 +37,7 @@ Universidad Nacional Autónoma de México \| CDMX, México.
 Universidad Nacional Autónoma de México \| CDMX, México.
 ```
 
-## Experiencia
+# Experiencia
 
 **Google Brain** \| Principal Investigator \| January 2018 - Present
 
