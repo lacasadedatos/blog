@@ -1,7 +1,7 @@
 ---
 title: "Decisiones Difíciles"
 description: |
-  A short description of the post.
+  Tenemos los medios, tenemos los fondos, ¿cómo decidimos a quién ayudar?
 author:
   - name: Erick García-García, Ph.D.
 date: "`r Sys.Date()`"
@@ -37,9 +37,11 @@ library(ggplot2)
 
 HELP International recaudó alrededor de \$10 millones USD y quiere utilizar ese dinero de forma estratégica para desarrollar campañas de ayuda en los países que más lo necesiten.
 
-**¿Cómo decidimos qué países necesitan más ayuda?**
+> **¿Cómo decidimos qué países necesitan más ayuda?** 🤔
 
-HELP International contaba con una tabla de datos sociodemográficos ([descargar](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/data)) de 167 países candidatos con las siguientes variables:
+HELP International contaba con una tabla de datos sociodemográficos ([descargar](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/data)[^1]) de 167 países candidatos con las siguientes variables:
+
+[^1]: La tabla de datos utilizada para este análisis fue descargada de Kaggle.
 
 -   País (country): Nombre del país.
 -   Mortalidad infantil (child_mort): Muerte de niños menores de 5 años por cada 1.000 nacidos vivos.
@@ -100,7 +102,7 @@ num_DF[c(start:end, target)] %>%
 
 La Figura 1 muestra que el PIB tiene diferentes grados de correlación con el resto de variables sociodemográficas, por lo que podría utilizarse como un criterio de selección, eligiendo simplemente los países con los valores de PIB más bajos.
 
-> ¿Podemos hacer algo mejor que elegir de acuerdo al PIB? ¿Cómo integramos el resto de las variables en un único criterio de selección?
+> ¿Podemos hacer algo mejor que elegir en función del PIB? ¿Es posible integrar el resto de las variables en un único criterio de selección? 🤔
 
 Para comenzar a responder a estas preguntas, podemos explorar si existen patrones de agrupación de los países de acuerdo a sus características.
 
@@ -140,7 +142,7 @@ ggplot(num_DF) +
 
 **Figura 3.** Correlación del gasto en salud (health) y la mortalidad infantil (child_mort). Cada país está representado por un punto en la gráfica; su tamaño es directamente proporcional al PIB (gdpp) y su color se ajusta al nivel de ingresos por habitante (income).
 
-> ¿Podemos explotar estas agrupaciones para generar un único criterio de selección?
+> ¿Podemos explotar de alguna manera estos patrones de agrupación? 🤔
 
 # Análisis de agrupación por k-medias
 
@@ -150,11 +152,11 @@ La técnica k-medias (k-means) agrupa conjuntos de casos similares (por ejemplo 
 
 ![](images/kmeans_clustering_cartoon.png)
 
-**Figura 4**. Agrupación de casos en dos grupos (*k* = 2). Cada uno de los ejes corresponde a una variable numérica. La distancia media entre los puntos rojos y azules (líeas de colores) y el centro de cada grupo (puntos verdes) sirve para llevar a cabo la agrupación.
+**Figura 4**. Agrupación de casos en dos grupos (*k* = 2). Cada uno de los ejes corresponde a una variable numérica. La distancia media entre los puntos rojos y azules (líneas de colores) y el centro de cada grupo (puntos verdes) sirve para llevar a cabo la agrupación.
 
 El primer paso para llevar a cabo el análisis de agrupación por k-medias es la normalización de los datos, con el fin de que las diferencias en las escalas de medición de cada variable no generen sesgos en las relaciones entre las variables.
 
-La Figura 5 muestra las medias y las desviaciones estándar de cada una de las variables antes (páneles superiores) y después (páneles inferiores) de la normalización.
+La Figura 5 muestra las medias y las desviaciones estándar de cada una de las variables antes (paneles superiores) y después (paneles inferiores) de la normalización.
 
 ```{r echo=FALSE}
 #| message: false
@@ -184,9 +186,9 @@ map_dbl(.x = scaled_DF, .f = ~ sd(.)) %>%
   plot(., xlab = "Variable number")
 ```
 
-**Figura 5.** Medias y desviaciones estándar de cada variable, antes (páneles superiores) y después (páneles inferiores) de la normalización de los datos.
+**Figura 5.** Medias y desviaciones estándar de cada variable, antes (paneles superiores) y después (paneles inferiores) de la normalización de los datos.
 
-Como no sabemos de antemano cuántos grupos hay dentro de nuestros datos, hacemos un análisis de agrupación por k-medias serializado con los datos normalizados. Usamos valores de *k* de 1 a 15 (siendo *k* el número de agrupaciones esperado) y graficamos la suma total de las distancias entre grupos (Fig. 6): buscamos detrno del gráfico un valor de *k* en el que la distancia total entre grupos ([total distance within groups](https://www.geeksforgeeks.org/machine-learning/elbow-method-for-optimal-value-of-k-in-kmeans/)) **comience** a tener un comportamiento asintótico.
+Como no sabemos de antemano cuántos grupos hay dentro de nuestros datos, hacemos un análisis de agrupación por k-medias serializado con los datos normalizados. Usamos valores de *k* de 1 a 15 (siendo *k* el número de agrupaciones esperado) y graficamos la suma total de las distancias entre grupos (Fig. 6): buscamos dentro del gráfico un valor de *k* en el que la distancia total entre grupos ([total distance within groups](https://www.geeksforgeeks.org/machine-learning/elbow-method-for-optimal-value-of-k-in-kmeans/)) **comience** a tener un comportamiento asintótico.
 
 ```{r echo=FALSE}
 set.seed(1976)
@@ -208,7 +210,7 @@ rm(total_wss, centers)
 
 Aunque la reducción de la distancia entre grupos es bastante paulatina, podríamos elegir *k* = 3 (es decir tres grupos) para continuar con el análisis y ver cómo se comportan los datos.
 
-Creamos el modelo de agrupación con 3 grupos. Una vez que tenemos los datos normalizados, el código para la generación de este modelo es bastante sencillo:
+Creamos el modelo de agrupación con 3 grupos. Una vez que tenemos los datos normalizados, el código en R para la generación de este modelo es bastante sencillo:
 
 ```{r}
 set.seed(1976)
@@ -218,8 +220,6 @@ km_3model <- kmeans(scaled_DF, # DF is a numeric sacled dada frame
                      nstart = 20, # n. of runs to find a clustering solution
                      iter.max = 50) # max. number of iterations
 
-# object clean up ----
-rm(k)
 ```
 
 La Tabla 2 contiene una muestra aleatoria de 10 países y la afiliación de cada uno a un *k* grupo (Grupos 1 a 3).
@@ -237,6 +237,8 @@ DF %>%
   theme_zebra()
 
 ```
+
+# Distribución de las variables en los distintos *k* grupos
 
 Para explorar la eficacia de la agrupación, realizamos un análisis de correlación dos a dos con cada una de las variables de nuestra tabla de datos, coloreando los puntos en función del *k* grupo al que pertenecen (Fig. 7).
 
@@ -308,7 +310,9 @@ rm(start, end, target)
 
 La Figura 9 muestra que los países que pertenecen al *k* grupo 3 tienen los peores valores para casi todas las variables sociodemográficas; por ejemplo, gasto en salud, esperanza de vida, mortalidad infantil, e ingreso por habitante.
 
-> El análisis de agrupación por k-medias nos ha permitido identificar claramente un grupo de países con las peores variables sociodemográficas, pero... ¿Podríamos haber usado simplemente los valores de PIB más bajos como filtro?
+> 🥳 El análisis de agrupación por k-medias nos ha permitido identificar claramente un grupo de países con las peores variables sociodemográficas. Pero... ¿podríamos haber usado simplemente los valores de PIB más bajos como filtro? 🤔
+
+# ¿Y si sólo usamos el PIB como criterio de selección?
 
 La Figura 10 muestra la distribución de PIB de los 47 países que integran el *k* grupo 3 y de los 47 países con el PIB más bajo.
 
@@ -351,7 +355,7 @@ low_gdpp_countries %>%
 
 Resulta evidente que hay una gran diferencia en la distribución del PIB en los países del *k* grupo 3 y los países con el PIB más bajo, ya que el *k* grupo 3 incluye países con altos valores de PIB.
 
-La Tabla 3 muestra los países del *k* grupo 3 que no están en la lista de países con el PIB más bajo de la Figura 10 y los países con PIB más bajo que no pertenecen al *k* grupo 3: países ***divergentes***.
+La Tabla 3 muestra los países del *k* grupo 3 que no están en la lista de países con el PIB más bajo de la Figura 10 y los países con PIB más bajo que no pertenecen al *k* grupo 3; llamémosles países "divergentes".
 
 ```{r echo=FALSE}
 # We can use the anti_join() function to return all rows in the first data frame that do not have a matching team in the second data frame:
@@ -383,7 +387,9 @@ conflicted_countries %>%
   theme_zebra()
 ```
 
-> ¿Qué hace a los países divergentes diferentes?
+> ¿Qué hace diferentes a los países "divergentes"? 🤔
+
+# ¿Además del PIB qué caracteriza a los países del *k* grupo 3?
 
 Para contestar a esta pregunta, podemos comparar la distribución de cada una de nuestras variables a través de gráficos de caja y bigotes (box plots, Figs. 11-12).
 
@@ -425,7 +431,7 @@ grid.arrange(p1, p2, ncol = 2)
 
 **Figura 11.** Distribución de variables socio-económicas en países divergentes. Health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; group, grupo.
 
-La Figura 11 muestra que, a pesar de que el gasto en salud es similar entre los países con PIB bajo y los del *k* grupo 3 (la mediana y el rango son imilares), la esperanza de vida es menor en los países del *k* grupo 3 mientras que la mortalidad infantil y la tasa de fertilidad son mayores.
+La Figura 11 muestra que, a pesar de que el gasto en salud es similar entre los países con PIB bajo y los del *k* grupo 3 (la mediana y el rango son similares), la esperanza de vida es menor en los países del *k* grupo 3 mientras que la mortalidad infantil y la tasa de fertilidad son mayores.
 
 ```{r echo=FALSE}
 #| message: false
@@ -467,9 +473,11 @@ grid.arrange(p1, p2, ncol = 2)
 
 La Figura 12 muestra que tanto el PIB como el ingreso por habitante son mayores en los países del *k* grupo 3 y que no existen diferencias tan acusadas en importaciones y exportaciones.
 
-La Figura 13 muestra
+La Tabla 4 muestra los 10 países del *k* grupo 3 con los valores de PIB más altos; entre ellos vemos países como Iraq y Guinea Ecuatorial, cuya riqueza viene de la explotación petrolera aunque existen altos niveles de desigualdad socioeconómica.
 
 ```{r echo=FALSE}
+#| message: false
+#| warning: false
 lowQuality_countries %>%
   select(country, gdpp) %>%
   setNames(c("País", "PIB")) %>%
@@ -482,3 +490,19 @@ lowQuality_countries %>%
   theme_zebra()
 
 ```
+
+> ¿Cuál es nuestra recomendación para HELP International? 🤓
+
+# Nuestra recomendación
+
+Nuestra recomendación a HELP International sería invertir los fondos recaudados en los países del *k* grupo 3, ya que éstos se caracterizan por tener altos niveles de mortalidad infantil y menor esperanza de vida, a pesar de que algunos de ellos tengan un PIB medio y un ingreso por habitante superior al de países con los valores de PIB más bajos.
+
+Disminuir la mortalidad infantil y aumentar la esperanza de vida son objetivos que van en la línea de lo que HELP International desea aportar a la sociedad.
+
+# Conclusión del análisis[^2]
+
+[^2]: El análisis de este post ha sido realizado en su totalidad usando en lenguaje de programación R.
+
+> 🔍 La técnica de agrupación por k-medias nos ha permitido **integrar 9 variables en un único criterio de selección** (afiliación al *k* grupo 3) para identificar a los 47 países más vulnerables.
+>
+> 🏥 Las características que distinguen a los países del *k* grupo 3 de otros países con bajos niveles de PIB nos permiten afirmar que éstos podrían beneficiarse significativamente de programas sociales por HELP International, dirigidos especialmente al área de la salud.
