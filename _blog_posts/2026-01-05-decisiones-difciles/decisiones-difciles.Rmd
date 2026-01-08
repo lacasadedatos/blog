@@ -272,7 +272,7 @@ plot(num_DF$imports, num_DF$exports,
 
 Como podemos ver en la Figura 7, muchas de las correlaciones entre variables muestran una clara separación de países en grupos, por ejemplo, esperanza de vida (life_expec) y mortalidad infantil (child_mort). Sin embargo, la distinción entre grupos de países no es tan clara para otras variables; como por ejemplo, importaciones (imports) y exportaciones (exports).
 
-A continuación, analizamos el valor del PIB para cada uno de los grupos. La Figura 8 muestra que el *k* grupo 3 es el que tiene el valor de PIB más bajo.
+A continuación, analizamos el valor del PIB para cada uno de los grupos. La Figura 8 muestra que, dentro de nuestros 3 grupos, el *k* grupo 3 es el que tiene el valor de PIB más bajo.
 
 ```{r echo=FALSE}
 
@@ -312,13 +312,13 @@ DF[c(start:end, target)] %>%
 rm(start, end, target)
 ```
 
-**Figura 9. Distribución** de cada una de las variables en función de la afiliación de los países a un *k* grupo (cluster). Health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; income, ingreso; inflation, inflación; imports, importaciones; exports, exportaciones.
+**Figura 9.** Distribución de cada una de las variables en función de la afiliación de los países a un *k* grupo (cluster). Health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; income, ingreso; inflation, inflación; imports, importaciones; exports, exportaciones.
 
 La Figura 9 muestra que los países que pertenecen al *k* grupo 3 tienen los peores valores para casi todas las variables sociodemográficas; por ejemplo, gasto en salud, esperanza de vida, mortalidad infantil, e ingreso por habitante.
 
 > 🥳 El análisis de agrupación por k-medias nos ha permitido identificar claramente un grupo de países con las peores variables sociodemográficas. Pero... ¿podríamos haber usado simplemente los valores de PIB más bajos como filtro? 🤔
 
-# ¿Y si sólo usamos el PIB como criterio de selección?
+# ¿Y si sólo usáramos el PIB como criterio de selección?
 
 La Figura 10 muestra la distribución de PIB de los 47 países que integran el *k* grupo 3 y de los 47 países con el PIB más bajo.
 
@@ -361,7 +361,7 @@ low_gdpp_countries %>%
 
 Resulta evidente que hay una gran diferencia en la distribución del PIB en los países del *k* grupo 3 y los países con el PIB más bajo, ya que el *k* grupo 3 incluye países con altos valores de PIB.
 
-La Tabla 3 muestra los países del *k* grupo 3 que no están en la lista de países con el PIB más bajo de la Figura 10 y los países con PIB más bajo que no pertenecen al *k* grupo 3; llamémosles países "divergentes".
+La Tabla 3 muestra los países del *k* grupo 3 que no están en la lista de países con el PIB más bajo de la Figura 10, así como los países con el PIB más bajo que no pertenecen al *k* grupo 3; llamémosles países "divergentes".
 
 ```{r echo=FALSE}
 # We can use the anti_join() function to return all rows in the first data frame that do not have a matching team in the second data frame:
@@ -393,11 +393,13 @@ conflicted_countries %>%
   theme_zebra()
 ```
 
-> ¿Qué hace diferentes a los países "divergentes"? 🤔
+Estos países "divergentes" son especialmente interesantes porque ya vimos que, dentro de los tres *k* grupos, el 3 es el de menor PIB (Fig. 8); lo que significa que la afiliación al *k* grupo 3 no depende exclusivamente del PIB.
 
-# ¿Además del PIB qué caracteriza a los países del *k* grupo 3?
+> ¿Qué diferencia entonces a los países "divergentes" del *k* grupo 3 de los países "divergentes" con el PIB más bajo? 🤔
 
-Para contestar a esta pregunta, podemos comparar la distribución de cada una de nuestras variables a través de gráficos de caja y bigotes (box plots, Figs. 11-12).
+# ¿Qué caracteriza a los países divergentes del *k* grupo 3?
+
+Para contestar a esta pregunta, comparamos la distribución de cada una de nuestras variables a través de gráficos de caja y bigotes en los países divergentes que son del *k* grupo 3 y aquellos con el PIB más bajo (box plots, Figs. 11-12).
 
 ```{r echo=FALSE}
 #| message: false
@@ -435,9 +437,9 @@ p2 <- ggplot(conflicted_countries) +
 grid.arrange(p1, p2, ncol = 2)
 ```
 
-**Figura 11.** Distribución de variables socio-económicas en países divergentes. Health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; group, grupo.
+**Figura 11.** Distribución de variables socio-económicas en países divergentes. Health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; group, grupo; cluster 3, *k* grupo 3; low_gdpp países con bajo PIB que no pertenecen al *k* grupo 3.
 
-La Figura 11 muestra que, a pesar de que el gasto en salud es similar entre los países con PIB bajo y los del *k* grupo 3 (la mediana y el rango son similares), la esperanza de vida es menor en los países del *k* grupo 3 mientras que la mortalidad infantil y la tasa de fertilidad son mayores.
+La Figura 11 muestra que, a pesar de que el gasto en salud es similar entre los países divergentes con PIB bajo y los del *k* grupo 3 (la mediana y el rango son similares), la esperanza de vida es menor en los países del *k* grupo 3 mientras que la mortalidad infantil y la tasa de fertilidad son mayores.
 
 ```{r echo=FALSE}
 #| message: false
@@ -475,7 +477,7 @@ p2 <- ggplot(conflicted_countries) +
 grid.arrange(p1, p2, ncol = 2)
 ```
 
-**Figura 12.** Distribución de variables económicas en países divergentes. Gdpp, PIB; income, ingreso; inflation, inflación; imports, importaciones; exports, exportaciones; group, grupo.
+**Figura 12.** Distribución de variables económicas en países divergentes. Gdpp, PIB; income, ingreso; inflation, inflación; imports, importaciones; exports, exportaciones; group, grupo; cluster 3, *k* grupo 3; low_gdpp países con bajo PIB que no pertenecen al *k* grupo 3.
 
 La Figura 12 muestra que tanto el PIB como el ingreso por habitante son mayores en los países del *k* grupo 3 y que no existen diferencias tan acusadas en importaciones y exportaciones.
 
@@ -497,7 +499,7 @@ lowQuality_countries %>%
 
 ```
 
-> ¿Cuál es nuestra recomendación para HELP International? 🤓
+> Su hubiéramos usado el PIB como único criterio de selección habríamos dejado fuera de los países candidatos para recibir ayuda a países con valores medios de PIB, con alto grado de desigualdad social y económica que repercute en la esperanza de vida y la mortalidad infantil. 🤓
 
 # Nuestra recomendación
 
