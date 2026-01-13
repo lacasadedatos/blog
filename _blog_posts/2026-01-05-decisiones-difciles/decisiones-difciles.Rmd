@@ -512,3 +512,5 @@ Disminuir la mortalidad infantil y aumentar la esperanza de vida son objetivos q
 > 🔍 La técnica de agrupación por k-medias nos ha permitido **integrar 9 variables en un único criterio de selección** (afiliación al *k* grupo 3) para identificar a los 47 países más vulnerables.
 >
 > 🏥 Las características que distinguen a los países del *k* grupo 3 de otros países con bajos niveles de PIB nos permiten afirmar que éstos podrían beneficiarse significativamente de programas sociales por HELP International, dirigidos especialmente al área de la salud.
+
+El código completo de este análisis está disponible en el repositorio de [La Casa de Datos](https://github.com/lacasadedatos/R_scripts "Ver código del análisis") en Github.

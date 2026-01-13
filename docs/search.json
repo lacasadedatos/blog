@@ -6,7 +6,7 @@
       "description": "Some additional details about the website",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2026-01-08T12:52:46+01:00"
+      "last_modified": "2026-01-13T10:47:52+01:00"
     },
     {
       "path": "blog.html",
@@ -14,14 +14,14 @@
       "description": "Este es mi blog.\n",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2026-01-08T12:52:46+01:00"
+      "last_modified": "2026-01-13T10:47:53+01:00"
     },
     {
       "path": "index.html",
       "title": "",
       "author": [],
       "contents": "\n\n          \n          \n          La Casa de Datos\n          \n          \n          Blog\n          Machine Learning\n          ☰\n          \n          \n      \n        \n          \n            \n              \n            \n              \n            \n            \n              \n                \n                    \n                      \n                         Web de Casa de\n                        Lletres\n                      \n                    \n                  \n                                    \n                    \n                      \n                         GitHub\n                      \n                    \n                  \n                                    \n                    \n                      \n                         Contacto\n                      \n                    \n                  \n                                  \n            \n          \n        \n        \n        \n          \n            La Casa de Datos es Erick García-García, Ph.D.\n            \n            Bio\n            Me gustan los tacos\n            Editor Principal de Casa de Lletres - Academic Editing\n            Services y Científico de Datos.\n            \n            \n            Educación\n            ad aldkjñadsjñalsdkj añldsj añlsdjkñaldjk\n            \n            \n            Experiencia\n            ads aslñdjkalñsdjkñaldsjañlkdjñadjñk\n            al daljdñaLJD ÑADJñ laDÑLAK JÑDLkj aÑLDKJ A AÑLKD\n            JAÑLKDSj aÑLDSK JADÑlkjaD\n            AKLÑDHj ñaLKJD ÑLAKJñjaÑLKD JÑALKDj ñALKJDJ ÑALKJD\n            \n          \n        \n      \n    \n\n    \n      \n        \n          \n            \n              \n            \n              \n            \n            \n              \n                \n                                    \n                    \n                       Web de Casa de Lletres\n                    \n                  \n                                    \n                    \n                       GitHub\n                    \n                  \n                                    \n                    \n                       Contacto\n                    \n                  \n                                  \n              \n            \n            \n              La Casa de Datos es Erick García-García, Ph.D.\n              \n              Bio\n              Me gustan los tacos\n              Editor Principal de Casa de Lletres - Academic Editing\n              Services y Científico de Datos.\n              \n              \n              Educación\n              ad aldkjñadsjñalsdkj añldsj añlsdjkñaldjk\n              \n              \n              Experiencia\n              ads aslñdjkalñsdjkñaldsjañlkdjñadjñk\n              al daljdñaLJD ÑADJñ laDÑLAK JÑDLkj aÑLDKJ A AÑLKD\n              JAÑLKDSj aÑLDSK JADÑlkjaD\n              AKLÑDHj ñaLKJD ÑLAKJñjaÑLKD JÑALKDj ñALKJDJ ÑALKJD\n              \n            \n        \n      \n    \n\n    \n    \n    ",
-      "last_modified": "2026-01-08T12:53:02+01:00"
+      "last_modified": "2026-01-13T10:48:08+01:00"
     },
     {
       "path": "machine_learning.html",
@@ -35,7 +35,7 @@
       ],
       "date": "`r Sys.Date()`",
       "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill for R Markdown at https://rstudio.github.io/distill.\n\n\n\n",
-      "last_modified": "2026-01-08T12:53:02+01:00"
+      "last_modified": "2026-01-13T10:48:08+01:00"
     }
   ],
   "collections": ["blog_posts/blog_posts.json"]

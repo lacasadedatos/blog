@@ -1,0 +1,21 @@
+---
+title: "Esto está lleno de agujeros..."
+description: |
+  La regogida de datos no es siempre perfecta. Nos han quedado huecos en la mitad de los casos. ¿Desechamos la mitad de los datos?... ¡NO!... Verás que los podemos estimar :)
+author:
+  - name: Erick García-García, Ph.D.
+date: "`r Sys.Date()`"
+output: 
+  distill::distill_article:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    collapsed: true
+    smooth_scroll: true
+    #theme: spacelab
+    highlight: pygments
+    df_print: paged
+    #code_folding: show
+    self_contained: false
+---
+
