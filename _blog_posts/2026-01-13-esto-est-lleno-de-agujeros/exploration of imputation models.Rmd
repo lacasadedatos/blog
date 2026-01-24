@@ -1,0 +1,29 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+
+library(tidyverse)
+library(flextable)
+library(dlookr)
+`%notin%` <- Negate(`%in%`)
+```
+
+```{r}
+DF <- read_csv("synthetic_dog_breed_health_data.csv")
+DF <- janitor::clean_names(DF) #%>% 
+  
+DF <- DF %>% mutate_if(is.character, as.factor) %>%
+  dplyr::select(-synthetic) %>%
+  column_to_rownames(var = "id")
+
+short_DF <- DF[sample(nrow(DF), 1000), ]
+
+
+```
+
+```{r}
+imputate_na(.data = DF, var, method = i_method) 
+```
