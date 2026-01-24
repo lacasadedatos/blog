@@ -19,7 +19,7 @@ Científico biomédico con más de 25 años de experiencia en investigación int
 ### 💼 **Experiencia Actual**
 
 | Cargo | Organización | Período |
-|------------------|---------------------------------|---------------------|
+|----|----|----|
 | **Co-director** | Casa d'Estudis El Pont - Academia Privada | Sep 2009 - Presente |
 | **Director** | Casa de Lletres - Servicios de Traducción y Edición Académica | Oct 2017 - Presente |
 
