@@ -15,11 +15,13 @@ site: distill::distill_website
 
 # Bienvenido a La Casa de Datos - Consultoría
 
-### *Análisis estadístico, Ciencia de Datos y Aplicaciones de Aprendizaje automático.*
+------------------------------------------------------------------------
+
+#### *Análisis estadístico, Ciencia de Datos y Aplicaciones de Aprendizaje automático.*
 
 ------------------------------------------------------------------------
 
-## ¿Para qué sirve el Aprendizaje Automático?
+## ¿Para qué podemos usar el Aprendizaje Automático?
 
 El aprendizaje automático (Machine Learning) es una rama de la Inteligencia Artificial que está revolucionando el mundo académico.
 
@@ -41,7 +43,7 @@ El aprendizaje automático nos permite extraer además información valiosa de i
 
 ## Acerca de mi.
 
-### *La Casa de Datos es Erick García-García, Ph.D*
+#### *La Casa de Datos es Erick García-García, Ph.D*
 
 Soy un Científico de Datos, Profesor y Editor Científico.
 
