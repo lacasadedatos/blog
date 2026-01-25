@@ -18,6 +18,7 @@ output:
     df_print: paged
     #code_folding: show
     self_contained: false
+    code_download: true
 ---
 
 ```{css, echo=FALSE}
@@ -27,6 +28,11 @@ output:
   border: 2px solid #4f9ed4;
   border-radius: 10px;
   background: ##a3cde5 5px center/3em no-repeat;
+}
+
+.fig_legend {
+  font-size: 0.8rem;
+  line-height: 1.2;
 }
 ```
 
@@ -45,17 +51,17 @@ library(ggplot2)
 
 [HELP International](https://www.helpinternational.org/en/) es una ONG humanitaria internacional que la lucha contra la pobreza y proporciona servicios básicos y socorro a la población de los países atrasados, especialmente frente a desastres naturales.
 
-HELP International recaudó alrededor de \$10 millones USD y quiere utilizar ese dinero de forma estratégica para desarrollar campañas de ayuda en los países que más lo necesiten.
+HELP International recaudó alrededor de \$10 millones USD y quería utilizar ese dinero de forma estratégica para desarrollar campañas de ayuda en los países que más lo necesitasen.
 
 <div>
 
 ::: {.infobox data-latex="warning"}
-> **🤔 ¿Cómo decidimos qué países necesitan más ayuda?**
+> 🤔 ¿Cómo decidimos qué países necesitan más ayuda?
 :::
 
-HELP International contaba con una tabla de datos sociodemográficos ([descargar](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/data)[^1]) de 167 países candidatos con las siguientes variables:
-
 </div>
+
+HELP International publicó una tabla de datos sociodemográficos ([descargar](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/data)[^1]) de 167 países candidatos con las siguientes variables:
 
 [^1]: La tabla de datos utilizada para este análisis fue descargada de Kaggle.
 
@@ -126,7 +132,13 @@ num_DF[c(start:end, target)] %>%
   explore::explore_all(target = gdpp)
 ```
 
-**Figura1**. Correlación del PIB (gdpp) con las otras variables socioeconómicas: health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; income, ingreso por habitante; inflation, inflación; imports, importaciones; exports, exportaciones. Cada punto representa un país.
+<div>
+
+::: {.fig_legend data-latex=""}
+**Figura 1**. Correlación del PIB (gdpp) con las otras variables socioeconómicas: health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; income, ingreso por habitante; inflation, inflación; imports, importaciones; exports, exportaciones. Cada punto de la gráfica representa un país.
+:::
+
+</div>
 
 La Figura 1 muestra que el PIB tiene diferentes grados de correlación con el resto de variables sociodemográficas, por lo que tal vez podría utilizarse como un criterio de selección, eligiendo simplemente los países con los valores de PIB más bajos.
 
@@ -157,7 +169,13 @@ ggplot(num_DF) +
   theme_minimal()
 ```
 
+<div>
+
+::: {.fig_legend data-latex=""}
 **Figura 2.** Correlación del gasto en salud (health) y la esperanza de vida (life_expec). Cada país está representado por un punto en la gráfica; su tamaño es directamente proporcional al PIB (gdpp) y su color se ajusta al nivel de ingresos por habitante (income).
+:::
+
+</div>
 
 Lo mismo ocurre si correlacionamos el gasto en salud y la mortalidad infantil y los graficamos junto con el PIB y el ingreso por habitante (Fig. 3).
 
@@ -176,12 +194,18 @@ ggplot(num_DF) +
   theme_minimal()
 ```
 
+<div>
+
+::: {.fig_legend data-latex=""}
 **Figura 3.** Correlación del gasto en salud (health) y la mortalidad infantil (child_mort). Cada país está representado por un punto en la gráfica; su tamaño es directamente proporcional al PIB (gdpp) y su color se ajusta al nivel de ingresos por habitante (income).
+:::
+
+</div>
 
 <div>
 
 ::: {.infobox data-latex="warning"}
-> ⛏️ ¿Podemos explotar de alguna manera estos patrones de agrupación y obtener un criterio de selección? ¿Podemos explotar de alguna manera estos patrones de agrupación y obtener un criterio de selección?
+> ⛏️ ¿Podemos explotar de alguna manera estos patrones de agrupación y obtener un criterio de selección?
 :::
 
 </div>
@@ -194,7 +218,13 @@ La técnica k-medias (k-means) agrupa conjuntos de casos similares (por ejemplo 
 
 ![](images/kmeans_clustering_cartoon.png)
 
+<div>
+
+::: {.fig_legend data-latex=""}
 **Figura 4**. Agrupación de casos en dos grupos (*k* = 2). Cada uno de los ejes corresponde a una variable numérica. La distancia media entre los puntos rojos y azules (líneas de colores) y el centro de cada grupo (puntos verdes) sirve como una medida para llevar a cabo la agrupación.
+:::
+
+</div>
 
 El primer paso para llevar a cabo el análisis de agrupación por k-medias es la normalización de los datos, con el fin de que las diferencias en las escalas de medición de cada variable no generen sesgos en las relaciones entre las variables.
 
@@ -228,11 +258,15 @@ map_dbl(.x = scaled_DF, .f = ~ sd(.)) %>%
   plot(., xlab = "Variable number")
 ```
 
+<div>
+
+::: {.fig_legend data-latex=""}
 **Figura 5.** Medias y desviaciones estándar de cada variable, antes (paneles superiores) y después (paneles inferiores) de la normalización de los datos.
+:::
 
-Como no sabemos de antemano cuántos grupos hay dentro de nuestros datos, hacemos un análisis de agrupación por k-medias serializado en R[^2] usando los datos normalizados. Usamos valores de *k* de 1 a 15 (siendo *k* el número de agrupaciones esperado) y graficamos la suma total de las distancias entre grupos ([total distance within groups](https://www.geeksforgeeks.org/machine-learning/elbow-method-for-optimal-value-of-k-in-kmeans/)) (Fig. 6): buscamos dentro del gráfico un valor de *k* en el que la distancia total entre grupos **comience** a tener un comportamiento asintótico.
+</div>
 
-[^2]: El análisis de este post ha sido realizado en su totalidad usando en lenguaje de programación R.
+Como no sabemos de antemano cuántos grupos hay dentro de nuestros datos, hacemos un análisis de agrupación por k-medias serializado en usando los datos normalizados. Usamos valores de *k* de 1 a 15 (siendo *k* el número de agrupaciones esperado) y graficamos la suma total de las distancias entre grupos ([total distance within groups](https://www.geeksforgeeks.org/machine-learning/elbow-method-for-optimal-value-of-k-in-kmeans/)) (Fig. 6): buscamos dentro del gráfico un valor de *k* en el que la distancia total entre grupos **comience** a tener un comportamiento asintótico.
 
 ```{r echo=FALSE}
 set.seed(1976)
@@ -250,7 +284,13 @@ plot(1:15, total_wss, type = "b",
 rm(total_wss, centers)
 ```
 
+<div>
+
+::: {.fig_legend data-latex=""}
 **Figura 6.** Análisis serializado de la distancia total entre grupos ([total distance within groups](https://www.geeksforgeeks.org/machine-learning/elbow-method-for-optimal-value-of-k-in-kmeans/)).
+:::
+
+</div>
 
 Aunque la reducción de la distancia entre grupos es bastante paulatina, podríamos elegir *k* = 3 (es decir tres grupos) para continuar con el análisis y ver cómo se comportan los datos.
 
@@ -266,7 +306,7 @@ km_3model <- kmeans(scaled_DF, # DF is a numeric sacled dada frame
 
 ```
 
-La Tabla 2 contiene una muestra aleatoria de 10 países y la afiliación de cada uno a un *k* grupo (Grupos 1 a 3).
+La Tabla 2 contiene una muestra aleatoria de 10 países y su afiliación a un *k* grupo (Grupos 1 a 3).
 
 ```{r echo=FALSE}
 set.seed(1976)
@@ -284,7 +324,7 @@ DF %>%
 
 # Distribución de las variables en los distintos *k* grupos
 
-Para explorar la eficacia de la agrupación, realizamos un análisis de correlación dos a dos con cada una de las variables de nuestra tabla de datos, coloreando los puntos en función del *k* grupo al que pertenecen (Fig. 7).
+Para explorar la eficacia de la agrupación, realizamos un análisis de correlación dos a dos con cada una de las variables de nuestra tabla de datos, coloreando los puntos (i.e., países) en los gráficos en función del *k* grupo al que pertenecen (Fig. 7).
 
 ```{r echo=FALSE}
 #| message: false
@@ -306,9 +346,15 @@ plot(num_DF$imports, num_DF$exports,
      )
 ```
 
-**Figura 7.** Análisis de correlación dos a dos con cada una de las variables de nuestra tabla de datos. Los colores corresponden a cada uno de los [*k*]{.underline} grupos. Cada punto representa un país. Gdpp, PIB; health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; income, ingreso; inflation, inflación; imports, importaciones; exports, exportaciones.
+<div>
 
-Como podemos ver en la Figura 7, muchas de las correlaciones entre variables muestran una clara separación de países en grupos, por ejemplo, esperanza de vida (life_expec) y mortalidad infantil (child_mort). Sin embargo, la distinción entre grupos de países no es tan clara para otras variables; como por ejemplo, importaciones (imports) y exportaciones (exports).
+::: {.fig_legend data-latex=""}
+**Figura 7.** Análisis de correlación dos a dos con cada una de las variables de nuestra tabla de datos. Los colores corresponden a cada uno de los *k* grupos. Cada punto representa un país. Gdpp, PIB; health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; income, ingreso; inflation, inflación; imports, importaciones; exports, exportaciones.
+:::
+
+</div>
+
+Como podemos ver en la Figura 7, muchos de los gráficos muestran una clara separación de países en grupos, por ejemplo, esperanza de vida (life_expec) y mortalidad infantil (child_mort). Sin embargo, la distinción entre grupos de países no es tan clara para otras variables; como por ejemplo, importaciones (imports) y exportaciones (exports).
 
 A continuación, analizamos el valor del PIB para cada uno de los grupos. La Figura 8 muestra que, dentro de nuestros 3 grupos, el *k* grupo 3 es el que tiene el valor de PIB más bajo.
 
@@ -327,7 +373,13 @@ ggplot(DF) +
   theme_minimal()
 ```
 
+<div>
+
+::: {.fig_legend data-latex=""}
 **Figura 8.** Análisis del PIB (gdpp) por *k* grupo (cluster).
+:::
+
+</div>
 
 A continuación analizamos la distribución de cada una de las variables en función de la afiliación de cada país a su *k* grupo (Figura 9).
 
@@ -350,19 +402,25 @@ DF[c(start:end, target)] %>%
 rm(start, end, target)
 ```
 
-**Figura 9.** Distribución de cada una de las variables en función de la afiliación de los países a un *k* grupo (cluster). Health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; income, ingreso; inflation, inflación; imports, importaciones; exports, exportaciones.
+<div>
+
+::: {.fig_legend data-latex=""}
+**Figura 9.** Distribución de cada una de las variables en función de la afiliación de cada país a un *k* grupo (cluster). Health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; income, ingreso; inflation, inflación; imports, importaciones; exports, exportaciones.
+:::
+
+</div>
 
 La Figura 9 muestra que los países que pertenecen al *k* grupo 3 tienen los peores valores para casi todas las variables sociodemográficas; por ejemplo, gasto en salud, esperanza de vida, mortalidad infantil, e ingreso por habitante.
 
 <div>
 
 ::: {.infobox data-latex="warning"}
-> 🥳️ El análisis de agrupación por k-medias nos ha permitido identificar claramente un grupo de países con las peores variables sociodemográficas.... Pero... ¿podríamos haber usado simplemente los valores de PIB más bajos como filtro? 🤔
+> 🥳️ El análisis de agrupación por k-medias nos ha permitido identificar claramente un grupo de países con las peores variables sociodemográficas.... Pero... ¿podríamos haber usado simplemente los valores de PIB más bajos como criterio de selección? 🤔
 :::
 
 </div>
 
-# ¿Y si sólo usáramos el PIB como criterio de selección?
+# ¿Y si sólo usáramos el PIB para elegir a los países más necesitados?
 
 La Figura 10 muestra la distribución de PIB de los 47 países que integran el *k* grupo 3 y de los 47 países con el PIB más bajo.
 
@@ -401,7 +459,13 @@ low_gdpp_countries %>%
   )
 ```
 
-**Figura 10.** Distribución del PIB (gdpp) de los países (country) del *k* grupo 3 y de los 47 países con el PIB más bajo.
+<div>
+
+::: {.fig_legend data-latex=""}
+**Figura 10.** Distribución del PIB (gdpp) de los 47 países (country) que componen el *k* grupo 3 y de los 47 países con el PIB más bajo.
+:::
+
+</div>
 
 Resulta evidente que hay una gran diferencia en la distribución del PIB en los países del *k* grupo 3 y los países con el PIB más bajo, ya que el *k* grupo 3 incluye países con altos valores de PIB.
 
@@ -487,7 +551,13 @@ p2 <- ggplot(conflicted_countries) +
 grid.arrange(p1, p2, ncol = 2)
 ```
 
+<div>
+
+::: {.fig_legend data-latex=""}
 **Figura 11.** Distribución de variables socio-económicas en países divergentes. Health, gasto en salud; life_expec, esperanza de vida; child_mort, mortalidad infantil; total_fer, tasa de fertilidad; group, grupo; cluster 3, *k* grupo 3; low_gdpp países con bajo PIB que no pertenecen al *k* grupo 3.
+:::
+
+</div>
 
 La Figura 11 muestra que, a pesar de que el gasto en salud es similar entre los países divergentes con PIB bajo y los del *k* grupo 3 (la mediana y el rango son similares), la esperanza de vida es menor en los países del *k* grupo 3 mientras que la mortalidad infantil y la tasa de fertilidad son mayores.
 
@@ -527,11 +597,17 @@ p2 <- ggplot(conflicted_countries) +
 grid.arrange(p1, p2, ncol = 2)
 ```
 
+<div>
+
+::: {.fig_legend data-latex=""}
 **Figura 12.** Distribución de variables económicas en países divergentes. Gdpp, PIB; income, ingreso; inflation, inflación; imports, importaciones; exports, exportaciones; group, grupo; cluster 3, *k* grupo 3; low_gdpp países con bajo PIB que no pertenecen al *k* grupo 3.
+:::
+
+</div>
 
 La Figura 12 muestra que tanto el PIB como el ingreso por habitante son mayores en los países del *k* grupo 3 y que no existen diferencias tan acusadas en importaciones y exportaciones.
 
-La Tabla 4 muestra los 10 países del *k* grupo 3 con los valores de PIB más altos; entre ellos vemos países como Iraq y Guinea Ecuatorial, cuya riqueza viene de la explotación petrolera aunque existen altos niveles de desigualdad socioeconómica.
+La Tabla 4 muestra los 10 países del *k* grupo 3 con los valores de PIB más altos; entre ellos vemos países como Iraq y Guinea Ecuatorial, con un nivel de riqueza importante que proviene de la explotación petrolera, al tiempo que mantienen altos niveles de desigualdad socioeconómica.
 
 ```{r echo=FALSE}
 #| message: false
@@ -576,3 +652,6 @@ Disminuir la mortalidad infantil y aumentar la esperanza de vida son objetivos q
 </div>
 
 El código completo de este análisis está disponible en el repositorio de [La Casa de Datos](https://github.com/lacasadedatos/R_scripts "Ver código del análisis") en Github.
+
+
+

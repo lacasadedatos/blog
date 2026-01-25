@@ -42,7 +42,7 @@ El análisis de datos masivos con estructuras y patrones complejos, a través de
 <div>
 
 ::: {.infobox data-latex="warning"}
-> 🚀️ Ahora podemos completar tareas de investigación que serían casi imposibles de abordar con métodos estadísticos convencionales.
+>  🚀   Ahora podemos completar tareas de investigación que serían casi imposibles de abordar con métodos estadísticos convencionales.
 :::
 
 </div>
@@ -54,7 +54,7 @@ Para organizaciones sociales, el aprendizaje automático tiene también un gran 
 <div>
 
 ::: {.infobox data-latex="warning"}
-> 📈 La capacidad de predecir resultados y segmentar poblaciones son recursos invaluables para las organizaciones.
+>  📈   La capacidad de predecir resultados y segmentar poblaciones son recursos invaluables para las organizaciones.
 :::
 
 </div>
@@ -66,7 +66,7 @@ El aprendizaje automático nos permite extraer además información valiosa de i
 <div>
 
 ::: {.infobox data-latex="warning"}
-> 🪏 El aprendizaje automático nos permite transformar datos pasados, inactivos o archivados en conocimiento estratégico para el presente.
+> 🪏   El aprendizaje automático nos permite transformar datos pasados, inactivos o archivados en conocimiento estratégico para el presente.
 :::
 
 </div>

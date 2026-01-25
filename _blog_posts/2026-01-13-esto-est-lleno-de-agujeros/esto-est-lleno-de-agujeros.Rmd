@@ -4,7 +4,7 @@ description: |
   La recogida de datos no es siempre perfecta. La vida es así. El aprendizaje automático no sólo nos ayuda a lidar con los casos incompletos; nos posibilita la creación de grandes bases de datos, agrupándolos desde diferentes fuentes.
 author:
   - name: Erick García-García, Ph.D.
-date: "`r Sys.Date()`"
+date:  "Jan. 15, 2026"
 categories: [R, MICE, imputation, missing values, databases]
 output: 
   distill::distill_article:
@@ -18,6 +18,7 @@ output:
     df_print: paged
     #code_folding: show
     self_contained: false
+    code_download: true
 ---
 
 ```{css, echo=FALSE}
@@ -27,6 +28,11 @@ output:
   border: 2px solid #4f9ed4;
   border-radius: 10px;
   background: ##a3cde5 5px center/3em no-repeat;
+}
+
+.fig_legend {
+  font-size: 0.8rem;
+  line-height: 1.2;
 }
 ```
 
@@ -110,8 +116,9 @@ names <- 1:18 %>% as.character()
 DF[1:18] %>% setNames(names) %>% 
 visdat::vis_miss()
 ```
-
+::: {.fig_legend data-latex=""}
 **Figura 1**. Distribución de casos incompletos. Missing, valores ausentes; Present, valores existentes.
+:::
 
 Aunque el 3% parece ser un porcentaje trivial, si eliminásemos todos los casos a los que les falta una medición en CUALQUIERA de las 18 variables tendríamos que deshacernos de 5580 de 9678 casos, lo que representa más del 50%.
 
@@ -170,7 +177,9 @@ p2 <- imputate_na(.data = DF, weight_lbs, method = "mean") %>%
 grid.arrange(p1, p2, ncol = 2)
 ```
 
+::: {.fig_legend data-latex=""}
 **Figura 2.** Distribución de los valores de dos variables numéricas continuas antes ("original") y después de la sustitución ("imputation") de los valores ausentes con la media de cada variable.
+:::
 
 En la Figura 2 podemos ver que sustituir los valores ausentes por la media de cada variable genera un sesgo importante en la distribución de los datos, que es mucho más drástico en el caso de la variable "edad".
 
@@ -196,7 +205,9 @@ p2 <- imputate_na(.data = DF, daily_walk_distance_miles, method = "mean") %>%
 grid.arrange(p1, p2, ncol = 1)
 ```
 
+::: {.fig_legend data-latex=""}
 **Figura 3.** Distribución de los valores de dos variables numéricas discretas antes ("original") y después ("imputation") de la sustitución de los valores ausentes con la media de cada variable.
+:::
 
 En la Figura 3 vemos que el sesgo introducido por la sustitución de valores ausentes con la media de cada variable altera la distribución de los datos, introduciendo una pequeña proporción de datos con valores decimales que no estaban presentes en la distribución original.
 
@@ -222,7 +233,9 @@ p2 <- imputate_na(.data = DF, diet, method = "mode") %>%
 grid.arrange(p1 + coord_flip(), p2 + coord_flip(), ncol = 1)
 ```
 
+::: {.fig_legend data-latex=""}
 **Figura 4.** Distribución de los valores de dos variables nominales antes ("original") y después ("imputation") de la sustitución de los valores ausentes con la moda de cada variable. NA, valores ausentes; Very active, muy activo; None, sin actividad; Moderate, moderadamente activo; Low, poco activo; Active, activo. Wet food, comida húmeda; Special diet, diete especial; Home cooked, comida casera; Hard food, pienso rígido.
+:::
 
 En la Figura 4 podemos ver el sesgo introducido por la sustitución de valores ausentes con la moda de cada variable nominal. Como era de esperar, tras la sustitución, hay un aumento en la frecuencia de una sola categoría dentro de cada variable.
 
@@ -279,7 +292,9 @@ p6 <- imputate_na(.data = DF, weight_lbs, method = "mice") %>%
 grid.arrange(p5, p6, ncol = 2)
 ```
 
+::: {.fig_legend data-latex=""}
 **Figura 5.** Distribución de los valores de dos variables numéricas continuas, antes ("original") y después ("imputation") de la sustitución de los valores ausentes usando el algoritmo MICE.
+:::
 
 La Figura 5 muestra que, a diferencia de la sustitución de casos incompletos con la media (Fig. 2), el algoritmo MICE respeta la distribución original de los datos.
 
@@ -312,7 +327,9 @@ p8 <- imputate_na(.data = DF, daily_walk_distance_miles,
 grid.arrange(p7, p8, ncol = 1)
 ```
 
+::: {.fig_legend data-latex=""}
 **Figura 6.** Distribución de los valores de dos variables numéricas discretas, antes ("original") y después ("imputation") de la sustitución de los valores ausentes usando el algoritmo MICE.
+:::
 
 En la Figura 6 vemos que, a diferencia de la sustitución de los valores ausentes con la media (Fig. 3), el algoritmo MICE respeta la distribución original de los datos y no introduce mediciones con valores decimales.
 
@@ -344,7 +361,10 @@ p10 <- imputate_na(.data = DF, diet, method = "mice") %>%
 grid.arrange(p9 + coord_flip(), p10 + coord_flip(), ncol = 1)
 ```
 
+::: {.fig_legend data-latex=""}
 **Figura 7.** Distribución de los valores de dos variables numéricas nominales, antes ("original") y después ("imputation") de la sustitución de los valores ausentes usando el algoritmo MICE. NA, valores ausentes; Very active, muy activo; None, sin actividad; Moderate, moderadamente activo; Low, poco activo; Active, activo. Wet food, comida húmeda; Special diet, diete especial; Home cooked, comida casera; Hard food, pienso rígido.
+:::
+
 
 La Figura 7 muestra que, a diferencia de la sustitución de los valores ausentes con la moda (Fig. 4), el algoritmo MICE respeta las sutiles diferencias en la distribución de los datos, sin incrementar la frecuencia de una sola categoría.
 
@@ -397,7 +417,10 @@ p5 + ggtitle("MICE") +
 ncol = 2)
 ```
 
+::: {.fig_legend data-latex=""}
 **Figura 8.** Distribución de la variable edad, antes ("original") y después ("imputation") de la sustitución de los valores ausentes usando el algoritmo MICE o KNN.
+:::
+
 
 Como podemos observar, aunque en general el algoritmo KNN respeta la distribución de los datos originales, hay un desfase significativo entre la distribución original y la que contiene las estimaciones, dentro de los valores de edad de 5 a 10 años. En contraste, el algoritmo MICE respetó la distribución original de los datos en todo el rango de valores de edad.
 
