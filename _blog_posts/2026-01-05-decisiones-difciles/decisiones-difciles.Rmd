@@ -4,7 +4,8 @@ description: |
   Tenemos los medios, tenemos los fondos, ¿cómo decidimos a quién ayudar?
 author:
   - name: Erick García-García, Ph.D.
-date: "`r Sys.Date()`"
+date: "Dec. 28, 2025"
+categories: [R, K-means, clustering]
 output: 
   distill::distill_article:
     toc: true
@@ -19,15 +20,24 @@ output:
     self_contained: false
 ---
 
-```{r}Rii RK909}
+```{css, echo=FALSE}
+.infobox {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid #4f9ed4;
+  border-radius: 10px;
+  background: ##a3cde5 5px center/3em no-repeat;
+}
+```
+
+```{r include=FALSE}
 #| label: load libraries
 #| message: false
 #| warning: false
-#| echo: false
-library(tidyverse)
+library(tidyverse) 
 library(flextable)
-library(gridExtra)
-library(ggplot2)
+library(gridExtra) 
+library(ggplot2) 
 `%notin%` <- Negate(`%in%`)
 ```
 
@@ -37,9 +47,15 @@ library(ggplot2)
 
 HELP International recaudó alrededor de \$10 millones USD y quiere utilizar ese dinero de forma estratégica para desarrollar campañas de ayuda en los países que más lo necesiten.
 
-> **¿Cómo decidimos qué países necesitan más ayuda?** 🤔
+<div>
+
+::: {.infobox data-latex="warning"}
+> **🤔 ¿Cómo decidimos qué países necesitan más ayuda?**
+:::
 
 HELP International contaba con una tabla de datos sociodemográficos ([descargar](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/data)[^1]) de 167 países candidatos con las siguientes variables:
+
+</div>
 
 [^1]: La tabla de datos utilizada para este análisis fue descargada de Kaggle.
 
@@ -60,6 +76,7 @@ La Tabla 1 muestra los 15 países con el PIB más bajo, y los valores de algunas
 #| message: false
 #| warning: false
 #| echo: false
+#| cache: true
 DF <- read_csv("Country-data.csv")
 num_DF <- DF %>%
   column_to_rownames(var = "country") %>%
@@ -80,13 +97,20 @@ DF %>%
   autofit()
 ```
 
-> Una primera aproximación, para ayudarnos a decidir, sería usar el PIB como un criterio de selección.
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🤷🏾‍♂️ Una primera aproximación, para ayudarnos a decidir, sería usar el PIB como un criterio de selección.
+:::
+
+</div>
 
 # Podríamos usar el PIB cómo único criterio de selección?
 
 Cómo una primera aproximación para nuestra toma de decisión correlacionamos todas nuestras variables con el PIB.
 
 ```{r echo=FALSE}
+#| cache: true
 start <- 2 # 1st col
 end <- 5 # last col
 target <- 1 # target col
@@ -106,13 +130,20 @@ num_DF[c(start:end, target)] %>%
 
 La Figura 1 muestra que el PIB tiene diferentes grados de correlación con el resto de variables sociodemográficas, por lo que tal vez podría utilizarse como un criterio de selección, eligiendo simplemente los países con los valores de PIB más bajos.
 
-> ¿Podemos hacer algo mejor que elegir en función del PIB? ¿Es posible integrar el resto de las variables en un único criterio de selección? 🤔
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🧐 ¿Podemos hacer algo mejor que elegir en función del PIB? ¿Es posible integrar el resto de las variables en un único criterio de selección?
+:::
+
+</div>
 
 Para comenzar a responder a estas preguntas, buscamos patrones de agrupación en los países de acuerdo a sus características.
 
 Si correlacionamos la esperanza de vida y el gasto en salud y los graficamos junto con el PIB y el ingreso por habitante (Fig. 2) vemos que los países tienden a formar pequeñas agrupaciones.
 
 ```{r echo=FALSE}
+#| cache: true
 ggplot(num_DF) +
   aes(
     x = health,
@@ -131,6 +162,7 @@ ggplot(num_DF) +
 Lo mismo ocurre si correlacionamos el gasto en salud y la mortalidad infantil y los graficamos junto con el PIB y el ingreso por habitante (Fig. 3).
 
 ```{r echo=FALSE}
+#| cache: true
 ggplot(num_DF) +
   aes(
     x = health,
@@ -146,7 +178,13 @@ ggplot(num_DF) +
 
 **Figura 3.** Correlación del gasto en salud (health) y la mortalidad infantil (child_mort). Cada país está representado por un punto en la gráfica; su tamaño es directamente proporcional al PIB (gdpp) y su color se ajusta al nivel de ingresos por habitante (income).
 
-> ¿Podemos explotar de alguna manera estos patrones de agrupación y obtener un criterio de selección? 🤔
+<div>
+
+::: {.infobox data-latex="warning"}
+> ⛏️ ¿Podemos explotar de alguna manera estos patrones de agrupación y obtener un criterio de selección? ¿Podemos explotar de alguna manera estos patrones de agrupación y obtener un criterio de selección?
+:::
+
+</div>
 
 # Análisis de agrupación por k-medias
 
@@ -316,7 +354,13 @@ rm(start, end, target)
 
 La Figura 9 muestra que los países que pertenecen al *k* grupo 3 tienen los peores valores para casi todas las variables sociodemográficas; por ejemplo, gasto en salud, esperanza de vida, mortalidad infantil, e ingreso por habitante.
 
-> 🥳 El análisis de agrupación por k-medias nos ha permitido identificar claramente un grupo de países con las peores variables sociodemográficas. Pero... ¿podríamos haber usado simplemente los valores de PIB más bajos como filtro? 🤔
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🥳️ El análisis de agrupación por k-medias nos ha permitido identificar claramente un grupo de países con las peores variables sociodemográficas.... Pero... ¿podríamos haber usado simplemente los valores de PIB más bajos como filtro? 🤔
+:::
+
+</div>
 
 # ¿Y si sólo usáramos el PIB como criterio de selección?
 
@@ -395,7 +439,13 @@ conflicted_countries %>%
 
 Estos países "divergentes" son especialmente interesantes porque ya vimos que, dentro de los tres *k* grupos, el 3 es el de menor PIB (Fig. 8); lo que significa que la afiliación al *k* grupo 3 no depende exclusivamente del PIB.
 
-> ¿Qué diferencia entonces a los países "divergentes" del *k* grupo 3 de los países "divergentes" con el PIB más bajo? 🤔
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🤔 ¿Qué diferencia entonces a los países "divergentes" del k grupo 3 de los países "divergentes" con el PIB más bajo?
+:::
+
+</div>
 
 # ¿Qué caracteriza a los países divergentes del *k* grupo 3?
 
@@ -499,7 +549,13 @@ lowQuality_countries %>%
 
 ```
 
-> Su hubiéramos usado el PIB como único criterio de selección habríamos dejado fuera de los países candidatos para recibir ayuda a países con valores medios de PIB, con alto grado de desigualdad social y económica que repercute en la esperanza de vida y la mortalidad infantil. 🤓
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🤓 SI hubiéramos usado el PIB como único criterio de selección habríamos dejado fuera de los países candidatos para recibir ayuda a países con valores medios de PIB, con alto grado de desigualdad social y económica que repercute en la esperanza de vida y la mortalidad infantil.
+:::
+
+</div>
 
 # Nuestra recomendación
 
@@ -509,8 +565,14 @@ Disminuir la mortalidad infantil y aumentar la esperanza de vida son objetivos q
 
 # Conclusión del análisis
 
-> 🔍 La técnica de agrupación por k-medias nos ha permitido **integrar 9 variables en un único criterio de selección** (afiliación al *k* grupo 3) para identificar a los 47 países más vulnerables.
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🔍 La técnica de agrupación por k-medias nos ha permitido **integrar 9 variables en un único criterio de selección** (afiliación al k grupo 3) para identificar a los 47 países más vulnerables.
 >
-> 🏥 Las características que distinguen a los países del *k* grupo 3 de otros países con bajos niveles de PIB nos permiten afirmar que éstos podrían beneficiarse significativamente de programas sociales por HELP International, dirigidos especialmente al área de la salud.
+> 🏥 Las características que distinguen a los países del k grupo 3 de otros países con bajos niveles de PIB nos permiten afirmar que éstos podrían beneficiarse significativamente de programas sociales por HELP International, dirigidos especialmente al área de la salud.
+:::
+
+</div>
 
 El código completo de este análisis está disponible en el repositorio de [La Casa de Datos](https://github.com/lacasadedatos/R_scripts "Ver código del análisis") en Github.

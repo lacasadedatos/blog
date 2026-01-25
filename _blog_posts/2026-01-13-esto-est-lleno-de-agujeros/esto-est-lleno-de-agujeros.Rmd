@@ -5,6 +5,7 @@ description: |
 author:
   - name: Erick García-García, Ph.D.
 date: "`r Sys.Date()`"
+categories: [R, MICE, imputation, missing values, databases]
 output: 
   distill::distill_article:
     toc: true
@@ -18,6 +19,16 @@ output:
     #code_folding: show
     self_contained: false
 ---
+
+```{css, echo=FALSE}
+.infobox {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid #4f9ed4;
+  border-radius: 10px;
+  background: ##a3cde5 5px center/3em no-repeat;
+}
+```
 
 ```{r include=FALSE}
 #| message: false
@@ -104,9 +115,15 @@ visdat::vis_miss()
 
 Aunque el 3% parece ser un porcentaje trivial, si eliminásemos todos los casos a los que les falta una medición en CUALQUIERA de las 18 variables tendríamos que deshacernos de 5580 de 9678 casos, lo que representa más del 50%.
 
-> La presencia de casos incompletos es natural en el mundo real; ocurre en cualquier investigación, independientemente de su naturaleza. Es parte de la ciencia. ¿Cómo lidiamos con ello?
+<div>
+
+::: {.infobox data-latex="warning"}
+> ❤️‍🩹 La presencia de casos incompletos es natural en el mundo real; ocurre en cualquier investigación, independientemente de su naturaleza. Es parte de la ciencia. ¿Cómo lidiamos con ello?
 >
-> ¿Tiramos a la basura el 50% de todos nuestros registros? O... ¿podemos hacer algo mejor?
+> 🤔 ¿Tiramos a la basura el 50% de todos nuestros registros? O... ¿podemos hacer algo mejor?
+:::
+
+</div>
 
 # ¿Cómo tapamos todos esos agujeros?
 
@@ -209,7 +226,15 @@ grid.arrange(p1 + coord_flip(), p2 + coord_flip(), ncol = 1)
 
 En la Figura 4 podemos ver el sesgo introducido por la sustitución de valores ausentes con la moda de cada variable nominal. Como era de esperar, tras la sustitución, hay un aumento en la frecuencia de una sola categoría dentro de cada variable.
 
-## Sustituyendo los casos incompletos con ratones (MICE)
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🙈 Hemos podido comprobar que la sustitución de los valores ausentes con la media y con la moda introduce sesgos importantes en la distribución de nuestros datos.
+:::
+
+</div>
+
+## Sustituyendo los casos incompletos con ratones 🐭🐭 (MICE)
 
 El algoritmo ([MICE](https://pmc.ncbi.nlm.nih.gov/articles/PMC3074241/), Multivariate Imputation by Chained Equations) es una técnica de aprendizaje automático que nos ayuda a "*recuperar*" la información de los casos incompletos para todas nuestras variables.
 
@@ -217,7 +242,13 @@ El algoritmo MICE ejecuta una serie de modelos de regresión de forma recursiva 
 
 Una gran ventaja del algoritmo MICE es que conserva la distribución de los datos originales, evitando los sesgos introducidos por la sustitución de casos incompletos por la media o la moda, como vimos en las Figuras 2-4.
 
-> En la práctica, el uso del algoritmo MICE representa una especie de "recuperación de la información", que nos ayuda a aprovechar nuestros datos al máximo, a pesar de posibles errores en la recogida de datos.
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🪏 En la práctica, el uso del algoritmo MICE representa una especie de "recuperación de la información", que nos ayuda a aprovechar nuestros datos al máximo, a pesar de posibles errores en la recogida de datos.
+:::
+
+</div>
 
 Otra de las grandes ventajas del algoritmo MICE es que trabaja sin problemas con tablas de datos que mezclan variables nominales, binarias, ordinales, continuas y discretas.
 
@@ -317,13 +348,29 @@ grid.arrange(p9 + coord_flip(), p10 + coord_flip(), ncol = 1)
 
 La Figura 7 muestra que, a diferencia de la sustitución de los valores ausentes con la moda (Fig. 4), el algoritmo MICE respeta las sutiles diferencias en la distribución de los datos, sin incrementar la frecuencia de una sola categoría.
 
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🤓 Hemos comprobado la eficacia del algoritmo MICE para estimar los valores ausentes de nuestros casos incompletos sin introducir sesgos en la distribución original de los datos.... Pero...
+>
+> 🤨 ¿Existen alternativas a MICE?
+:::
+
+</div>
+
 ## Comparación de MICE con el popular algoritmo KNN
 
 El algoritmo [KNN](https://www.geeksforgeeks.org/r-machine-learning/knn-k-nearest-neighbour-algorithm-in-r-from-scratch/) es uno de los más populares para estimar los valores de distintas variables de los casos incompletos, como hicimos arriba con el algoritmo MICE. El algoritmo KNN funciona encontrando los puntos de datos que son más similares (vecinos más cercanos) a un punto nuevo no visto antes. En este caso "similares" significa tener valores cercanos en gráficos n-dimensionales, donde cada dimensión (o eje) se corresponde con una variable.
 
 En el algoritmo KNN, la estimación de valores desconocidos para un caso y una variable se hace a partir de los valores para esa variable de todos los casos conocidos. KNN funciona siempre que exista similitud entre el caso nuevo y los casos conocidos (los vecinos cercanos) para el resto de las variables.
 
-> A pesar de su popularidad, en ocasiones, el algoritmo KNN no respeta la distribución de los datos originales.
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🫢 A pesar de su popularidad, en ocasiones, el algoritmo KNN no respeta la distribución de los datos originales.
+:::
+
+</div>
 
 La Figura 8 muestra una comparación de la distribución de la variable edad, antes y después de la sustitución de valores ausentes a través de MICE y KNN.
 
@@ -364,7 +411,13 @@ Una pequeña desventaja del algoritmo MICE es que es "computacionalmente costoso
 
 Para que la sustituciones de valores en los casos incompletos sea efectiva y realista ES INDISPENSABLE asegurarnos de que los los valores ausentes para nuestras variables se distribuyan al azar; por ejemplo, que no falten únicamente los valores más altos o más bajos, o sólo los valores dentro de un cierto rango.
 
-> Si los datos ausentes no se distribuyen al azar, nos arriesgamos a introducir sesgos importantes en nuestros datos tras estimar los valores ausentes usando el algoritmo MICE para completar nuestros casos.
+<div>
+
+::: {.infobox data-latex="warning"}
+> ⚠️ Si los datos ausentes no se distribuyen al azar, nos arriesgamos a introducir sesgos importantes en nuestros datos tras estimar los valores ausentes usando el algoritmo MICE, o cualquier otro algoritmo, para completar nuestros casos.
+:::
+
+</div>
 
 Es además importante tener en cuenta que el algoritmo MICE requiere que cada variable esté etiquetada según su naturaleza; es decir como variables continuas, discretas, nominales u ordinales.
 
@@ -378,6 +431,12 @@ Además de utilizarse para para completar la información de casos en estudios p
 
 ![](datapooling.png)
 
-> El algoritmo MICE puede utilizarse para crear grandes bases de datos que agrupen datos provenientes de diferentes fuentes y recogidos en diferentes momentos y que, por la propia naturaleza del agrupamiento, contengan una proporción considerable de valores ausentes en una o múltiples variables.
+<div>
+
+::: {.infobox data-latex="warning"}
+> 🪏 📦 El algoritmo MICE puede utilizarse para crear grandes bases de datos que agrupen datos provenientes de diferentes fuentes y recogidos en diferentes momentos y que, por la propia naturaleza del agrupamiento, contengan una proporción considerable de valores ausentes en una o múltiples variables.
+:::
+
+</div>
 
 El código completo de este análisis está disponible en el repositorio de [La Casa de Datos](https://github.com/lacasadedatos/R_scripts "Ver código del análisis") en Github.
