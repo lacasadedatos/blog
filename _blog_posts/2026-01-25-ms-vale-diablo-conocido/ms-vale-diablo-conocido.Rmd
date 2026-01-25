@@ -1,0 +1,28 @@
+---
+title: "¿Más vale diablo conocido?"
+description: |
+  A short description of the post.
+author:
+  - name: Erick García-García, Ph.D.
+    url: {}
+date: 2026-01-25
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+Distill is a publication format for scientific and technical writing, native to the web.
+
+Learn more about using Distill at <https://rstudio.github.io/distill>.
+
+```{r}
+1+1
+```
+
+```{r}
+plot(cars$speed, cars$dist)
+```
+
+::: callout-note
+BEWARE!
+:::

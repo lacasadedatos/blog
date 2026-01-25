@@ -13,6 +13,17 @@ output:
 site: distill::distill_website
 ---
 
+```{css, echo=FALSE}
+.infobox {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid #4f9ed4;
+  border-radius: 10px;
+  background: ##a3cde5 5px center/3em no-repeat;
+}
+
+```
+
 # Bienvenido a La Casa de Datos - Consultoría
 
 ------------------------------------------------------------------------
@@ -21,21 +32,31 @@ site: distill::distill_website
 
 ------------------------------------------------------------------------
 
+
+
+<div>
+
+::: {.infobox data-latex="warning"}
+⚠️ Include the actual content here.
+:::
+
+</div>
+
 ## ¿Para qué podemos usar el Aprendizaje Automático?
 
 El aprendizaje automático (Machine Learning) es una rama de la Inteligencia Artificial que está revolucionando el mundo académico.
 
 El análisis de datos masivos con estructuras y patrones complejos, a través del Aprendizaje Automático, está acelerando la investigación científica, permitiendo a investigadores y académicos explorar nuevas fronteras, impulsando el descubrimiento y la innovación.
 
-![](images/data_analysis.png "fig.align = 'center'"){width="256"}
+<center>![](images/data_analysis.png){width="256"}</center>
 
 Para organizaciones sociales, el aprendizaje automático tiene también un gran potencial transformador; puede ayudarnos a predecir patrones de donación y personalizar estrategias de recaudación de fondos, identificar individuos o áreas de interés para la asignación estratégica de recursos, evaluar la opinión pública sobre proyectos y campañas, detectar anomalías, predecir fallos, etc.
 
-![](images/social_analysis.png "fig.align = 'center'"){width="256"}
+<center>![](images/social_analysis.png){width="256"}</center>
 
 El aprendizaje automático nos permite extraer además información valiosa de investigaciones pasadas. Las bases de datos inactivas o archivadas, a menudo olvidadas, contienen un tesoro de información valiosa. El aprendizaje automático nos ofrece una anueva perspectiva para analizarlas. Los Algoritmos de clasificación, regresión y agrupamiento (“clustering”) pueden descubrir patrones ocultos, tendencias históricas y relaciones inesperadas que los métodos estadísticos tradicionales no revelan.
 
-![](images/box.png "fig.align = 'center'"){width="256"}
+<center>![](images/box.png){width="256"}</center>
 
 > El aprendizaje automático puede transformar datos pasados, inactivos o archivados en conocimiento estratégico para el presente.
 
@@ -59,4 +80,4 @@ Mi trayectoria docente abarca universidades en tres países, donde he impartido 
 
 Me gusta el cine, la música, la pintura y la fotografía.
 
-![](images/me_round.png){width="256"}
+<center>![](images/me_round2.png){width="256"}</center>

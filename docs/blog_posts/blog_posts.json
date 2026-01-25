@@ -1,5 +1,22 @@
 [
   {
+    "path": "blog_posts/2026-01-25-ms-vale-diablo-conocido/",
+    "title": "¿Más vale diablo conocido?",
+    "description": "A short description of the post.",
+    "author": [
+      {
+        "name": "Erick García-García, Ph.D.",
+        "url": {}
+      }
+    ],
+    "date": "2026-01-25",
+    "categories": [],
+    "contents": "\nDistill is a publication format for scientific and technical writing, native to the web.\nLearn more about using Distill at https://rstudio.github.io/distill.\n\n\n1+1\n\n[1] 2\n\n\n\nplot(cars$speed, cars$dist)\n\n\n\n\nBEWARE!\n\n\n\n\n",
+    "preview": "blog_posts/2026-01-25-ms-vale-diablo-conocido/ms-vale-diablo-conocido_files/figure-html5/unnamed-chunk-2-1.png",
+    "last_modified": "2026-01-25T10:37:21+01:00",
+    "input_file": {}
+  },
+  {
     "path": "blog_posts/2026-01-13-esto-est-lleno-de-agujeros/",
     "title": "Esto está lleno de agujeros...",
     "description": "La recogida de datos no es siempre perfecta. La vida es así. El aprendizaje automático no sólo nos ayuda a lidar con los casos incompletos; nos posibilita la creación de grandes bases de datos, agrupándolos desde diferentes fuentes.",
