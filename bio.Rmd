@@ -19,9 +19,13 @@ Científico biomédico con más de 25 años de experiencia en investigación int
 ### 💼 **Experiencia Actual**
 
 | Cargo | Organización | Período |
-|----|----|----|
-| **Co-director** | Casa d'Estudis El Pont - Academia Privada | Sep 2009 - Presente |
+|------------------------|------------------------|------------------------|
+| **Fundador** | La Casa de Datos - Consultoría | Jan 2026 - Presente |
 | **Director** | Casa de Lletres - Servicios de Traducción y Edición Académica | Oct 2017 - Presente |
+| **Co-director** | Casa d'Estudis El Pont - Academia Privada | Sep 2009 - Presente |
+| **Profesor** | La Escuela de Verdad | Sep 2023 - Presente |
+
+
 
 ------------------------------------------------------------------------
 
@@ -47,8 +51,10 @@ Instituto de Investigaciones Biomédicas
 
 #### **Especialización Actual**
 
+-   Científico de Datos (2026- Presente)
+-   Editor Científico (2015-Presente)
 -   Profesor y Co-director en Casa d'Estudis El Pont (2014-Presente)
--   Profesor de Redacción Científica (2015-Presente)
+
 
 ------------------------------------------------------------------------
 
@@ -69,16 +75,14 @@ Instituto de Investigaciones Biomédicas
 ✓ **Miembro del Sistema Nacional de Investigadores (SNI)** - Nivel I (2008-2012)\
 ✓ **Triple Certificación ANECA** (España): - Profesor de Universidad (PCD) - Asistente de Profesor (PAD) - Profesor de Universidad Privada (PUP)
 
-#### **Competencias Lingüísticas**
-
-✓ **Certificate of Proficiency in English** - Nivel C2 (Marco Común Europeo)
-
 ------------------------------------------------------------------------
 
 ### 💡 **Áreas de Especialización**
 
--   Ciencias Biomédicas e Inmunología
+-   Ciencia de Datos
+-   Análisis estadístico
 -   Redacción y Edición Científica
+-   Ciencias Biomédicas e Inmunología
 -   Traducción Académica
 -   Dirección de Proyectos Educativos
 -   Tutoría de Posgrado
@@ -89,4 +93,4 @@ Instituto de Investigaciones Biomédicas
 
 **México** 🇲🇽 \| **Canadá** 🇨🇦 \| **España** 🇪🇸
 
-*Más de 10 años de experiencia en instituciones de prestigio internacional*
+*Más de 20 años de experiencia en instituciones de prestigio internacional*
