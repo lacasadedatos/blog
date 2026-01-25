@@ -89,29 +89,29 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>La Casa de Datos: Biografía completa</title>
+  <title>La Casa de Datos: Blog</title>
 
-  <meta property="description" itemprop="description" content="&lt;!-- Biografía completa --&gt;"/>
+  <meta property="description" itemprop="description" content="Este es mi blog."/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="La Casa de Datos: Biografía completa"/>
+  <meta property="og:title" content="La Casa de Datos: Blog"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="&lt;!-- Biografía completa --&gt;"/>
+  <meta property="og:description" content="Este es mi blog."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="La Casa de Datos"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="La Casa de Datos: Biografía completa"/>
-  <meta property="twitter:description" content="&lt;!-- Biografía completa --&gt;"/>
+  <meta property="twitter:title" content="La Casa de Datos: Blog"/>
+  <meta property="twitter:description" content="Este es mi blog."/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Biografía completa"]},{"type":"character","attributes":{},"value":["<!-- Biografía completa -->"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","listing","output"]}},"value":[{"type":"character","attributes":{},"value":["Blog"]},{"type":"character","attributes":{},"value":["Este es mi blog.\n"]},{"type":"character","attributes":{},"value":["blog_posts"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2460,12 +2460,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 </head>
 
-<body>
+<body class="layout-listing">
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Biografía completa","description":"<!-- Biografía completa -->","authors":[]}
+{"title":"Blog","description":"Este es mi blog.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2487,110 +2487,259 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
+<!--radix_placeholder_article_listing-->
+
+
+<script type="application/javascript">
+
+function init_posts_list() {
+
+  function load_image(img) {
+    var src = $(img).attr('data-src');
+    if (src) {
+      $(img).attr('src', src);
+      $(img).on("load", function() {
+        img.removeAttribute('data-src');
+      });
+    }
+  }
+
+  function set_posts_visible(posts, visible) {
+    if (visible) {
+
+      // show bottom border by default
+      $(posts).removeClass('post-preview-last');
+
+      // apply limits if need be
+      var max_posts = 25;
+      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
+      if (apply_limits && posts.length > max_posts) {
+        posts = $(posts).slice(0, max_posts);
+      } else {
+        $('.posts-more a').addClass('hidden');
+      }
+
+      // apply last style
+      $(posts.slice(-1)[0]).addClass('post-preview-last');
+
+      $(posts).removeClass('hidden');
+      $(posts).find('img[data-src]').each(function(i, img) {
+        load_image(img);
+      });
+    } else {
+      $(posts).addClass('hidden');
+    }
+  }
+
+  function apply_hash_filter() {
+
+    // clear active state
+    $('.categories .active').removeClass('active');
+
+    // mark all posts invisible to start
+    set_posts_visible($('.posts-list').children('a'), false);
+
+    // if we have a hash filter
+    if (window.location.hash && window.location.hash.startsWith("#category:")) {
+
+      // mark posts that match the category visible
+      var page_category = window.location.hash.replace(/^#category:/, "");
+      page_category = decodeURIComponent(page_category)
+      var posts = $('.post-metadata').map(function(idx, script) {
+        var metadata = $.parseJSON($(script).html());
+        var post = null;
+        $.each(metadata.categories, function(idx, category) {
+          category = category.replace(/ /g,"_");
+          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
+            post = $(script).parent().get();
+            return false;
+          }
+        });
+        return post;
+      });
+      set_posts_visible(posts, true);
+
+      // mark the hash active
+      $('.categories li>a[href="' + decodeURIComponent(window.location.hash) + '"]').addClass('active');
+
+      // update the list_caption
+      var list_caption = $('.posts-list-caption');
+      var caption = (page_category || '').toLowerCase() === "articles"
+        ? list_caption.attr('data-caption')
+        : ('Category: ' + page_category.replace(/_/g," "));
+      list_caption.text(caption);
+
+    } else {
+
+      // no hash filter, make all posts visible (subject to max display)
+      set_posts_visible($('.posts-list').children(), true);
+
+      // reset list caption
+      var list_caption = $('.posts-list-caption');
+      list_caption.text(list_caption.attr('data-caption'));
+
+
+    }
+  }
+
+  // more articles
+  function apply_post_limits(apply) {
+    if (apply) {
+      $('.posts-container').addClass('posts-apply-limit');
+      $('.posts-more a').removeClass('hidden');
+    } else {
+      $('.posts-container').removeClass('posts-apply-limit');
+      $('.posts-more a').addClass('hidden');
+    }
+  }
+
+  // click handling for tags
+  $('.dt-tag').click(function(ev) {
+    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
+    return false;
+  })
+
+  // hash filter handling
+  apply_hash_filter();
+  $(window).on('hashchange',function() {
+    apply_post_limits(true);
+    apply_hash_filter();
+  });
+
+  // more articles link
+  $('.posts-more a').click(function(e) {
+    e.preventDefault();
+    apply_post_limits(false);
+    apply_hash_filter();
+    return false;
+  });
+
+}
+
+</script>
+
+
+
+<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
+<div class="posts-list">
+<h1 class="posts-list-caption" data-caption="Blog">Blog</h1>
+<a href="blog_posts/2026-01-25-ms-vale-diablo-conocido/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<div class="metadata">
+<div class="publishedDate">Jan. 25, 2026</div>
+<div class="dt-authors">
+<div class="dt-author">Erick García-García, Ph.D.</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="blog_posts/2026-01-25-ms-vale-diablo-conocido/ms-vale-diablo-conocido_files/figure-html5/unnamed-chunk-2-1.png"/>
+</div>
+<div class="description">
+<h2>¿Más vale diablo conocido?</h2>
+<div class="dt-tags"></div>
+<p>A short description of the post.</p>
+</div>
+</a>
+<a href="blog_posts/2026-01-13-esto-est-lleno-de-agujeros/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["R","MICE","imputation","missing values","databases"]}</script>
+<div class="metadata">
+<div class="publishedDate">Jan. 15, 2026</div>
+<div class="dt-authors">
+<div class="dt-author">Erick García-García, Ph.D.</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="blog_posts/2026-01-13-esto-est-lleno-de-agujeros/esto-est-lleno-de-agujeros_files/figure-html5/unnamed-chunk-4-1.png"/>
+</div>
+<div class="description">
+<h2>Esto está lleno de agujeros...</h2>
+<div class="dt-tags">
+<div class="dt-tag">R</div>
+<div class="dt-tag">MICE</div>
+<div class="dt-tag">imputation</div>
+<div class="dt-tag">missing values</div>
+<div class="dt-tag">databases</div>
+</div>
+<p>La recogida de datos no es siempre perfecta. La vida es así. El aprendizaje automático no sólo nos ayuda a lidar con los casos incompletos; nos posibilita la creación de grandes bases de datos, agrupándolos desde diferentes fuentes.</p>
+</div>
+</a>
+<a href="blog_posts/2026-01-05-decisiones-difciles/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["R","K-means","clustering"]}</script>
+<div class="metadata">
+<div class="publishedDate">Dec. 28, 2025</div>
+<div class="dt-authors">
+<div class="dt-author">Erick García-García, Ph.D.</div>
+</div>
+</div>
+<div class="thumbnail">
+<img src="blog_posts/2026-01-05-decisiones-difciles/decisiones-difciles_files/figure-html5/unnamed-chunk-2-1.png"/>
+</div>
+<div class="description">
+<h2>Decisiones Difíciles</h2>
+<div class="dt-tags">
+<div class="dt-tag">R</div>
+<div class="dt-tag">K-means</div>
+<div class="dt-tag">clustering</div>
+</div>
+<p>Tenemos los medios, tenemos los fondos, ¿cómo decidimos a quién ayudar?</p>
+</div>
+</a>
+</div>
+<div class="posts-sidebar">
+<div class="sidebar-section categories">
+<h3>Categories</h3>
+<ul>
+<li>
+<a href="#category:Articles">Articles</a>
+<span class="category-count">(3)</span>
+</li>
+<li>
+<a href="#category:clustering">clustering</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:databases">databases</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:imputation">imputation</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:K-means">K-means</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:MICE">MICE</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:missing_values">missing values</a>
+<span class="category-count">(1)</span>
+</li>
+<li>
+<a href="#category:R">R</a>
+<span class="category-count">(2)</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="posts-more">
+<a href="#">More articles &raquo;</a>
+</div>
+</div>
+<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Biografía completa</h1>
+<h1>Blog</h1>
 
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><!-- Biografía completa --></p>
+<p><p>Este es mi blog.</p></p>
 </div>
 
 
 <div class="d-article">
-<h2 id="erick-garcía-garcía-ph.d."><strong>Erick García-García, Ph.D.</strong></h2>
-<p><em>Científico de Datos , Investigador, Editor, Educador</em></p>
-<hr />
-<h3 id="perfil-profesional">🎯 <strong>Perfil Profesional</strong></h3>
-<p>Científico biomédico con más de 25 años de experiencia en investigación internacional y educación. Actualmente lidera proyectos educativos y editoriales especializados en ciencias y redacción académica.</p>
-<hr />
-<h3 id="experiencia-actual">💼 <strong>Experiencia Actual</strong></h3>
-<table>
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Cargo</th>
-<th>Organización</th>
-<th>Período</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Fundador</strong></td>
-<td>La Casa de Datos - Consultoría</td>
-<td>Ene 2026 - Presente</td>
-</tr>
-<tr class="even">
-<td><strong>Director</strong></td>
-<td>Casa de Lletres - Servicios de Traducción y Edición Académica</td>
-<td>Oct 2017 - Presente</td>
-</tr>
-<tr class="odd">
-<td><strong>Co-director</strong></td>
-<td>Casa d’Estudis El Pont - Academia Privada</td>
-<td>Sep 2009 - Presente</td>
-</tr>
-<tr class="even">
-<td><strong>Profesor</strong></td>
-<td>La Escuela de Verdad</td>
-<td>Sep 2023 - Presente</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h3 id="formación-académica">🎓 <strong>Formación Académica</strong></h3>
-<p><strong>Doctorado en Ciencias Biomédicas</strong> (2002-2007)<br />
-Universidad Nacional Autónoma de México (UNAM)<br />
-Instituto de Investigaciones Biomédicas</p>
-<p><strong>Licenciatura en Investigación Biomédica Básica</strong> (1995-2001)<br />
-Universidad Nacional Autónoma de México (UNAM)<br />
-Instituto de Investigaciones Biomédicas</p>
-<hr />
-<h3 id="trayectoria-docente">👨‍🏫 <strong>Trayectoria Docente</strong></h3>
-<h4 id="experiencia-internacional"><strong>Experiencia Internacional</strong></h4>
-<ul>
-<li><strong>México</strong> - UNAM: Biología Celular y Transducción de Señales</li>
-<li><strong>Canadá</strong> - Universidad de Alberta: Tutor de Maestría (2009-2012)</li>
-<li><strong>España</strong> - Universidad de Murcia: Tutor de Maestría (2009-2014)</li>
-</ul>
-<h4 id="especialización-actual"><strong>Especialización Actual</strong></h4>
-<ul>
-<li>Científico de Datos (2026- Presente)</li>
-<li>Editor Científico (2015-Presente)</li>
-<li>Profesor y Co-director en Casa d’Estudis El Pont (2014-Presente)</li>
-</ul>
-<hr />
-<h3 id="investigación-científica">🔬 <strong>Investigación Científica</strong></h3>
-<p><strong>Experiencia Postdoctoral Internacional:</strong></p>
-<ul>
-<li><strong>España</strong> (2012-2014): Contrato Marie Curie - Universidad de Murcia</li>
-<li><strong>Canadá</strong> (2009-2012): Universidad de Alberta</li>
-<li><strong>México</strong> (2007-2008): UNAM - Instituto de Investigaciones Biomédicas</li>
-</ul>
-<hr />
-<h3 id="distinciones-y-certificaciones">🏆 <strong>Distinciones y Certificaciones</strong></h3>
-<h4 id="reconocimientos-académicos"><strong>Reconocimientos Académicos</strong></h4>
-<p>✓ <strong>Miembro del Sistema Nacional de Investigadores (SNI)</strong> - Nivel I (2008-2012)<br />
-✓ <strong>Triple Certificación ANECA</strong> (España): - Profesor de Universidad (PCD) - Asistente de Profesor (PAD) - Profesor de Universidad Privada (PUP)</p>
-<hr />
-<h3 id="áreas-de-especialización">💡 <strong>Áreas de Especialización</strong></h3>
-<ul>
-<li>Ciencia de Datos</li>
-<li>Análisis estadístico</li>
-<li>Redacción y Edición Científica</li>
-<li>Ciencias Biomédicas e Inmunología</li>
-<li>Traducción Académica</li>
-<li>Dirección de Proyectos Educativos</li>
-<li>Tutoría de Posgrado</li>
-</ul>
-<hr />
-<h3 id="experiencia-internacional-1">🌍 <strong>Experiencia Internacional</strong></h3>
-<p><strong>México</strong> 🇲🇽 | <strong>Canadá</strong> 🇨🇦 | <strong>España</strong> 🇪🇸</p>
-<p><em>Más de 20 años de experiencia en instituciones de prestigio internacional</em></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
