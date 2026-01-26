@@ -1,11 +1,16 @@
 
-# El Aprendizaje Automático: Paradigmas Computacionales para la Resolución de Problemas Complejos
+# El Aprendizaje Automático: Un nuevo paradigma para la resolución de problemas complejos
 
-El aprendizaje automático (*machine learning*) ha emergido como uno de los campos más transformadores dentro de la ciencia computacional contemporánea, redefiniendo los límites metodológicos de la investigación interdisciplinaria y la resolución de problemas complejos. Esta disciplina, fundamentada en la intersección entre la estadística, la teoría de la computación y la optimización matemática, representa un cambio paradigmático en cómo abordamos fenómenos que desafían los métodos analíticos tradicionales.
+El aprendizaje automático (*Machine Learning*) ha emergido como uno de los campos más transformadores dentro de la ciencia computacional contemporánea, siendo la base del desarrollo de la inteligencia artificial.
 
-## Fundamentos Epistemológicos y Metodológicos
+El aprendizaje automático es una intersección entre la estadística, la teoría de la computación y la optimización matemática. Esta nueva disciplina ha redefinido los límites metodológicos de la investigación interdisciplinaria y la resolución de problemas complejos y representa un cambio paradigmático en cómo abordamos el análisis de fenómenos que desafían los métodos analíticos tradicionales.
 
-El aprendizaje automático se distingue de la programación algorítmica convencional por su capacidad de inferir patrones estructurales a partir de datos empíricos, sin requerir especificaciones explícitas de reglas heurísticas. Este enfoque inductivo contrasta con los métodos deductivos tradicionales, permitiendo la construcción de modelos predictivos y descriptivos en dominios caracterizados por alta dimensionalidad, no linealidad y relaciones causales complejas.
+
+IMG
+
+El aprendizaje automático se distingue de la programación algorítmica convencional por su capacidad de inferir patrones en estructuras de datos a partir de observaciones empíricas, sin requerir especificaciones explícitas sobre el total de las reglas heurísticas que componen un algoritmo convencional. Este enfoque inductivo contrasta con los métodos deductivos tradicionales, permitiendo la construcción de modelos predictivos y descriptivos en áreas del conocimiento, de la invesitagación y del desarrollo que se caracterizan por una alta dimensionalidad (cientos o miles de variables), ausencia de linealidad, y la existencia de relaciones causales o correlaciones complejas.
+
+IMG
 
 Desde una perspectiva epistemológica, el aprendizaje automático plantea cuestiones fundamentales sobre la naturaleza del conocimiento derivado computacionalmente. A diferencia de los modelos teóricos construidos mediante razonamiento *a priori*, los algoritmos de aprendizaje automático generan conocimiento *a posteriori*, fundamentado en la observación empírica y la generalización estadística. Esta distinción tiene implicaciones profundas para la validación, interpretabilidad y transferibilidad del conocimiento científico.
 

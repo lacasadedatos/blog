@@ -23,11 +23,11 @@ output:
 
 ```{css, echo=FALSE}
 .infobox {
-  padding: 1em 1em 1em 4em;
-  margin-bottom: 10px;
+  padding: 1em 1em 1em 1em;
   border: 2px solid #4f9ed4;
   border-radius: 10px;
   background: ##a3cde5 5px center/3em no-repeat;
+  line-height: 1.2;
 }
 
 .fig_legend {
@@ -56,7 +56,7 @@ HELP International recaudó alrededor de \$10 millones USD y quería utilizar es
 <div>
 
 ::: {.infobox data-latex="warning"}
-> 🤔 ¿Cómo decidimos qué países necesitan más ayuda?
+🤔 ¿Cómo decidimos qué países necesitan más ayuda?
 :::
 
 </div>
@@ -652,6 +652,3 @@ Disminuir la mortalidad infantil y aumentar la esperanza de vida son objetivos q
 </div>
 
 El código completo de este análisis está disponible en el repositorio de [La Casa de Datos](https://github.com/lacasadedatos/R_scripts "Ver código del análisis") en Github.
-
-
-
