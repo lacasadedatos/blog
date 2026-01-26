@@ -1,28 +1,52 @@
 ---
-title: "¿Más vale diablo conocido?"
+title: "¿Más sabe el diablo por viejo...?"
 description: |
-  A short description of the post.
+  En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido... Los pobres... Pero... ¿cómo es su desempeño comparado con algoritmos más modernos?
 author:
   - name: Erick García-García, Ph.D.
     url: {}
-date: 2026-01-25
+date: 2026-02-18
 output:
   distill::distill_article:
     self_contained: false
 ---
 
-Distill is a publication format for scientific and technical writing, native to the web.
+En este post también trabajaremos con la tabla de datos “Canine Wellness” de Kaggle.
 
-Learn more about using Distill at <https://rstudio.github.io/distill>.
+Nuestro objetivo esta vez será crear y comparar distintos modelos de Aprendizaje Automático que nos permitan predecir el estado de salud de un animal (en este caso, un perro) a partir de diferentes variables.
 
-```{r}
-1+1
+Crearemos distintos modelos predictivos utilizando la sensibilidad de cada modelo (i.e., la capacidad del modelo para identificar correctamente casos positivos) como una medida principal de desempeño.
+
+Usamos la sensibilidad como principal medida de desempeño porque, dentro de nuestro contexto de salud animal, no detectar un caso positivo podría tener consecuencias graves. La sensibilidad es también la principal medida de desempeño en contextos como el diagnóstico de enfermedades, la detección de fraude, la seguridad de sistemas etc.
+
+La tabla de datos “Canine Wellness” es un conjunto de datos sintéticos que simulan las características de una amplia gama de razas de perros que reflejan la distribución natural de distintas variables físicas y de estilos de vida y de salud para distintas razas de perros. Las variables de esta tabla de datos son:
+
+```         
+- raza (16 razas distintas)
+- tamaño (pequeño, mediano, grande)
+- sexo
+- edad
+- peso
+- esterilización (sí/no)
+- tipo de dieta (dura, húmeda, casera, especial)
+- marca de comida (10 marcas distintas)
+- nivel de actividad diaria (inactivo, bajo, moderado, alto, muy alto)
+- distancia caminada diaria
+- nivel de actividad diaria del propietario (inactivo, bajo, moderado, alto, muy alto)
+- horas de sueño
+- tiempo de juego
+- otras mascotas en el domicilio (sí/no)
+- medicación (sí/no)
+- espasmos (sí/no)
+- número de visitas anuales al veterinario
+- temperatura corporal media
+- estado de salud (saludable/no saludable)
 ```
 
-```{r}
-plot(cars$speed, cars$dist)
-```
+La tabla de datos original requiere de una serie de manipulaciones (limpieza de datos) antes de poder aplicar cualquier algoritmo de Aprendizaje Automático (ver el script de programación). Algunos de los pasos de esta limpieza son:
 
-::: callout-note
-BEWARE!
-:::
+-   Cambiar los nombres de las columnas de datos
+-   Convertir columnas datos que son caracteres en factores
+-   Eliminar columnas de datos innecesarias
+-   Reemplazar los valores ausentes de los casos incompletos usando el algortimo [MICE](https://lacasadedatos.github.io/blog/blog_posts/2026-01-13-esto-est-lleno-de-agujeros/)
+-   Asignar una clase correcta a cada variable: numéricas, nominales u ordinales.
