@@ -1633,7 +1633,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <pre><code></code></pre>
 <h1 id="cómo-tapamos-todos-esos-agujeros">¿Cómo tapamos todos esos agujeros?</h1>
-<h2 id="probamos-con-la-media-y-la-moda">¿Probamos con la media y la moda?</h2>
+<h3 id="probamos-con-la-media-y-la-moda">¿Probamos con la media y la moda?</h3>
 <p>Una proximación común para lidiar con casos incompletos es usar la media y la moda para sustituir los valores ausentes de variables continuas o nominales, respectivamente. Sin embargo, como veremos a continuación, estas dos aproximaciones generan sesgos importantes en la distribución de nuestros datos.</p>
 <p>Para realizar la sustitución de casos, incompletos y comparar distintos métodos, hemos usado la librería <a href="https://cran.r-project.org/web/packages/dlookr/dlookr.pdf">dlookr</a> de <a href="https://www.r-project.org/">R</a>.</p>
 <p>En el lenguaje de programación R, el código para estimar los valores ausentes de una variable es bastante sencillo:</p>
@@ -1675,7 +1675,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <pre><code></code></pre>
-<h2 id="sustituyendo-los-casos-incompletos-con-ratones-mice">Sustituyendo los casos incompletos con ratones 🐭🐭 (MICE)</h2>
+<h3 id="sustituyendo-los-casos-incompletos-con-ratones-mice">Sustituyendo los casos incompletos con ratones 🐭🐭 (MICE)</h3>
 <p>El algoritmo (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3074241/">MICE</a>, Multivariate Imputation by Chained Equations) es una técnica de aprendizaje automático que nos ayuda a “<em>recuperar</em>” la información de los casos incompletos para todas nuestras variables.</p>
 <p>El algoritmo MICE ejecuta una serie de modelos de regresión de forma recursiva para cada variable, usando todas las otras variables de nuestro conjunto de datos, de acuerdo a su distribución; por ejemplo, las variables binarias se pueden modelar utilizando regresión logística y las variables continuas se pueden modelar mediante regresión lineal. Estos modelos se utilizan entonces para estimar los valores ausentes de cada variable para cada uno de los casos incompletos.</p>
 <p>Una gran ventaja del algoritmo MICE es que conserva la distribución de los datos originales, evitando los sesgos introducidos por la sustitución de casos incompletos por la media o la moda, como vimos en las Figuras 2-4.</p>
@@ -1723,7 +1723,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <pre><code></code></pre>
-<h2 id="comparación-de-mice-con-el-popular-algoritmo-knn">Comparación de MICE con el popular algoritmo KNN</h2>
+<h3 id="comparación-de-mice-con-el-popular-algoritmo-knn">Comparación de MICE con el popular algoritmo KNN</h3>
 <p>El algoritmo <a href="https://www.geeksforgeeks.org/r-machine-learning/knn-k-nearest-neighbour-algorithm-in-r-from-scratch/">KNN</a> es uno de los más populares para estimar los valores de distintas variables de los casos incompletos, como hicimos arriba con el algoritmo MICE. El algoritmo KNN funciona encontrando los puntos de datos que son más similares (vecinos más cercanos) a un punto nuevo no visto antes. En este caso “similares” significa tener valores cercanos en gráficos n-dimensionales, donde cada dimensión (o eje) se corresponde con una variable.</p>
 <p>En el algoritmo KNN, la estimación de valores desconocidos para un caso y una variable se hace a partir de los valores para esa variable de todos los casos conocidos. KNN funciona siempre que exista similitud entre el caso nuevo y los casos conocidos (los vecinos cercanos) para el resto de las variables.</p>
 <pre><code></code></pre>

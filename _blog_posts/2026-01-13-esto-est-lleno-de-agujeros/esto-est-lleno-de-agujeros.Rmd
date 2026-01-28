@@ -143,7 +143,7 @@ Aunque el 3% parece ser un porcentaje trivial, si eliminásemos todos los casos 
 
 # ¿Cómo tapamos todos esos agujeros?
 
-## ¿Probamos con la media y la moda?
+### ¿Probamos con la media y la moda?
 
 Una proximación común para lidiar con casos incompletos es usar la media y la moda para sustituir los valores ausentes de variables continuas o nominales, respectivamente. Sin embargo, como veremos a continuación, estas dos aproximaciones generan sesgos importantes en la distribución de nuestros datos.
 
@@ -262,7 +262,7 @@ En la Figura 4 podemos ver el sesgo introducido por la sustitución de valores a
 ```         
 ```
 
-## Sustituyendo los casos incompletos con ratones 🐭🐭 (MICE)
+### Sustituyendo los casos incompletos con ratones 🐭🐭 (MICE)
 
 El algoritmo ([MICE](https://pmc.ncbi.nlm.nih.gov/articles/PMC3074241/), Multivariate Imputation by Chained Equations) es una técnica de aprendizaje automático que nos ayuda a "*recuperar*" la información de los casos incompletos para todas nuestras variables.
 
@@ -404,7 +404,7 @@ La Figura 7 muestra que, a diferencia de la sustitución de los valores ausentes
 ```         
 ```
 
-## Comparación de MICE con el popular algoritmo KNN
+### Comparación de MICE con el popular algoritmo KNN
 
 El algoritmo [KNN](https://www.geeksforgeeks.org/r-machine-learning/knn-k-nearest-neighbour-algorithm-in-r-from-scratch/) es uno de los más populares para estimar los valores de distintas variables de los casos incompletos, como hicimos arriba con el algoritmo MICE. El algoritmo KNN funciona encontrando los puntos de datos que son más similares (vecinos más cercanos) a un punto nuevo no visto antes. En este caso "similares" significa tener valores cercanos en gráficos n-dimensionales, donde cada dimensión (o eje) se corresponde con una variable.
 

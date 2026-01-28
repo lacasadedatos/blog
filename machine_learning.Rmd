@@ -45,7 +45,7 @@ El aprendizaje automático se distingue de la programación algorítmica convenc
 
 ![](images/machine_learning.png){width="700"}
 
-## Clasificación de tareas del Aprendizaje Automático
+### Clasificación de tareas del Aprendizaje Automático
 
 Existen tres grandes campos dentro de la disciplina del Aprendizaje Automático:
 
@@ -111,8 +111,8 @@ Finalmente, el **aprendizaje por refuerzo** es una rama del aprendizaje automát
 
 Como hemos podido ver, el **aprendizaje automático** revoluciona nuestra forma de abordar problemas complejos a través de la fisión de las matemáticas, la estadística y la programación. A través de la inferencia de patrones existentes en grandes volúmenes de datos, las tareas de predicción y clasificación nos abren las puertas para resolver grandes problemas con soluciones innovadoras y efectivas.
 
-## ¿Podemos ayudarte usando Aprendizaje Automático?
+# ¿Podemos ayudarte usando Aprendizaje Automático?
 
 Si recopilas o almacenas datos e intuyes que puedes sacarles provecho pero no sabes cómo, ponte en [contacto](erick.garcia@casadelletres.eu) con nosotros. Seguramente podemos diseñar algo a medida para ti: diseñar nuevas estrategias, crear nuevas publicaciones, mejorar tus procedimientos, analizar tus datos históricos con una nuevo óptica, etc.
 
-Te invitamos a visitar nuestra sección de Aplicaciones[LINK] para encontrar inspiración.
+Te invitamos a visitar nuestra sección de [Aplicaciones](https://lacasadedatos.github.io/blog/aplications_of_ML.html) para encontrar inspiración.
