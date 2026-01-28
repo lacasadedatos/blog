@@ -1,13 +1,13 @@
-Distill Article YAML
+###### Distill Article YAML
 
 ---
-title: "Decisiones Difíciles"
+title: "XXXXXXXXXXXXXXXX"
 description: |
-  Tenemos los medios, tenemos los fondos, ¿cómo decidimos a quién ayudar?
+  XXXXXXXXXXXXXXXXXXXXXXXXXXX
 author:
   - name: Erick García-García, Ph.D.
-date: "Dec. 28, 2025"
-categories: [R, K-means, clustering]
+date: "XXXXXXXXXXXXX"
+categories: [X, Y, Z]
 output:
   distill::distill_article:
     toc: true
@@ -23,7 +23,7 @@ output:
     code_download: true
 ---
 
-CSS sections
+##### CSS sections
 
 ```
 {css, echo=FALSE}
@@ -43,11 +43,27 @@ CSS sections
   line-height: 1.2;
 }
 
+#### Bits and pieces
+
+
+# Infobox
+
 ```
 ::: {.infobox data-latex=""}
 >
 :::
 
+
+
+ # Figure Legend
 ::: {.fig_legend data-latex=""}
 **Figura1**.
 :::
+
+
+# Empty line
+
+```
+
+
+```

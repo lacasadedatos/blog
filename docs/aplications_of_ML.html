@@ -51,76 +51,676 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
 code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>¿Más sabe el diablo por viejo...?</title>
+  <title>La Casa de Datos: Algunas plicaciones del Aprendizaje Automático</title>
 
-  <meta property="description" itemprop="description" content="En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido... Los pobres... Pero... ¿cómo es su desempeño comparado con algoritmos más modernos?"/>
+  <meta property="description" itemprop="description" content="&lt;!-- Algunas aplicaciones de los algoritmos de Machine Learning. --&gt;"/>
 
 
-  <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2026-01-27"/>
-  <meta property="article:created" itemprop="dateCreated" content="2026-01-27"/>
-  <meta name="article:author" content="Erick García-García, Ph.D."/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="¿Más sabe el diablo por viejo...?"/>
+  <meta property="og:title" content="La Casa de Datos: Algunas plicaciones del Aprendizaje Automático"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido... Los pobres... Pero... ¿cómo es su desempeño comparado con algoritmos más modernos?"/>
+  <meta property="og:description" content="&lt;!-- Algunas aplicaciones de los algoritmos de Machine Learning. --&gt;"/>
   <meta property="og:locale" content="en_US"/>
+  <meta property="og:site_name" content="La Casa de Datos"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="¿Más sabe el diablo por viejo...?"/>
-  <meta property="twitter:description" content="En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido... Los pobres... Pero... ¿cómo es su desempeño comparado con algoritmos más modernos?"/>
+  <meta property="twitter:title" content="La Casa de Datos: Algunas plicaciones del Aprendizaje Automático"/>
+  <meta property="twitter:description" content="&lt;!-- Algunas aplicaciones de los algoritmos de Machine Learning. --&gt;"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","categories","output","date"]}},"value":[{"type":"character","attributes":{},"value":["¿Más sabe el diablo por viejo...?"]},{"type":"character","attributes":{},"value":["En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido... Los pobres... Pero... ¿cómo es su desempeño comparado con algoritmos más modernos?\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Erick García-García, Ph.D."]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["R","Logistic Regression","Random Forest","Regression","GMLNet","predictive models"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","toc_float","collapsed","smooth_scroll","highlight","df_print","self_contained","code_download"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["pygments"]},{"type":"character","attributes":{},"value":["paged"]},{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["01-27-2026"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","output"]}},"value":[{"type":"character","attributes":{},"value":["Algunas plicaciones del Aprendizaje Automático"]},{"type":"character","attributes":{},"value":["<!-- Algunas aplicaciones de los algoritmos de Machine Learning. -->\n"]},{"type":"character","attributes":{},"value":["distill::distill_article"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
-  
-  <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["ms-vale-diablo-conocido_files/anchor-4.2.2/anchor.min.js","ms-vale-diablo-conocido_files/bowser-1.9.3/bowser.min.js","ms-vale-diablo-conocido_files/distill-2.2.21/template.v2.js","ms-vale-diablo-conocido_files/figure-html5/unnamed-chunk-2-1.png","ms-vale-diablo-conocido_files/header-attrs-2.30/header-attrs.js","ms-vale-diablo-conocido_files/jquery-3.6.0/jquery-3.6.0.js","ms-vale-diablo-conocido_files/jquery-3.6.0/jquery-3.6.0.min.js","ms-vale-diablo-conocido_files/jquery-3.6.0/jquery-3.6.0.min.map","ms-vale-diablo-conocido_files/popper-2.6.0/popper.min.js","ms-vale-diablo-conocido_files/tippy-6.2.7/tippy-bundle.umd.min.js","ms-vale-diablo-conocido_files/tippy-6.2.7/tippy-light-border.css","ms-vale-diablo-conocido_files/tippy-6.2.7/tippy.css","ms-vale-diablo-conocido_files/tippy-6.2.7/tippy.umd.min.js","ms-vale-diablo-conocido_files/webcomponents-2.0.0/webcomponents.js"]}
-  </script>
   <!--radix_placeholder_navigation_in_header-->
+  <meta name="distill:offset" content=""/>
+
+  <script type="application/javascript">
+
+    window.headroom_prevent_pin = false;
+
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+
+      // initialize headroom for banner
+      var header = $('header').get(0);
+      var headerHeight = header.offsetHeight;
+      var headroom = new Headroom(header, {
+        tolerance: 5,
+        onPin : function() {
+          if (window.headroom_prevent_pin) {
+            window.headroom_prevent_pin = false;
+            headroom.unpin();
+          }
+        }
+      });
+      headroom.init();
+      if(window.location.hash)
+        headroom.unpin();
+      $(header).addClass('headroom--transition');
+
+      // offset scroll location for banner on hash change
+      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+      window.addEventListener("hashchange", function(event) {
+        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+      });
+
+      // responsive menu
+      $('.distill-site-header').each(function(i, val) {
+        var topnav = $(this);
+        var toggle = topnav.find('.nav-toggle');
+        toggle.on('click', function() {
+          topnav.toggleClass('responsive');
+        });
+      });
+
+      // nav dropdowns
+      $('.nav-dropbtn').click(function(e) {
+        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+        $(this).parent().siblings('.nav-dropdown')
+           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $("body").click(function(e){
+        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $(".nav-dropdown").click(function(e){
+        e.stopPropagation();
+      });
+    });
+  </script>
+
+  <style type="text/css">
+
+  /* Theme (user-documented overrideables for nav appearance) */
+
+  .distill-site-nav {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #0F2E3D;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .distill-site-nav a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .distill-site-nav a:hover {
+    color: white;
+  }
+
+  @media print {
+    .distill-site-nav {
+      display: none;
+    }
+  }
+
+  .distill-site-header {
+
+  }
+
+  .distill-site-footer {
+
+  }
+
+
+  /* Site Header */
+
+  .distill-site-header {
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 3;
+  }
+
+  .distill-site-header .nav-left {
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header .nav-left {
+      margin-left: 0;
+    }
+  }
+
+
+  .distill-site-header .nav-right {
+    float: right;
+    margin-right: 8px;
+  }
+
+  .distill-site-header a,
+  .distill-site-header .title {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 10px 14px 10px;
+  }
+
+  .distill-site-header .title {
+    font-size: 18px;
+    min-width: 150px;
+  }
+
+  .distill-site-header .logo {
+    padding: 0;
+  }
+
+  .distill-site-header .logo img {
+    display: none;
+    max-height: 20px;
+    width: auto;
+    margin-bottom: -4px;
+  }
+
+  .distill-site-header .nav-image img {
+    max-height: 18px;
+    width: auto;
+    display: inline-block;
+    margin-bottom: -3px;
+  }
+
+
+
+  @media screen and (min-width: 1000px) {
+    .distill-site-header .logo img {
+      display: inline-block;
+    }
+    .distill-site-header .nav-left {
+      margin-left: 20px;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 20px;
+    }
+    .distill-site-header .title {
+      padding-left: 12px;
+    }
+  }
+
+
+  .distill-site-header .nav-toggle {
+    display: none;
+  }
+
+  .nav-dropdown {
+    display: inline-block;
+    position: relative;
+  }
+
+  .nav-dropdown .nav-dropbtn {
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 16px 10px;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    margin-top: 1px;
+    z-index: 2;
+  }
+
+  .nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    z-index: 1;
+    margin-top: 2px;
+    white-space: nowrap;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .nav-dropdown-content hr {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-dropdown-active {
+    display: block;
+  }
+
+  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+    color: black;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .nav-dropdown-content .nav-dropdown-header {
+    display: block;
+    padding: 5px 24px;
+    padding-bottom: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #999999;
+    white-space: nowrap;
+  }
+
+  .nav-dropdown:hover .nav-dropbtn {
+    color: white;
+  }
+
+  .nav-dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .nav-right .nav-dropdown-content {
+    margin-left: -45%;
+    right: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+    .distill-site-header a.nav-toggle {
+      float: right;
+      display: block;
+    }
+    .distill-site-header .title {
+      margin-left: 0;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 0;
+    }
+    .distill-site-header {
+      overflow: hidden;
+    }
+    .nav-right .nav-dropdown-content {
+      margin-left: 0;
+    }
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header.responsive {position: relative; min-height: 500px; }
+    .distill-site-header.responsive a.nav-toggle {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .distill-site-header.responsive a,
+    .distill-site-header.responsive .nav-dropdown {
+      display: block;
+      text-align: left;
+    }
+    .distill-site-header.responsive .nav-left,
+    .distill-site-header.responsive .nav-right {
+      width: 100%;
+    }
+    .distill-site-header.responsive .nav-dropdown {float: none;}
+    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  /* Site Footer */
+
+  .distill-site-footer {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 3;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+
+  /* Headroom */
+
+  d-title {
+    padding-top: 6rem;
+  }
+
+  @media print {
+    d-title {
+      padding-top: 4rem;
+    }
+  }
+
+  .headroom {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .headroom--transition {
+    transition: all .4s ease-in-out;
+  }
+
+  .headroom--unpinned {
+    top: -100px;
+  }
+
+  .headroom--pinned {
+    top: 0;
+  }
+
+  /* adjust viewport for navbar height */
+  /* helps vertically center bootstrap (non-distill) content */
+  .min-vh-100 {
+    min-height: calc(100vh - 100px) !important;
+  }
+
+  </style>
+
+  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet"/>
+  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+  <script type="application/javascript">
+
+  function getMeta(metaName) {
+    var metas = document.getElementsByTagName('meta');
+    for (let i = 0; i < metas.length; i++) {
+      if (metas[i].getAttribute('name') === metaName) {
+        return metas[i].getAttribute('content');
+      }
+    }
+    return '';
+  }
+
+  function offsetURL(url) {
+    var offset = getMeta('distill:offset');
+    return offset ? offset + '/' + url : url;
+  }
+
+  function createFuseIndex() {
+
+    // create fuse index
+    var options = {
+      keys: [
+        { name: 'title', weight: 20 },
+        { name: 'categories', weight: 15 },
+        { name: 'description', weight: 10 },
+        { name: 'contents', weight: 5 },
+      ],
+      ignoreLocation: true,
+      threshold: 0
+    };
+    var fuse = new window.Fuse([], options);
+
+    // fetch the main search.json
+    return fetch(offsetURL('search.json'))
+      .then(function(response) {
+        if (response.status == 200) {
+          return response.json().then(function(json) {
+            // index main articles
+            json.articles.forEach(function(article) {
+              fuse.add(article);
+            });
+            // download collections and index their articles
+            return Promise.all(json.collections.map(function(collection) {
+              return fetch(offsetURL(collection)).then(function(response) {
+                if (response.status === 200) {
+                  return response.json().then(function(articles) {
+                    articles.forEach(function(article) {
+                      fuse.add(article);
+                    });
+                  })
+                } else {
+                  return Promise.reject(
+                    new Error('Unexpected status from search index request: ' +
+                              response.status)
+                  );
+                }
+              });
+            })).then(function() {
+              return fuse;
+            });
+          });
+
+        } else {
+          return Promise.reject(
+            new Error('Unexpected status from search index request: ' +
+                        response.status)
+          );
+        }
+      });
+  }
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // get search element (bail if we don't have one)
+    var searchEl = window.document.getElementById('distill-search');
+    if (!searchEl)
+      return;
+
+    createFuseIndex()
+      .then(function(fuse) {
+
+        // make search box visible
+        searchEl.classList.remove('hidden');
+
+        // initialize autocomplete
+        var options = {
+          autoselect: true,
+          hint: false,
+          minLength: 2,
+        };
+        window.autocomplete(searchEl, options, [{
+          source: function(query, callback) {
+            const searchOptions = {
+              isCaseSensitive: false,
+              shouldSort: true,
+              minMatchCharLength: 2,
+              limit: 10,
+            };
+            var results = fuse.search(query, searchOptions);
+            callback(results
+              .map(function(result) { return result.item; })
+            );
+          },
+          templates: {
+            suggestion: function(suggestion) {
+              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+                : '';
+              var html = `
+                <div class="search-item">
+                  <h3>${suggestion.title}</h3>
+                  <div class="search-item-description">
+                    ${suggestion.description || ''}
+                  </div>
+                  <div class="search-item-preview">
+                    ${img}
+                  </div>
+                </div>
+              `;
+              return html;
+            }
+          }
+        }]).on('autocomplete:selected', function(event, suggestion) {
+          window.location.href = offsetURL(suggestion.path);
+        });
+        // remove inline display style on autocompleter (we want to
+        // manage responsive display via css)
+        $('.algolia-autocomplete').css("display", "");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+  });
+
+  </script>
+
+  <style type="text/css">
+
+  .nav-search {
+    font-size: x-small;
+  }
+
+  /* Algolioa Autocomplete */
+
+  .algolia-autocomplete {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: sub;
+    background-color: white;
+    color: black;
+    padding: 6px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    border-radius: 6px;
+    border: 1px #0F2E3D solid;
+    width: 180px;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-nav .algolia-autocomplete {
+      display: none;
+      visibility: hidden;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete {
+      display: inline-block;
+      visibility: visible;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+      margin-left: 0;
+      width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    width: 90%;
+    outline: none;
+    border: none;
+  }
+
+  .algolia-autocomplete .aa-hint {
+    color: #999;
+  }
+  .algolia-autocomplete .aa-dropdown-menu {
+    width: 550px;
+    max-height: 70vh;
+    overflow-x: visible;
+    overflow-y: scroll;
+    padding: 5px;
+    margin-top: 3px;
+    margin-left: -150px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #999;
+    border-top: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+    cursor: pointer;
+    padding: 5px 4px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+    border-bottom: none;
+    margin-bottom: 2px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+    overflow: hidden;
+    font-size: 0.8em;
+    line-height: 1.4em;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+    font-size: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 5px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+    display: inline-block;
+    overflow: hidden;
+    height: 2.8em;
+    width: 80%;
+    margin-right: 4%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+    display: inline-block;
+    width: 15%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+    height: 3em;
+    width: auto;
+    display: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+    display: initial;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    background-color: #eee;
+  }
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  </style>
+
+
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -1499,17 +2099,361 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
   </script>
 
+  <style type="text/css">
+  /* base variables */
+
+  /* Edit the CSS properties in this file to create a custom
+     Distill theme. Only edit values in the right column
+     for each row; values shown are the CSS defaults.
+     To return any property to the default,
+     you may set its value to: unset
+     All rows must end with a semi-colon.                      */
+
+  /* Optional: embed custom fonts here with `@import`          */
+  /* This must remain at the top of this file.                 */
+
+
+
+  html {
+    /*-- Main font sizes --*/
+    --title-size:      50px;
+    --body-size:       1.06rem;
+    --code-size:       14px;
+    --aside-size:      12px;
+    --fig-cap-size:    13px;
+    /*-- Main font colors --*/
+    --title-color:     #000000;
+    --header-color:    rgba(0, 0, 0, 0.8);
+    --body-color:      rgba(0, 0, 0, 0.8);
+    --aside-color:     rgba(0, 0, 0, 0.6);
+    --fig-cap-color:   rgba(0, 0, 0, 0.6);
+    /*-- Specify custom fonts ~~~ must be imported above   --*/
+    --heading-font:    sans-serif;
+    --mono-font:       monospace;
+    --body-font:       sans-serif;
+    --navbar-font:     sans-serif;  /* websites + blogs only */
+  }
+
+  /*-- ARTICLE METADATA --*/
+  d-byline {
+    --heading-size:    0.6rem;
+    --heading-color:   rgba(0, 0, 0, 0.5);
+    --body-size:       0.8rem;
+    --body-color:      rgba(0, 0, 0, 0.8);
+  }
+
+  /*-- ARTICLE TABLE OF CONTENTS --*/
+  .d-contents {
+    --heading-size:    18px;
+    --contents-size:   13px;
+  }
+
+  /*-- ARTICLE APPENDIX --*/
+  d-appendix {
+    --heading-size:    15px;
+    --heading-color:   rgba(0, 0, 0, 0.65);
+    --text-size:       0.8em;
+    --text-color:      rgba(0, 0, 0, 0.5);
+  }
+
+  /*-- WEBSITE HEADER + FOOTER --*/
+  /* These properties only apply to Distill sites and blogs  */
+
+  .distill-site-header {
+    --title-size:       18px;
+    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-size:        15px;
+    --hover-color:      white;
+    --bkgd-color:       #0F2E3D;
+  }
+
+  .distill-site-footer {
+    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-size:        15px;
+    --hover-color:      white;
+    --bkgd-color:       #0F2E3D;
+  }
+
+  /*-- Additional custom styles --*/
+  /* Add any additional CSS rules below                      */
+  </style>
+  <style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Orbitron:wght@400..900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+  /* base variables */
+
+  /* Edit the CSS properties in this file to create a custom
+     Distill theme. Only edit values in the right column
+     for each row; values shown are the CSS defaults.
+     To return any property to the default,
+     you may set its value to: unset
+     All rows must end with a semi-colon.                      */
+
+  /* Optional: embed custom fonts here with `@import`          */
+  /* This must remain at the top of this file.                 */
+
+
+
+  html {
+    /*-- Main font sizes --*/
+    --title-size:      35px;
+    --body-size:       16px;
+    --code-size:       14px;
+    --aside-size:      12px;
+    --fig-cap-size:    13px;
+    --line-height:     0.5em;
+    /*-- Main font colors --*/
+    --title-color:     #0c0e15;
+    --header-color:    #0c0e15;
+    --body-color:      #0c0e15;
+    --aside-color:     #0c0e15;
+    --fig-cap-color:   #0c0e15;
+    /*-- Specify custom fonts ~~~ must be imported above   --*/
+    --heading-font:    "Orbitron";
+    --mono-font:       "Chakra Petch";
+    --body-font:       "Chakra Petch";
+    --navbar-font:     "Orbitron";  /* websites + blogs only */
+  }
+
+  /*-- ARTICLE METADATA --*/
+  d-byline {
+    --heading-size:    20px;
+    --heading-color:   #0c0e15;
+    --body-size:       18px;
+    --body-color:      #0c0e15;
+    --line-height:     0.5em;
+  }
+
+  /*-- ARTICLE TABLE OF CONTENTS --*/
+  .d-contents {
+    --heading-size:    20px;
+    --contents-size:   14px;
+  }
+
+  /*-- ARTICLE APPENDIX --*/
+  d-appendix {
+    --heading-size:    15px;
+    --heading-color:   rgba(0, 0, 0, 0.65);
+    --text-size:       0.8em;
+    --text-color:      rgba(0, 0, 0, 0.5);
+  }
+
+  /*-- WEBSITE HEADER + FOOTER --*/
+  /* These properties only apply to Distill sites and blogs  */
+
+  .distill-site-header {
+    --title-size:       20px;
+    --text-color:       #0c0e15;
+    --text-size:        20px;
+    --hover-color:      white;
+    --bkgd-color:       #a9cdeb;
+  }
+
+  .distill-site-footer {
+    --text-color:       #0c0e15;
+    --text-size:        15px;
+    --hover-color:      white;
+    --bkgd-color:       #a9cdeb;
+  }
+
+  /*-- Additional custom styles --*/
+  /* Add any additional CSS rules below                      */
+
+  h1 {
+    color: #0c0e15;
+    font-size: 22px;
+  }
+
+  h2 {
+    color: #0f111a;
+    font-size: 17;
+  }
+
+  h3 {
+    color: #0f111a;
+    font-size: 13;
+  }
+
+  h4 {
+    color: #0f111a;
+    font-size: 12;
+  }
+
+  /*change buttons on homepage*/
+  .btn-outline-dark {
+      background-color: transparent; 
+      color: #0c0e15;
+      border: 1px solid;
+      border-color: #0c0e15;
+  }
+
+  .btn-outline-dark:hover {
+      background-color:#a3cde5;
+      border-color: #a3cde5;
+      color: white;
+  }</style>
+  <style type="text/css">
+  /* base style */
+
+  /* FONT FAMILIES */
+
+  :root {
+    --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  body,
+  .posts-list .post-preview p,
+  .posts-list .description p {
+    font-family: var(--body-font), var(--body-default);
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  .posts-list .post-preview h2,
+  .posts-list .description h2 {
+    font-family: var(--heading-font), var(--heading-default);
+  }
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: var(--mono-font), var(--mono-default);
+  }
+
+
+  /*-- TITLE --*/
+  d-title h1,
+  .posts-list > h1 {
+    color: var(--title-color, black);
+  }
+
+  d-title h1 {
+    font-size: var(--title-size, 50px);
+  }
+
+  /*-- HEADERS --*/
+  d-article h1,
+  d-article h2,
+  d-article h3,
+  d-article h4,
+  d-article h5,
+  d-article h6 {
+    color: var(--header-color, rgba(0, 0, 0, 0.8));
+  }
+
+  /*-- BODY --*/
+  d-article > p,  /* only text inside of <p> tags */
+  d-article > ul, /* lists */
+  d-article > ol {
+    color: var(--body-color, rgba(0, 0, 0, 0.8));
+    font-size: var(--body-size, 1.06rem);
+  }
+
+
+  /*-- CODE --*/
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-size: var(--code-size, 14px);
+  }
+
+  /*-- ASIDE --*/
+  d-article aside {
+    font-size: var(--aside-size, 12px);
+    color: var(--aside-color, rgba(0, 0, 0, 0.6));
+  }
+
+  /*-- FIGURE CAPTIONS --*/
+  figure .caption,
+  figure figcaption,
+  .figure .caption {
+    font-size: var(--fig-cap-size, 13px);
+    color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+  }
+
+  /*-- METADATA --*/
+  d-byline h3 {
+    font-size: var(--heading-size, 0.6rem);
+    color: var(--heading-color, rgba(0, 0, 0, 0.5));
+  }
+
+  d-byline {
+    font-size: var(--body-size, 0.8rem);
+    color: var(--body-color, rgba(0, 0, 0, 0.8));
+  }
+
+  d-byline a,
+  d-article d-byline a {
+    color: var(--body-color, rgba(0, 0, 0, 0.8));
+  }
+
+  /*-- TABLE OF CONTENTS --*/
+  .d-contents nav h3 {
+    font-size: var(--heading-size, 18px);
+  }
+
+  .d-contents nav a {
+    font-size: var(--contents-size, 13px);
+  }
+
+  /*-- APPENDIX --*/
+  d-appendix h3 {
+    font-size: var(--heading-size, 15px);
+    color: var(--heading-color, rgba(0, 0, 0, 0.65));
+  }
+
+  d-appendix {
+    font-size: var(--text-size, 0.8em);
+    color: var(--text-color, rgba(0, 0, 0, 0.5));
+  }
+
+  d-appendix d-footnote-list a.footnote-backlink {
+    color: var(--text-color, rgba(0, 0, 0, 0.5));
+  }
+
+  /*-- WEBSITE HEADER + FOOTER --*/
+  .distill-site-header .title {
+    font-size: var(--title-size, 18px);
+    font-family: var(--navbar-font), var(--heading-default);
+  }
+
+  .distill-site-header a,
+  .nav-dropdown .nav-dropbtn {
+    font-family: var(--navbar-font), var(--heading-default);
+  }
+
+  .nav-dropdown .nav-dropbtn {
+    color: var(--text-color, rgba(255, 255, 255, 0.8));
+    font-size: var(--text-size, 15px);
+  }
+
+  .distill-site-header a:hover,
+  .nav-dropdown:hover .nav-dropbtn {
+    color: var(--hover-color, white);
+  }
+
+  .distill-site-header {
+    font-size: var(--text-size, 15px);
+    color: var(--text-color, rgba(255, 255, 255, 0.8));
+    background-color: var(--bkgd-color, #0F2E3D);
+  }
+
+  .distill-site-footer {
+    font-size: var(--text-size, 15px);
+    color: var(--text-color, rgba(255, 255, 255, 0.8));
+    background-color: var(--bkgd-color, #0F2E3D);
+  }
+
+  .distill-site-footer a:hover {
+    color: var(--hover-color, white);
+  }</style>
   <!--/radix_placeholder_distill-->
-  <script src="ms-vale-diablo-conocido_files/header-attrs-2.30/header-attrs.js"></script>
-  <script src="ms-vale-diablo-conocido_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <script src="ms-vale-diablo-conocido_files/popper-2.6.0/popper.min.js"></script>
-  <link href="ms-vale-diablo-conocido_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="ms-vale-diablo-conocido_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="ms-vale-diablo-conocido_files/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="ms-vale-diablo-conocido_files/anchor-4.2.2/anchor.min.js"></script>
-  <script src="ms-vale-diablo-conocido_files/bowser-1.9.3/bowser.min.js"></script>
-  <script src="ms-vale-diablo-conocido_files/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="ms-vale-diablo-conocido_files/distill-2.2.21/template.v2.js"></script>
+  <script src="site_libs/header-attrs-2.30/header-attrs.js"></script>
+  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <!--/radix_placeholder_site_in_header-->
 
@@ -1521,55 +2465,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"¿Más sabe el diablo por viejo...?","description":"En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido... Los pobres... Pero... ¿cómo es su desempeño comparado con algoritmos más modernos?","authors":[{"author":"Erick García-García, Ph.D.","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2026-01-27T00:00:00.000+01:00","citationText":"Ph.D., 2026"}
+{"title":"Algunas plicaciones del Aprendizaje Automático","description":"<!-- Algunas aplicaciones de los algoritmos de Machine Learning. -->","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<a href="index.html" class="title">La Casa de Datos</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
+</div>
+<div class="nav-right">
+<a href="blog.html">| Blog |</a>
+<a href="bio.html">| Bio |</a>
+<a href="machine_learning.html">| Machine Learning |</a>
+<a href="aplications_of_ML.html">| Aplicaciones |</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>¿Más sabe el diablo por viejo…?</h1>
+<h1>Algunas plicaciones del Aprendizaje Automático</h1>
 
 <!--radix_placeholder_categories-->
-<div class="dt-tags">
-<div class="dt-tag">R</div>
-<div class="dt-tag">Logistic Regression</div>
-<div class="dt-tag">Random Forest</div>
-<div class="dt-tag">Regression</div>
-<div class="dt-tag">GMLNet</div>
-<div class="dt-tag">predictive models</div>
-</div>
 <!--/radix_placeholder_categories-->
-<p><p>En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido… Los pobres… Pero… ¿cómo es su desempeño comparado con algoritmos más modernos?</p></p>
+<p><!-- Algunas aplicaciones de los algoritmos de Machine Learning. --></p>
 </div>
 
-<div class="d-byline">
-  Erick García-García, Ph.D. true 
-  
-<br/>01-27-2026
-</div>
 
 <div class="d-article">
-<div class="d-contents d-contents-float">
-<nav class="l-text toc figcaption" id="TOC">
-<h3>Contents</h3>
-<ul>
-<li><a href="#más-sabe-el-diablo-por-viejo" id="toc-más-sabe-el-diablo-por-viejo">¿Más sabe el diablo por viejo…?</a></li>
-<li><a href="#modelos-predictivos-de-aprendizaje-automático." id="toc-modelos-predictivos-de-aprendizaje-automático.">Modelos predictivos de aprendizaje automático.</a></li>
-</ul>
-</nav>
-</div>
 <div class="layout-chunk" data-layout="l-body">
 <style type="text/css">
+CSS sections
+
+{css, echo=FALSE}
 .infobox {
-  padding: 1em 1em 1em 1em;
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
   border: 2px solid #4f9ed4;
   border-radius: 10px;
   background: ##a3cde5 5px center/3em no-repeat;
-  line-height: 1.2;
 }
 
 .fig_legend {
@@ -1578,55 +2518,180 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 }
 </style>
 </div>
-<h1 id="más-sabe-el-diablo-por-viejo">¿Más sabe el diablo por viejo…?</h1>
-<p>Con el <em>boom</em> de la Inteligencia Artificial, algunos algoritmos predictivo básicos de Aprendizaje Automático, como la regresión logística, parecen estar siendo empujados al fondo de las estanterías. Están siendo reemplazados por algoritmos más modernos, poderosos y complejos, aunque en ocasiones también mucho más lentos.</p>
+<h1 id="buscando-inspiración">💡¿Buscando Inspiración?</h1>
+<p>Si recopilas o almacenas datos e intuyes que puedes sacarles provecho pero no sabes cómo, ponte en <a href="erick.garcia@casadelletres.eu">contacto</a> con nosotros. Seguramente podemos diseñar algo a medida para ti: diseñar nuevas estrategias, crear nuevas publicaciones, mejorar tus procedimientos, analizar tus datos históricos con una nuevo óptica, etc.</p>
+<p>Te invitamos además a visitar el <a href="https://lacasadedatos.github.io/blog/blog.html">Blog</a> de La Casa de Datos donde podrás ver, a través de datos, algunas aplicaciones reales del Aprendizaje Automático.</p>
+<p>A continuación encontrarás una breve lista de aplicaciones del Aprendizaje Automático para impulsar la investigación y la innovación en diferentes disciplinas.</p>
+<h4 id="en-salud-pública-y-epidemiología">🏥 En Salud Pública y Epidemiología</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Tareas</strong></th>
+<th>Aplicaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Predicción de brotes</strong></td>
+<td>Podemos modelar y prever la propagación de enfermedades infecciosas mediante el análisis de datos históricos y condiciones ambientales.</td>
+</tr>
+<tr class="even">
+<td><strong>Modelado de intervenciones</strong></td>
+<td>Simulamos el impacto de diversas intervenciones de salud pública para determinar la estrategia más efectiva.</td>
+</tr>
+<tr class="odd">
+<td><strong>Detección de anomalías</strong></td>
+<td>Identificamos patrones inusuales en datos epidemiológicos que podrían indicar un brote o un problema de salud pública.</td>
+</tr>
+<tr class="even">
+<td><strong>Optimización de recursos de atención</strong></td>
+<td>Utilizamos datos existentes para prever la demanda de servicios de salud, ayudando en la asignación eficiente de recursos.</td>
+</tr>
+<tr class="odd">
+<td><strong>Estudios de propagación</strong></td>
+<td>Modelamos la propagación de enfermedades en poblaciones, considerando factores como la movilidad y el comportamiento social.</td>
+</tr>
+</tbody>
+</table>
 <pre><code></code></pre>
 <div class="infobox">
 <blockquote>
-<p>🛣️ La Regresión Logística es un algoritmo predictivo rapidísimo y es posible que, dependiendo de nuestras aplicaciones, tenga un desempeño comparable al de otros algoritmos más modernos.</p>
+<p>🏥 En el ámbito de la salud pública, el Aprendizaje Automático permite prever brotes, modelar intervenciones, detectar anomalías, optimizar recursos y estudiar la propagación de enfermedades, mejorando la gestión de la salud y la efectividad de las estrategias implementadas.</p>
 </blockquote>
 </div>
 <pre><code></code></pre>
-<p>En este post también trabajaremos con la tabla de datos “<a href="https://www.kaggle.com/api/v1/datasets/download/aaronisomaisom3/canine-wellness-dataset-synthetic-10k-samples">Canine Wellness</a>” de Kaggle.</p>
-<p>Nuestro objetivo esta vez será crear y comparar distintos modelos de Aprendizaje Automático que nos permitan predecir el estado de salud de un animal (en este caso, un perro) a partir de diferentes variables.</p>
-<p>Crearemos distintos modelos predictivos utilizando la sensibilidad de cada modelo (i.e., la capacidad del modelo para identificar correctamente casos positivos) como una medida principal de desempeño.</p>
-<p>Usamos la sensibilidad como principal medida de desempeño porque, dentro del contexto de salud animal, no detectar un caso positivo podría tener consecuencias graves. La sensibilidad es también la principal medida de desempeño en contextos como el diagnóstico de enfermedades, la detección de fraude, la seguridad de sistemas etc.</p>
-<p>La tabla de datos “Canine Wellness” es un conjunto de datos sintéticos que simulan las características de una amplia gama de razas de perros que reflejan la distribución natural de distintas variables físicas y de estilos de vida y de salud para distintas razas de perros. Las variables de esta tabla de datos son:</p>
-<pre><code>- raza (16 razas distintas)
-- tamaño (pequeño, mediano, grande)
-- sexo
-- edad
-- peso
-- esterilización (sí/no)
-- tipo de dieta (dura, húmeda, casera, especial)
-- marca de comida (10 marcas distintas)
-- nivel de actividad diaria (inactivo, bajo, moderado, alto, muy alto)
-- distancia caminada diaria
-- nivel de actividad diaria del propietario (inactivo, bajo, moderado, alto, muy alto)
-- horas de sueño
-- tiempo de juego
-- otras mascotas en el domicilio (sí/no)
-- medicación (sí/no)
-- espasmos (sí/no)
-- número de visitas anuales al veterinario
-- temperatura corporal media
-- estado de salud (saludable/no saludable)</code></pre>
-<p>La tabla de datos original requiere de una serie de manipulaciones (limpieza de datos) antes de que podamos aplicar cualquier algoritmo de Aprendizaje Automático (ver el <em>script</em> de programación). Algunos de los pasos de esta limpieza de datos son:</p>
-<pre><code>-   Cambiar los nombres de las columnas de datos
--   Convertir columnas datos que son caracteres en factores
--   Eliminar columnas de datos innecesarias
--   Reemplazar los valores ausentes de los casos incompletos usando el algortimo MICE
--   Asignar una clase correcta a cada variable: numéricas, nominales u ordinales.</code></pre>
-<p>Reemplazar los valores ausentes de los casos incompletos por estimaciones que no generen sesgos en la distribución original de los datos es especialmente delicado por lo que tenemos un <em>post</em> especial para ello (“<a href="https://lacasadedatos.github.io/blog/blog_posts/2026-01-13-esto-est-lleno-de-agujeros/"><em>Esto está Lleno de Agujeros</em></a>”).</p>
-<p>Una vez que contamos con una tabla de datos preparada procedemos a crear una serie de modelos predictivos utilizando el flujo de trabajo del la metalibrería <a href="https://bookdown.org/rehk/stm1001_dsm_introduction_to_machine_learning_in_r/machine-learning-in-r-using-the-caret-package.html">Caret</a> de R.</p>
+<h4 id="en-las-ciencias-sociales">🏠️ En las ciencias sociales</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Tareas</strong></th>
+<th>Aplicaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Análisis de sentimientos</strong></td>
+<td>Analizamos opiniones en redes sociales, reseñas, y cualquier tipo de textos. Buscamos entender la percepción que se tiene sobre una temática concreta.</td>
+</tr>
+<tr class="even">
+<td><strong>Predicción de comportamiento</strong></td>
+<td>Analizamos datos históricos para predecir comportamientos; por ejemplo la participación programas sociales o eventos.</td>
+</tr>
+<tr class="odd">
+<td><strong>Detección de fraudes</strong></td>
+<td>Identificación de patrones anómalos en datos para prevenir fraudes en sistemas de financiamiento o asistencia social.</td>
+</tr>
+<tr class="even">
+<td><strong>Segmentación de grupos</strong></td>
+<td>Clasificamos a los casos o individuos en grupos de acuerdo a características demográficas y de comportamiento para el desarrollo de intervenciones dirigidas.</td>
+</tr>
+<tr class="odd">
+<td><strong>Análisis de encuestas</strong></td>
+<td>Procesamos y analizamos respuestas a encuestas para extraer información sobre actitudes y opiniones.</td>
+</tr>
+<tr class="even">
+<td><strong>Estudios de impacto social</strong></td>
+<td>Podemos evaluar el efecto de políticas públicas o programas sociales en comunidades, utilizando datos longitudinales.</td>
+</tr>
+</tbody>
+</table>
 <pre><code></code></pre>
 <div class="infobox">
 <blockquote>
-<p>👹 ¿Podrá el Diablo Viejo - la Regresión Logística - ponerse a la par de algoritmos más modernos y complejos?</p>
+<p>🏠 Dentro de las Ciencias Sociales, el Aprendizaje Automático permite entender sentimientos y opiniones, predecir comportamientos, detectar fraudes, segmentar grupos, analizar encuestas y evaluar el impacto de políticas, lo que incrementa la efectividad de las intervenciones o programas sociales.</p>
+</blockquote>
+</div>
+<h4 id="en-psicología">🧠 En Psicología</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Tareas</strong></th>
+<th>Aplicaciones</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Análisis de entrevistas</strong></td>
+<td>Procesamos y categorizamos transcripciones de sesiones terapéuticas para identificar temas recurrentes y patrones de comportamiento.</td>
+</tr>
+<tr class="even">
+<td><strong>Detección de trastornos</strong></td>
+<td>Utilizamos datos clínicos y respuestas a cuestionarios para identificar trastornos psicológicos como la depresión o ansiedad.</td>
+</tr>
+<tr class="odd">
+<td><strong>Predicción de resultados terapéuticos</strong></td>
+<td>Analizamos la efectividad de tratamientos y terapias a través de la segmentación de grupos, ayudando a personalizar enfoques terapéuticos.</td>
+</tr>
+<tr class="even">
+<td><strong>Estudio de comportamiento</strong></td>
+<td>Investigamos patrones de comportamiento en grupos o individuos a través de datos de interacción social o acciones.</td>
+</tr>
+<tr class="odd">
+<td><strong>Estudio de la personalidad</strong></td>
+<td>Analizamos datos existentes para clasificar rasgos de personalidad y su relación con la salud mental y el bienestar.</td>
+</tr>
+</tbody>
+</table>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>🧠 En el ámbito de la salud mental el Aprendizaje Automático ayuda a mejorar la identificación de trastornos, personalizar tratamientos, y comprender mejor los patrones de comportamiento y personalidad, lo que repercute en mejores enfoques terapéuticos.</p>
 </blockquote>
 </div>
 <pre><code></code></pre>
-<h1 id="modelos-predictivos-de-aprendizaje-automático.">Modelos predictivos de aprendizaje automático.</h1>
+<h4 id="en-organizaciones-sociales">🫂 En Organizaciones Sociales</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Aplicación</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Optimización de Recursos</strong></td>
+<td>Podemos predecir predecir qué recursos se necesitan en función de datos históricos, mejorando la eficiencia en su asignación.</td>
+</tr>
+<tr class="even">
+<td><strong>Análisis de Donaciones</strong></td>
+<td>Analizamos patrones de donaciones para identificar perfiles de donantes más propensos a contribuir, aumentando la captación de fondos al dirigirse a donantes potenciales efectivos.</td>
+</tr>
+<tr class="odd">
+<td><strong>Predicción de Necesidades</strong></td>
+<td>Utilizamos datos existentes para prever las necesidades cambiantes de las comunidades, permitiendo una respuesta proactiva a crisis potenciales y demandas locales.</td>
+</tr>
+<tr class="even">
+<td><strong>Segmentación de Beneficiarios</strong></td>
+<td>Analiza a los beneficiarios para segmentarlos según sus necesidades específicas, facilitando programas más personalizados y efectivos.</td>
+</tr>
+<tr class="odd">
+<td><strong>Evaluación de Impacto</strong></td>
+<td>Podemos modelar el impacto de programas y proyectos de manera más precisa analizando múltiples dimensiones.</td>
+</tr>
+</tbody>
+</table>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>🫂 El Aprendizaje Automático puede mejorar la eficiencia de las organizaciones sociales, aumentar la captación de fondos, personalizar programas, optimizar la comunicación, y evaluar el impacto de intervenciones o programas de ayuda.</p>
+</blockquote>
+</div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

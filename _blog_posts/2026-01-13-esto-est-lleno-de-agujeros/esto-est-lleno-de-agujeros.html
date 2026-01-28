@@ -1564,7 +1564,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="#sustituyendo-los-casos-incompletos-con-ratones-mice" id="toc-sustituyendo-los-casos-incompletos-con-ratones-mice">Sustituyendo los casos incompletos con ratones 🐭🐭 (MICE)</a></li>
 <li><a href="#comparación-de-mice-con-el-popular-algoritmo-knn" id="toc-comparación-de-mice-con-el-popular-algoritmo-knn">Comparación de MICE con el popular algoritmo KNN</a></li>
 </ul></li>
-<li><a href="#con-mice-es-todo-miel-sobre-hojuelas" id="toc-con-mice-es-todo-miel-sobre-hojuelas">Con MICE, ¿es todo miel sobre hojuelas?</a></li>
+<li><a href="#con-mice-es-todo-miel-sobre-hojuelas" id="toc-con-mice-es-todo-miel-sobre-hojuelas">Con MICE, ¿es todo miel sobre hojuelas? 🍯</a></li>
 <li><a href="#conclusiones-y-aplicaciones-interesantes" id="toc-conclusiones-y-aplicaciones-interesantes">Conclusiones y aplicaciones interesantes</a></li>
 </ul>
 </nav>
@@ -1594,26 +1594,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><strong><em>Crear grandes bases de datos</em></strong> agrupando datos de diferentes fuentes, recogidos por distintas técnicas y en diferentes momentos; bases de datos que por la propia naturaleza de la agrupación contienen un alto porcentaje de casos incompletos.</li>
 </ul>
 <p>La tabla de datos “<a href="https://www.kaggle.com/api/v1/datasets/download/aaronisomaisom3/canine-wellness-dataset-synthetic-10k-samples">Canine Wellness</a>” de Kaggle es un conjunto de datos sintéticos que simulan las características de una amplia gama de razas de perros. Los datos se generaron para reflejar una distribución natural de distintas variables relacionadas con las características, estilos de vida y salud de distintas razas de perros. Las variables de esta tabla de datos son:</p>
-<ul>
-<li>raza (16 razas distintas)</li>
-<li>tamaño (pequeño, mediano, grande)</li>
-<li>sexo</li>
-<li>edad</li>
-<li>peso</li>
-<li>esterilización (sí/no)</li>
-<li>tipo de dieta (dura, húmeda, casera, especial)</li>
-<li>marca de comida (10 marcas distintas)</li>
-<li>nivel de actividad diaria (inactivo, bajo, moderado, alto, muy alto)</li>
-<li>distancia caminada diaria</li>
-<li>nivel de actividad diaria del propietario (inactivo, bajo, moderado, alto, muy alto)</li>
-<li>horas de sueño</li>
-<li>tiempo de juego</li>
-<li>otras mascotas en el domicilio (sí/no)</li>
-<li>medicación (sí/no)</li>
-<li>espasmos (sí/no)</li>
-<li>número de visitas anuales al veterinario</li>
-<li>temperatura corporal media</li>
-</ul>
+<pre><code>-   raza (16 razas distintas)
+-   tamaño (pequeño, mediano, grande)
+-   sexo
+-   edad
+-   peso
+-   esterilización (sí/no)
+-   tipo de dieta (dura, húmeda, casera, especial)
+-   marca de comida (10 marcas distintas)
+-   nivel de actividad diaria (inactivo, bajo, moderado, alto, muy alto)
+-   distancia caminada diaria
+-   nivel de actividad diaria del propietario (inactivo, bajo, moderado, alto, muy alto)
+-   horas de sueño
+-   tiempo de juego
+-   otras mascotas en el domicilio (sí/no)
+-   medicación (sí/no)
+-   espasmos (sí/no)
+-   número de visitas anuales al veterinario
+-   temperatura corporal media</code></pre>
 <h1 id="estadísticas-de-los-agujeros">Estadísticas de los agujeros</h1>
 <p>La tabla de datos “<a href="https://www.kaggle.com/api/v1/datasets/download/aaronisomaisom3/canine-wellness-dataset-synthetic-10k-samples">Canine Wellness</a>” incluye, como parte de la simulación, fallos en la recogida de datos, que se traducen en casos incompletos.</p>
 <p>La Figura 1 muestra la distribución de casos incompletos para cada una de las 18 variables de la tabla de datos. En esta figura podemos ver que los valores ausentes se distribuyen de forma aleatoria en toda la tabla y representando aproximadamente el 3% los datos de CADA UNA de las variables.</p>
@@ -1624,8 +1622,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Figura 1</strong>. Distribución de casos incompletos. Missing, valores ausentes; Present, valores existentes.</p>
 </div>
 <p>Aunque el 3% parece ser un porcentaje trivial, si eliminásemos todos los casos a los que les falta una medición en CUALQUIERA de las 18 variables tendríamos que deshacernos de 5580 de 9678 casos, lo que representa más del 50%.</p>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <div>
 <div class="infobox">
 <blockquote>
@@ -1634,8 +1631,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </div>
 </div>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <h1 id="cómo-tapamos-todos-esos-agujeros">¿Cómo tapamos todos esos agujeros?</h1>
 <h2 id="probamos-con-la-media-y-la-moda">¿Probamos con la media y la moda?</h2>
 <p>Una proximación común para lidiar con casos incompletos es usar la media y la moda para sustituir los valores ausentes de variables continuas o nominales, respectivamente. Sin embargo, como veremos a continuación, estas dos aproximaciones generan sesgos importantes en la distribución de nuestros datos.</p>
@@ -1670,8 +1666,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Figura 4.</strong> Distribución de los valores de dos variables nominales antes (“original”) y después (“imputation”) de la sustitución de los valores ausentes con la moda de cada variable. NA, valores ausentes; Very active, muy activo; None, sin actividad; Moderate, moderadamente activo; Low, poco activo; Active, activo. Wet food, comida húmeda; Special diet, diete especial; Home cooked, comida casera; Hard food, pienso rígido.</p>
 </div>
 <p>En la Figura 4 podemos ver el sesgo introducido por la sustitución de valores ausentes con la moda de cada variable nominal. Como era de esperar, tras la sustitución, hay un aumento en la frecuencia de una sola categoría dentro de cada variable.</p>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <div>
 <div class="infobox">
 <blockquote>
@@ -1679,22 +1674,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </div>
 </div>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <h2 id="sustituyendo-los-casos-incompletos-con-ratones-mice">Sustituyendo los casos incompletos con ratones 🐭🐭 (MICE)</h2>
 <p>El algoritmo (<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3074241/">MICE</a>, Multivariate Imputation by Chained Equations) es una técnica de aprendizaje automático que nos ayuda a “<em>recuperar</em>” la información de los casos incompletos para todas nuestras variables.</p>
 <p>El algoritmo MICE ejecuta una serie de modelos de regresión de forma recursiva para cada variable, usando todas las otras variables de nuestro conjunto de datos, de acuerdo a su distribución; por ejemplo, las variables binarias se pueden modelar utilizando regresión logística y las variables continuas se pueden modelar mediante regresión lineal. Estos modelos se utilizan entonces para estimar los valores ausentes de cada variable para cada uno de los casos incompletos.</p>
 <p>Una gran ventaja del algoritmo MICE es que conserva la distribución de los datos originales, evitando los sesgos introducidos por la sustitución de casos incompletos por la media o la moda, como vimos en las Figuras 2-4.</p>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <div>
 <div class="infobox">
 <blockquote>
 <p>🪏 En la práctica, el uso del algoritmo MICE representa una especie de “recuperación de la información”, que nos ayuda a aprovechar nuestros datos al máximo, a pesar de posibles errores en la recogida de datos.</p>
 </blockquote>
 </div>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 </div>
 <p>Otra de las grandes ventajas del algoritmo MICE es que trabaja sin problemas con tablas de datos que mezclan variables nominales, binarias, ordinales, continuas y discretas.</p>
 <p>La Figura 5 muestra la distribución de las dos variables numéricas continuas, edad y peso, antes y después de la sustitución de los valores ausentes usando el algoritmo MICE.</p>
@@ -1721,8 +1713,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Figura 7.</strong> Distribución de los valores de dos variables numéricas nominales, antes (“original”) y después (“imputation”) de la sustitución de los valores ausentes usando el algoritmo MICE. NA, valores ausentes; Very active, muy activo; None, sin actividad; Moderate, moderadamente activo; Low, poco activo; Active, activo. Wet food, comida húmeda; Special diet, diete especial; Home cooked, comida casera; Hard food, pienso rígido.</p>
 </div>
 <p>La Figura 7 muestra que, a diferencia de la sustitución de los valores ausentes con la moda (Fig. 4), el algoritmo MICE respeta las sutiles diferencias en la distribución de los datos, sin incrementar la frecuencia de una sola categoría.</p>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <div>
 <div class="infobox">
 <blockquote>
@@ -1731,13 +1722,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </div>
 </div>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <h2 id="comparación-de-mice-con-el-popular-algoritmo-knn">Comparación de MICE con el popular algoritmo KNN</h2>
 <p>El algoritmo <a href="https://www.geeksforgeeks.org/r-machine-learning/knn-k-nearest-neighbour-algorithm-in-r-from-scratch/">KNN</a> es uno de los más populares para estimar los valores de distintas variables de los casos incompletos, como hicimos arriba con el algoritmo MICE. El algoritmo KNN funciona encontrando los puntos de datos que son más similares (vecinos más cercanos) a un punto nuevo no visto antes. En este caso “similares” significa tener valores cercanos en gráficos n-dimensionales, donde cada dimensión (o eje) se corresponde con una variable.</p>
 <p>En el algoritmo KNN, la estimación de valores desconocidos para un caso y una variable se hace a partir de los valores para esa variable de todos los casos conocidos. KNN funciona siempre que exista similitud entre el caso nuevo y los casos conocidos (los vecinos cercanos) para el resto de las variables.</p>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <div>
 <div class="infobox">
 <blockquote>
@@ -1745,8 +1734,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </div>
 </div>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <p>La Figura 8 muestra una comparación de la distribución de la variable edad, antes y después de la sustitución de valores ausentes a través de MICE y KNN.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="esto-est-lleno-de-agujeros_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
@@ -1755,13 +1743,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Figura 8.</strong> Distribución de la variable edad, antes (“original”) y después (“imputation”) de la sustitución de los valores ausentes usando el algoritmo MICE o KNN.</p>
 </div>
 <p>Como podemos observar, aunque en general el algoritmo KNN respeta la distribución de los datos originales, hay un desfase significativo entre la distribución original y la que contiene las estimaciones, dentro de los valores de edad de 5 a 10 años. En contraste, el algoritmo MICE respetó la distribución original de los datos en todo el rango de valores de edad.</p>
-<h1 id="con-mice-es-todo-miel-sobre-hojuelas">Con MICE, ¿es todo miel sobre hojuelas?</h1>
-<p>Como ya vimos, MICE nos permite estimar los valores de las variables de los casos incompletos manteniendo una distribución de datos muy cercana a la distribución original.</p>
+<h1 id="con-mice-es-todo-miel-sobre-hojuelas">Con MICE, ¿es todo miel sobre hojuelas? 🍯</h1>
+<p>Como ya vimos, MICE nos permite estimar los valores de todo tipo de variables de los casos incompletos, manteniendo una distribución de datos muy cercana a la distribución original.</p>
 <p>El algoritmo MICE puede además trabajar con todo tipo de variables; lo que representa una ventaja significativa sobre KNN que únicamente admite variables numéricas.</p>
 <p>Una pequeña desventaja del algoritmo MICE es que es “computacionalmente costoso”; es decir, necesita mayor poder de procesamiento que la sustitución de los casos incompletos con la media o la moda, e incluso que el algoritmo KNN. Esto se traduce en un análisis de datos más lento en equipos de bajos recursos (equipos con poca memoria RAM y/o procesadores más lentos).</p>
 <p>Para que la sustituciones de valores en los casos incompletos sea efectiva y realista ES INDISPENSABLE asegurarnos de que los los valores ausentes para nuestras variables se distribuyan al azar; por ejemplo, que no falten únicamente los valores más altos o más bajos, o sólo los valores dentro de un cierto rango.</p>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <div>
 <div class="infobox">
 <blockquote>
@@ -1769,16 +1756,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </div>
 </div>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <p>Es además importante tener en cuenta que el algoritmo MICE requiere que cada variable esté etiquetada según su naturaleza; es decir como variables continuas, discretas, nominales u ordinales.</p>
 <h1 id="conclusiones-y-aplicaciones-interesantes">Conclusiones y aplicaciones interesantes</h1>
 <p>Como ya vimos, el algoritmo MICE nos permite “recuperar” información estimando los valores ausentes de todas nuestras variables para todos los casos incompletos, manteniendo una distribución de datos cercana a la distribución original.</p>
 <p>Estas estimaciones nos ayudan a sacar el máximo provecho a nuestros datos, pues nos evitan tener que desechar los casos incompletos para poder realizar cualquier tipo de análisis estadístico, o tareas complejas de aprendizaje automático.</p>
 <p>Además de utilizarse para para completar la información de casos en estudios puntuales, el algoritmo MICE se ha utilizado en el contexto de investigación sanitaria y epidemiológica para crear grandes bases de datos centralizadas agrupando datos provenientes de múltiples fuentes (e.g., distintos centros sanitarios), recogidos con diferentes técnicas (e.g., encuestas o registros médicos), en distintas etapas de la admisión, tratamiento y alta de los pacientes y en distintos momentos (i.e., distintos años). Véanse por ejemplo <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2891890/">He et al. (2009)</a> y <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2891890/">Stuart et al. (2009)</a>. Usando los datos de una encuesta de salud pública, <a href="https://pubmed.ncbi.nlm.nih.gov/19823145/">Zeng (2009)</a> ha estimado que el algoritmo MICE puede resultar efectivo para estimar los valores faltantes de hasta un 15% de los casos.</p>
 <p><img src="datapooling.png" /></p>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <div>
 <div class="infobox">
 <blockquote>
@@ -1786,10 +1771,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </div>
 </div>
-<pre><code>
-</code></pre>
+<pre><code></code></pre>
 <p>El código completo de este análisis está disponible en el repositorio de <a href="https://github.com/lacasadedatos/R_scripts" title="Ver código del análisis">La Casa de Datos</a> en Github.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

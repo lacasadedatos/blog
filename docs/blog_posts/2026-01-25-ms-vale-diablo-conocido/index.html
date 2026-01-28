@@ -20,8 +20,9 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -50,40 +51,39 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { color: #00769e; background-color: #f1f3f5; }
+  {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span { color: #00769e; } /* Normal */
-code span.al { color: #ad0000; } /* Alert */
-code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #657422; } /* Attribute */
-code span.bn { color: #ad0000; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #00769e; } /* ControlFlow */
-code span.ch { color: #20794d; } /* Char */
-code span.cn { color: #8f5902; } /* Constant */
-code span.co { color: #5e5e5e; } /* Comment */
-code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-code span.dt { color: #ad0000; } /* DataType */
-code span.dv { color: #ad0000; } /* DecVal */
-code span.er { color: #ad0000; } /* Error */
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
-code span.fl { color: #ad0000; } /* Float */
-code span.fu { color: #4758ab; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #00769e; } /* Keyword */
-code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #00769e; } /* Other */
-code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #5e5e5e; } /* SpecialChar */
-code span.ss { color: #20794d; } /* SpecialString */
-code span.st { color: #20794d; } /* String */
-code span.va { color: #111111; } /* Variable */
-code span.vs { color: #20794d; } /* VerbatimString */
-code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -94,8 +94,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2026-02-18"/>
-<meta property="article:created" itemprop="dateCreated" content="2026-02-18"/>
+<meta property="article:published" itemprop="datePublished" content="2026-01-27"/>
+<meta property="article:created" itemprop="dateCreated" content="2026-01-27"/>
 <meta name="article:author" content="Erick García-García, Ph.D."/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -114,7 +114,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["¿Más sabe el diablo por viejo...?"]},{"type":"character","attributes":{},"value":["En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido... Los pobres... Pero... ¿cómo es su desempeño comparado con algoritmos más modernos?"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Erick García-García, Ph.D."]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["2026-02-18"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","categories","output","date"]}},"value":[{"type":"character","attributes":{},"value":["¿Más sabe el diablo por viejo...?"]},{"type":"character","attributes":{},"value":["En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido... Los pobres... Pero... ¿cómo es su desempeño comparado con algoritmos más modernos?"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Erick García-García, Ph.D."]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["R","Logistic Regression","Random Forest","Regression","GMLNet","predictive models"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","toc_float","collapsed","smooth_scroll","highlight","df_print","self_contained","code_download"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["pygments"]},{"type":"character","attributes":{},"value":["paged"]},{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["01-27-2026"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2473,7 +2473,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"¿Más sabe el diablo por viejo...?","description":"En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido... Los pobres... Pero... ¿cómo es su desempeño comparado con algoritmos más modernos?","authors":[{"author":"Erick García-García, Ph.D.","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2026-02-18T00:00:00.000+01:00","citationText":"Ph.D., 2026"}
+{"title":"¿Más sabe el diablo por viejo...?","description":"En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido... Los pobres... Pero... ¿cómo es su desempeño comparado con algoritmos más modernos?","authors":[{"author":"Erick García-García, Ph.D.","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2026-01-27T00:00:00.000+01:00","citationText":"Ph.D., 2026"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2485,9 +2485,10 @@ d-appendix d-footnote-list a.footnote-backlink {
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
-<a href="../../blog.html">Blog</a>
-<a href="../../bio.html">Bio</a>
-<a href="../../machine_learning.html">Machine Learning</a>
+<a href="../../blog.html">| Blog |</a>
+<a href="../../bio.html">| Bio |</a>
+<a href="../../machine_learning.html">| Machine Learning |</a>
+<a href="../../aplications_of_ML.html">| Aplicaciones |</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2500,6 +2501,14 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h1>¿Más sabe el diablo por viejo…?</h1>
 
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../blog.html#category:R" class="dt-tag">R</a>
+  <a href="../../blog.html#category:Logistic_Regression" class="dt-tag">Logistic Regression</a>
+  <a href="../../blog.html#category:Random_Forest" class="dt-tag">Random Forest</a>
+  <a href="../../blog.html#category:Regression" class="dt-tag">Regression</a>
+  <a href="../../blog.html#category:GMLNet" class="dt-tag">GMLNet</a>
+  <a href="../../blog.html#category:predictive_models" class="dt-tag">predictive models</a>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>En un mar de algoritmos de Aprendizaje Automático cada vez más poderosos y complejos (pero también más lentos), otros algorítmos básicos como la regresión logística parecen estar siendo relegados al olvido… Los pobres… Pero… ¿cómo es su desempeño comparado con algoritmos más modernos?</p></p>
 </div>
@@ -2507,14 +2516,48 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="d-byline">
   Erick García-García, Ph.D. true 
   
-<br/>2026-02-18
+<br/>01-27-2026
 </div>
 
 <div class="d-article">
-<p>En este post también trabajaremos con la tabla de datos “Canine Wellness” de Kaggle.</p>
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#más-sabe-el-diablo-por-viejo" id="toc-más-sabe-el-diablo-por-viejo">¿Más sabe el diablo por viejo…?</a></li>
+<li><a href="#modelos-predictivos-de-aprendizaje-automático." id="toc-modelos-predictivos-de-aprendizaje-automático.">Modelos predictivos de aprendizaje automático.</a></li>
+</ul>
+</nav>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<style type="text/css">
+.infobox {
+  padding: 1em 1em 1em 1em;
+  border: 2px solid #4f9ed4;
+  border-radius: 10px;
+  background: ##a3cde5 5px center/3em no-repeat;
+  line-height: 1.2;
+}
+
+.fig_legend {
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+</style>
+</div>
+<h1 id="más-sabe-el-diablo-por-viejo">¿Más sabe el diablo por viejo…?</h1>
+<p>Con el <em>boom</em> de la Inteligencia Artificial, algunos algoritmos predictivo básicos de Aprendizaje Automático, como la regresión logística, parecen estar siendo empujados al fondo de las estanterías. Están siendo reemplazados por algoritmos más modernos, poderosos y complejos, aunque en ocasiones también mucho más lentos.</p>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>🛣️ La Regresión Logística es un algoritmo predictivo rapidísimo y es posible que, dependiendo de nuestras aplicaciones, tenga un desempeño comparable al de otros algoritmos más modernos.</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<p>En este post también trabajaremos con la tabla de datos “<a href="https://www.kaggle.com/api/v1/datasets/download/aaronisomaisom3/canine-wellness-dataset-synthetic-10k-samples">Canine Wellness</a>” de Kaggle.</p>
 <p>Nuestro objetivo esta vez será crear y comparar distintos modelos de Aprendizaje Automático que nos permitan predecir el estado de salud de un animal (en este caso, un perro) a partir de diferentes variables.</p>
 <p>Crearemos distintos modelos predictivos utilizando la sensibilidad de cada modelo (i.e., la capacidad del modelo para identificar correctamente casos positivos) como una medida principal de desempeño.</p>
-<p>Usamos la sensibilidad como principal medida de desempeño porque, dentro de nuestro contexto de salud animal, no detectar un caso positivo podría tener consecuencias graves. La sensibilidad es también la principal medida de desempeño en contextos como el diagnóstico de enfermedades, la detección de fraude, la seguridad de sistemas etc.</p>
+<p>Usamos la sensibilidad como principal medida de desempeño porque, dentro del contexto de salud animal, no detectar un caso positivo podría tener consecuencias graves. La sensibilidad es también la principal medida de desempeño en contextos como el diagnóstico de enfermedades, la detección de fraude, la seguridad de sistemas etc.</p>
 <p>La tabla de datos “Canine Wellness” es un conjunto de datos sintéticos que simulan las características de una amplia gama de razas de perros que reflejan la distribución natural de distintas variables físicas y de estilos de vida y de salud para distintas razas de perros. Las variables de esta tabla de datos son:</p>
 <pre><code>- raza (16 razas distintas)
 - tamaño (pequeño, mediano, grande)
@@ -2535,13 +2578,23 @@ d-appendix d-footnote-list a.footnote-backlink {
 - número de visitas anuales al veterinario
 - temperatura corporal media
 - estado de salud (saludable/no saludable)</code></pre>
-<p>La tabla de datos original requiere de una serie de manipulaciones (limpieza de datos) antes de poder aplicar cualquier algoritmo de Aprendizaje Automático (ver el script de programación). Algunos de los pasos de esta limpieza son:</p>
-<pre><code>- Cambiar los nombres de las columnas de datos 
-- Convertir columnas datos de caracteres en factores 
-- Eliminar columnas de datos innecesarias 
-- Reemplazar los valores ausentes de los casos incompletos usando el algortimo (MICE)
-- Asignar una clase correcta a cada variable: numéricas, nominales u ordinales.</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>La tabla de datos original requiere de una serie de manipulaciones (limpieza de datos) antes de que podamos aplicar cualquier algoritmo de Aprendizaje Automático (ver el <em>script</em> de programación). Algunos de los pasos de esta limpieza de datos son:</p>
+<pre><code>-   Cambiar los nombres de las columnas de datos
+-   Convertir columnas datos que son caracteres en factores
+-   Eliminar columnas de datos innecesarias
+-   Reemplazar los valores ausentes de los casos incompletos usando el algortimo MICE
+-   Asignar una clase correcta a cada variable: numéricas, nominales u ordinales.</code></pre>
+<p>Reemplazar los valores ausentes de los casos incompletos por estimaciones que no generen sesgos en la distribución original de los datos es especialmente delicado por lo que tenemos un <em>post</em> especial para ello (“<a href="https://lacasadedatos.github.io/blog/blog_posts/2026-01-13-esto-est-lleno-de-agujeros/"><em>Esto está Lleno de Agujeros</em></a>”).</p>
+<p>Una vez que contamos con una tabla de datos preparada procedemos a crear una serie de modelos predictivos utilizando el flujo de trabajo del la metalibrería <a href="https://bookdown.org/rehk/stm1001_dsm_introduction_to_machine_learning_in_r/machine-learning-in-r-using-the-caret-package.html">Caret</a> de R.</p>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>👹 ¿Podrá el Diablo Viejo - la Regresión Logística - ponerse a la par de algoritmos más modernos y complejos?</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<h1 id="modelos-predictivos-de-aprendizaje-automático.">Modelos predictivos de aprendizaje automático.</h1>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

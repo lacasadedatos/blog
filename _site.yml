@@ -8,10 +8,12 @@ navbar:
   right:
     # - text: "Home"
     #   href: index.html
-    - text: "Blog"
+    - text: "| Blog |"
       href: blog.html
-    - text: "Bio"
+    - text: "| Bio |"
       href: bio.html
-    - text: "Machine Learning"
+    - text: "| Machine Learning |"
       href: machine_learning.html
+    - text: "| Aplicaciones |"
+      href: aplications_of_ML.html
 output: distill::distill_article

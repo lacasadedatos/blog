@@ -5,19 +5,58 @@ description: |
 author:
   - name: Erick García-García, Ph.D.
     url: {}
-date: 2026-02-18
+categories: [R, Logistic Regression, Random Forest, Regression, GMLNet, predictive models]
 output:
   distill::distill_article:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    collapsed: true
+    smooth_scroll: true
+    #theme: spacelab
+    highlight: pygments
+    df_print: paged
+    #code_folding: show
     self_contained: false
+    code_download: true
 ---
 
-En este post también trabajaremos con la tabla de datos “Canine Wellness” de Kaggle.
+```{css, echo=FALSE}
+.infobox {
+  padding: 1em 1em 1em 1em;
+  border: 2px solid #4f9ed4;
+  border-radius: 10px;
+  background: ##a3cde5 5px center/3em no-repeat;
+  line-height: 1.2;
+}
+
+.fig_legend {
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+```
+
+# ¿Más sabe el diablo por viejo...?
+
+Con el *boom* de la Inteligencia Artificial, algunos algoritmos predictivo básicos de Aprendizaje Automático, como la regresión logística, parecen estar siendo empujados al fondo de las estanterías. Están siendo reemplazados por algoritmos más modernos, poderosos y complejos, aunque en ocasiones también mucho más lentos.
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 🛣️ La Regresión Logística es un algoritmo predictivo rapidísimo y es posible que, dependiendo de nuestras aplicaciones, tenga un desempeño comparable al de otros algoritmos más modernos.
+:::
+
+```         
+```
+
+En este post también trabajaremos con la tabla de datos “[Canine Wellness](https://www.kaggle.com/api/v1/datasets/download/aaronisomaisom3/canine-wellness-dataset-synthetic-10k-samples)” de Kaggle.
 
 Nuestro objetivo esta vez será crear y comparar distintos modelos de Aprendizaje Automático que nos permitan predecir el estado de salud de un animal (en este caso, un perro) a partir de diferentes variables.
 
 Crearemos distintos modelos predictivos utilizando la sensibilidad de cada modelo (i.e., la capacidad del modelo para identificar correctamente casos positivos) como una medida principal de desempeño.
 
-Usamos la sensibilidad como principal medida de desempeño porque, dentro de nuestro contexto de salud animal, no detectar un caso positivo podría tener consecuencias graves. La sensibilidad es también la principal medida de desempeño en contextos como el diagnóstico de enfermedades, la detección de fraude, la seguridad de sistemas etc.
+Usamos la sensibilidad como principal medida de desempeño porque, dentro del contexto de salud animal, no detectar un caso positivo podría tener consecuencias graves. La sensibilidad es también la principal medida de desempeño en contextos como el diagnóstico de enfermedades, la detección de fraude, la seguridad de sistemas etc.
 
 La tabla de datos “Canine Wellness” es un conjunto de datos sintéticos que simulan las características de una amplia gama de razas de perros que reflejan la distribución natural de distintas variables físicas y de estilos de vida y de salud para distintas razas de perros. Las variables de esta tabla de datos son:
 
@@ -43,10 +82,28 @@ La tabla de datos “Canine Wellness” es un conjunto de datos sintéticos que 
 - estado de salud (saludable/no saludable)
 ```
 
-La tabla de datos original requiere de una serie de manipulaciones (limpieza de datos) antes de poder aplicar cualquier algoritmo de Aprendizaje Automático (ver el script de programación). Algunos de los pasos de esta limpieza son:
+La tabla de datos original requiere de una serie de manipulaciones (limpieza de datos) antes de que podamos aplicar cualquier algoritmo de Aprendizaje Automático (ver el *script* de programación). Algunos de los pasos de esta limpieza de datos son:
 
+```         
 -   Cambiar los nombres de las columnas de datos
 -   Convertir columnas datos que son caracteres en factores
 -   Eliminar columnas de datos innecesarias
--   Reemplazar los valores ausentes de los casos incompletos usando el algortimo [MICE](https://lacasadedatos.github.io/blog/blog_posts/2026-01-13-esto-est-lleno-de-agujeros/)
+-   Reemplazar los valores ausentes de los casos incompletos usando el algortimo MICE
 -   Asignar una clase correcta a cada variable: numéricas, nominales u ordinales.
+```
+
+Reemplazar los valores ausentes de los casos incompletos por estimaciones que no generen sesgos en la distribución original de los datos es especialmente delicado por lo que tenemos un *post* especial para ello ("[*Esto está Lleno de Agujeros*](https://lacasadedatos.github.io/blog/blog_posts/2026-01-13-esto-est-lleno-de-agujeros/)").
+
+Una vez que contamos con una tabla de datos preparada procedemos a crear una serie de modelos predictivos utilizando el flujo de trabajo del la metalibrería [Caret](https://bookdown.org/rehk/stm1001_dsm_introduction_to_machine_learning_in_r/machine-learning-in-r-using-the-caret-package.html) de R.
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 👹 ¿Podrá el Diablo Viejo - la Regresión Logística - ponerse a la par de algoritmos más modernos y complejos?
+:::
+
+```         
+```
+
+# Modelos predictivos de aprendizaje automático.
