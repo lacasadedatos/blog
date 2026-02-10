@@ -38,7 +38,7 @@ A continuación encontrarás una breve lista de aplicaciones del Aprendizaje Aut
 #### 🏥 En Salud Pública y Epidemiología
 
 | **Tareas** | Aplicaciones |
-|----|----|
+|------------------------------------|------------------------------------|
 | **Predicción de brotes** | Podemos modelar y prever la propagación de enfermedades infecciosas mediante el análisis de datos históricos y condiciones ambientales. |
 | **Modelado de intervenciones** | Simulamos el impacto de diversas intervenciones de salud pública para determinar la estrategia más efectiva. |
 | **Detección de anomalías** | Identificamos patrones inusuales en datos epidemiológicos que podrían indicar un brote o un problema de salud pública. |
@@ -58,7 +58,7 @@ A continuación encontrarás una breve lista de aplicaciones del Aprendizaje Aut
 #### 🏠️ En las ciencias sociales
 
 | **Tareas** | Aplicaciones |
-|----|----|
+|------------------------------------|------------------------------------|
 | **Análisis de sentimientos** | Analizamos opiniones en redes sociales, reseñas, y cualquier tipo de textos. Buscamos entender la percepción que se tiene sobre una temática concreta. |
 | **Predicción de comportamiento** | Analizamos datos históricos para predecir comportamientos; por ejemplo la participación programas sociales o eventos. |
 | **Detección de fraudes** | Identificación de patrones anómalos en datos para prevenir fraudes en sistemas de financiamiento o asistencia social. |
@@ -76,7 +76,7 @@ A continuación encontrarás una breve lista de aplicaciones del Aprendizaje Aut
 #### 🧠 En Psicología
 
 | **Tareas** | Aplicaciones |
-|----|----|
+|------------------------------------|------------------------------------|
 | **Análisis de entrevistas** | Procesamos y categorizamos transcripciones de sesiones terapéuticas para identificar temas recurrentes y patrones de comportamiento. |
 | **Detección de trastornos** | Utilizamos datos clínicos y respuestas a cuestionarios para identificar trastornos psicológicos como la depresión o ansiedad. |
 | **Predicción de resultados terapéuticos** | Analizamos la efectividad de tratamientos y terapias a través de la segmentación de grupos, ayudando a personalizar enfoques terapéuticos. |
@@ -96,7 +96,7 @@ A continuación encontrarás una breve lista de aplicaciones del Aprendizaje Aut
 #### 🫂 En Organizaciones Sociales
 
 | **Aplicación** | **Descripción** |
-|----|----|
+|------------------------------------|------------------------------------|
 | **Optimización de Recursos** | Podemos predecir predecir qué recursos se necesitan en función de datos históricos, mejorando la eficiencia en su asignación. |
 | **Análisis de Donaciones** | Analizamos patrones de donaciones para identificar perfiles de donantes más propensos a contribuir, aumentando la captación de fondos al dirigirse a donantes potenciales efectivos. |
 | **Predicción de Necesidades** | Utilizamos datos existentes para prever las necesidades cambiantes de las comunidades, permitiendo una respuesta proactiva a crisis potenciales y demandas locales. |

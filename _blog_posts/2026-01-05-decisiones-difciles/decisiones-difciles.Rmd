@@ -10,7 +10,7 @@ output:
   distill::distill_article:
     toc: true
     toc_depth: 3
-    toc_float: true
+    #toc_float: true
     collapsed: true
     smooth_scroll: true
     #theme: spacelab
@@ -54,8 +54,6 @@ library(ggplot2)
 HELP International recaudó alrededor de \$10 millones USD y quería utilizar ese dinero de forma estratégica para desarrollar campañas de ayuda en los países que más lo necesitasen.
 
 ```         
-
-
 ```
 
 <div>
@@ -67,11 +65,9 @@ HELP International recaudó alrededor de \$10 millones USD y quería utilizar es
 </div>
 
 ```         
-
-
 ```
 
-HELP International publicó una tabla de datos sociodemográficos ([descargar](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/data)[^1]) de 167 países candidatos con las siguientes variables:
+HELP International publicó una tabla de datos sociodemográficos ([descargar](https://www.kaggle.com/datasets/rohan0301/unsupervised-learning-on-country-data/data)[\^1]) de 167 países candidatos con las siguientes variables:
 
 La tabla de datos utilizada para este análisis fue descargada de Kaggle.
 
@@ -112,9 +108,8 @@ DF %>%
   theme_zebra() %>%
   autofit()
 ```
-```
 
-
+```         
 ```
 
 <div>
@@ -124,9 +119,8 @@ DF %>%
 :::
 
 </div>
+
 ```         
-
-
 ```
 
 # Podríamos usar el PIB cómo único criterio de selección?
@@ -161,8 +155,6 @@ num_DF[c(start:end, target)] %>%
 La Figura 1 muestra que el PIB tiene diferentes grados de correlación con el resto de variables sociodemográficas, por lo que tal vez podría utilizarse como un criterio de selección, eligiendo simplemente los países con los valores de PIB más bajos.
 
 ```         
-
-
 ```
 
 <div>
@@ -172,10 +164,10 @@ La Figura 1 muestra que el PIB tiene diferentes grados de correlación con el re
 :::
 
 </div>
+
 ```         
-
-
 ```
+
 Para comenzar a responder a estas preguntas, buscamos patrones de agrupación en los países de acuerdo a sus características.
 
 Si correlacionamos la esperanza de vida y el gasto en salud y los graficamos junto con el PIB y el ingreso por habitante (Fig. 2) vemos que los países tienden a formar pequeñas agrupaciones.
@@ -196,9 +188,8 @@ ggplot(num_DF) +
 ```
 
 ```         
-
-
 ```
+
 <div>
 
 ::: {.fig_legend data-latex=""}
@@ -206,10 +197,10 @@ ggplot(num_DF) +
 :::
 
 </div>
+
 ```         
-
-
 ```
+
 Lo mismo ocurre si correlacionamos el gasto en salud y la mortalidad infantil y los graficamos junto con el PIB y el ingreso por habitante (Fig. 3).
 
 ```{r echo=FALSE}
@@ -236,9 +227,8 @@ ggplot(num_DF) +
 </div>
 
 ```         
-
-
 ```
+
 <div>
 
 ::: {.infobox data-latex="warning"}
@@ -248,9 +238,8 @@ ggplot(num_DF) +
 </div>
 
 ```         
-
-
 ```
+
 # Análisis de agrupación por k-medias
 
 La agrupación (clustering) es una técnica de aprendizaje automático que nos ayuda descubrir patrones y estructuras ocultas entre nuestras variables.
@@ -454,9 +443,8 @@ rm(start, end, target)
 La Figura 9 muestra que los países que pertenecen al *k* grupo 3 tienen los peores valores para casi todas las variables sociodemográficas; por ejemplo, gasto en salud, esperanza de vida, mortalidad infantil, e ingreso por habitante.
 
 ```         
-
-
 ```
+
 <div>
 
 ::: {.infobox data-latex="warning"}
@@ -464,10 +452,10 @@ La Figura 9 muestra que los países que pertenecen al *k* grupo 3 tienen los peo
 :::
 
 </div>
+
 ```         
-
-
 ```
+
 # ¿Y si sólo usáramos el PIB para elegir a los países más necesitados?
 
 La Figura 10 muestra la distribución de PIB de los 47 países que integran el *k* grupo 3 y de los 47 países con el PIB más bajo.
@@ -550,10 +538,10 @@ conflicted_countries %>%
 ```
 
 Estos países "divergentes" son especialmente interesantes porque ya vimos que, dentro de los tres *k* grupos, el 3 es el de menor PIB (Fig. 8); lo que significa que la afiliación al *k* grupo 3 no depende exclusivamente del PIB.
+
 ```         
-
-
 ```
+
 <div>
 
 ::: {.infobox data-latex="warning"}
@@ -561,10 +549,10 @@ Estos países "divergentes" son especialmente interesantes porque ya vimos que, 
 :::
 
 </div>
+
 ```         
-
-
 ```
+
 # ¿Qué caracteriza a los países divergentes del *k* grupo 3?
 
 Para contestar a esta pregunta, comparamos la distribución de cada una de nuestras variables a través de gráficos de caja y bigotes en los países divergentes que son del *k* grupo 3 y aquellos con el PIB más bajo (box plots, Figs. 11-12).
@@ -678,10 +666,10 @@ lowQuality_countries %>%
   theme_zebra()
 
 ```
+
 ```         
-
-
 ```
+
 <div>
 
 ::: {.infobox data-latex="warning"}
@@ -689,10 +677,10 @@ lowQuality_countries %>%
 :::
 
 </div>
+
 ```         
-
-
 ```
+
 # Nuestra recomendación
 
 Nuestra recomendación a HELP International sería invertir los fondos recaudados en los países del *k* grupo 3, ya que éstos se caracterizan por tener altos niveles de mortalidad infantil y menor esperanza de vida, a pesar de que algunos de ellos tengan un PIB medio y un ingreso por habitante superior al de países con los valores de PIB más bajos.
@@ -710,8 +698,8 @@ Disminuir la mortalidad infantil y aumentar la esperanza de vida son objetivos q
 :::
 
 </div>
+
 ```         
-
-
 ```
+
 El código completo de este análisis está disponible en el repositorio de [La Casa de Datos](https://github.com/lacasadedatos/R_scripts "Ver código del análisis") en Github.
