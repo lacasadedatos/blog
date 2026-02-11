@@ -111,7 +111,7 @@ La tabla de datos “Canine Wellness” es un conjunto de datos sintéticos que 
 - tiempo de juego
 - otras mascotas en el domicilio (sí/no)
 - medicación (sí/no)
-- espasmos (sí/no)
+- convulsiones (sí/no)
 - número de visitas anuales al veterinario
 - temperatura corporal media
 - estado de salud (saludable/no saludable)
@@ -163,7 +163,23 @@ clean_DF <- read.csv("https://raw.githubusercontent.com/lacasadedatos/datasets/r
 # Establish the response's factors and levels
 clean_DF$healthy <- factor(x = clean_DF$healthy, levels = c('Yes','No'))
 # Check the factor levels of the outcome variable
-clean_DF$healthy %>% levels()
+
+sizes <- Hmisc::Cs(Large, Medium, Small)
+clean_DF$breed_size <- factor(x = clean_DF$breed_size, levels = sizes)
+
+
+spay_neut <- Hmisc::Cs( None, Neutered, Spayed)
+clean_DF$spay_neuter_status <- factor(x = clean_DF$spay_neuter_status, levels = spay_neut)
+
+act_levels <- Hmisc::Cs(None, Low, Moderate, Active, "Very Active")
+clean_DF$daily_activity_level <- factor(x = clean_DF$daily_activity_level, levels = act_levels)
+
+clean_DF$owner_activity_level <- factor(x = clean_DF$owner_activity_level, levels = act_levels)
+
+
+
+
+
 ```
 
 Como nos interesa la relación entre diferentes las variables y el estado de salud de los perros, nuestro primer paso es explorar cómo se relacionan las variables predictoras con nuestra variable de respuesta. Como el objetivo de este *post* no es realizar un análisis exploratorio exhaustivo, sólo mostraremos algunas variables interesantes.
@@ -173,7 +189,7 @@ Como nos interesa la relación entre diferentes las variables y el estado de sal
 La Figura 1 muestra una marcada influencia de la edad y estado de esterilización en el estado de salud de los animales. Otras variables como el peso o el sexo parecen tener apenas influencia en su estado de salud.
 
 ```{r echo=FALSE}
-#| cache: TRUE
+#| cache: FALSE
 clean_DF[c(4, 6, 5, 3, 19)] %>% 
   explore_all(target = healthy)
 ```
@@ -187,7 +203,7 @@ clean_DF[c(4, 6, 5, 3, 19)] %>%
 La Figura 2 muestra que la dieta y el nivel de actividad de los animales tienen una influencia importante en el estado de salud de los perros, mientras que variables como el tiempo de juego y el nivel de actividad de los propietarios no parecen tener ninguna influencia.
 
 ```{r echo=FALSE}
-#| cache: TRUE
+#| cache: FALSE
 clean_DF[c(8, 7, 15, 16, 19)] %>% 
   explore::explore_all(target = healthy)
 ```
@@ -201,7 +217,7 @@ clean_DF[c(8, 7, 15, 16, 19)] %>%
 La Figura 3 muestra que la presencia de medicamentos o convulsiones, así como el número de visitas veterinarias anuales, sí son indicativos del estado de salud de los perros, mientras que la temperatura media no lo es.
 
 ```{r echo=FALSE}
-#| cache: TRUE
+#| cache: FALSE
 clean_DF[c(12, 17, 13, 18, 19)] %>% 
   explore::explore_all(target = healthy)
 ```
@@ -832,7 +848,9 @@ summary(model_logisticRegression)
 
 Aunque a primera vista estos datos parecen intimidantes, debemos centrar nuestra atención en las variables con asteriscos, ya que estas son las que contribuyen significativamente al valor de *p* estimado por el modelo que luego usamos para clasificar a los animalitos como saludables o no.
 
-Los resúmenes de los modelos más complejos, como el bosque de árboles aleatorios o GLMNet son, en cambio, mucho menos informativos:
+Como vemos en la tabla de arriba, las variables que son significativas se corresponden con aquellas que parecían tener mayor influencia en el estado de salud de los animales en nuestro análisis exploratorio (Figuras 1-3): edad (age); estado de esterilización (spay_neuter_status); nivel de actividad diaria (dalily_activity_level), para los niveles inactivo (none), bajo (low) y moderado (moderate); tipo de dieta (diet), especialmente las dietas húmedas (wet food) y dietas especiales (special diet); numero de visitas anuales al veterinario (annual_vet_visits) y presencia de medicación (medications) y convulsiones (seizures).
+
+A diferencia de la regresión logística, los resúmenes de los modelos más complejos, como el bosque de árboles aleatorios o GLMNet son, en cambio, mucho menos informativos:
 
 Resumen del bosque de árboles aleatorios:
 

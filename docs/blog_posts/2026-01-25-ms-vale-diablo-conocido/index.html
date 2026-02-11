@@ -2620,7 +2620,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 - tiempo de juego
 - otras mascotas en el domicilio (sí/no)
 - medicación (sí/no)
-- espasmos (sí/no)
+- convulsiones (sí/no)
 - número de visitas anuales al veterinario
 - temperatura corporal media
 - estado de salud (saludable/no saludable)</code></pre>
@@ -3410,7 +3410,8 @@ especificidad
 </table>
 </div>
 <p>Aunque a primera vista estos datos parecen intimidantes, debemos centrar nuestra atención en las variables con asteriscos, ya que estas son las que contribuyen significativamente al valor de <em>p</em> estimado por el modelo que luego usamos para clasificar a los animalitos como saludables o no.</p>
-<p>Los resúmenes de los modelos más complejos, como el bosque de árboles aleatorios o GLMNet son, en cambio, mucho menos informativos:</p>
+<p>Como vemos en la tabla de arriba, las variables que son significativas se corresponden con aquellas que parecían tener mayor influencia en el estado de salud de los animales en nuestro análisis exploratorio (Figuras 1-3): edad (age); estado de esterilización (spay_neuter_status); nivel de actividad diaria (dalily_activity_level), para los niveles inactivo (none), bajo (low) y moderado (moderate); tipo de dieta (diet), especialmente las dietas húmedas (wet food) y dietas especiales (special diet); numero de visitas anuales al veterinario (annual_vet_visits) y presencia de medicación (medications) y convulsiones (seizures).</p>
+<p>A diferencia de la regresión logística, los resúmenes de los modelos más complejos, como el bosque de árboles aleatorios o GLMNet son, en cambio, mucho menos informativos:</p>
 <p>Resumen del bosque de árboles aleatorios:</p>
 <div class="long_table">
 <table>
