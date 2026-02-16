@@ -1,0 +1,82 @@
+Figura 1. Relación de nuestras variables predictoras con la tasa de filtración glomerular (GFR, Glomerular Filtration Rate). CKD_Status, enfermedad renal crónica; Creatinine, creatinina; BUN, Nitrógeno uréico en sangre; urine_Output, salida de orina; Diabetes, diabetes; Hypertension, hipertensión; Age, edad; Protein_in_Urine, proteína en orina; Water_Intake, ingesta de agua; Medication, tipo de medicación.
+
+En la Figura 1 podemos ver que existe una fuerte relación entre la tasa de filtración glomerular y la presencia de enfermedad renal crónica (CKD), el nivel de creatinina, el nitrógeno uréico en sangre, la salida de orina, y posiblemente la presencia de proteína en la orina.
+
+Creación de distintos modelos predictivos
+
+El proceso de creación de algoritmos de Aprendizaje Automático involucra múltiples pasos: c) limpieza y escalado de los datos, b) separación de conjuntos de datos de entrenamiento y testeo, c) programación de los modelos, d) análisis de métricas de desempeño con los datos de entrenamiento para descartar sobreajuste, e) comparación de distintas métricas de despempeño entre modelos para elegir el mejor o los mejores en la fase de entrenamiento, y pruebas de desempeño con los datos de testeo.
+
+Los modelos de aprendizaje automático creados fueron: regresión lineal, GLMNet, bosque de árboles aleatorios (random forest), XGBoost y SVM (Supported Vector Machines).
+
+A continuación te ofrecemos una muy breve explicación de cómo funciona cada algoritmo.
+
+Regresión Lineal: es una técnica estadística que modela la relación entre una variable dependiente y una o más variables independientes. Busca encontrar la línea recta que mejor se ajuste a los datos, permitiendo predecir valores de la variable dependiente en función de las independientes. Es útil para identificar tendencias y patrones.
+
+
+
+GLMNet: es un modelo de aprendizaje automático que utiliza el Modelo Lineal Generalizado (GLM) para predecir resultados. GLMNet combina la regularización L1 (Lasso) y L2 (Ridge) en un único modelo, añadiendo un parámetro lambda para controlar la fuerza de la regularización L1 y un parámetro alpha para balancear entre L1 y L2.
+
+Bosque de árboles aleatorios: utiliza múltiples árboles de decisión para hacer predicciones. Cada árbol en el bosque hace una predicción basada en los datos de entrada y la predicción final se hace combinando las predicciones de todos los árboles.
+
+XGBoost: construye una serie de modelos secuenciales haciendo predicciones con árboles de decisión de bajo poder predictivo (árboles débiles); cada nuevo modelo se entrena enfocándose en los errores del anterior. Este proceso iterativo corrige gradualmente las predicciones incorrectas, creando un modelo final más fuerte y preciso que supera significativamente el rendimiento individual de cada árbol débil.
+
+La fase de entrenamiento de cada modelo se realizó con validación cruzada con 5 particiones de datos y exploración automatizada de hiperparámetros (variables matemáticas que modulan el funcionamiento de un algoritmo, definidas por el usuario).
+
+Para centrar nuestra atención en las herramientas de interpretación de modelos de Aprendizaje Automático que nos ofrece la librería DALEX, nos saltaremos losm resultados de la fase de entrenamiento y partiremos de los resultados de desempeño de nuestros modelos en la fase final de testeo. En todo caso, puedes ver el script de programación completo en el repositorio de La Casa de Datos en GitHub.
+
+Como estamos trabajando con modelos de regresión para predecir una variable numérica contínua, una forma de visualizar el desempeño de nuestros modelos es graficando el valor estimado de la variable de respuesta (la predicción sobre la tasa de filtración glomerular, GFR) frente a los valores reales (Figura 2).
+
+
+
+La Figura 2. Correlación entre las predicciones de cada modelo (Predictions) y los valores reales de la tasa de filtración glomerular real (True GFR value). La linea azul corresponde a la línea de la  regresión y cada punto es un caso. En un modelo perfecto, todos los puntos estarían ubicados sobre la línea de la regresión.
+
+En la Figura 2 vemos que no todos los modelos tuvieron el mismo desempeño; en las gráficas, las predicciones de los modelos de regresión lineal y GMLNet son los que más se alejan de la línea de regresión. Los datos que mejor se ajustan a la línea de regresión son los del modelo XGBoost, seguidos de los del bosque de árboles aleatorios.
+
+Podemos cuantificar cómo de acertadas son las predicciones de cada modelo usando la Raíz del Error Cuadrático Medio de las predicciones (RMSE). Podemos además estimar cómo de bueno es nuestro modelo usando la R² que nos indica la proporción de la variabilidad de nuestros datos que el modelo puede explicar.
+
+La Tabla 1 muestra los resultados de la Raíz del Error Cuadrático Medio; como vemos, los valores de error más bajos corresponden al modelo XGBoost, seguidos del bosque de árboles aleatorios.
+
+La Tabla 2 muestra los resultados de R². Aunque todos los modelos explican más del 99% de la variabilidad de los datos, los valores más altos corresponden al modelo XGBoost, seguidos del bosque de árboles aleatorios.
+
+Estos resultados nos indican que los mejores modelos para nuestro conjunto de datos son XGBoost y el bosque de árboles aleatorios.
+
+Como ya vimos en un post anterior (¿Más sabe el diablo por viejo...?), a diferencia de modelos sencillos como la regresión lineal o la regresión logística, los resúmenes de modelos complejos suelen ser bastante crípticos y no son muy útiles para entender cómo un modelo predictivo de Aprendizaje Automático llega a una decisión.
+
+Por ello, a continuación usaremos la librería DALEX para explorar y entender la forma en la que XGBoost y el bosque de árboles aleatorios trabajan para arrojar una predicción.
+
+
+
+Mirando el interior de la caja
+
+Como ya vimos en un post anterior (¿Más sabe el diablo por viejo...?), a diferencia de modelos sencillos como la regresión lineal o la regresión logística, los resúmenes de modelos complejos suelen ser bastante crípticos y no pareceb nada útiles para entender cómo un modelo de Aprendizaje Automático alcanza una predicción.
+
+A continuación usaremos la librería DALEX para explorar y entender la forma en la que XGBoost y el bosque de árboles aleatorios, nuestros mejores modelos para este conjunto de datos, trabajan para alcanzar una predicción.
+
+DALEX utiliza una interfaz unificada mediante para explicar modelos de Aprendizaje Automático complejos, haciendo transparentes los modelos de caja negra. El objeto de programación base de esta librería se denomina "explainer".
+
+El código que se muestra a continuación corresponde a la creación de los "explainers" para XGBoost y el bosque de árboles aleatorios.
+
+Una vez creados los "explainers", contamos con distintas herramientas para explicar el proceso de decisión de cada modelo.
+
+mportancia de las variables de entrada para la predicción
+
+Los gráficos de importancia de variables (Variable Importance Plots, VIP) muestran qué variables tienen mayor impacto en las predicciones de un modelo predictivo de Aprendizaje Automático. DALEX calcula la importancia de cada variable dentro del modelo mediante permutaciones; mezcla aleatoriamente los valores de cada variable y mide cómo se degradan las métricas de desempeño (por defecto, 1-AUC para clasificación y RMSE para regresión). Cuando se modifica una variable, una mayor degradación de la métrica de desempeño es indicativa de mayo importancia de esa variable. Los gráficos VIP permiten identificar fácilmente las variables que son clave para un modelo predictivo.
+
+La Figura 3 muestra los gráficos VIP para el modelo XGBoost y el bosque de árboles aleatorios, con las variables más importantes para cada modelo.
+
+
+Figura 3. Gráficos tipo VIP para los modelos predictivos XGBoost y bosque de árboles aleatorios. La importancia relativa de cada variable fue estimada a partir la disminución del error cuadrático medio de las predicciones, tras las permutaciones de las variables de entrada (RMSE loss after permutations). Creatine, creatinina; BUN, Nitrógeno uréico en sangre; Protein_in_Urine, proteína en orina; CKD_Status_Yes, presencia de enfermedad renal crónica; Age, edad; Diabetes_Yes, presencia de diabetes; Hypertension_Yes, presencia de hipertensión; Urine_Output, salida de orina; Water_Intake, ingesta de agua; Medication, tipo de medicación (ARB; Diuretic, diuréticos; None, ninguna).
+
+
+Como podemos ver en la Figura 3, cada modelo asigna una importancia relativa distinta a cada variable; sin embargo, las variables más importantes son las mismas en los dos modelos. Estos resultados coinciden con la exploración visual de nuestros datos (Figura 1), lo que resulta muy tranquilizador.
+
+🔍   Los gráficos tipo VIP nos ayudan a entender de un vistazo las variables que contribuyen en mayor medida a la capacidad de un modelo de Aprendizaje Automático para arrojar una predicción.
+
+##
+
+Ya tenemos un modelo predictivo, ¡qué bonito! Contamos con gráficos tipo VIP para entender las variables que son importantes para nuestro modelo, ¡qué emoción! Pero... ¿Podemos hacer algo incluso mejor? ¿Tal vez explicar a un paciente EXACTAMENTE cuáles de sus características individuales predicen niveles alarmantes para su tasa de filtración glomerular?
+
+La Figura 4 muestra un gráfico de descomposición del valor estimado de la regresión para los dos sujetos. La función `predict_parts()` de DALEX genera un gráfico de barras que muestra las contribuciones de cada variable a la predicción. Las barras positivas indican una contribución positiva al valor de la predicción, mientras que las barras negativas indican una contribución negativa.
+
+El punto de partida en el gráfico es el término independiente (intercept), que representa el valor predicho de la variable de respuesta cuando todas las variables independientes son cero. Aunque el término independiente no tiene mucho sentido en la gran mayoría de los modelos de regresión, podemos visualizarlo como valor de la variable de respuesta sobre el que van a actuar las variables predictoras. En nuestro conjunto de datos el término independiente del modelo XGBoost (73.42) se aproxima a la media de la tasa de filtración glomerular de los 5000 casos que componen nuestra muestra (73.25).
+

@@ -1,0 +1,1257 @@
+---
+title: "¡La caja negra no es tan negra!"
+description: |
+  Algunos algoritmos de Aprendizaje Automático son tan complejos que entender cómo llegan a la predicción de una categoría o valor de regresión se convierte en una caja negra. La librería DALEX de R nos permite asomarnos a esa caja negra, entender cómo funcionan estos modelos complejos y poder emitir recomendaciones precisas y cuantificables para mejorar los valores de nuestra variable de respuesta. Es fascinante...
+author:
+  - name: Erick García-García, Ph.D.
+date:  "Feb. 20, 2026"
+categories: [R, Regression, Random Forest, DALEX, GMLNet, XGBoost, predictive models, variable importance]
+output:
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    collapsed: true
+    smooth_scroll: true
+    #theme: spacelab
+    highlight: pygments
+    df_print: paged
+    #code_folding: show
+    self_contained: false
+    code_download: true
+---
+
+```{css, echo=FALSE}
+
+.infobox {
+  padding: 1em 1em 1em 1em;
+  border: 2px solid #4f9ed4;
+  border-radius: 10px;
+  background: ##a3cde5 5px center/3em no-repeat;
+  line-height: 1.2;
+}
+
+.fig_legend {
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.long_table {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.h2_heading {
+  font-size: 18px;
+  line-height: 1;
+}
+```
+
+# ¿Por qué es tan negra la caja?
+
+Algunos algoritmos de Aprendizaje Aautomático son tan complejos, que los procesos internos para alcanzar una predicción son difíciles de interpretar. Aunque estos modelos pueden predecir con muy alta presición categorías o valores de una regresión, no explican el razonamiento subyacente ni las variables que influyeron en cada decisión.
+
+Fuera del mundo académico esta "falta de transparencia" genera desconfianza, especialmente en situaciones en las que se necesita entender cómo se alcanzó a una decisión.
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 🤔 La falta de **interpretabilidad** de algunos modelos de Aprendizaje Automático genera problemas de confianza, especialmente en aplicaciones críticas como medicina, justicia o finanzas, donde es fundamental entender **cómo** se tomó una determinada decisión; por ejemplo, clasificar a un paciente como "en riesgo", conceder un préstamo, etc.
+:::
+
+```         
+```
+
+Otros algoritmos, como la [regresión logística](https://lacasadedatos.github.io/blog/blog_posts/2026-01-25-ms-vale-diablo-conocido/#qu%C3%A9-historias-nos-cuenta-el-diablo-viejo "Transparencia de la Regresión logística") y modelos de regresión lineal, son más transparentes y nos permiten entender su proceso de toma de decisiones de forma inmediata. Aunque este tipo de modelos predictivos se consideran menos poderosos, suelen ser mucho más veloces y, dependiendo de los datos y el contexto, pueden alcanzar una capacidad predictiva muy similar a la de modelos más complejos (ver nuestro *post* "[*¿Más sabe el diablo por viejo?...*](https://lacasadedatos.github.io/blog/blog_posts/2026-01-25-ms-vale-diablo-conocido/)").
+
+## Mirando dentro de la caja {style="font-size: 18px"}
+
+La librería [DALEX](https://cran.r-project.org/web/packages/DALEX/DALEX.pdf "Dalex documentation") (Descriptive mAchine Learning EXplanations) de [R](https://www.r-project.org/ "R"), nos permite asomarnos dentro de la caja y entender el proceso de toma de decisiones de algoritmos complejos.
+
+DALEX es una librería de R diseñada para **explicar e interpretar** modelos de Aprendizaje automático. Proporciona herramientas de interpretación que funcionan con cualquier algoritmo (bosques de árboles aleatorios, redes neuronales, XGBoost, etc.).
+
+Como veremos en este *post*, estas herramientas nos permiten crear visualizaciones intuitivas para entender tanto predicciones individuales como el comportamiento global del modelo.
+
+## Los datos dentro de la caja {style="font-size: 18px"}
+
+En esta ocasión trabajaremos con el conjunto de datos "[Kidney Function Health](https://www.kaggle.com/datasets/miadul/kidney-function-health-dataset?select=kidney_dataset.csv "ver datos")" de Kaggle. Este conjunto de datos es una recopilación sintética, pero realista desde el punto de vista médico, de indicadores de salud relacionados con el funcionamiento del riñón que son utilizados por los nefrólogos para evaluar la función renal, detectar la enfermedad renal crónica temprana y evaluar los factores de riesgo. Este conjunto de datos incluye 5.000 registros de pacientes con 11 características clínicamente relevantes:
+
+| Variable | Descripción |
+|------------------------------------|------------------------------------|
+| Creatinina | Nivel de creatinina en sangre (mg/dL). Valores altos indican una filtración renal reducida. |
+| BUN | Nitrógeno uréico en sangre (mg/dL). Niveles elevados indican función renal comprometida. |
+| GFR (Objetivo para regresión) | Tasa de filtración glomerular (5–120). Valores más altos indican mejor función renal. |
+| Salida de orina | Volumen diario de orina (mL/día). Bajo volumen puede reflejar daño renal. |
+| Diabetes | Presencia de diabetes; un factor de riesgo importante para la enfermedad renal crónica. |
+| Hipertensión | Estado de presión arterial alta, fuertemente asociado con la progresión de la enfermedad renal crónica. |
+| Edad | Edad del paciente (18–90). La función renal disminuye con la edad. |
+| Proteína en la orina | Nivel de proteinuria (mg/dL). Alta proteína = daño renal. |
+| Ingesta de agua | Consumo diario de agua (litros/día). |
+| Medicación | Tipo de medicación: Ninguna, Inhibidor de ECA, ARB, Diurético. |
+
+El objetivo de nuestros modelos predictivos de regresión será predecir la tasa de filtración gromerular (GFR, Glomerular Filtration Rate) a partir de las variables mostradas arriba.
+
+Crearemos algunos modelos predictivos de Aprendizaje Automático y luego nos asomaremos a si interior con las herramientas de la librería DALEX.
+
+```{r include=FALSE}
+#| label: load libraries
+#| message: false
+#| warning: false
+library(tidymodels)
+library(tidyverse)
+library(explore)
+library(dlookr)
+library(gridExtra)
+library(baguette)
+library(flextable)
+library(DALEX)
+library(ggplot2)
+
+`%notin%` <- Negate(`%in%`)
+```
+
+```{r include=FALSE}
+#| label: load data
+#| message: false
+#| warning: false
+#| cache: TRUE
+DF <- read_csv("https://raw.githubusercontent.com/lacasadedatos/datasets/refs/heads/main/kidney_GFR.csv") %>% 
+  mutate_if(is.character, as.factor)
+
+
+# Reorganize the DF
+DF <- DF %>% select(GFR, CKD_Status, everything())
+glimpse(DF, width = 50)
+```
+
+## Breve exploración de nuestros datos {style="font-size: 18px"}
+
+La Figura 1 muestra la relación de todas nuestras variables con la tasa de filtración glomerular (GFR), que será la variable objetivo de nuestros modelos de regresión.
+
+```{r echo=FALSE}
+#| message: false
+#| warning: false
+#| cache: TRUE
+start <- 2 # 1st col
+end <- 5 # last col
+target <-1 # target col
+
+DF[c(start:end, target)] %>%
+  explore_all(target = GFR)
+
+```
+
+```{r echo=FALSE}
+
+#| message: false
+#| warning: false
+#| cache: TRUE
+start <- 6 # 1st col
+end <- 9 # last col
+target <-1 # target col
+
+DF[c(start:end, target)] %>% 
+  explore_all(target = GFR)# name of the target
+```
+
+```{r echo=FALSE}
+#| message: false
+#| warning: false
+#| cache: TRUE
+start <- 10 # 1st col
+end <- 11 # last col
+target <-1 # target col
+
+DF[c(start:end, target)] %>% 
+  explore_all(target = GFR)# name of the target
+```
+
+::: {.fig_legend data-latex=""}
+**Figura 1**. Relación de nuestras variables predictoras con la tasa de filtración glomerular (GFR, Glomerular Filtration Rate). CKD_Status, enfermedad renal crónica; Creatinine, creatinina; BUN, Nitrógeno uréico en sangre; urine_Output, salida de orina; Diabetes, diabetes; Hypertension, hipertensión; Age, edad; Protein_in_Urine, proteína en orina; Water_Intake, ingesta de agua; Medication, tipo de medicación.
+:::
+
+En la Figura 1 podemos ver que existe una fuerte relación entre la tasa de filtración glomerular y la presencia de enfermedad renal crónica (CKD), el nivel de creatinina, el nitrógeno uréico en sangre, la salida de orina, y posiblemente la presencia de proteína en la orina.
+
+# Creación de distintos modelos predictivos
+
+El proceso de creación de algoritmos de Aprendizaje Automático involucra múltiples pasos: c) limpieza y escalado de los datos, b) separación de conjuntos de datos de entrenamiento y testeo, c) programación de los modelos, d) análisis de métricas de desempeño con los datos de entrenamiento para descartar [sobreajuste](https://www.baeldung.com/cs/random-forest-overfitting-fix "overfitting in ML"), e) comparación de distintas métricas de despempeño entre modelos para elegir el mejor o los mejores en la fase de entrenamiento, y pruebas de desempeño con los datos de testeo.
+
+Los modelos de aprendizaje automático creados fueron: [regresión lineal](https://www.geeksforgeeks.org/machine-learning/ml-linear-regression/), [GLMNet](https://trevorhastie.r-universe.dev/articles/glmnet/glmnet.html "GLMNet"), bosque de árboles aleatorios ([*random forest*](https://towardsmachinelearning.org/random-forest/ "random forest")), [XGBoost](https://www.geeksforgeeks.org/machine-learning/xgboost/ "XGBoost") y SVM ([Supported Vector Machines](https://www.geeksforgeeks.org/machine-learning/support-vector-machine-algorithm/ "SVM")). Todos estos modelos se crearon utilizando la metalibrería [Tidymodels](https://www.tidymodels.org/) de R.
+
+A continuación te ofrecemos una muy breve explicación de cómo funciona cada algoritmo.
+
+-   Regresión Lineal: es una técnica estadística que modela la relación entre una variable dependiente y una o más variables independientes. Busca encontrar la línea recta que mejor se ajuste a los datos, permitiendo predecir valores de la variable dependiente en función de las independientes. Es útil para identificar tendencias y patrones.
+-   GLMNet: es un modelo de aprendizaje automático que utiliza el Modelo Lineal Generalizado (GLM) para predecir resultados. GLMNet combina la [regularización](https://medium.com/analytics-vidhya/regularization-understanding-l1-and-l2-regularization-for-deep-learning-a7b9e4a409bf) L1 (Lasso) y L2 (Ridge) en un único modelo, añadiendo un parámetro lambda para controlar la fuerza de la regularización L1 y un parámetro alpha para balancear entre L1 y L2.
+-   Bosque de árboles aleatorios: utiliza múltiples [árboles de decisión](https://www.geeksforgeeks.org/machine-learning/decision-tree/) para hacer predicciones. Cada árbol en el bosque hace una predicción basada en los datos de entrada y la predicción final se hace combinando las predicciones de todos los árboles.
+-   XGBoost: construye una serie de modelos secuenciales haciendo predicciones con árboles de decisión de bajo poder predictivo (árboles débiles); cada nuevo modelo se entrena enfocándose en los errores del anterior. Este proceso iterativo corrige gradualmente las predicciones incorrectas, creando un modelo final más fuerte y preciso que supera significativamente el rendimiento individual de cada árbol débil.
+
+La fase de entrenamiento de cada modelo se realizó con validación cruzada con 5 particiones de datos y exploración automatizada de hiperparámetros (variables matemáticas que modulan el funcionamiento de un algoritmo, definidas por el usuario).
+
+Para centrar nuestra atención en las herramientas de interpretación de modelos de Aprendizaje Automático que nos ofrece la librería DALEX, nos saltaremos losm resultados de la fase de entrenamiento y partiremos de los resultados de desempeño de nuestros modelos en la fase final de testeo. En todo caso, puedes ver el script de programación completo en el repositorio de [La Casa de Datos](https://github.com/lacasadedatos/R_scripts "Repositorio La Casa de Datos") en GitHub.
+
+Como estamos trabajando con modelos de regresión, una forma de visualizar el desempeño de nuestros modelos es graficando el valor estimado de la variable de respuesta (la prediccion sobre la tasa de filtración glomerular, GFR) frente a los valores reales (Figura 2).
+
+```{r}
+#| include: FALSE
+
+## Data splitting (rsample) ----
+set.seed(1976)
+data_split <- initial_split(data = DF, prop = 0.75, strata = GFR)
+training_data <- training(data_split)
+testing_data <- testing(data_split)
+
+
+## cross validation on the training data ----
+set.seed(1976)
+myfolds <- vfold_cv(training_data,
+  v = 5, # number of folds
+  strata = GFR
+)
+
+## Recipe ----
+R_CorrOk <- recipe(GFR ~ ., data = training_data) %>%
+		step_normalize(all_numeric(), -all_outcomes()) %>% # scaling
+  	step_zv(all_numeric(),  -all_outcomes()) %>% # remove zero variance vars
+    step_dummy(all_nominal_predictors()) # create dummy vars for nominal vars
+
+
+## Apply recipe: get pre-processed data for inspection ----
+
+training_CorrOk <- R_CorrOk %>%
+		prep(training = training_data) %>%
+		bake(new_data = NULL)
+
+
+testing_CorrOk <- R_CorrOk %>%
+		prep(training = training_data) %>%
+		bake(new_data = testing_data) %>% 
+    select(GFR, everything())
+
+```
+
+```{r}
+#| label: linear_regression
+#| include: FALSE
+#| cache: TRUE
+#| message: false
+#| warning: false
+# model setup ----
+M_linearReg <- linear_reg() %>% # model type:
+# https://www.tidymodels.org/find/parsnip/
+  set_engine('glm') %>% # specific R package
+  set_mode('regression') # Set mode
+
+wkfl_linearReg <- workflow() %>%
+		add_model(M_linearReg) %>%
+		add_recipe(R_CorrOk)
+
+
+rs_linearReg <- wkfl_linearReg %>%
+		fit_resamples(resamples = myfolds)
+
+# inspect output for high variability ----
+rs_linearReg  %>% collect_metrics(summarize = FALSE) %>%
+  group_by(.metric) %>% # customize
+  summarize(
+    mean = mean(.estimate),
+    min = min(.estimate), # customize
+    median = median(.estimate), # customize
+    max = max(.estimate) # customize
+  )
+
+# metrics on the testing data ----
+
+lf_linearReg_CorrOk <- workflow() %>%
+		add_model(M_linearReg) %>%
+		add_recipe(R_CorrOk) %>% 
+    last_fit(split = data_split)
+
+
+finalM_lR <-lf_linearReg_CorrOk %>%
+	collect_metrics()
+
+
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+# plot ----
+pred_linearReg_CorrOk <- lf_linearReg_CorrOk %>% 
+		collect_predictions()
+
+lr_plot <- ggplot(pred_linearReg_CorrOk, aes(
+  pred_linearReg_CorrOk$GFR,
+  pred_linearReg_CorrOk$.pred
+)) +
+  geom_point(alpha = 0.5) + # create scatter plot
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(x = "True GFR value", y = "Predictions") + # st se = TRUE to show se area
+  theme(
+  axis.title.x = element_text(size = 18),  # X-axis title
+  axis.title.y = element_text(size = 18)   # Y-axis title
+) +
+  ggtitle("A) Linear Regression")
+```
+
+```{r}
+#| label: glmnet
+#| include: FALSE
+#| cache: TRUE
+#| message: false
+#| warning: false
+
+# glmnet::glmnet() uses regularized least squares to fit models with numeric # outcomes.
+# 
+# For this engine, there is a single mode: regression
+# 
+# This model has 2 tuning parameters:
+# 
+# penalty: Amount of Regularization (type: double, default: see below)
+# 
+# mixture: Proportion of Lasso Penalty (type: double, default: 1.0)
+# 
+# A value of mixture = 1 corresponds to a pure lasso model, while mixture = 0 # indicates ridge regression.
+# 
+# The penalty parameter has no default and requires a single numeric value. For # more details about this, and the glmnet model in general, see glmnet-details.
+# 
+# For this model we will use the full model with normalization (Recipe 1)
+
+## Model definition ----
+M_GLMNet <- linear_reg() %>% # model type:
+# https://www.tidymodels.org/find/parsnip/
+  set_engine('glmnet') %>% # specific R package
+  set_mode('regression') # Set mode
+
+## create a worlflow ----
+wkfl_GLMNet <- workflow() %>%
+		add_model(M_GLMNet) %>%
+		add_recipe(R_CorrOk) # full model with normalization
+
+
+## Create a tuning model ----
+# Models' names and hyperparameters are in:
+# https://www.tidymodels.org/find/parsnip/
+tune_GLMNet <- linear_reg(
+  penalty = tune(), # ML algorithm
+  mixture = tune()
+) %>%
+  set_engine("glmnet") %>%
+  set_mode("regression")
+## Add tuning to the original workflow
+tuned_wkfl_GLMNet <- wkfl_GLMNet %>%
+  update_model(tune_GLMNet)
+
+## create a tuning grid with random values
+set.seed(1976)
+grid_GLMNet <- tune_GLMNet %>%
+  extract_parameter_set_dials() %>%
+  grid_random(., size = 5)
+
+## Apply the tune grid to the workflow with cross-validation
+tuning_GLMNet <- tuned_wkfl_GLMNet %>%
+  tune_grid(
+    resamples = myfolds,
+    grid = grid_GLMNet
+  )
+# Check results ----
+tuneResults_GLMNet <- tuning_GLMNet %>%
+  collect_metrics()
+
+tuning_GLMNet %>%
+  collect_metrics(summarize = FALSE) %>%
+  group_by(.metric) %>% # customize
+  summarize(
+    mean = mean(.estimate),
+    min = min(.estimate), # customize
+    median = median(.estimate), # customize
+    max = max(.estimate) # customize
+  )
+
+
+## Best performing models ----
+# top n hyperparameter combinations according to "metric"
+(tuning_GLMNet %>% 
+	show_best(metric = "rmse", n = 5)) 
+
+
+## Select the best performing model ----
+# Outputs a tibble with the best hyperparameter combination
+(best_GLMNet <- tuning_GLMNet %>% 
+					select_best(metric = "rmse"))
+
+
+## Finalize the workflow with last_fit() ----
+finalWkfl_GLMNet <- tuned_wkfl_GLMNet %>%
+					finalize_workflow(best_GLMNet)
+					
+finalTuned_GLMNet <- finalWkfl_GLMNet %>%
+					last_fit(data_split)
+					
+## View final results performed on the testing_data ----
+(finalM_GLMNet <- finalTuned_GLMNet %>%
+		collect_metrics())
+
+## Get predictions on the testing data ----
+preds_GLMNet <- finalTuned_GLMNet %>%
+  collect_predictions()
+
+
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+## plot predictions vs true outcomes ----
+
+glmnet_plot <-ggplot(preds_GLMNet, aes(preds_GLMNet$GFR,
+                                         preds_GLMNet$.pred)) +
+  geom_point(alpha = 0.5) + # create scatter plot
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(x = "True GFR value", y = "Predictions") +# st se = TRUE to show se area
+  theme(
+  axis.title.x = element_text(size = 18),  # X-axis title
+  axis.title.y = element_text(size = 18)   # Y-axis title
+) +
+  ggtitle("B) GLMNet")
+```
+
+```{r}
+#| label: random_forest
+#| include: FALSE
+#| cache: TRUE
+#| message: false
+#| warning: false
+# ## Model definition ----
+M_rForest <- rand_forest() %>% # model type:
+# https://www.tidymodels.org/find/parsnip/
+# show_engines("boost_tree")for available engines.
+  set_engine('randomForest') %>% # specific R package
+  set_mode('regression') # Set mode
+
+## create a workflow ----
+wkfl_rForest <- workflow() %>%
+		add_model(M_rForest) %>%
+		add_recipe(R_CorrOk) # full model with normalization
+
+
+## Create a tuning model
+# Models' names and hyperparameters are in:
+# https://www.tidymodels.org/find/parsnip/
+# call show_model_info("rand_forest") to show hyperparameters
+tune_rForest <- rand_forest(
+  mtry = tune(), # ML algorithm
+  trees = tune(),
+  min_n = tune()
+) %>%
+  set_engine("randomForest") %>%
+  set_mode("regression")
+
+## Add tuning to the original workflow
+tuned_wkfl_rForest <- wkfl_rForest %>%
+		update_model(tune_rForest)
+
+## create a tuning grid with random values
+set.seed(1976)
+grid_rForest <- tune_rForest %>%
+		extract_parameter_set_dials() %>%
+    # mtry needs extra info from the pre-processed data, so:
+    finalize(training_CorrOk) %>%
+		grid_random(., size = 5)
+
+## Apply the tune grid to the workflow with cross-validation
+tuning_rForest <- tuned_wkfl_rForest %>%
+		tune_grid(resamples = myfolds,
+				  grid = grid_rForest)
+# Check results
+tuneResults_rForest <- tuning_rForest %>%
+	collect_metrics()
+
+(tuning_rForest %>%
+  collect_metrics(summarize = FALSE) %>%
+  group_by(.metric) %>% # customize
+  summarize(
+    mean = mean(.estimate),
+    min = min(.estimate), # customize
+    median = median(.estimate), # customize
+    max = max(.estimate) # customize
+  ))
+
+
+## Best performing models ----
+# top n hyperparameter combinations according to "metric"
+(tuning_rForest %>% 
+	show_best(metric = "rmse", n = 5)) 
+
+
+## Select the best performing model ----
+# Outputs a tibble with the best hyperparameter combination
+(best_rForest <- tuning_rForest %>% 
+					select_best(metric = "rmse"))
+
+
+## Finalize the workflow with last_fit() ----
+finalWkfl_rForest <- tuned_wkfl_rForest %>%
+					finalize_workflow(best_rForest)
+					
+finalTuned_rForest <- finalWkfl_rForest %>%
+					last_fit(data_split)
+					
+## View final results performed on the testing_data ----
+(finalM_rForest <- finalTuned_rForest %>%
+		collect_metrics())
+
+preds_rForest <- finalTuned_rForest %>%
+  collect_predictions()
+
+
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+## plot predictions vs true outcomes ----
+
+rForest_plot <-ggplot(preds_rForest, aes(preds_rForest$GFR,
+                                         preds_rForest$.pred)) +
+  geom_point(alpha = 0.5) + # create scatter plot
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(x = "True GFR value", y = "Predictions") +# st se = TRUE to show se area
+  theme(
+  axis.title.x = element_text(size = 18),  # X-axis title
+  axis.title.y = element_text(size = 18)   # Y-axis title
+) +
+  ggtitle("C) Random Forest")
+```
+
+```{r}
+#| label: xgboost
+#| include: FALSE
+#| cache: TRUE
+#| message: false
+#| warning: false
+## Model definition ----
+M_xgboost <- boost_tree() %>% # model type:
+# https://www.tidymodels.org/find/parsnip/
+# show_engines("boost_tree")for available engines.
+  set_engine('xgboost') %>% # specific R package
+  set_mode('regression') # Set mode
+
+## create a workflow ----
+wkfl_xgboost <- workflow() %>%
+		add_model(M_xgboost) %>%
+		add_recipe(R_CorrOk) # full model with normalization
+
+
+## Create a tuning model ----
+# call show_model_info("boost_tree") to show hyperparameters
+tune_xgboost <- boost_tree(
+  tree_depth = tune(),
+  trees = tune(),
+  learn_rate = tune(),
+  mtry = tune(),
+  min_n = tune(),
+  loss_reduction = tune(),
+  sample_size = tune(),
+  stop_iter = tune()
+) %>%
+  set_engine("xgboost") %>%
+  set_mode("regression")
+
+## Add tuning to the original workflow
+tuned_wkfl_xgboost <- wkfl_xgboost %>%
+		update_model(tune_xgboost)
+
+## create a tuning grid with random values
+set.seed(1976)
+grid_xgbost <- tune_xgboost %>%
+		extract_parameter_set_dials() %>%
+    # mtry needs extra info from the pre-processed data, so:
+    finalize(training_CorrOk) %>%
+		grid_random(., size = 5)
+
+## Apply the tune grid to the workflow with cross-validation
+tuning_xgboost <- tuned_wkfl_xgboost %>%
+		tune_grid(resamples = myfolds,
+				  grid = grid_xgbost)
+# Check results
+tuneResults_xgboost <- tuning_xgboost %>%
+	collect_metrics()
+
+(tuning_xgboost %>%
+  collect_metrics(summarize = FALSE) %>%
+  group_by(.metric) %>% # customize
+  summarize(
+    mean = mean(.estimate),
+    min = min(.estimate), # customize
+    median = median(.estimate), # customize
+    max = max(.estimate) # customize
+  ))
+
+
+## Best performing models ----
+# top n hyperparameter combinations according to "metric"
+(tuning_xgboost %>% 
+	show_best(metric = "rmse", n = 5)) 
+
+
+## Select the best performing model ----
+# Outputs a tibble with the best hyperparameter combination
+(best_xgboost <- tuning_xgboost %>% 
+					select_best(metric = "rmse"))
+
+
+## Finalize the workflow with last_fit() ----
+finalWkfl_xgboost <- tuned_wkfl_xgboost %>%
+					finalize_workflow(best_xgboost)
+					
+finalTuned_xgboost <- finalWkfl_xgboost %>%
+					last_fit(data_split)
+					
+## View final results performed on the testing_data ----
+(finalM_xgboost <- finalTuned_xgboost %>%
+		collect_metrics())
+
+preds_xgboost <- finalTuned_xgboost %>%
+  collect_predictions()
+
+
+
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+## plot predictions vs true outcomes ----
+
+xgboost_plot <- ggplot(preds_xgboost, aes(preds_xgboost$GFR,
+                                          preds_xgboost$.pred)) +
+  geom_point(alpha = 0.5) + # create scatter plot
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(x = "True GFR value", y = "Predictions") +
+  theme(
+  axis.title.x = element_text(size = 18),  # X-axis title
+  axis.title.y = element_text(size = 18)   # Y-axis title
+) +
+  ggtitle("D) XGBoost")# st se = TRUE to show se area
+```
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+lr_plot
+glmnet_plot
+rForest_plot
+xgboost_plot
+```
+
+::: {.fig_legend data-latex=""}
+**Figura 2**. Correlación entre las predicciones de cada modelo (Predictions) y los valores reales de la tasa de filtración glomerular real (True GFR vakue). La linea azul corresponde a la línea de la regresión y cada punto es un caso.
+:::
+
+En la Figura 2 vemos que no todos los modelos tuvieron el mismo desempeño; en las gráficas, las predicciones de los modelos de regresión lineal y GMLNet son los que más se alejan de la línea de regresión. Los datos que mejor se ajustan a la línea de regresión son los del modelo XGBoost, seguidos de los del bosque de árboles aleatorios.
+
+Podemos cuantificar cómo de acertadas son las predicciones de cada modelo usando la Raíz del Error Cuadrático Medio de las predicciones ([RMSE](https://www.datacamp.com/tutorial/rmse "RMSE explicado")). Podemos además estimar cómo de bueno es nuestro modelo usando la [R²](https://www.geeksforgeeks.org/machine-learning/ml-r-squared-in-regression-analysis/ "R² explained") que nos indica la proporción de la variabilidad de nuestros datos que el modelo puede explicar.
+
+La Tabla 1 muestra los resultados de la Raíz del Error Cuadrático Medio; como vemos, los valores de error más bajos corresponden al modelo XGBoost, seguidos del bosque de árboles aleatorios.
+
+```{r}
+#| include: FALSE
+#| echo: FALSE
+models <-  c(
+  rep("Regresión logística", 2),
+  rep("GLMNet", 2),
+  rep("B. de árboles aleatorios", 2),
+   rep("XGBoost", 2)
+) %>%
+  as_tibble() %>%
+  setNames("Modelo")
+
+finalM_lR_metrics <- finalM_lR %>% select(c(.metric, .estimate)) %>% setNames(c("Métrica", "Valor"))
+finalM_GLMNet_metrics <- finalM_GLMNet %>% select(c(.metric, .estimate)) %>% setNames(c("Métrica", "Valor"))
+finalM_rForest_metrics <- finalM_rForest %>% select(c(.metric, .estimate)) %>% setNames(c("Métrica", "Valor"))
+finalM_xgboost_metrics <- finalM_xgboost %>% select(c(.metric, .estimate)) %>% setNames(c("Métrica", "Valor"))
+
+models_summary <- bind_rows(
+finalM_lR_metrics,
+finalM_GLMNet_metrics,
+finalM_rForest_metrics,
+finalM_xgboost_metrics
+) %>% bind_cols(models, .) %>% arrange(Métrica, Valor)
+
+```
+
+```{r}
+#| echo: FALSE
+models_summary[1:4,] %>% flextable() %>%
+  add_header_lines("Tabla 1. Raíz del error cuadrático medio (rmse).") %>%
+  theme_zebra() %>%
+  autofit()
+```
+
+La Tabla 2 muestra los resultados de R². Aunque todos los modelos explican más del 99% de la variabilidad de los datos, los valores más altos corresponden al modelo XGBoost, seguidos del bosque de árboles aleatorios.
+
+```{r}
+#| echo: FALSE
+models_summary[5:8,] %>% arrange(desc(Valor)) %>% 
+  flextable() %>%
+  add_header_lines("Tabla 2. R² (srq).") %>%
+  theme_zebra() %>%
+  autofit()
+```
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 🚀 Los mejores modelos para nuestro conjunto de datos son XGBoost y el bosque de árboles aleatorios, ya que tienen los valores más bajos de error asociado a la regresión.
+:::
+
+```         
+```
+
+# Mirando el interior de la caja
+
+Como ya vimos en un *post* anterior ([*¿Más sabe el diablo por viejo...?*](https://lacasadedatos.github.io/blog/blog_posts/2026-01-25-ms-vale-diablo-conocido/)), a diferencia de modelos sencillos como la regresión lineal o la regresión logística, los [resúmenes de modelos complejos](https://lacasadedatos.github.io/blog/blog_posts/2026-01-25-ms-vale-diablo-conocido/#qu%C3%A9-historias-nos-cuenta-el-diablo-viejo) suelen ser bastante crípticos y no parecen nada útiles para entender cómo un modelo de Aprendizaje Automático alcanza una predicción.
+
+A continuación usaremos la librería DALEX para explorar y entender la forma en la que XGBoost y el bosque de árboles aleatorios, nuestros mejores modelos para este conjunto de datos, trabajan para alcanzar una predicción.
+
+DALEX utiliza una interfaz unificada mediante para explicar modelosdeAprendizaje Automático complejos, haciendo transparentes los modelos de caja negra. El objeto de programación base de esta librería se denomina "explainer".
+
+El código que se muestra a continuación corresponde a la creación de los "explainers" para XGBoost y el bosque de árboles aleatorios.
+
+```{r}
+#| message: false
+#| warning: false
+#| include: FALSE
+#| cache: TRUE
+#| echo: FALSE
+xgboost_model <-  finalTuned_xgboost %>% # call the tidymodel's model object
+  extract_fit_parsnip() # get model details
+
+xgboost_explainer <- explain(xgboost_model,
+              data = as.data.frame(testing_CorrOk[, 2:13]), # preprocessed data
+              y = as.numeric(testing_CorrOk$GFR), # outcome variable
+              label = "")
+
+randomForest_model <-  finalTuned_rForest %>% # call the tidymodel's model object
+  extract_fit_parsnip() # get model details
+
+randomForest_explainer <- explain(randomForest_model,
+              data = as.data.frame(testing_CorrOk[, 2:13]), # preprocessed data
+              y = as.numeric(testing_CorrOk$GFR), # outcome variable
+              label = "")
+```
+
+Una vez creados estos "explainers", contamos con distintas herramientas para explicar el proceso de decisión de cada modelo.
+
+## 🌐 Funcionamiento global de los modelos: importancia relativa de las variables predictoras {style="font-size: 18px"}
+
+Los gráficos de importancia de variables ([Variable Importance Plots](https://r-packages.io/packages/DALEX/model_parts)) muestran qué variables tienen mayor impacto en las predicciones de un modelo predictivo de Aprendizaje Automático. DALEX calcula la importancia de cada variable dentro del modelo mediante permutaciones; mezcla aleatoriamente los valores de cada variable y mide cómo se degradan las métricas de desempeño (por defecto, 1-AUC para clasificación y RMSE para regresión). Cuando se modifica una variable, una mayor degradación de la métrica de desempeño es indicativa de mayo importancia de esa variable. Los gráficos VIP permiten identificar fácilmente las variables que son clave para un modelo predictivo.
+
+La Figura 3 muestra los gráficos VIP para el modelo XGBoost y el bosque de árboles aleatorios, con las variables más importantes para cada modelo.
+
+```{r}
+#| echo: false
+#| cache: TRUE
+#| include: FALSE
+
+xgboost_VIP <- xgboost_explainer %>%
+  model_parts() %>%
+  plot() # show_boxplots = FALSE optional argument
+
+randomForest_VIP <- randomForest_explainer %>%
+  model_parts() %>%
+  plot() 
+```
+
+```{r}
+#| echo: FALSE
+#| cache: FALSE
+xgboost_VIP +
+  theme(
+  axis.title.x = element_text(size = 16),
+  axis.title.y = element_text(size = 16)
+)+
+  theme(
+  plot.title = element_text(color = "black", size = 18) 
+) +
+  theme_minimal() +
+  theme(plot.subtitle = element_blank())+
+  theme(legend.position = "none") +
+  ggtitle("A) XGBoost")
+
+randomForest_VIP +
+  theme(
+  axis.title.x = element_text(size = 16),
+  axis.title.y = element_text(size = 16)
+)+
+  theme(
+  plot.title = element_text(color = "black", size = 18) 
+) +
+  theme_minimal() +
+  theme(plot.subtitle = element_blank())+
+  theme(legend.position = "none") +
+  ggtitle("B) Random Forest")
+```
+
+::: {.fig_legend data-latex=""}
+**Figura 3**. Gráficos tipo VIP para los modelos predictivos XGBoost y bosque de árboles aleatorios. La importancia relativa de cada variable fue estimada a partir la disminución del error cuadrático medio de las predicciones, tras las permutaciones de las variables de entrada (RMSE loss after permutations). Creatine, creatinina; BUN, Nitrógeno uréico en sangre; Protein_in_Urine, proteína en orina; CKD_Status_Yes, presencia de enfermedad renal crónica; Age, edad; Diabetes_Yes, presencia de diabetes; Hypertension_Yes, presencia de hipertensión; Urine_Output, salida de orina; Water_Intake, ingesta de agua; Medication, tipo de medicación (ARB; Diuretic, diuréticos; None, ninguna).
+:::
+
+Como podemos ver en la Figura 3, cada modelo asigna una importancia relativa distinta a cada variable; sin embargo, las variables más importantes son las mismas en los dos modelos. Estos resultados coinciden con la exploración visual de nuestros datos (Figura 1), lo que resulta muy tranquilizador.
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 🔍 Los gráficos tipo VIP nos ayudan a entender de un vistazo las variables que contribuyen en mayor medida a la capacidad de un modelo de Aprendizaje Automático para arrojar una predicción.
+:::
+
+```         
+```
+
+## 🧩 Ahora pieza por pieza: análisis de casos individuales {style="font-size: 18px"}
+
+Ya tenemos un modelo predictivo, ¡qué bonito! Contamos con gráficos tipo VIP para entender las variables que son importantes para nuestro modelo, ¡qué emoción! Pero... ¿Podemos hacer algo incluso mejor? ¿Tal vez explicar a un paciente EXACTAMENTE cuáles de sus características individuales podrían predecir niveles una tasa de filtración glomerular preocupante?
+
+De nuestros 5000 casos, elegimos dos sujetos al azar, con tasas de filtración glomerular (GFR) baja (Low) o normal (Normal), para el análisis explicativo de nuestros modelos a nivel de caso único.
+
+::: {.long_table data-latex=""}
+| GFR          | Variable         | Valor    |
+|--------------|------------------|----------|
+| Low (5)      | Age              | 46.96    |
+| Normal (103) | Age              | 18       |
+| Low (5)      | BUN              | 107.61   |
+| Normal (103) | BUN              | 15.51    |
+| Low (5)      | CKD_Status       | Yes      |
+| Normal (103) | CKD_Status       | No       |
+| Low (5)      | Creatinine       | 5.83     |
+| Normal (103) | Creatinine       | 0.64     |
+| Low (5)      | Diabetes         | Yes      |
+| Normal (103) | Diabetes         | No       |
+| Low (5)      | Hypertension     | No       |
+| Normal (103) | Hypertension     | No       |
+| Low (5)      | Medication       | None     |
+| Normal (103) | Medication       | Diuretic |
+| Low (5)      | Protein_in_Urine | 1058.17  |
+| Normal (103) | Protein_in_Urine | 52.62    |
+| Low (5)      | Urine_Output     | 453.55   |
+| Normal (103) | Urine_Output     | 1581.49  |
+| Low (5)      | Water_Intake     | 2.24     |
+| Normal (103) | Water_Intake     | 2.85     |
+:::
+
+:::: {.fig_legend data-latex=""}
+::: {.fig_legend data-latex=""}
+GFR, tasa de filtración glomerular; Age, edad; BUN, Nitrógeno uréico en sangre; CKD_Status, enfermedad renal crónica; Creatinine, creatinina; Diabetes, diabetes; Hypertension, hipertensión; Medication, tipo de medicación; Protein_in_Urine, proteína en orina; Urine_Output, salida de orina; Water_Intake, ingesta de agua
+:::
+::::
+
+```{r}
+#| include: FALSE
+# get data subsets with the lowest and highest GFR values
+DF_lowGFR <- DF %>% arrange(GFR) %>% head(20) 
+
+DF_highGFR <- DF %>% arrange(desc(GFR)) %>% head(20)
+
+# select a random row from each subset
+set.seed(87) 
+instance_low <- DF_lowGFR[sample(nrow(DF_lowGFR), 1), ] # random row 
+instance_high <- DF_highGFR[sample(nrow(DF_highGFR), 1), ] # random row
+
+# combine two cases
+subjects <- bind_rows(instance_low, instance_high)
+
+# bake these new data for analysis
+
+explainer_subjects <- R_CorrOk %>%
+		prep(training = training_data) %>%
+		bake(new_data = subjects) %>% 
+    select(GFR, everything())
+
+instance1 <- explainer_subjects[1,]
+instance2 <- explainer_subjects[2,]
+
+# the output is a DF with variables and their contributions
+xgboost_breakdown <- predict_parts(explainer = xgboost_explainer, 
+                    new_observation = instance1, type = "break_down")
+
+xgboost_breakdown2 <- predict_parts(explainer = xgboost_explainer, 
+                    new_observation = instance2, type = "break_down")
+```
+
+Las Figuras 4 y 5 muestras gráficos de descomposición del valor estimado de la regresión para los dos sujetos, y para cada uno de los mejores modelos (XGBoost y bosque de árboles aleatorios). La función `predict_parts()` de DALEX nos devuelve los datos necesarios para crear gráficos barras con las contribuciones de cada variable al valor estimado de tasa de filtración glomerular (GFR) para cada modelo.
+
+El punto de partida en el gráfico es el término independiente (intercept), que representa el valor predicho de la variable de respuesta cuando todas las variables predictoras son cero. Aunque el término independiente no tiene mucho sentido en la gran mayoría de los modelos de regresión, podemos visualizarlo como valor de la variable de respuesta sobre el que van a actuar las variables predictoras. En nuestro conjunto de datos el término independiente de los dos modelos (73.42 con XGBoost y 73.39 con el bosque de árboles) se aproxima a la media de la tasa de filtración glomerular de los 5000 casos que componen nuestra muestra (73.25).
+
+```{r}
+#| echo: FALSE
+#| message: false
+#| warning: false
+xgboost_explainInstance <- xgboost_breakdown %>%
+  as_tibble()
+# Add label to variable name:
+xgboost_explainInstance[nrow(xgboost_explainInstance), 3] <- "Prediction"
+xgboost_explainInstance[1, 6] <- "0" # change "sing" of the intercept
+xgboost_explainInstance <- xgboost_explainInstance %>%
+  select(3, 2, 5, 6, 7) %>% 
+  # reverse the order of position for better visualization after coord flip:
+  mutate(position = factor(position, levels = rev(position))) %>% 
+    mutate(sign = case_when( # make more intuitve factors
+    sign == 0 ~"intercept",
+    sign == -1 ~"negative",
+    sign == 1 ~"positive",
+    sign == "X" ~"Prediction"
+  ))
+  
+
+labels <- rev(xgboost_explainInstance$variable_name)# labels for x axis
+# labels above bars:
+labels_aboveBars <- xgboost_explainInstance$contribution %>% 
+  round(2) %>% 
+  as.character() 
+# labels_aboveBars[1] <- "-" # "delete intercept value
+# labels_aboveBars[length(labels_aboveBars)] <- "-" # "delete" prediction value
+
+ggplot(data = xgboost_explainInstance, mapping = aes(x = position, y = cumulative, fill = sign)) +
+    geom_col()+
+    coord_flip()+
+    scale_x_discrete(labels = labels) +
+    scale_fill_manual(values = c(
+      "intercept" = "#e6cea0",
+      "negative" = "#db4646",
+      "positive" = "#24b3d0",
+      "Prediction" = "#684b8e"
+    ))+
+    geom_text(aes(label = labels_aboveBars), 
+          size = 4, 
+          color = "black", 
+          fontface = "bold")+
+    xlab("Variable") +
+    ylab("GFR")+
+    theme_minimal() +
+    theme(
+  axis.title.x = element_text(size = 16),
+  axis.title.y = element_text(size = 16)
+)+
+  theme(
+  plot.title = element_text(color = "black", size = 18) 
+) +
+  theme(legend.position = "none") +
+  ggtitle("A) Patient with low GFR")
+
+```
+
+```{r}
+#| echo: FALSE
+#| message: false
+#| warning: false
+xgboost_explainInstance2 <- xgboost_breakdown2 %>%
+  as_tibble()
+# Add label to variable name:
+xgboost_explainInstance2[nrow(xgboost_explainInstance2), 3] <- "Prediction"
+xgboost_explainInstance2[1, 6] <- "0" # change "sing" of the intercept
+xgboost_explainInstance2 <- xgboost_explainInstance2 %>%
+  select(3, 2, 5, 6, 7) %>% 
+  # reverse the order of position for better visualization after coord flip:
+  mutate(position = factor(position, levels = rev(position))) %>% 
+    mutate(sign = case_when( # make more intuitve factors
+    sign == 0 ~"intercept",
+    sign == -1 ~"negative",
+    sign == 1 ~"positive",
+    sign == "X" ~"Prediction"
+  ))
+  
+
+labels <- rev(xgboost_explainInstance2$variable_name)# labels for x axis
+# labels above bars:
+labels_aboveBars <- xgboost_explainInstance2$contribution %>% 
+  round(2) %>% 
+  as.character() 
+# labels_aboveBars[1] <- "-" # "delete intercept value
+# labels_aboveBars[length(labels_aboveBars)] <- "-" # "delete" prediction value
+
+ggplot(data = xgboost_explainInstance2, mapping = aes(x = position, y = cumulative, fill = sign)) +
+    geom_col()+
+    coord_flip()+
+    scale_x_discrete(labels = labels) +
+    scale_fill_manual(values = c(
+      "intercept" = "#e6cea0",
+      "negative" = "#db4646",
+      "positive" = "#24b3d0",
+      "Prediction" = "#684b8e"
+    ))+
+    geom_text(aes(label = labels_aboveBars), 
+          size = 4, 
+          color = "black", 
+          fontface = "bold")+
+    xlab("Variable") +
+    ylab("GFR")+
+    theme_minimal() +
+    theme(
+  axis.title.x = element_text(size = 16),
+  axis.title.y = element_text(size = 16)
+)+
+  theme(
+  plot.title = element_text(color = "black", size = 18) 
+) +
+  theme(legend.position = "none") +
+  ggtitle("B) Patient with normal GFR")
+```
+
+::: {.fig_legend data-latex=""}
+**Figura 4**. Descomposición del valor de tasa de filtración glomerular (GFR) estimado por el modelo XGBoost. A) Paciente con tasa de filtración glomerular baja (low GFR). B) Paciente con tasa de filtración glomerular normal (normal GFR). Las barras azules indican una contribución positiva al valor de la predicción, las rojas indican una contribución negativa. El valor de la predicción para la tasa de filtración glomerular corresponde a la barra violeta. La contribución de cada variable al valor de la predicción se muestra a la derecha de la cada barra. El valor de partida es el término independiente de la regresión (intercept, barra amarilla). Creatine, creatinina; BUN, Nitrógeno uréico en sangre; Protein_in_Urine, proteína en orina; CKD_Status_Yes, presencia de enfermedad renal crónica; Age, edad; Diabetes_Yes, presencia de diabetes; Hypertension_Yes, presencia de hipertensión; Urine_Output, salida de orina; Water_Intake, ingesta de agua; Medication, tipo de medicación (ARB; Diuretic, diuréticos; None, ninguna).
+:::
+
+```{r}
+#| message: false
+#| warning: false
+#| include: FALSE
+
+# the output is a DF with variables and their contributions
+randomF_breakdown <- predict_parts(explainer = randomForest_explainer, 
+                    new_observation = instance1, type = "break_down")
+
+randomF_breakdown2 <- predict_parts(explainer = randomForest_explainer, 
+                    new_observation = instance2, type = "break_down")
+```
+
+```{r}
+#| echo: FALSE
+#| message: false
+#| warning: false
+randomF_explainInstance <- randomF_breakdown %>%
+  as_tibble()
+# Add label to variable name:
+randomF_explainInstance[nrow(randomF_explainInstance), 3] <- "Prediction"
+randomF_explainInstance[1, 6] <- "0" # change "sing" of the intercept
+randomF_explainInstance <- randomF_explainInstance %>%
+  select(3, 2, 5, 6, 7) %>% 
+  # reverse the order of position for better visualization after coord flip:
+  mutate(position = factor(position, levels = rev(position))) %>% 
+    mutate(sign = case_when( # make more intuitve factors
+    sign == 0 ~"intercept",
+    sign == -1 ~"negative",
+    sign == 1 ~"positive",
+    sign == "X" ~"Prediction"
+  ))
+  
+
+labels <- rev(randomF_explainInstance$variable_name)# labels for x axis
+# labels above bars:
+labels_aboveBars <- randomF_explainInstance$contribution %>% 
+  round(2) %>% 
+  as.character() 
+# labels_aboveBars[1] <- "-" # "delete intercept value
+# labels_aboveBars[length(labels_aboveBars)] <- "-" # "delete" prediction value
+
+ggplot(data = randomF_explainInstance, mapping = aes(x = position, y = cumulative, fill = sign)) +
+    geom_col()+
+    coord_flip()+
+    scale_x_discrete(labels = labels) +
+    scale_fill_manual(values = c(
+      "intercept" = "#e6cea0",
+      "negative" = "#db4646",
+      "positive" = "#24b3d0",
+      "Prediction" = "#684b8e"
+    ))+
+    geom_text(aes(label = labels_aboveBars), 
+          size = 4, 
+          color = "black", 
+          fontface = "bold")+
+    xlab("Variable") +
+    ylab("GFR")+
+    theme_minimal() +
+    theme(
+  axis.title.x = element_text(size = 16),
+  axis.title.y = element_text(size = 16)
+)+
+  theme(
+  plot.title = element_text(color = "black", size = 18) 
+) +
+  theme(legend.position = "none") +
+  ggtitle("A) Patient with low GFR")
+```
+
+```{r}
+#| echo: FALSE
+#| message: false
+#| warning: false
+randomF_explainInstance2 <- randomF_breakdown2 %>%
+  as_tibble() %>% 
+  mutate(sign = as.character(sign))
+# Add label to variable name:
+randomF_explainInstance2[nrow(randomF_explainInstance2), 3] <- "Prediction"
+randomF_explainInstance2[1, 6] <- "2" # change "sing" of the intercept
+randomF_explainInstance2 <- randomF_explainInstance2 %>%
+  select(3, 2, 5, 6, 7) %>% 
+  # reverse the order of position for better visualization after coord flip:
+  mutate(position = factor(position, levels = rev(position))) %>% 
+    mutate(sign = case_when( # make more intuitve factors
+    sign == 2 ~"intercept",
+    sign == -1 ~"negative",
+    sign == 0 ~"positive",
+    sign == 1 ~"positive",
+    sign == "X" ~"Prediction"
+  ))
+  
+
+labels <- rev(randomF_explainInstance2$variable_name)# labels for x axis
+# labels above bars:
+labels_aboveBars <- randomF_explainInstance2$contribution %>% 
+  round(2) %>% 
+  as.character() 
+# labels_aboveBars[1] <- "-" # "delete intercept value
+# labels_aboveBars[length(labels_aboveBars)] <- "-" # "delete" prediction value
+
+ggplot(data = randomF_explainInstance2, mapping = aes(x = position, y = cumulative, fill = sign)) +
+    geom_col()+
+    coord_flip()+
+    scale_x_discrete(labels = labels) +
+    scale_fill_manual(values = c(
+      "intercept" = "#e6cea0",
+      "negative" = "#db4646",
+      "positive" = "#24b3d0",
+      "Prediction" = "#684b8e"
+    ))+
+    geom_text(aes(label = labels_aboveBars), 
+          size = 4, 
+          color = "black", 
+          fontface = "bold")+
+    xlab("Variable") +
+    ylab("GFR")+
+    theme_minimal() +
+    theme(
+  axis.title.x = element_text(size = 16),
+  axis.title.y = element_text(size = 16)
+)+
+  theme(
+  plot.title = element_text(color = "black", size = 18) 
+) +
+  theme(legend.position = "none") +
+  ggtitle("B) Patient with normal GFR")
+```
+
+::: {.fig_legend data-latex=""}
+**Figura 5**. Descomposición del valor de tasa de filtración glomerular (GFR) estimado por el modelo de bosque de árboles aleatorios. A) Paciente con tasa de filtración glomerular baja (low GFR). B) Paciente con tasa de filtración glomerular normal (normal GFR). Las barras azules indican una contribución positiva al valor de la predicción, las rojas indican una contribución negativa. El valor de la predicción para la tasa de filtración glomerular corresponde a la barra violeta. La contribución de cada variable al valor de la predicción se muestra a la derecha de la cada barra. El valor de partida es el término independiente de la regresión (intercept, barra amarilla). Creatine, creatinina; BUN, Nitrógeno uréico en sangre; Protein_in_Urine, proteína en orina; CKD_Status_Yes, presencia de enfermedad renal crónica; Age, edad; Diabetes_Yes, presencia de diabetes; Hypertension_Yes, presencia de hipertensión; Urine_Output, salida de orina; Water_Intake, ingesta de agua; Medication, tipo de medicación (ARB; Diuretic, diuréticos; None, ninguna).
+:::
+
+Las Figuras 4 y 5 muestran que los valores de la tasa de filtración glomerular estimados por ambos modelos para los dos pacientes (4.799 con XGBoost y 5.41 con el bosque de árboles aleatorios para el paciente con tasa de filtración glomerular baja; 103.808 con XGBoost y 102.93 con el bosque de árboles aleatorios para el paciente con tasa de filtración glomerular normal) se acercan mucho a los valores reales (5.00 para el paciente elegido con una tasa de filtración baja y 103.00 para el paciente con una tasa de filtración normal).
+
+En ambas figuras vemos además como casi todas las variables que son importantes para los dos modelos (Figura 3) contribuyen a reducir (Figuras 4A y 5A) o aumentar (Figuras 4B y 5B) progresivamente el valor de la predicción, dependiendo del paciente.
+
+::: {.infobox data-latex=""}
+> 🔬 En nuestro contexto, los gráficos de descomposición del valor de la regresión podrían ayudarnos a establecer un plan de cuidados personalizado para el paciente, orientándonos a disminuir sus niveles de creatinina, nitrógeno uréico en sangre y proteínas en la orina, pues estas variables son las que reducen en mayor medida el valor de la predicción para la tasa de filtración glomerular.
+:::
+
+## 📝 Usamos las piezas del puzzle para hacer recomendaciones {style="font-size: 18px"}
+
+Los gráficos de importancia de variables (Figura 3) y los gráficos de descomposición del valor de la regresión (Figuras 4 y 5) nos ayudan a comprender qué variables son las más importantes para las predecir una variable de respuesta, tanto a nivel global (gráficos de importancia de variables) como a nivel de casos individuales (gráficos de descomposición de la regresión). A través del Aprendizaje Automático, podemos usar esta información para modelar cómo cambiaría el valor de una predicción al modificar los valores de variables predictoras específicas.
+
+El análisis *Ceteris Paribus* examina cómo cambios en una variable afectarían la predicción de un modelo, *manteniendo todas las demás variables constantes* (i.e., *Ceteris Paribus*). La función `predict_profile()` de DALEX nos devuelve los datos necesarios para generar gráficos *Ceteris Paribus* para casos individuales.
+
+La Figura 6 muestra gráficos *Ceteris Paribus* para dos pacientes elegidos al azar dentro del grupo de pacientes con baja tasa de filtración glomerular. Modelamos los valores de la predicción de esta variable en función de las variables que ya hemos identificado como las más importnates: creatinina, nitrógeno uréico en sangre y proteína en la orina. Para mejorar las comparaciones, en el análisis *Ceteris Paribus,* los valores de las variables se muestran como puntuaciones *z* (valores estandarizados). Para regresar a las unidades de la escala original, podemos multiplicar los valores por la desviación estándar y sumar la media del conjunto de datos.
+
+```{r}
+#| echo: FALSE
+#| message: false
+#| warning: false
+
+cp_instance1 <- predict_profile(xgboost_explainer,
+                                new_observation = instance1)
+
+
+
+plot(cp_instance1, variables = c("Creatinine", "BUN", "Protein_in_Urine")) +
+  theme_minimal() +
+  labs(x = "z-score", y = "Predicted GFR") +
+    theme(
+      axis.title.x = element_text(size = 16),
+      axis.title.y = element_text(size = 16)
+    ) +
+  theme(
+    plot.title = element_text(color = "black", size = 18)
+  ) +
+  theme(plot.subtitle = element_blank()) +
+  ggtitle("Patient 1")
+
+
+
+ 
+
+# New Patient
+set.seed(1976)
+instance_low2 <- DF_lowGFR[sample(nrow(DF_lowGFR), 1), ] # random row
+instance_high2 <- DF_highGFR[sample(nrow(DF_highGFR), 1), ] # random row
+# combine two cases
+subjects2 <- bind_rows(instance_low2, instance_high2)
+# bake these new data for analysis
+explainer_subjects2 <- R_CorrOk %>%
+prep(training = training_data) %>%
+bake(new_data = subjects2) %>%
+select(GFR, everything())
+
+
+instance1.2 <- explainer_subjects2[1,]
+instance2.2 <- explainer_subjects2[2,]
+
+
+cp_instance1.2 <- predict_profile(xgboost_explainer,
+                                new_observation = instance1.2)
+
+plot(cp_instance1.2, variables = c("Creatinine", "BUN", "Protein_in_Urine")) +
+  theme_minimal() +
+  labs(x = "z-score", y = "Predicted GFR") +
+  theme(
+    axis.title.x = element_text(size = 16),
+    axis.title.y = element_text(size = 16)
+  ) +
+  theme(
+    plot.title = element_text(color = "black", size = 18)
+  ) +
+  theme(plot.subtitle = element_blank()) +
+  ggtitle("Patient 2")
+
+```
+
+::: {.fig_legend data-latex=""}
+**Figura 6**. Gráficos *Ceteris Paribus* para dos pacientes con baja tasa de filtración glomerular. El eje X corresponde a las puntuaciones *z* (z-score, valores escalados) de cada una de las variables. El eje Y corresponde al valor de la predicción (prediction) de la tasa de filtración glomerular asociada a cada puntuación *z.* Los puntos violeta corresponden al valor real de *z* asociado a cada variable. Paciente 1 (Patient 1): BUN, *z* = 2.49 = 108 mg/dL; Creatinine, *z* = 1.89 = 5.83 mg/dL; Pretein_in_Urine, *z* = 0.621 = 1058 mg/dL. Paciente 2 (Patient 2): BUN, *z* = 0.852 = 57 mg/dL; Creatinine, *z* = 2.52 = 7.11 mg/dL; Pretein_in_Urine, *z* = 2.35 = 2493 mg/dL. Creatine, creatinina; BUN, Nitrógeno uréico en sangre; Protein_in_Urine, proteína en orina.
+:::
+
+La Figura 6 muestra que, manteniendo el resto de las variables sin cambios y teniendo en cuenta los valores reales del resto de las variables asociadas a CADA paciente, para mejorar la tasa de flitración glomerular, disminuir los valores del nitrógeno uréico en sangre (BUN) tendría un efecto mayor en el paciente 1 que en el paciente 2.
+
+La Figura 6 también revela que la mejor estrategia para mejorar la tasa de filtración glomerular sería disminuir los niveles de creatinina en los dos pacientes. Aunque los niveles de proteína en la orina parecen tener un efecto marginal, parece haber un umbral, al rededor de *z* = 0.3 = 782 mg/dL, por debajo del cual el valor estimado de la tasa de filtración glomerular mejora considerablemente.
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 🚀 Combinando los gráficos de descomposición de la regresión con el análisis *Ceteris Paribus* podemos ofrecer recomendaciones muy precisas para establecer estrategias informadas que nos permitan modificar la variable de respuesta de la forma más inteligente posible.
+:::
+
+```         
+```
+
+# Conclusiones
+
+-   A pesar de que el funcionamiento interno de algoritmos como XGBoost y el bosque de árboles aleatorios es complejo y nada transparente sobre la forma en la que alcanzan una predicción, la librería DALEX nos permite identificar fácilmente:
+
+    -   Las variables que son más importantes para hacer predicciones sobre la variable de respuesta.
+
+    -   A nivel de casos individuales, podemos cuantificar la contribución de cada variable predictora al valor falor de la predicción.
+
+    -   También a nivel de casos individuales, podemos modelar cómo cambiaría el valor de la predicción al modificar los valores de variables predictoras específicas.
+
+-   Combinando esta información, sin importar lo complejo que sea el modelo de Aprendizaje Automático, podemos ofrecer a nivel de casos individuales, recomendaciones precisas y cuantificables para modificar la variable de respuesta a través de estrategias informadas.
+
+El código completo de este análisis está disponible en el repositorio de [La Casa de Datos](https://github.com/lacasadedatos/R_scripts "Ver código del análisis") en Github.
