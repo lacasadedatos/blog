@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+  <title>¡Cuéntamelo todo.... pero con mates!</title>
+
+  <meta property="description" itemprop="description" content="Si una imagen vale más que mil palabras... ¿cuánto vale una imagen hecha de palabras?... La minería de texto nos permite realizar estudios sociales partiendo de grandes volúmenes de textos. Partiendo  de miles de publicaciones en redes sociales, podemos identificar los temas de discusión asociados a un tema concreto, los sentimeintos asociados a ellos y su evolución en el tiempo."/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2026-03-12"/>
+  <meta property="article:created" itemprop="dateCreated" content="2026-03-12"/>
+  <meta name="article:author" content="Erick García-García, Ph.D."/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="¡Cuéntamelo todo.... pero con mates!"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Si una imagen vale más que mil palabras... ¿cuánto vale una imagen hecha de palabras?... La minería de texto nos permite realizar estudios sociales partiendo de grandes volúmenes de textos. Partiendo  de miles de publicaciones en redes sociales, podemos identificar los temas de discusión asociados a un tema concreto, los sentimeintos asociados a ellos y su evolución en el tiempo."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="¡Cuéntamelo todo.... pero con mates!"/>
+  <meta property="twitter:description" content="Si una imagen vale más que mil palabras... ¿cuánto vale una imagen hecha de palabras?... La minería de texto nos permite realizar estudios sociales partiendo de grandes volúmenes de textos. Partiendo  de miles de publicaciones en redes sociales, podemos identificar los temas de discusión asociados a un tema concreto, los sentimeintos asociados a ellos y su evolución en el tiempo."/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["¡Cuéntamelo todo.... pero con mates!"]},{"type":"character","attributes":{},"value":["Si una imagen vale más que mil palabras... ¿cuánto vale una imagen hecha de palabras?... La minería de texto nos permite realizar estudios sociales partiendo de grandes volúmenes de textos. Partiendo  de miles de publicaciones en redes sociales, podemos identificar los temas de discusión asociados a un tema concreto, los sentimeintos asociados a ellos y su evolución en el tiempo.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["Erick García-García, Ph.D."]}]}]},{"type":"character","attributes":{},"value":["March 12, 2026"]},{"type":"character","attributes":{},"value":["R","word clouds","network analysis","k-means","clustering","topic modeling","text mining"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","toc_depth","collapsed","smooth_scroll","highlight","df_print","self_contained","code_download"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["pygments"]},{"type":"character","attributes":{},"value":["paged"]},{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["cuentamelo-todo_files/anchor-4.2.2/anchor.min.js","cuentamelo-todo_files/bowser-1.9.3/bowser.min.js","cuentamelo-todo_files/distill-2.2.21/template.v2.js","cuentamelo-todo_files/figure-html5/unnamed-chunk-12-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-13-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-14-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-15-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-16-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-17-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-18-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-19-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-21-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-24-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-25-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-27-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-28-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-29-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-30-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-31-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-32-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-33-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-36-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-37-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-38-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-40-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-41-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-45-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-46-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-47-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-48-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-49-1.png","cuentamelo-todo_files/figure-html5/unnamed-chunk-50-1.png","cuentamelo-todo_files/header-attrs-2.30/header-attrs.js","cuentamelo-todo_files/jquery-3.6.0/jquery-3.6.0.js","cuentamelo-todo_files/jquery-3.6.0/jquery-3.6.0.min.js","cuentamelo-todo_files/jquery-3.6.0/jquery-3.6.0.min.map","cuentamelo-todo_files/popper-2.6.0/popper.min.js","cuentamelo-todo_files/tabwid-1.1.3/tabwid.css","cuentamelo-todo_files/tabwid-1.1.3/tabwid.js","cuentamelo-todo_files/tippy-6.2.7/tippy-bundle.umd.min.js","cuentamelo-todo_files/tippy-6.2.7/tippy-light-border.css","cuentamelo-todo_files/tippy-6.2.7/tippy.css","cuentamelo-todo_files/tippy-6.2.7/tippy.umd.min.js","cuentamelo-todo_files/webcomponents-2.0.0/webcomponents.js","eng_adjectives.csv","feb19_sents.png","feb6_sents.png","images/trump_wordcloudNegative.png","images/trump_wordcloudPositive.png","images/wordcloud_trump.png","jan25_sents.png","trump Mastodon 20k.csv","trump_feb19NonSents.png","trump_WcNegAdjs.png","trump_WcPosAdjs.png","word_graph_zoom.png","wordcloud2_0K_en.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+    font-size: 100%;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  hr.section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px;
+  }
+
+
+  d-byline {
+    border-top: none;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+    border-top: none;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  /* tweak for Pandoc numbered line within distill */
+  d-article pre.numberSource code > span {
+      left: -2em;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // separator
+    var separator = '<hr class="section-separator" style="clear: both"/>';
+    // prepend separator above appendix
+    $('.d-byline').before(separator);
+    $('.d-article').before(separator);
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme, except when numbering line
+    // in code chunk
+    $('pre:not(.numberLines) code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        var author_name = front_matter.authors[i].author
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="cuentamelo-todo_files/header-attrs-2.30/header-attrs.js"></script>
+  <link href="cuentamelo-todo_files/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
+  <script src="cuentamelo-todo_files/tabwid-1.1.3/tabwid.js"></script>
+  <script src="cuentamelo-todo_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="cuentamelo-todo_files/popper-2.6.0/popper.min.js"></script>
+  <link href="cuentamelo-todo_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="cuentamelo-todo_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="cuentamelo-todo_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="cuentamelo-todo_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="cuentamelo-todo_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="cuentamelo-todo_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="cuentamelo-todo_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"¡Cuéntamelo todo.... pero con mates!","description":"Si una imagen vale más que mil palabras... ¿cuánto vale una imagen hecha de palabras?... La minería de texto nos permite realizar estudios sociales partiendo de grandes volúmenes de textos. Partiendo  de miles de publicaciones en redes sociales, podemos identificar los temas de discusión asociados a un tema concreto, los sentimeintos asociados a ellos y su evolución en el tiempo.","authors":[{"author":"Erick García-García, Ph.D.","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2026-03-12T00:00:00.000+01:00","citationText":"Ph.D., 2026"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>¡Cuéntamelo todo…. pero con mates!</h1>
+
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt-tag">R</div>
+<div class="dt-tag">word clouds</div>
+<div class="dt-tag">network analysis</div>
+<div class="dt-tag">k-means</div>
+<div class="dt-tag">clustering</div>
+<div class="dt-tag">topic modeling</div>
+<div class="dt-tag">text mining</div>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>Si una imagen vale más que mil palabras… ¿cuánto vale una imagen hecha de palabras?… La minería de texto nos permite realizar estudios sociales partiendo de grandes volúmenes de textos. Partiendo de miles de publicaciones en redes sociales, podemos identificar los temas de discusión asociados a un tema concreto, los sentimeintos asociados a ellos y su evolución en el tiempo.</p></p>
+</div>
+
+<div class="d-byline">
+  Erick García-García, Ph.D.  
+  
+<br/>March 12, 2026
+</div>
+
+<div class="d-article">
+<div class="d-contents d-contents-float">
+<nav class="l-text toc figcaption" id="TOC">
+<h3>Contents</h3>
+<ul>
+<li><a href="#cuéntamelo-todo.-pero-con-mates" id="toc-cuéntamelo-todo.-pero-con-mates">¡Cuéntamelo todo…. pero con mates!</a>
+<ul>
+<li><a href="#el-mastodonte-de-las-redes-sociales" id="toc-el-mastodonte-de-las-redes-sociales">El mastodonte de las redes sociales</a></li>
+<li><a href="#el-señor-de-pelo-color-zanahoria-y-extraño-copete" id="toc-el-señor-de-pelo-color-zanahoria-y-extraño-copete">El señor de pelo color zanahoria y extraño copete…</a></li>
+</ul></li>
+<li><a href="#conversando-con-el-mastodonte" id="toc-conversando-con-el-mastodonte">🦣 Conversando con el mastodonte</a>
+<ul>
+<li><a href="#limpieza-de-los-datos" id="toc-limpieza-de-los-datos">Limpieza de los datos</a></li>
+</ul></li>
+<li><a href="#una-imagen-vale-más-que-mil-palabras" id="toc-una-imagen-vale-más-que-mil-palabras">🖼️ Una imagen vale más que mil palabras…</a></li>
+<li><a href="#identificación-de-temas-de-discusión-a-través-del-análisis-de-redes" id="toc-identificación-de-temas-de-discusión-a-través-del-análisis-de-redes">🔬 Identificación de temas de discusión a través del análisis de redes</a>
+<ul>
+<li><a href="#el-caso-de-jeffrey-epstein" id="toc-el-caso-de-jeffrey-epstein">El caso de Jeffrey Epstein</a></li>
+<li><a href="#el-asesinato-de-alex-pretti-por-agentes-de-ice" id="toc-el-asesinato-de-alex-pretti-por-agentes-de-ice">El asesinato de Alex Pretti por agentes de ICE</a></li>
+</ul></li>
+<li><a href="#análisis-de-sentimientos" id="toc-análisis-de-sentimientos">💖 Análisis de sentimientos</a>
+<ul>
+<li><a href="#polos-opuestos" id="toc-polos-opuestos">Polos opuestos</a></li>
+<li><a href="#ampliamos-la-gama-emocional" id="toc-ampliamos-la-gama-emocional">Ampliamos la gama emocional</a></li>
+</ul></li>
+<li><a href="#identificación-de-temas-relacionados-con-la-confianza-y-el-miedo" id="toc-identificación-de-temas-relacionados-con-la-confianza-y-el-miedo">Identificación de temas relacionados con la confianza 🫱🏽‍🫲🏿 y el miedo 🧟</a></li>
+<li><a href="#evolución-de-sentimientos-a-lo-largo-del-tiempo" id="toc-evolución-de-sentimientos-a-lo-largo-del-tiempo">🗓️ Evolución de sentimientos a lo largo del tiempo</a></li>
+<li><a href="#enero-25" id="toc-enero-25">Enero 25</a>
+<ul>
+<li><a href="#febrero-6" id="toc-febrero-6">Febrero 6</a></li>
+<li><a href="#febrero-19" id="toc-febrero-19">Febrero 19</a></li>
+</ul></li>
+<li><a href="#clasificación-de-toots" id="toc-clasificación-de-toots">🏷️ Clasificación de toots</a></li>
+</ul>
+</nav>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<style type="text/css">
+
+.infobox {
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid #4f9ed4;
+  border-radius: 10px;
+  background: ##a3cde5 5px center/3em no-repeat;
+}
+
+.fig_legend {
+  font-size: 0.8rem;
+  line-height: 1.2;
+}
+
+.long_quote {
+  font-size: 0.8rem;
+  line-height: 1.2;
+  padding: 1em 1em 1em 4em;
+  margin-bottom: 10px;
+  border: 2px solid #4f9ed4;
+  border-radius: 10px;
+  background: ##a3cde5 5px center/3em no-repeat;
+}
+</style>
+</div>
+<h1 id="cuéntamelo-todo.-pero-con-mates">¡Cuéntamelo todo…. pero con mates!</h1>
+<p>¿Te imaginas poder leer miles, o cientos de miles, de artículos o publicaciones en segundos?, ¿ser capaz de identificar temas, clasificar los documentos con base en su contenido, crear redes que nos ayuden a entender las relaciones entre los documentos e incluso explorar las emociones asociadas a cada publicación o tema de discusión? Suena atrevido, ¿verdad?</p>
+<p>La <strong>minería de textos</strong> (<em>text mining</em>) es una rama de la Ciencia de Datos que nos ayuda a extraer información útil y patrones significativos de grandes volúmenes de texto no estructurado; es decir, texto que no sigue un formato predefinido, correos electrónicos, redes sociales, artículos, <em>chats</em> o documentos PDF. Esta disciplina combina técnicas de lingüística, estadística e inteligencia artificial para analizar los documentos, identificar tendencias, clasificar contenido y descubrir relaciones ocultas entre conceptos, temas y subtemas de contenido.</p>
+<p>Al extraer patrones en el lenguaje que reflejan actitudes, emociones y comportamientos colectivos, la minería de datos nos ofrece una visión cuantitativa y cualitativa de los procesos sociales, ayudándonos a comprender dinámicas sociales complejas, movimientos políticos, cambios de opinión y fenómenos globales de forma rápida, económica y a escala masiva.</p>
+<p>En nuestro mundo moderno, en el que los seres humanos dejamos registro de nuestras actividades y sentimientos en la red y volcamos todo nuestro conocimiento en Internet, la minería de textos se ha convertido en una herramienta invaluable para la disciplinas como la sociología y la psicología, la antropología y ciencias políticas, pues nos ayuda a mejorar la comprensión del comportamiento humano en contextos específicos y en tiempo real. En este contexto, las redes sociales se han convertido en una fuente de información increíblemente valiosa que nos permite conducir análisis cualitativos y cuantitativos a gran escala.</p>
+<h2 style="font-size: 18px" id="el-mastodonte-de-las-redes-sociales">El mastodonte de las redes sociales</h2>
+<p><a href="https://docs.joinmastodon.org/">Mastodon</a> es una red social descentralizada y de código abierto, similar a Twitter (ahora <em>X</em>) o Facebook, pero sin pertenecer a ninguna compañía ni corporación.</p>
+<p>Mastodon funciona a través de servidores independientes (<em>instancias</em>) que se comunican entre sí. Cada <em>instancia</em> funciona como una comunidad virtual independiente con libertad para establecer sus propias reglas de moderación de contenido. A la fecha de publicación de este <em>post</em> existen 9,858 <em>instancias</em> de Mastodon con casi 10 millones de usuarios registrados.</p>
+<p>Al ser una red social descentralizada, Mastodon prioriza la privacidad, el control del usuario y la libertad de moderación dentro cada comunidad virtual. A diferencia de redes sociales corporativas, Mastodon se aleja de algoritmos publicitarios y de filtrado de contenido o censura centralizada. Estas propiedades hacen de Mastodon una importante fuente de información sin sesgos.</p>
+<h2 style="font-size: 18px" id="el-señor-de-pelo-color-zanahoria-y-extraño-copete">El señor de pelo color zanahoria y extraño copete…</h2>
+<p>Donald Trump​​​​​ es una figura pública controvertida. Su segunda presidencia comenzó el 20 de enero de 2025 cuando asumió su cargo como el 47.º presidente de los Estados Unidos. Su mandato se ha caracterizado por decisiones políticas inesperadas y la salida a la luz documentos que revelan altos niveles de corrupción gubernasmental a una escala insospechada.</p>
+<p>En este post hemos decidido experimentar utilizando a “Donald Trump” como tema de discusión en un interesante ejercicio de minería de textos con Mastodon.</p>
+<h1 id="conversando-con-el-mastodonte">🦣 Conversando con el mastodonte</h1>
+<p>La librería <a href="https://cran.r-project.org/web/packages/rtoot/vignettes/rtoot.html">rtoot</a> de <a href="https://www.r-project.org/">R</a> nos permite conectarnos a Mastodon y descargar a nuestro entorno de programación las publicaciones (<em>posts</em>) públicas más recientes o bien aquellas que hayan sido etiquetadas utilizando <em>hashtags</em>.</p>
+<p>Para este <em>post</em> utilizamos rtooth para descargar 20,000 publicaciones etiquetadas con el hastag <em>#trump</em>. Dentro de esta red social, cada publicación se denomina <em>toot</em>.</p>
+<p>Como Mastodon es una red descentralizada, antes de descargar nada debemos elegir una i<em>nstancia</em> desde la cual obtendremos la información. En este caso hemos elegido la instancia <em>mastodon.social</em> ya que es el servidor más grande de la red, con más de 300,000 usuarios activos y más de 1.5 millones de cuentas registradas.</p>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>🔍 El objetivo de este análisis será identificar los temas de discusión relacionados con Donald Trump, descubrir aspectos emocionales asociados a ellos, así como su evolución en el tiempo.</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<h2 style="font-size: 18px" id="limpieza-de-los-datos">Limpieza de los datos</h2>
+<p>Antes de comenzar con el análisis de temas de discusión, filtramos los <em>toots</em> para quedarnos únicamente con aquellos cuyo idioma de publicación fuera el inglés, lo que redujo el número de <em>toots</em> a 15,500. La fecha del primer <em>toot</em> recuperado, e incluido en el análisis, fue el 25 de enero de 2026, publicado a las 17:51 (hora de Madrid) y el último el 19 de febrero a las 12:14.</p>
+<p>La extensión máxima de los <em>toots</em> fue de 1328 palabras, la mínima de 2, con una media de 60.77 y desviación estándar de 54.55.</p>
+<p>En la minería de textos más básica, como la que desarrollaremos en este <em>post</em>, la materia prima del análisis son las palabras aisladas, llamadas <em>tokens</em>, que componen un documento. Sin embargo, no nos interesan TODAS las palabras, sino únicamente aquellas que contienen significado. Por ello, todos los determinantes, pronombres, conjunciones, preposiciones, nexos, números, signos de puntuación y caracteres distintos de letras que deben ser eliminados del texto. En la minería de textos, estas palabras sin significado se denominan <em>stop words</em>.</p>
+<p>En el caso de Mastodon, los enlaces a páginas web o a otras publicaciones generan códigos HTLM que también deben ser eliminados.</p>
+<p>Tras eliminar las <em>stop words</em> y códigos HTML, las palabras de un texto son separadas una a una, dando como resultado una tabla con el identificador de la publicación, el <em>toot</em> en nuestro caso, asociado a cada palabra.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="tabwid"><style>.cl-745c6b3c{}.cl-7456d154{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7456d15e{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-745937d2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7459569a{width:2.035in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7459569b{width:1.741in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956a4{width:2.035in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956ae{width:1.741in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956af{width:2.035in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956b8{width:1.741in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956b9{width:2.035in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956c2{width:1.741in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956c3{width:2.035in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956cc{width:1.741in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956cd{width:2.035in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956ce{width:1.741in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956d6{width:2.035in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-745956d7{width:1.741in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-745c6b3c'><thead><tr style="overflow-wrap:break-word;"><th  colspan="2"class="cl-7459569a"><p class="cl-745937d2"><span class="cl-7456d154">Tabla 1. Estructura de una tabla de tokens</span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-745956a4"><p class="cl-745937d2"><span class="cl-7456d154">ID toot</span></p></th><th class="cl-745956ae"><p class="cl-745937d2"><span class="cl-7456d154">Palabra</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-745956af"><p class="cl-745937d2"><span class="cl-7456d15e">116097288515549378</span></p></td><td class="cl-745956b8"><p class="cl-745937d2"><span class="cl-7456d15e">lex</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-745956b9"><p class="cl-745937d2"><span class="cl-7456d15e">116097288515549378</span></p></td><td class="cl-745956c2"><p class="cl-745937d2"><span class="cl-7456d15e">classhashtag</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-745956af"><p class="cl-745937d2"><span class="cl-7456d15e">116097288515549378</span></p></td><td class="cl-745956b8"><p class="cl-745937d2"><span class="cl-7456d15e">relnofollow</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-745956c3"><p class="cl-745937d2"><span class="cl-7456d15e">116097288515549378</span></p></td><td class="cl-745956cc"><p class="cl-745937d2"><span class="cl-7456d15e">noopener</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-745956af"><p class="cl-745937d2"><span class="cl-7456d15e">116097288515549378</span></p></td><td class="cl-745956b8"><p class="cl-745937d2"><span class="cl-7456d15e">href</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-745956b9"><p class="cl-745937d2"><span class="cl-7456d15e">116097288515549378</span></p></td><td class="cl-745956c2"><p class="cl-745937d2"><span class="cl-7456d15e">targetblankprincea</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-745956cd"><p class="cl-745937d2"><span class="cl-7456d15e">116097288515549378</span></p></td><td class="cl-745956ce"><p class="cl-745937d2"><span class="cl-7456d15e">classhashtag</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-745956a4"><p class="cl-745937d2"><span class="cl-7456d15e">116097288515549378</span></p></td><td class="cl-745956ae"><p class="cl-745937d2"><span class="cl-7456d15e">relnofollow</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-745956d6"><p class="cl-745937d2"><span class="cl-7456d15e">116097288515549378</span></p></td><td class="cl-745956d7"><p class="cl-745937d2"><span class="cl-7456d15e">noopener</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-745956a4"><p class="cl-745937d2"><span class="cl-7456d15e">116097288515549378</span></p></td><td class="cl-745956ae"><p class="cl-745937d2"><span class="cl-7456d15e">href</span></p></td></tr></tbody></table></div>
+</div>
+<p>La Tabla 1 muestra las 10 primeras líneas de la tabla de datos que contiene los <em>tokens</em> asociados a cada al primer <em>toot</em> de nuestro conjunto. Un vistazo a la tabla nos revela al existencia de “palabras” que carecen por completo de significado. Estas “palabras” son etiquetas HTML utilizadas por Mastodon para distintos fines, y también deben ser eliminadas.</p>
+<p>Para poder identificar estas etiquetas, haremos una lista de las palabras que aparecen con mayor frecuencia en todas las publicaciones (Tabla 2).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="tabwid"><style>.cl-74bdfd70{}.cl-74b86fc2{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-74b86fcc{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-74babfb6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-74babfc0{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-74badc8a{width:1.002in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badc94{width:2.464in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badc9e{width:0.917in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badc9f{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badca8{width:2.464in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcb2{width:0.917in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcb3{width:1.002in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcb4{width:2.464in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcbc{width:0.917in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcc6{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcc7{width:2.464in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcd0{width:0.917in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcd1{width:1.002in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcd2{width:2.464in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcda{width:0.917in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcdb{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badce4{width:2.464in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badce5{width:0.917in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badce6{width:1.002in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcee{width:2.464in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcf8{width:0.917in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badcf9{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badd02{width:2.464in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badd03{width:0.917in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badd04{width:1.002in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badd0c{width:2.464in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-74badd0d{width:0.917in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-74bdfd70'><thead><tr style="overflow-wrap:break-word;"><th  colspan="3"class="cl-74badc8a"><p class="cl-74babfb6"><span class="cl-74b86fc2">Tabla 2. Lista de las 20 palabras más comunes</span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-74badc9f"><p class="cl-74babfb6"><span class="cl-74b86fc2">Posición</span></p></th><th class="cl-74badca8"><p class="cl-74babfb6"><span class="cl-74b86fc2">Palabra</span></p></th><th class="cl-74badcb2"><p class="cl-74babfc0"><span class="cl-74b86fc2">n</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-74badcb3"><p class="cl-74babfb6"><span class="cl-74b86fcc">1</span></p></td><td class="cl-74badcb4"><p class="cl-74babfb6"><span class="cl-74b86fcc">href</span></p></td><td class="cl-74badcbc"><p class="cl-74babfc0"><span class="cl-74b86fcc">109,325</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcc6"><p class="cl-74babfb6"><span class="cl-74b86fcc">2</span></p></td><td class="cl-74badcc7"><p class="cl-74babfb6"><span class="cl-74b86fcc">noopener</span></p></td><td class="cl-74badcd0"><p class="cl-74babfc0"><span class="cl-74b86fcc">86,499</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcb3"><p class="cl-74babfb6"><span class="cl-74b86fcc">3</span></p></td><td class="cl-74badcb4"><p class="cl-74babfb6"><span class="cl-74b86fcc">relnofollow</span></p></td><td class="cl-74badcbc"><p class="cl-74babfc0"><span class="cl-74b86fcc">86,499</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcc6"><p class="cl-74babfb6"><span class="cl-74b86fcc">4</span></p></td><td class="cl-74badcc7"><p class="cl-74babfb6"><span class="cl-74b86fcc">classmention</span></p></td><td class="cl-74badcd0"><p class="cl-74babfc0"><span class="cl-74b86fcc">83,551</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcd1"><p class="cl-74babfb6"><span class="cl-74b86fcc">5</span></p></td><td class="cl-74badcd2"><p class="cl-74babfb6"><span class="cl-74b86fcc">hashtag</span></p></td><td class="cl-74badcda"><p class="cl-74babfc0"><span class="cl-74b86fcc">83,469</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcc6"><p class="cl-74babfb6"><span class="cl-74b86fcc">6</span></p></td><td class="cl-74badcc7"><p class="cl-74babfb6"><span class="cl-74b86fcc">classinvisible</span></p></td><td class="cl-74badcd0"><p class="cl-74babfc0"><span class="cl-74b86fcc">11,319</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcd1"><p class="cl-74babfb6"><span class="cl-74b86fcc">7</span></p></td><td class="cl-74badcd2"><p class="cl-74babfb6"><span class="cl-74b86fcc">classhashtag</span></p></td><td class="cl-74badcda"><p class="cl-74babfc0"><span class="cl-74b86fcc">10,517</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcdb"><p class="cl-74babfb6"><span class="cl-74b86fcc">8</span></p></td><td class="cl-74badce4"><p class="cl-74babfb6"><span class="cl-74b86fcc">targetblankspantrumpspana</span></p></td><td class="cl-74badce5"><p class="cl-74babfc0"><span class="cl-74b86fcc">7,649</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badce6"><p class="cl-74babfb6"><span class="cl-74b86fcc">9</span></p></td><td class="cl-74badcee"><p class="cl-74babfb6"><span class="cl-74b86fcc">trump</span></p></td><td class="cl-74badcf8"><p class="cl-74babfc0"><span class="cl-74b86fcc">6,395</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcdb"><p class="cl-74babfb6"><span class="cl-74b86fcc">10</span></p></td><td class="cl-74badce4"><p class="cl-74babfb6"><span class="cl-74b86fcc">targetblankspan</span></p></td><td class="cl-74badce5"><p class="cl-74babfc0"><span class="cl-74b86fcc">5,963</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcb3"><p class="cl-74babfb6"><span class="cl-74b86fcc">11</span></p></td><td class="cl-74badcb4"><p class="cl-74babfb6"><span class="cl-74b86fcc">translateno</span></p></td><td class="cl-74badcbc"><p class="cl-74babfc0"><span class="cl-74b86fcc">5,783</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcdb"><p class="cl-74babfb6"><span class="cl-74b86fcc">12</span></p></td><td class="cl-74badce4"><p class="cl-74babfb6"><span class="cl-74b86fcc">targetblank</span></p></td><td class="cl-74badce5"><p class="cl-74babfc0"><span class="cl-74b86fcc">5,145</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcd1"><p class="cl-74babfb6"><span class="cl-74b86fcc">13</span></p></td><td class="cl-74badcd2"><p class="cl-74babfb6"><span class="cl-74b86fcc">translatenospan</span></p></td><td class="cl-74badcda"><p class="cl-74babfc0"><span class="cl-74b86fcc">4,682</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcdb"><p class="cl-74babfb6"><span class="cl-74b86fcc">14</span></p></td><td class="cl-74badce4"><p class="cl-74babfb6"><span class="cl-74b86fcc">reltagspantrumpspana</span></p></td><td class="cl-74badce5"><p class="cl-74babfc0"><span class="cl-74b86fcc">3,270</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcd1"><p class="cl-74babfb6"><span class="cl-74b86fcc">15</span></p></td><td class="cl-74badcd2"><p class="cl-74babfb6"><span class="cl-74b86fcc">targetblanktrumpabrbra</span></p></td><td class="cl-74badcda"><p class="cl-74babfc0"><span class="cl-74b86fcc">2,778</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcf9"><p class="cl-74babfb6"><span class="cl-74b86fcc">16</span></p></td><td class="cl-74badd02"><p class="cl-74babfb6"><span class="cl-74b86fcc">trumps</span></p></td><td class="cl-74badd03"><p class="cl-74babfc0"><span class="cl-74b86fcc">1,970</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcd1"><p class="cl-74babfb6"><span class="cl-74b86fcc">17</span></p></td><td class="cl-74badcd2"><p class="cl-74babfb6"><span class="cl-74b86fcc">epstein</span></p></td><td class="cl-74badcda"><p class="cl-74babfc0"><span class="cl-74b86fcc">1,935</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcc6"><p class="cl-74babfb6"><span class="cl-74b86fcc">18</span></p></td><td class="cl-74badcc7"><p class="cl-74babfb6"><span class="cl-74b86fcc">donald</span></p></td><td class="cl-74badcd0"><p class="cl-74babfc0"><span class="cl-74b86fcc">1,909</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badcb3"><p class="cl-74babfb6"><span class="cl-74b86fcc">19</span></p></td><td class="cl-74badcb4"><p class="cl-74babfb6"><span class="cl-74b86fcc">ice</span></p></td><td class="cl-74badcbc"><p class="cl-74babfc0"><span class="cl-74b86fcc">1,556</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-74badd04"><p class="cl-74babfb6"><span class="cl-74b86fcc">20</span></p></td><td class="cl-74badd0c"><p class="cl-74babfb6"><span class="cl-74b86fcc">amp</span></p></td><td class="cl-74badd0d"><p class="cl-74babfc0"><span class="cl-74b86fcc">1,511</span></p></td></tr></tbody></table></div>
+</div>
+<p>La Tabla 2 nos muestra que, efectivamente, estas etiquetas HTML de Mastodon son las palabras que aparecen con mayor frecuencia en las publicaciones. A partir de la posición número 16, comienzan a aparecer palabras que sí parecen guardar relación con Donald Trump.</p>
+<p>Para cada publicación, eliminamos los <em>tokens</em> correspondientes a las etiquetas HTML, así como las palabras “donald”, “trump” y “president”, puesto que nuestro conjunto de datos ya fue creado con el <em>hastag</em> #<em>trump</em> como tema principal.</p>
+<p>A través de múltiples iteraciones identificamos “palabras” comunes que en realidad no guardan significado y las eliminamos de las lista de <em>tokens</em> de cada publicación (consultar el <em>script</em> de programación para ver la lista completa en el repositorio de <a href="https://github.com/lacasadedatos/R_scripts" title="Ver código del análisis">La Casa de Datos</a> en Github).</p>
+<p>Tras esta limpieza exahustiva, y tras eliminar los tokens repetidos en cada publicación, el número total de <em>tokens</em> fue de 265977, con un total de 47279 palabras únicas. El número máximo de <em>tokens</em> por <em>toot</em> fue de 598 y el mínimo de 1. La media de tokens por toot fue de 17.7, con una desviación estándar de 24.21.</p>
+<h1 id="una-imagen-vale-más-que-mil-palabras">🖼️ Una imagen vale más que mil palabras…</h1>
+<p>Las nubes de palabras son una herramienta clásica de la minería de textos; nos ayudan a visualizar la frecuencia con la que aparece una palabra en u texto. Cuanto más común es una palabra en un texto más grande aparece en la nube. También podemos usar una escala de color ligada a su frecuencia. La Figura 1 muestra la nube de palabras asociadas a nuestro conjunto de toots.</p>
+<center>
+<img src="wordcloud2_0K_en.png" width="500" />
+</center>
+<div class="fig_legend">
+<p><strong>Figura 1</strong>. Nube de palabras asociadas a Donald Trump, en publicaciones de Mastodon (mastodon.social) comprendidas entre el 25 de enero y el 19 de febrero de 2026. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.</p>
+</div>
+<p>En la Figura 1 vemos que algunas de las palabras que aparecen con mayor frecuencia son “epstien” e “ice”, seguidas de “amp” y “card”. El resto de palabras podrían asociarse simplemente a la administración del gobierno estadounidense y a temas de carácter general.</p>
+<p>A fecha de la publicación de este post, el nombre de Epstein ha aparecido incontables veces en los medios de comunicación tradicionales y en las redes sociales, como un criminal con lazos con altos cargos del gobierno de Estados Unidos y otros países que manejaba una red chantaje basada en la prostitución y abuso de niños y adolescentes. Búsquedas simples en Internet usando los tériminos <em>trump + ice</em>, <em>trump + amp</em> y <em>trump + card</em>, nos revelan que “ice” se refiere a la agencia americana de aduanas e inmigración (<a href="https://www.ice.gov/">Immigration and Customs Enforcement</a>, ICE). “AMP” podría referirse a la asociación de Musulmanes Americanos por Palestina (<a href="https://www.ampalestine.org/media/media-room/statements/amp-calls-trump-administration-immediately-restrain-israel-and-hold-it">American Muslims for Palestine</a>, AMP). Card podría hacer referencia a la llamada “<a href="https://trumpcard.gov/">Trump Gold Card</a>”, que es una forma acelerada de obtener la residencia americana de forma acelerada tras una contribución de 1 millón de dólares.</p>
+<p>Las nubes de palabras no muestran su contexto y por si solas no son muy eficientes para ayudarnos a identificar temas de discusión. Esto se ve reflejado en la mayoría de las palabras de la Figura 1 podrían asociarse simplemente a temas administrativos del gobierno federal estadounidense.</p>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>🕸 Una de las debilidades de las nubes de palabras es que no muestran el contexto de las palabras. Por ello, recurrimos al análisis de redes para identificar con mayor precisión posibles temas de discusión.</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<h1 id="identificación-de-temas-de-discusión-a-través-del-análisis-de-redes">🔬 Identificación de temas de discusión a través del análisis de redes</h1>
+<p>La librería <a href="https://www.geeksforgeeks.org/r-language/network-visualization-in-r-using-igraph/"><strong>igraph</strong></a> de R es una herramienta poderosa que nos permite abordar en análisis de textos a través de la visualización de redes (grafos). La red se construye a partir de los niveles de correlación de los tokens dentro de cada documento; en nuestro caso, cada toot: las palabras que aparecen juntas en muchos documentos tendrán un mayor grado de correlación que las palabras que aparecen juntas solo en unos cuantos.</p>
+<p>La Figura 2 muestra una primera aproximación a la identificación de temas de discusión por análisis de redes, utilizando un grado de correlación de 0.2 y un mínimo de repeticiones de 100; es decir, que dos palabras aparezcan juntas en al menos 100 toots.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-14-1.png" alt="" width="624" /></p>
+</div>
+<center>
+<img src="word_graph_zoom.png" width="500" />
+</center>
+<div class="fig_legend">
+<p><strong>Figura 2</strong>. Análisis correlación de palabras (tokens) por redes. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El panel inferior corresponde a una ampliación de la nube de puntos que aparece en el centro de la imagen del panel superior.</p>
+</div>
+<p>En la Figura 2 podemos comenzar a apreciar algunos conjuntos de puntos que parecen apuntar a ciertos temas de discusión. En la parte superior del grafo vemos las palabras “epstein” y “files” asociadas con otras palabras como “sex” y “child”. Por mencionar algunos grupos de palabras, vemos también, en un conjunto, separado las palabras “iran”, “nuclear”, “talks” y “miliary”; así como “gaza”, “board” y “peace” en otro conjunto.</p>
+<p>Vemos además una gran conjunto central que podrían estar relacionadas con agencias de noticias, otras redes sociales o encabezados sensacionalistas. Dentro de este conjunto encontramos palabras como “hottest”, “reddit”, “fediverse”, “rebreadcast”, etc. Para refinar nuestro análisis de grafos eliminamos las palabras de esta nube de puntos, y aumentamos el número mínimo de repeticiones a 110 (Figura 3).</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-16-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<p><strong>Figura 3</strong>. Identifiación de temas de discusión generales (general topics) por análisis correlación de palabras (tokens) por redes tras la eliminación de palabras irrelevantes. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.</p>
+</div>
+<p>Tras eliminar las palabras irrelevantes a aumentar ligeramente el número mínimo de repeticiones tenemos grupos de palabras que comienzan a estructurar claramente temas de discusión.</p>
+<p>Tomando como referencia el número de publicaciones en el que aparecen las palabras, destacan las redes relacionadas con Epstein y con la agencia americana de aduanas e inmigración ICE que ya mencionamos arriba. En este último conjunto de palabras aparecen las palabras “alex”, “pretti”, “shooting” y “killing”, que se relacionan con el <a href="https://abcnews.com/US/alex-pretti-icu-nurse-killed-federal-agent-minneapolis/story?id=129525591">asesinato de Alex Pretti</a> por parte de agentes de ICE en Minnesota, ocurrido el 24 de enero de 2026.</p>
+<p>A nivel del grado de correlación, destaca el grupo de palabras que contiene “kai”, “granddaugther”, “worthy”, “lpga” y “event”. La palabra “lpga” corresponde a la asociación femenina de golf prfesional (<a href="https://www.lpga.com/">Ladies Professional Golf Association</a>, LPGA) dentro de la que participa la nieta de Donald Trump llamada <a href="https://en.wikipedia.org/wiki/Kai_Trump">Kai</a>.</p>
+<p>Otros temas de discusión evidentes se relacionan con Rusia, China y Ucrania; con la junta de paz de Gaza (Gaza Peace Board) y con asuntos militares y nucleares relacionados con Irán. Además, Algunos pares de palabras aislados, como “tarifs” y “trade”, o “white” y “house”, identifican otros posibles temas de discusión.</p>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>👓 El análisis de redes nos ha permitido identificar claramente algunos temas de discusión… ¿Pero podemos ir más allá? ¿Podemos identificar subtemas utilizando análisis de redes?</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<h2 style="font-size: 18px" id="el-caso-de-jeffrey-epstein">El caso de Jeffrey Epstein</h2>
+<p>Ya hemos visto que la palabra Epstein no solo es la más común en nuestro conjunto de toots, sino que además, el análisis de redes a señalado a esta palabra como un nodo importante de un tema de discusión.</p>
+<p>Para identificar subtemas, filtramos todos aquellos toots que contienen la palabra Epstein (1136 toots) y repetimos el análisis de redes (Figura 4). A través de ensayo y error, ajustamos los parámetros del grafo a un mínimo de 30 repeticiones, y un nivel de correlación de 0.27, para encontrar un balance entre el número de nodos y la claridad de las relaciones entre ellos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-17-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<p><strong>Figura 4</strong>. Identificación de temas de discusión (topics) por análisis correlación de palabras (tokens) por redes, utilizando únicamente los toots que contienen la palabra “epstein”. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.</p>
+</div>
+<p>En la Figura 4 podemos identificar claramente algunos subtemas de discusión. En un conjunto de puntos aparece el nombre de Epstein relacionado con la <a href="https://www.pbs.org/newshour/nation/the-latest-epstein-files-release-includes-famous-names-and-new-details-about-an-earlier-investigation">Casa Blanca y el abuso sexual de mujeres y niños</a>. Dentro de otro conjunto encontramos el nombre de la Fiscal <a href="https://www.bbc.com/news/articles/cq6ql2n917zo">General Pam Bondi quien lleva el caso Epstein</a> y que a través del departamento de justicia de Estados Unidos sacó a la luz millones de documentos de la red de tráfico sexual y pedofilia que revelan lazos entre el fallecido Jeffrery Epstein y personalidades como <a href="https://www.theguardian.com/technology/2026/jan/30/elon-musk-epstein-files-island-visits">Elon Musk</a>, el secretario de comercio estadounidense <a href="https://www.cbsnews.com/news/howard-lutnick-jeffrey-epstein-in-business-together/">Howard Lutnick</a></p>
+<h2 style="font-size: 18px" id="el-asesinato-de-alex-pretti-por-agentes-de-ice">El asesinato de Alex Pretti por agentes de ICE</h2>
+<p>Ya vimos que la palabra “ICE” (la agencia americana de aduanas e inmigración) tiene también cierto protagonismo en nuestra nube de palabras (Figura 1) y es además la segunda más común en el conjunto de publicaciones, con 1073 toots. Al igual que la palabra “Epstein”, “ICE” representa un tema de discusión independiente en nuestro análisis de redes (Figura 3).</p>
+<p>Para identificar subtemas, filtramos aquellos toots que contienen la palabra ICE y repetimos el análisis de redes (Figura 5). A través de ensayo y error, ajustamos los parámetros del grafo a un mínimo de 30 repeticiones, y un nivel de correlación de 0.3, para encontrar un balance entre el número de nodos y la claridad de las relaciones entre ellos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-18-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<p><strong>Figura 5</strong>. Identificación de temas de discusión (topics) por análisis correlación de palabras (tokens) por redes, utilizando únicamente los toots que contienen la palabra “ICE” (las siglas de la agencia americana de aduanas e inmigración). Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.</p>
+</div>
+<p>En la Figura 5 podemos identificar claramente algunos subtemas. Junto al nombre de <a href="https://msmagazine.com/2026/01/27/renee-good-alex-pretty-cruel-unusual-punishment-first-eight-amendment/">Alex Pretti</a> aparece el nombre de <a href="https://www.nytimes.com/2026/01/10/us/rennee-good-ice-shooting-minnesota.html">Renee (Good)</a>, otra ciudadana de Minnesota asesinada por agentes de ICE apenas dos semana antes que Alex Pretti. En la Figura 5 podemos identificar a la agencia ICE con protestas, derechos políticos y “maga”. MAGA (<a href="https://www.britannica.com/topic/MAGA-movement">Make America Great Again</a>) es un movimiento nativista ligado al Partido Republicano americano que ha sido acusado de homofobia, racismo y sexismo, que ha salido en <a href="https://www.wired.com/story/maga-trump-rewriting-ice-shooting-minneapolis/">defensa de las acciones de los agentes de ICE</a>, a pesar de la <a href="https://www.huffpost.com/entry/same-video-different-story-ice-minnesota_l_69611f3be4b0a26aea5a2d8b">evidencia en vídeo</a> del uso de violencia letal no justificada por su parte. El nombre <a href="Kristi%20Noem%20is%20the%208th%20Secretary%20of%20the%20Department%20of%20Homeland%20Security">Kristi Noem</a>, la octava secretaria del Departamento de Seguridad Nacional, el organismo encargado de supervisar a la agencia ICE.</p>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>⚗️ El análisis de redes nos ha permitido identificar claramente temas y subtemas de discusión asociados a las palabras más comunes dentro de nuestro conjunto de 20,000 toots, todos relacionados con Donald Trump… ¡Estupendo! Pero… ¿Podemos explorar la cara emocional de estos toots? ¿Tal vez incluso la cara emocional de cada tema?…</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<h1 id="análisis-de-sentimientos">💖 Análisis de sentimientos</h1>
+<p>Para poder explorar las em yoociones asociadas a los temas de discusión utilizamos los llamados “diccionarios de sentimientos”. Estos son tablas de palabras a las que se les ha asociado un aspecto emocional. En un diccionario de sentimientos básico, cada palabra del diccionario está etiquetada como “positiva” o “negativa”; por ejemplo, bueno - positivo, malo - negativo. En diccionarios más complejos, además de la etiqueta “positiva” o “negativa” cada palabra tiene asociada una emoción, como confianza, dicha, asco o ira.</p>
+<p>Para este análisis trabajamos con dos diccionarios para la lengua inglesa:</p>
+<ul>
+<li><p>El diccionario <a href="https://emilhvitfeldt.github.io/textdata/reference/lexicon_bing.html">Bing</a>, que categoriza las palabras de forma binaria en positivas y negativas, con un total de 6783 palabras etiquetadas.</p></li>
+<li><p>El diccionario <a href="https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm">NRC</a>, que además de clasificar las palabras como positivas o negativas, las asocia con ocho emociones básicas según <a href="https://en.wikipedia.org/wiki/Robert_Plutchik#Plutchik&#39;s_wheel_of_emotions">Plutchik</a> (ira, miedo, anticipación, confianza, sorpresa, tristeza, alegría y asco), con un total de 6453 palabras etiquetadas.</p></li>
+</ul>
+<p>Ambos diccionarios de sentimientos incluyen sustantivos, adjetivos, verbos y adverbios. Para explorar mejor las emociones asociadas al conjunto te toots, aplicamos un filtra al conjunto de tokens para recuperar únicamente aquellos que corresponden a adjetivos, ya que esta categoría de palabras tiene mayor contenido emocional que los sustantivos.</p>
+<p>La <a href="https://patternbasedwriting.com/elementary_writing_success/list-4800-adjectives/">lista de adjetivos</a> que usamos para recuperar los adjetivos contenidos en nuestro conjunto de toots contiene un total de 4840 palabras. Tras aplicar este filtro, obtenemos un total de 34,264 tokens provenientes de 10,997 toots.</p>
+<h2 style="font-size: 18px" id="polos-opuestos">Polos opuestos</h2>
+<p>Tras etiquetar cada uno de los adjetivos de nuestros toots como “positivos” o “negativos”, según el diccionario Bing, creamos dos nubes de palabras. Una partiendo de los adjetivos “positivos” (4393 tokens, Figura 6) y otra de los “negativos” (6492 tokens, Figura 7).</p>
+<center>
+<img src="trump_WcPosAdjs.png" width="500" />
+</center>
+<div class="fig_legend">
+<p><strong>Figura 6</strong>. Nube de adjetivos “positivos” en publicaciones de Mastodon (mastodon.social) comprendidas entre el 25 de enero y el 19 de febrero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.</p>
+</div>
+<center>
+<img src="trump_WcNegAdjs.png" width="500" />
+</center>
+<div class="fig_legend">
+<div class="fig_legend">
+<p><strong>Figura 7</strong>. Nube de adjetivos “positivos” en publicaciones de Mastodon (mastodon.social) comprendidas entre el 25 de enero y el 19 de febrero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.</p>
+</div>
+</div>
+<p>Es importante tener en cuenta que, aunque las Figuras 6 y 7 contienen los calificativos más comunes asociados a los toots relacionados con Donald Trump, ésto no significa que estén siendo usados para calificarlo a él directamente. Las Figuras 6 y 7 son simplemente un panorama de los calificativos “positivos” y “negativos” más comunes utilizados para hablar de distintos temas (Figuras 3-5).</p>
+<h2 style="font-size: 18px" id="ampliamos-la-gama-emocional">Ampliamos la gama emocional</h2>
+<p>Podemos profundizar un poco más en los aspectos emocionales de estos toots, utilizando el diccionario de sentimientos NRC, asociando a cada token una de las ocho emociones básicas: ira, miedo, anticipación, confianza, sorpresa, tristeza, alegría y asco. La Figura 8 muestra el número de adjetivos asociados a cada una de estas emociones dentro del conjunto de toots.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-24-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<div class="fig_legend">
+<p><strong>Figura 8</strong>. Frecuencia de adjetivos asociados a cada una de las 8 emociones básicas de Plutchik, en publicaciones de Mastodon (mastodon.social) comprendidas entre el 25 de enero y el 19 de febrero de 2026, relacionadas con Donald Trump. Trust, confianza; fear, miedo; anger, ira; sadness, tristeza; disgust, asco; anticipation, anticipación; joy, alegría; surprise, sorpresa.</p>
+</div>
+</div>
+<p>La figura 8 muestra que, partiendo de los adjetivos, las emociones más comunes en los toots fueron la confianza (trust) y el miedo (fear).</p>
+<h1 id="identificación-de-temas-relacionados-con-la-confianza-y-el-miedo">Identificación de temas relacionados con la confianza 🫱🏽‍🫲🏿 y el miedo 🧟</h1>
+<p>Nuestro primer paso fue identificar aquellos toots en los que aparecieran los 20 adjetivos más comunes asociados a la confianza y el miedo; la lista de estos adjetivos se muestra en la Tabla 3.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="tabwid"><style>.cl-7d7262d0{}.cl-7d6c9aa8{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7d6c9ab2{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7d6ef686{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-7d6f1558{width:1.327in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f1562{width:0.841in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f156c{width:1.179in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f1576{width:1in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f1577{width:1.327in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f1580{width:0.841in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f1581{width:1.179in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f1582{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f1594{width:1.327in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f159e{width:0.841in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f159f{width:1.179in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15a8{width:1in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15b2{width:1.327in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15b3{width:0.841in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15bc{width:1.179in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15bd{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15be{width:1.327in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15c6{width:0.841in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15d0{width:1.179in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15d1{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15da{width:1.327in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15e4{width:0.841in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15e5{width:1.179in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15ee{width:1in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15ef{width:1.327in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15f8{width:0.841in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f15f9{width:1.179in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7d6f1602{width:1in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-7d7262d0'><thead><tr style="overflow-wrap:break-word;"><th  colspan="4"class="cl-7d6f1558"><p class="cl-7d6ef686"><span class="cl-7d6c9aa8">Tabla 3. Lista de los 20 adjetivos más comunes asociados a las emociones de confianza o miedo</span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-7d6f1577"><p class="cl-7d6ef686"><span class="cl-7d6c9aa8">Confianza</span></p></th><th class="cl-7d6f1580"><p class="cl-7d6ef686"><span class="cl-7d6c9aa8">n_conf</span></p></th><th class="cl-7d6f1581"><p class="cl-7d6ef686"><span class="cl-7d6c9aa8">Miedo</span></p></th><th class="cl-7d6f1582"><p class="cl-7d6ef686"><span class="cl-7d6c9aa8">n_miedo</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-7d6f1594"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">worthy</span></p></td><td class="cl-7d6f159e"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">351</span></p></td><td class="cl-7d6f159f"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">bad</span></p></td><td class="cl-7d6f15a8"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">251</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15b2"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">united</span></p></td><td class="cl-7d6f15b3"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">336</span></p></td><td class="cl-7d6f15bc"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">military</span></p></td><td class="cl-7d6f15bd"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">241</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f1594"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">real</span></p></td><td class="cl-7d6f159e"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">231</span></p></td><td class="cl-7d6f159f"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">powerful</span></p></td><td class="cl-7d6f15a8"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">155</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15be"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">official</span></p></td><td class="cl-7d6f15c6"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">163</span></p></td><td class="cl-7d6f15d0"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">criminal</span></p></td><td class="cl-7d6f15d1"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">152</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f1594"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">legal</span></p></td><td class="cl-7d6f159e"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">155</span></p></td><td class="cl-7d6f159f"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">accused</span></p></td><td class="cl-7d6f15a8"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">116</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15b2"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">powerful</span></p></td><td class="cl-7d6f15b3"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">155</span></p></td><td class="cl-7d6f15bc"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">illegal</span></p></td><td class="cl-7d6f15bd"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">97</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f1594"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">secret</span></p></td><td class="cl-7d6f159e"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">91</span></p></td><td class="cl-7d6f159f"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">dangerous</span></p></td><td class="cl-7d6f15a8"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">89</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15be"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">economy</span></p></td><td class="cl-7d6f15c6"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">89</span></p></td><td class="cl-7d6f15d0"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">violent</span></p></td><td class="cl-7d6f15d1"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">86</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f1594"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">personal</span></p></td><td class="cl-7d6f159e"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">86</span></p></td><td class="cl-7d6f159f"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">warning</span></p></td><td class="cl-7d6f15a8"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">86</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15da"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">pretty</span></p></td><td class="cl-7d6f15e4"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">83</span></p></td><td class="cl-7d6f15e5"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">worse</span></p></td><td class="cl-7d6f15ee"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">75</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f1594"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">true</span></p></td><td class="cl-7d6f159e"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">81</span></p></td><td class="cl-7d6f159f"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">aggressive</span></p></td><td class="cl-7d6f15a8"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">67</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15be"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">moral</span></p></td><td class="cl-7d6f15c6"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">76</span></p></td><td class="cl-7d6f15d0"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">fatal</span></p></td><td class="cl-7d6f15d1"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">65</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f1594"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">level</span></p></td><td class="cl-7d6f159e"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">66</span></p></td><td class="cl-7d6f159f"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">threatening</span></p></td><td class="cl-7d6f15a8"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">65</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15be"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">confirmed</span></p></td><td class="cl-7d6f15c6"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">61</span></p></td><td class="cl-7d6f15d0"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">evil</span></p></td><td class="cl-7d6f15d1"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">61</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f1594"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">leading</span></p></td><td class="cl-7d6f159e"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">61</span></p></td><td class="cl-7d6f159f"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">medical</span></p></td><td class="cl-7d6f15a8"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">53</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15be"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">constitutional</span></p></td><td class="cl-7d6f15c6"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">56</span></p></td><td class="cl-7d6f15d0"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">brutal</span></p></td><td class="cl-7d6f15d1"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">45</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15ef"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">committed</span></p></td><td class="cl-7d6f15f8"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">53</span></p></td><td class="cl-7d6f15f9"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">broken</span></p></td><td class="cl-7d6f1602"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">44</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15be"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">medical</span></p></td><td class="cl-7d6f15c6"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">53</span></p></td><td class="cl-7d6f15d0"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">terrible</span></p></td><td class="cl-7d6f15d1"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">42</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15ef"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">obvious</span></p></td><td class="cl-7d6f15f8"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">53</span></p></td><td class="cl-7d6f15f9"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">foul</span></p></td><td class="cl-7d6f1602"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">40</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-7d6f15be"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">accountable</span></p></td><td class="cl-7d6f15c6"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">50</span></p></td><td class="cl-7d6f15d0"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">ill</span></p></td><td class="cl-7d6f15d1"><p class="cl-7d6ef686"><span class="cl-7d6c9ab2">39</span></p></td></tr></tbody></table></div>
+</div>
+<p>Identificamos 2040 toots que contienen alguna de las palabras asociadas a confianza (con un total de 66,779 tokens) y 1634 toots que contienen alguna de las palabras asociadas a miedo (con un total de 60,062 tokens). Tras aislar estos dos conjuntos de toots, identificamos los temas de discusión contenidos en ellos a través de un análisis de redes (Figuras 9 y 10).</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-27-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<p><strong>Figura 9</strong>. Identificación de temas de discusión (topics) por análisis correlación de palabras (tokens) por redes, utilizando únicamente los toots que contienen adjetivos asociados a confianza (trust). Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.</p>
+</div>
+<p>La Figura 9 muestra claramente un conjunto de palabras relacionado con <a href="https://www.fogolf.com/1158845/is-donald-trumps-granddaughter-kai-worthy-of-place-in-lpga-event-499/">la participación de Kai trump</a>, nieta de Donald Trump, en la liga femenina de golf que mencionamos arriba. Este conjunto de palabras contiene las palabras más comunes y con el más alto grado de correlación dentro de todos los toots asociados al sentimiento de confianza.</p>
+<p>La Figura 9 muestra también un conjunto aislado de palabras relacionado con la agencia ICE, cuyos agentes abatieron tiros a un ciudadano americano a finales de enero de 2026 de forma aparentemente injustificada. Resulta entonces un tanto paradójico que este tema parezca relacionado con sentimientos de confianza.</p>
+<p>Cuando identificamos los subtemas asociados al asesinato de Alex Pretti (Figura 5), apareció el término MAGA (<a href="https://www.britannica.com/topic/MAGA-movement">Make America Great Again</a>), movimiento que ha defendido la actuación de los agentes de ICE. La presencia de MAGA dentro de los subtemas de discusión asociados a Alex Pretti podría explicar por qué este tema de aparece relacionado a la confianza en la Figura 9. Por otra lado, la Tabla 3 contiene palabras como “official”, “legal”, “constitutional”, “economy”, “personal”, etc., que podrían asociarse de forma neutral a cualquiera de las palabras que componen el conjunto más grande de palabras de la Figura 9, puesto que muchas de ellas tiene un carácter puramente administrativo.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-28-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<p><strong>Figura 10</strong>. Identificación de temas de discusión (topics) por análisis correlación de palabras (tokens) por redes, utilizando únicamente los toots que contienen adjetivos asociados al miedo (fear). Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.</p>
+</div>
+<p>La Figura 10 identifica tres al menos temas de discusión asociados con miedo: el asesinato de Alex Pretti, Irán y Jeffrey Epstein. Aparece además un nuevo subtema con las palabras “bad”, “bunny” y “super”, que podría hacer referencia a la controvertida actuación del rapero <a href="https://eu.usatoday.com/story/sports/nfl/2026/02/07/why-are-people-mad-bad-bunny-performing-super-bowl-halftime/88437960007/">Bad Bunny en el Super Bowl</a> el 9 de febrero. Bad Bunny ha sido un crítico de la administración de Donald Trump y de la agencia ICE. Los simpatizantes de Trump, por su parte, lo consideran un personaje anti-americano.</p>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>📺 El análisis de sentimientos, combinado con el análisis de redes, nos ha permitido identificar claramente nuevos temas de discusión, así como las emociones asociadas a ellos. Pero… ¿podemos evaluar la evolución de los sentimientos a lo largo del tiempo?…</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<h1 id="evolución-de-sentimientos-a-lo-largo-del-tiempo">🗓️ Evolución de sentimientos a lo largo del tiempo</h1>
+<p>Para evaluar la evolución de sentimientos a lo largo del tiempo, volvemos a hacer uso del diccionario Bing y la lista de adjetivos extraídos de nuestro conjunto de toots.</p>
+<p>El diccionario Bing etiqueta cada palabra como “positiva” o “negativa”. Asignando el valor de +1 a cada uno de los calificativos “positivos” y un valor de -1 a los “negativos” podemos extraer una métrica de la “carga emocional” de un determinado conjunto de toots; en nuestro caso, la media.</p>
+<p>Para evaluar la evolución de la carga emocional de los toots en el tiempo, los agrupamos por fecha de publicación, usando un día como unidad de tiempo. La Figura 11 muestra el valor medio de la carga emocional de los toots para cada día del análisis.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-30-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<p><strong>Figura 11</strong>. Análisis de la carga emocional de los toots publicados cada día entre el 25 de enero y el 19 de febrero de 2026 (Date). Cada uno de los adjetivos contenidos en el conjunto total de toots fué etiquetado como “positivo” o “negativos” de acuerdo al diccionario de sentimientos Bing. A los calificativos positivos se les asignó el valor de +1 y a los negativos -1 y posteriormente se calculó la media (Mean emotional load). El color de las barras corresponde avalor de la carga emocional; los valores negativos tienden al rojo y los positivos al azul.</p>
+</div>
+<p>La Figura 11 muestra que, excepto por el 19 de febrero, la carga emocional contenida en los toots de cada día de análisis es negativa. Destacan el 25 de enero y el 6 de febrero como las fechas con la carga emocional más negativa y el 19 de febrero como el único día con una carga emocional positiva.</p>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>📆 Analizar la carga emocional asociada a los toots a lo largo del tiempo nos he permitido identificar respuestas emocionales positivas o negativas en fechas concretas… ¿Podemos asociar esas respuestas emocionales a eventos concretos?…</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<h1 style="font-size: 18px" id="enero-25">Enero 25</h1>
+<p>El número de toots recuperados del 25 de enero fue de 251, con 5269 tokens. La Figura 12 muestra los temas de discusión del 25 de enero a través del análisis de redes. Al igual que con los gráficos de redes anteriores, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 10 repeticiones y el nivel de correlación a 0.35.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-32-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<p><strong>Figura 12</strong>. Identificación de temas de discusión (topics) por análisis correlación de palabras (tokens) por redes, utilizando únicamente los toots publicados el 25 de enero (Jan. 25th) de 2026. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.</p>
+</div>
+<p>En la Figura 12 , el tema de discusión que emerge es, nuevamente, el asesinato de <a href="https://abcnews.com/Politics/minute-minute-timeline-fatal-shooting-alex-pretti-federal/story?id=129547199">Alex Pretti</a>, lo que no resulta en modo alguno sorprendente, ya que este hecho ocurrió precisamente el 24 de enero.</p>
+<p>También podemos visualizar la cara emocional de los toots publicados en esta fecha, utilizando los tokens correspondientes a los adjetivos contenidos en ellos (Figura 13).</p>
+<center>
+<img src="jan25_sents.png" width="500" />
+</center>
+<div class="fig_legend">
+<div class="fig_legend">
+<p><strong>Figura 13</strong>. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 25 de enero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.</p>
+</div>
+</div>
+<p>A pesar de la subjetividad subyacente en la interpretación de cualquier hecho que tenga un componente emocional, podríamos decir que los calificativos usados para hablar de los hechos relacionados con Alex Pretti se corresponden con la naturaleza de los propios hechos.</p>
+<h2 style="font-size: 18px" id="febrero-6">Febrero 6</h2>
+<p>El número de toots recuperados del 06 de febrero fue de 737, con 13,098 tokens. La Figura 14 muestra los temas de discusión del 6 de febrero a través del análisis de redes.Al igual que con los gráficos de redes anteriores, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 15 repeticiones y el nivel de correlación a 0.35.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-36-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<p><strong>Figura 13</strong>. Identificación de temas de discusión (topics) por análisis correlación de palabras (tokens) por redes, utilizando únicamente los toots publicados el 6 de febrero (Feb. 6th) de 2026. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.</p>
+</div>
+<p>En la Figura 13 se distinguen claramente dos temas de discusión, uno que contiene las palabras más comunes dentro del conjunto de toots (“video”, “obamas”, “racist”) y otro relacionado con <a href="https://www.fogolf.com/1158845/is-donald-trumps-granddaughter-kai-worthy-of-place-in-lpga-event-499/">Kai Trump y su participación en la liga femenina de golf</a> que ya hemos mencionado antes. La partipación de Kai Trump en esta liga se anunció precisamente en esta fecha.</p>
+<p>Tras una sencilla búsqueda en Internet usando los términos “video”, “obamas” y “racist” encontramos la publicación y eliminación posterior de un <a href="https://www.firstpost.com/explainers/trump-shares-obama-ape-video-racist-imagery-history-13977245.html">vídeo publicado en las redes sociales de Donald Trump</a>en donde el expresidente americano Barak Obama y su esposa, ambos afroamericanos, aparecían retratados como simios.</p>
+<p>Podemos visualizar la cara emocional de los toots publicados en esta fecha, utilizando los tokens correspondientes a los adjetivos contenidos en ellos (Figura 14).</p>
+<center>
+<img src="feb6_sents.png" width="500" />
+</center>
+<div class="fig_legend">
+<div class="fig_legend">
+<p><strong>Figura 14</strong>. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 6 de febrero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.</p>
+</div>
+</div>
+<p>La Figura 14 muestra una nube de palabras dominada por el calificativo “racist”, lo que sugiere una respuesta emocional coherente con contenido del controvertido vídeo publicado en esta fecha.</p>
+<h2 style="font-size: 18px" id="febrero-19">Febrero 19</h2>
+<p>El número de toots recuperados del 19 de febrero fue de 192, con apenas 3276 tokens. La Figura 15 muestra los temas de discusión de esta fecha a través del análisis de redes.Al igual que con los gráficos de redes anteriores, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 7 repeticiones y el nivel de correlación a 0.27.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-40-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<p><strong>Figura 15</strong>. Análisis correlación de palabras (tokens) por redes utilizando únicamente los toots publicados el 19 de febrero de 2026. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.</p>
+</div>
+<p>En la Figura 14 se distinguen claramente tres temas de discusión; uno de ellos relacionado con Irán, otro con la nieta de Donald Trump (a quien ya hemos mencionado arriba), otro de ellos relacionado con la junta de paz en Gaza y otro con el gobierno federal.</p>
+<p>Una búsqueda de noticias en Internet utilizando los términos “Donald Trump” y “news” acotada al 19 de febrero nos revela que en esta fecha, el presidente americano dio un <a href="https://rollcall.com/factbase/trump/transcript/doanld-trump-speech-board-of-peace-february-19-2026/">discurso</a> en la primera reunión de la Junta de Paz en Gaza, desde donde envió un ultimátum al gobierno de Irán. Advirtió que “<a href="https://www.forbes.com/sites/saradorn/2026/02/19/trump-warns-iran-of-bad-things-as-us-troop-buildup-hits-middle-east/">pasarían cosas malas</a><em>“</em> si el gobierno de Irán no accede a reducir significativamente su programa de armas nucleares. Esta advertencia fue lanzada al tiempo que Estados Unidos acumulaba una presencia militar masiva en la región en preparación para un ataque potencial, mismo que <a href="https://www.nytimes.com/2026/02/28/world/middleeast/iran-attacks-what-to-know.html">comenzó el 28 de febrero</a>.</p>
+<p>Al igual que antes, podemos visualizar la cara emocional de los toots publicados en esta fecha, utilizando los tokens correspondientes a los adjetivos contenidos en ellos (Figura 16).</p>
+<center>
+<img src="feb19_sents.png" width="500" />
+</center>
+<div class="fig_legend">
+<div class="fig_legend">
+<p><strong>Figura 16</strong>. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 19 de febrero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.</p>
+</div>
+</div>
+<p>La Figura 16 muestra una nube de palabras dominada por el calificativo “worthy” (digno), e incluye palabras como “authoritarian” (autoritario), “wise” (sabio), y “diplomatic” (diplomático), que tienen una connotación positiva.</p>
+<pre><code></code></pre>
+<div class="infobox">
+<blockquote>
+<p>❤️ 😡 El análisis de redes nos ha permitido identificar los temas de discusión asociados a temas de discusión que generaron una fuerte respuesta emocional en fechas concretas; las nubes de palabras, por su parte, nos permitieron identificar las emociones asociadas a estas respuestas. 🚀</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<h1 id="clasificación-de-toots">🏷️ Clasificación de toots</h1>
+<p>En las secciones anteriores, hemos podico identificar temas de discusión asociados a emociones concretas como la confianza y el miedo y hemos podido identificar respuestas emocionales a eventos concretos a lo largo del tiempo. Ahora nos preguntamos si podemos clasificar los toots relacionados con Donald Trump, con base en su contenido emocional.</p>
+<p>Para abordar esta pregunto hacemos otra vez uso del diccionario de sentimientos NRC, asignando a cada adjetivo al menos una de las emociones básicas de <a href="https://en.wikipedia.org/wiki/Robert_Plutchik#Plutchik&#39;s_wheel_of_emotions">Plutchik</a> (Figura 8). Para cada toot, contamos el número de adjetivos correspondiente a cada emoción, así como en número total de tokens en cada toot; la Tabla 4 muestra algunos de los toots con más de 50 tokens.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="tabwid"><style>.cl-80b6fa78{}.cl-80ae3ece{font-family:'DejaVu Sans';font-size:8.5pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-80ae3ed8{font-family:'DejaVu Sans';font-size:8.5pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-80b379c0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-80b39856{width:1.637in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b3986a{width:0.924in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39874{width:0.694in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b3987e{width:0.644in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b3987f{width:0.464in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39880{width:1.096in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39888{width:0.909in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39892{width:0.586in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b3989c{width:0.795in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b3989d{width:1.207in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b398a6{width:1.637in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b398a7{width:0.924in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b398b0{width:0.694in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b398ba{width:0.644in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b398bb{width:0.464in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b398c4{width:1.096in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b398d8{width:0.909in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b398d9{width:0.586in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b398ec{width:0.795in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39900{width:1.207in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39914{width:1.637in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b3991e{width:0.924in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39932{width:0.694in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39933{width:0.644in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39934{width:0.464in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b3993c{width:1.096in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39946{width:0.909in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39950{width:0.586in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39964{width:0.795in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39978{width:1.207in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b39982{width:1.637in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b3998c{width:0.924in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b399a0{width:0.694in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b399aa{width:0.644in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b399ab{width:0.464in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b399b4{width:1.096in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b399b5{width:0.909in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b399be{width:0.586in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b399c8{width:0.795in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-80b399c9{width:1.207in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-80b6fa78'><thead><tr style="overflow-wrap:break-word;"><th  colspan="10"class="cl-80b39856"><p class="cl-80b379c0"><span class="cl-80ae3ece">Tabla 4. Número de adjetivos asociados a cada emoción en cada toot</span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-80b398a6"><p class="cl-80b379c0"><span class="cl-80ae3ece">toot No.</span></p></th><th class="cl-80b398a7"><p class="cl-80b379c0"><span class="cl-80ae3ece">confianza</span></p></th><th class="cl-80b398b0"><p class="cl-80b379c0"><span class="cl-80ae3ece">miedo</span></p></th><th class="cl-80b398ba"><p class="cl-80b379c0"><span class="cl-80ae3ece">dicha</span></p></th><th class="cl-80b398bb"><p class="cl-80b379c0"><span class="cl-80ae3ece">ira</span></p></th><th class="cl-80b398c4"><p class="cl-80b379c0"><span class="cl-80ae3ece">anticipación</span></p></th><th class="cl-80b398d8"><p class="cl-80b379c0"><span class="cl-80ae3ece"> sorpresa</span></p></th><th class="cl-80b398d9"><p class="cl-80b379c0"><span class="cl-80ae3ece">asco</span></p></th><th class="cl-80b398ec"><p class="cl-80b379c0"><span class="cl-80ae3ece">tristeza</span></p></th><th class="cl-80b39900"><p class="cl-80b379c0"><span class="cl-80ae3ece">No. de tokens</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-80b39914"><p class="cl-80b379c0"><span class="cl-80ae3ed8">115956868279924062</span></p></td><td class="cl-80b3991e"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b39932"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39933"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b39934"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b3993c"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39946"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39950"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39964"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39978"><p class="cl-80b379c0"><span class="cl-80ae3ed8">52</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-80b39982"><p class="cl-80b379c0"><span class="cl-80ae3ed8">115957091251021997</span></p></td><td class="cl-80b3998c"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b399a0"><p class="cl-80b379c0"><span class="cl-80ae3ed8">6</span></p></td><td class="cl-80b399aa"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399ab"><p class="cl-80b379c0"><span class="cl-80ae3ed8">3</span></p></td><td class="cl-80b399b4"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399b5"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b399be"><p class="cl-80b379c0"><span class="cl-80ae3ed8">5</span></p></td><td class="cl-80b399c8"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b399c9"><p class="cl-80b379c0"><span class="cl-80ae3ed8">101</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-80b39914"><p class="cl-80b379c0"><span class="cl-80ae3ed8">115957194868532631</span></p></td><td class="cl-80b3991e"><p class="cl-80b379c0"><span class="cl-80ae3ed8">12</span></p></td><td class="cl-80b39932"><p class="cl-80b379c0"><span class="cl-80ae3ed8">12</span></p></td><td class="cl-80b39933"><p class="cl-80b379c0"><span class="cl-80ae3ed8">4</span></p></td><td class="cl-80b39934"><p class="cl-80b379c0"><span class="cl-80ae3ed8">8</span></p></td><td class="cl-80b3993c"><p class="cl-80b379c0"><span class="cl-80ae3ed8">7</span></p></td><td class="cl-80b39946"><p class="cl-80b379c0"><span class="cl-80ae3ed8">5</span></p></td><td class="cl-80b39950"><p class="cl-80b379c0"><span class="cl-80ae3ed8">3</span></p></td><td class="cl-80b39964"><p class="cl-80b379c0"><span class="cl-80ae3ed8">3</span></p></td><td class="cl-80b39978"><p class="cl-80b379c0"><span class="cl-80ae3ed8">522</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-80b39982"><p class="cl-80b379c0"><span class="cl-80ae3ed8">115957286675732482</span></p></td><td class="cl-80b3998c"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399a0"><p class="cl-80b379c0"><span class="cl-80ae3ed8">7</span></p></td><td class="cl-80b399aa"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b399ab"><p class="cl-80b379c0"><span class="cl-80ae3ed8">4</span></p></td><td class="cl-80b399b4"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399b5"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399be"><p class="cl-80b379c0"><span class="cl-80ae3ed8">3</span></p></td><td class="cl-80b399c8"><p class="cl-80b379c0"><span class="cl-80ae3ed8">5</span></p></td><td class="cl-80b399c9"><p class="cl-80b379c0"><span class="cl-80ae3ed8">242</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-80b39914"><p class="cl-80b379c0"><span class="cl-80ae3ed8">115957619685651706</span></p></td><td class="cl-80b3991e"><p class="cl-80b379c0"><span class="cl-80ae3ed8">7</span></p></td><td class="cl-80b39932"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b39933"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b39934"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b3993c"><p class="cl-80b379c0"><span class="cl-80ae3ed8">3</span></p></td><td class="cl-80b39946"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b39950"><p class="cl-80b379c0"><span class="cl-80ae3ed8">3</span></p></td><td class="cl-80b39964"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b39978"><p class="cl-80b379c0"><span class="cl-80ae3ed8">313</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-80b39982"><p class="cl-80b379c0"><span class="cl-80ae3ed8">115958338656493586</span></p></td><td class="cl-80b3998c"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b399a0"><p class="cl-80b379c0"><span class="cl-80ae3ed8">3</span></p></td><td class="cl-80b399aa"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b399ab"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b399b4"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b399b5"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399be"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b399c8"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399c9"><p class="cl-80b379c0"><span class="cl-80ae3ed8">219</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-80b39914"><p class="cl-80b379c0"><span class="cl-80ae3ed8">115958355217704577</span></p></td><td class="cl-80b3991e"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39932"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b39933"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b39934"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b3993c"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39946"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39950"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39964"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b39978"><p class="cl-80b379c0"><span class="cl-80ae3ed8">54</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-80b39982"><p class="cl-80b379c0"><span class="cl-80ae3ed8">115960581898528610</span></p></td><td class="cl-80b3998c"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b399a0"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b399aa"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b399ab"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b399b4"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b399b5"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399be"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399c8"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b399c9"><p class="cl-80b379c0"><span class="cl-80ae3ed8">75</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-80b39914"><p class="cl-80b379c0"><span class="cl-80ae3ed8">115961119580722988</span></p></td><td class="cl-80b3991e"><p class="cl-80b379c0"><span class="cl-80ae3ed8">3</span></p></td><td class="cl-80b39932"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39933"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b39934"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b3993c"><p class="cl-80b379c0"><span class="cl-80ae3ed8">2</span></p></td><td class="cl-80b39946"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b39950"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b39964"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b39978"><p class="cl-80b379c0"><span class="cl-80ae3ed8">103</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-80b39982"><p class="cl-80b379c0"><span class="cl-80ae3ed8">115961150632094656</span></p></td><td class="cl-80b3998c"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399a0"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399aa"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b399ab"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399b4"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399b5"><p class="cl-80b379c0"><span class="cl-80ae3ed8">0</span></p></td><td class="cl-80b399be"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399c8"><p class="cl-80b379c0"><span class="cl-80ae3ed8">1</span></p></td><td class="cl-80b399c9"><p class="cl-80b379c0"><span class="cl-80ae3ed8">119</span></p></td></tr></tbody></table></div>
+</div>
+<p>Antes de poder abordar la clasificación debemos crear una métrica <em>ad hoc</em> (<em>índice de</em> <em>carga emocional,</em> IdCE)que nos permita valorar el contenido emocional de cada toot en función de su extensión. Por ejemplo, un toot de 10 palabras en las que 2 pertenecen a la emoción “ira” debe tener un peso mayor que un toot de 120 palabras en las que 2 pertenecen a la misma emoción. Para ello, multiplicamos en número de tokens asociados a cada emoción por su proporción con respecto al total. De esta forma, un toot de 10 palabras, de las cuales 2 están asociadas a la ira, tendría un IdCE de ira = 2 x (2/10) = 0.4, un toot de 100 palabras con 20 asociadas a la ira tendría un IdCE de ira = 20 x (20/100) = 4 y un un toot de 200 palabras con 20 asociadas a esta emoción tendría un IdCE de ira = 20 x (20/200) = 2.</p>
+<p>Tras haber calculado los IdCe de cada emoción para cada uno de los toots creamos un gráfico tipo mapa de calor (<a href="https://www.geeksforgeeks.org/data-visualization/what-is-heatmap-data-visualization-and-how-to-use-it/">heatmap</a> tipo parrila), aplicando un análisis de agrupación de los toots por K-medias con un valor de k = 3 (tres grupos esperados; ver nuestro post “<a href="https://lacasadedatos.github.io/blog/blog_posts/2026-01-05-decisiones-difciles/">Decisiones difíciles</a>”), así como una <a href="https://www.geeksforgeeks.org/machine-learning/hierarchical-clustering/">agrupación jerárquica</a> de las emociones (Figura 17).</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-45-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<div class="fig_legend">
+<p><strong>Figura 17</strong>. Mapa de calor del índice de carga emocional (IdCE) para cada una de las emociones en toots agrupados (clusters). Los toots se agruparon utilizando el algoritmo de aprendizaje automático K-medias; la la derecha del gráfico se muestra el número de toots (size) que corresponde a cada <em>k-grupo</em> (cluster). Se aplicó además un análisis de agrupación jerárquico para las emociones. La intensidad del color se corresponde con valores más altos de IdCE. Fear, miedo; anger, ira; disgust, asco; sadness, tristeza; trust, confianza; surprise, sorpresa; joy, dicha; anticipation, anticipación.</p>
+</div>
+</div>
+<p>La Figura 17 muestra claramente una agrupación de los toots en función de la naturaleza de las emociones y el valor de IdCE asociado a cada toot para cada una de ellas. Así, el <em>k-grupo</em> 3 (el más pequeño, con 451 toots) se caracteriza por tener un IdCE alto para todas las emociones “negativas” (miedo, ira, asco y tristeza). El <em>k-grupo</em> 1 (el más extenso, con 4825 toots) no parece tener una carga emocional concreta. E <em>k-grupo</em> 2, en contraste, parece tener una carga emocional muy grande, asociada principalmente a la confianza.</p>
+<p>A continuación, realizamos un análisis de temas de discusión por redes para cada uno de los <em>k-grupos</em> (Figura 18)</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-47-1.png" alt="" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-48-1.png" alt="" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="cuentamelo-todo_files/figure-html5/unnamed-chunk-49-1.png" alt="" width="624" /></p>
+</div>
+<div class="fig_legend">
+<p><strong>Figura 18</strong>. Análisis correlación de palabras (tokens) por redes utilizando los toots correspondientes a los <em>k-grupos</em> (clusters)identificados a través del índice de carga emocional (IdCE) usando el algoritmo de aprendizaje automático K-medias. A) toots del <em>k-grupo</em> 3 caracterizado por IdCE de confianza alto, B) toots del <em>k-grupo</em> 2 caracterizado por IdCEs altos para todas las emociones “negativas” (miedo, ira, asco y tristeza), C) toots del <em>k-grupo</em> 1 que carece de una carga emocional concreta. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.</p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<pre><code></code></pre>
+<div class="long_quote">
+<blockquote>
+<p>🔍 “El hombre fuerte asesinado por agentes federales en Minneapolis estaba sosteniendo un teléfono, no una pistola The New York Timesstronga aDavid Guttenfelder The New York TimesUnrestinar en MinneapolisCompartir un tiroteo actualizado de Alex Jeffrey Prettialilia Quién fue bonito?alalil Timelinealilia Video Analysisalilia Trumps Responsealilia Shooting of ReneeGoodaliulstrongMan asesinado por agentes federales en Minneapolis estaba sosteniendo un teléfono, ni un GunstrongstrongVideos analizados por The New York Times parecen contradecir los relatos federales del tiroteo. El hombre, un enfermero de I.C.U., era un ciudadano estadounidense sin antecedentes penales, dijo el jefe de la policía de la ciudad. 24, 2026, Actualizado en enero. 25, 2026, 1211 p.m. ETa aa VIDEO ANALYSISa a.Funcionarios oficiales trataron de retratar a un residente de Minneapolis de 37 años asesinado por agentes de la Patrulla Fronteriza el sábado como un terrorista doméstico, diciendo que quería masacrar a las fuerzas del orden, incluso cuando surgieron videos que parecían contradecir directamente su relato.El hombre, Alex Jeffrey Pretti, era una enfermera de cuidados intensivos descrita por el jefe de policía de Minneapolis como un ciudadano estadounidense sin antecedentes penales. Funcionarios federales dijeron que estaba armado, pero no hay señal en videos analizados por The New York Times que tiró de su arma, o que los agentes incluso sabían que tenía una hasta que ya estaba atrapado en la acera. La pistola blinda cuando otros dos agentes abrieron fuego, disparándole por la espalda y mientras yacía en el suelo. Al menos 10 disparos fueron disparados, matándolo. Sr. Pretti tenía un permiso legal para portar un arma de fuego, dijo el jefe de policía, Brian OHara.El tiroteo en una mañana frígida en el barrio de Minneapolis Whittier renovó protestas y enfrentamientos con las fuerzas del orden en una ciudad donde las tensiones han llegado a un punto de ruptura después de semanas de una agresiva acción federal de inmigración. Agentes federales desplegaron gases lacrimógenos y golpes de flash para alejar a los manifestantes de la escena del tiroteo mientras exigían que agentes de la policía local arrestaran a los agentes que mataron al Sr. Los funcionarios dijeron que las protestas en Minneapolis habían permanecido en su mayoría pacíficas, con algunas excepciones. Pero al caer el atardecer, los funcionarios desplegaron la Guardia Nacional para asegurarse de que las manifestaciones no se tornaran violentas. Al menos 1.000 personas acudieron a una vigilia para Mr. Pretti en Whittier Park el sábado por la noche, a pesar de las temperaturas bajo cero.Un colega de Mr. Pretti, Dimitri Drekonja, dijo que había trabajado como enfermera en el hospital de Asuntos de Veteranos en Minneapolis. Era un gran colega y un gran amigo, Sr. Drekonja dijo. La mirada predeterminada en su cara era una sonrisa.strongHeres lo que estaban cubriendotrongullistrongVideo analysisstrong Video video publicado en las redes sociales y verificado por The Times muestra Mr. Pretti entre una mujer y un agente que la roció. Otros agentes luego rocian con pimienta Mr. Pretti, que sostiene un teléfono en una mano y nada en la otra. Su arma permanece oculta hasta que los agentes federales la encuentran y se la quitan. La carga fija o abierta es legal para los titulares de permisos en Minnesota. Pretti pretendía atacar a agentes federales. Gregory Bovino, el funcionario a cargo de las operaciones de los presidentes de la Patrulla Fronteriza, dijo que el Sr. Pretti estaba decidido a una masacre. Kristi Noem, secretario de Seguridad Nacional, dijo, Esto parece una situación en la que un individuo llegó al lugar para infligir el máximo daño. Sus relatos contradicen directamente las pruebas de video del encuentro.Un Leer más alilistrongInvestigadores bloquearon a Drew Evans, quien encabeza la Oficina de Aprehensión Criminal de Minnesota, dijo que los agentes federales inicialmente habían prohibido a los investigadores estatales la escena del tiroteo de los sábados. Sr. Evans dijo que su agencia dio el raro paso de obtener una orden de registro para acceder a una acera pública, pero aún así estaba bloqueada. Los funcionarios federales finalmente abandonaron la escena después de chocar con los manifestantes, pero las manifestaciones habían crecido lo suficiente para ese momento como para impedir que agentes estatales investigaran.Las autoridades federales autoinvestigativas dijeron que el Departamento de Seguridad Nacional, que incluye ICE y la Patrulla Fronteriza, dirigiría la investigación federal de tiroteo, con ayuda del FBI. Pero altos funcionarios del Departamento de Seguridad Nacional y Justicia dijeron que ya estaba claro que el Sr. Alto al alcalde Jacob Frey acusó a la administración Trump de haber aterrorizado a la administración de Trump de aterrorizar a su ciudad. Cuántos estadounidenses más necesitan para morir o resultar gravemente heridos por este funcionamiento para terminar?, preguntó. Al menos otras dos personas han sido tiroteadas allí por agentes federales este mes, entre ellas Renee Good, de 37 años, quien fue asesinada en enero. 7. A Read more alilistrongForce of goodstrong Accolades llegó para Mr. Bastante de los que lo conocían. Ruth Anway, otra enfermera que trabajaba con él, describió al Sr. Bonito como un colega apasionado y amable amigo con un agudo sentido del humor. Quería ser útil, ayudar a la humanidad, y tener una carrera que fuera una fuerza de bien en el mundo, dijo. 25, 2026, 1212 a.m. ET, Jan. 25, 2026, Por un Mitch Smitha, reportero del Medio OesteLawyers para el estado de Minnesota, así como las ciudades de Minneapolis y St. Paul, renovó sus llamados el sábado por la noche para que un juez federal bloquee temporalmente el aumento de la aplicación de la ley de inmigración. Una audiencia sobre ese caso está programada para el lunes.La necesidad de ayuda de emergencia es urgente e innegable, dijeron los abogados en una carta.a aJan. 24, 2026, 1151 p.m. - ET Jan. 24, 2026a Shawn HubleraMayor Karen Bass de Los Ángeles dijo que la ciudad había presentado un escrito de amicus en una demanda federal pidiendo el cese del despliegue de agentes federales por parte de las administraciones Trump en Minneapolis y St. Paul. Esta violencia tiene que detenerse y el Presidente debe remover estas fuerzas armadas y federales de Minneapolis y otras ciudades estadounidenses, dijo en un comunicado.a clase astronga Read Bondis Carta a la gobernadora general de Minnesota Pam Bondi envió una carta al gobernador. Tim Walz, de Minnesota, el sábado que lo culpó a él y a otros funcionarios demócratas por permitir la ansia en el estado. No estaba claro de inmediato si la carta había sido enviada antes o después del tiroteo fatal de Alex Pretti.a aJan. 24, 2026, 1140 p.m. - ET Jan. 24, 2026a Mitch Smitha, reporteros del Medio Oeste Testigos describieron el tiroteo fatal en archivos de la corte.astrong Agentes federales en Minneapolis en la escena del tiroteo fatal el sábado. CreditDavid Guttenfelder The New York TimesUn médico que vive cerca de la escena donde Alex Jeffrey Pretti fue asesinado a tiros por agentes federales en Minneapolis el sábado describió en una corte jurada que los agentes inicialmente dudaron y pidieron pruebas de una licencia médica cuando el médico trató de acercarse y prestar ayuda. Y una persona que dijo que estaba parada cerca del Sr. Pretti cuestionó el relato del Departamento de Seguridad Nacional de ese incidente en otra demanda judicial jurada.El tiroteo contra el Sr. Pretti, de 37 años, renovó las protestas y enfrentamientos con las fuerzas del orden en una ciudad donde las tensiones por una agresiva acción federal de inmigración son altas. Imágenes de video del encuentro parecían contradecir partes de los gobiernos federales narrando lo sucedido, y los últimos archivos judiciales plantearon más preguntas.El doctor, cuyo nombre fue redactado de la versión pública del archivo de la corte, se describió como un pediatra y dijo que habían presenciado partes del encuentro desde un apartamento cercano. Aunque su vista era de lejos, describieron haber visto a un hombre siendo empujado al suelo y luego disparado varias veces. Después de los disparos, describieron salir, diciéndole a un agente que eran un médico y pidiendo revisar a la persona que había recibido un disparo.El médico dijo que inicialmente fueron rechazados, pero finalmente se les permitió ir a la persona después de ser acariciada.Normalmente, no habría sido tan persistente, dijo el médico en su declaración, pero como médico, sentí una obligación profesional y moral de ayudar a este hombre, especialmente porque ninguno de los agentes lo estaba ayudando.El médico describió la búsqueda de un pulso, no encontrar ninguno, y luego comenzó C.P.R. Al parecer, el hombre recibió varios disparos, dijo el médico. Poco después de que comenzó C.P.R., el personal médico de emergencia llegó y se hizo cargo, dijo el médico.a astronga Lea una declaración de Testigo en el Shootingastrong PrettiEl médico describió en un tribunal jurado cómo los agentes dudaron inicialmente cuando el médico trató de acercarse y prestar ayuda a Alex Jeffrey Pretti en Minneapolis el sábado.Regresando a casa mientras las protestas se intensificaban.Estaba sollozando y temblando sin control, dijeron en el comunicado.Una vez que los gases lacrimógenos comenzaron a filtrarse en su apartamento desde la calle de abajo, dijeron que se subieron a un auto y condujeron a una casa de amigos.No estoy seguro de cuándo regresaré a mi apartamento, escribió el médico. No me siento a salvo en mi ciudad.Casi inmediatamente después de que los agentes dispararon al Sr. El sábado por la mañana, funcionarios federales afirmaron que había puesto en peligro a los agentes con un arma que llevaba, y algunos lo acusaron más tarde de terrorismo doméstico.Pero videos en las redes sociales que fueron verificados por The New York Timesa parecen contradecir partes del relato del Departamento de Seguridad Nacional del tiroteo, y el jefe de policía de Minneapolis, Brian OHara, dijo que el Sr. Se cree que Pretti tiene licencia para portar legalmente un arma.Otra persona que dijo que presenció el tiroteo también presentó un…</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<pre><code></code></pre>
+<div class="long_quote">
+<blockquote>
+<p>“Sí, eso es correcto, el Departamento de Justicia de EE.UU., que ha dejado clara su lealtad última y absoluta a Donald Trump incluso en violación de la ley, acaba de eliminar el memorándum de la fiscalía del Departamento de Justicia de 86 páginas, que contiene el FBI y su Unidad de Delitos contra la Trata de Personas Niños, señala sobre los 10 co-conspiradores contra los que la Oficina estaba desarrollando un caso en 2019 antes incluso de que Epstein fuera arrestado de nuevo, de sus liberaciones de Epstein Files. Ese sería el mismo memorándum del Departamento de Justicia que expone al director del FBI, Kash Patel, como un mentiroso que se perjuró bajo juramento. Ese también sería el mismo memo de DoJ de 86 páginas que efectivamente prueba que Trump, su fiscal general Pam Bondi, y su adjunto AG Todd Blanche junto con muchas otras personas en la administración Trump están participando en una conspiración criminal para proteger a los violadores de niños ricos y poderosos, incluyendo que parece, el propio Donald Trump.profition-memo-desaishes-after-press-inpress-inquiryar-AA1VTdVA archivar a classellipsisweb.archive.orgweb20260820 2041 DOJ Epstein prosecution memo desaparece después de la investigación de la prensaUn memorándum de la fiscalía del Departamento de Justicia de 86 páginas que incluyó detalles sobre posibles co-conspiradores de Jeffrey Epstein misteriosamente desaparecidos de los DOJsDespués de que la agencia fuera preguntada sobre el documento por el Miami Herald, reveló el sábado la reportera de investigación Julie Brown.Contrary a lo que el FBI y el Departamento de Justicia han dicho durante el último año, resulta que realmente hay una lista del FBI de otras personas sospechosas de posibles irregularidades en relación con Jeffrey Epstein, Brown, quien escribe para el Herald, escribió en su Substack Saturday.Uno de los documentos que describe la DLa investigación sobre los posibles co-conspiradores de Jeffrey Epstein el memo de la fiscalía de 86 páginas de los DOJs desapareció misteriosamente del sitio web de los gobiernos esta semana después de que le preguntamos al Departamento de Justicia al respecto.El Herald publicó un informe el sábado anterior sobre el memorándum de la fiscalía, que señaló que había sido retirado desde entonces del sitio web de los DOJs en el momento de la publicación. Una copia del memo, sin embargo, fue preservada por Brown antes de su eliminación y contiene detalles sobre los posibles co-conspiradores de Epstein, aunque con sus nombres redactados.Francamente, no voy a perder mi tiempo rumiando sobre si la administración Trump entiende o no que Internet es para siempre, o cómo funciona el efecto Streisand, especialmente dado el comportamiento absolutamente cómplice de los medios corporativos estadounidenses a lo largo de la cobertura de todo el EpEscándalo, hasta al menos su primer arresto. El hecho es que la administración de Trump está llena de bootlicking nazis, compinches cómplices, y tipos que publican comentarios nacionalistas blancos en la sección de comentarios bajo manijas anónimas. Estas personas inteligentes, pero francamente no tienen que estar en un entorno mediático donde cada nueva mentira de la administración Trump sea tratada como si pudiera ser verdad, e incluso cuando se exponen como mentiras, rara vez se levantan de nuevo en esos mismos puntos de venta. El hecho es que la administración Trump acaba de retirar el documento clave que prueba que todo el Departamento de Justicia, y el presidente de los Estados Unidos, están violando la ley para encubrir un anillo pedófilo multimillonario, por una razón - y no, no es posible que la razón sea inocente. Esta es otra historia que debería ser noticia de primera plana mañana, pero podría no ser porque el memo de 86 páginas que debería derribar a toda la administración Trump en este momento, no fue noticia de primera plana en primer lugar.Puedes sentir cómo quieres sentirte, pero eso me parece bastante sospechoso supongo que los chantajistas pedófilos, multimillonarios y los medios de comunicación que poseen, tienen que seguir juntos. Grita a classh-tard una mención de classu-url por llamar mi atención esta historia hoy temprano. a Epsteina a Trumpa FBIa Departamento de EpsteinFilesabraOfJusticea a Coverupabra Billionairesa a 10Coconspiratorsa a PamBondia a ToddBlanchea”</p>
+</blockquote>
+</div>
+<pre><code></code></pre>
+<div class="layout-chunk" data-layout="l-body">
+<div class="tabwid"><style>.cl-82ae4188{}.cl-82a8825c{font-family:'DejaVu Sans';font-size:10pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-82a8828e{font-family:'DejaVu Sans';font-size:10pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-82aafd2a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-82ab226e{width:1.289in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82ab2282{width:1.222in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82ab2283{width:1.289in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82ab228c{width:1.222in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82ab2296{width:1.289in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82ab22a0{width:1.222in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82ab22a1{width:1.289in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82ab22aa{width:1.222in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82ab22ab{width:1.289in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82ab22b4{width:1.222in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-82ae4188'><thead><tr style="overflow-wrap:break-word;"><th  colspan="2"class="cl-82ab226e"><p class="cl-82aafd2a"><span class="cl-82a8825c">Tabla 5. Adjetivos Relacionados con la confianza en el toot 115957194868532631</span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-82ab2283"><p class="cl-82aafd2a"><span class="cl-82a8825c">palabra</span></p></th><th class="cl-82ab228c"><p class="cl-82aafd2a"><span class="cl-82a8825c">sentimiento</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-82ab2296"><p class="cl-82aafd2a"><span class="cl-82a8828e">verified</span></p></td><td class="cl-82ab22a0"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab2283"><p class="cl-82aafd2a"><span class="cl-82a8828e">legal</span></p></td><td class="cl-82ab228c"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab22a1"><p class="cl-82aafd2a"><span class="cl-82a8828e">peaceful</span></p></td><td class="cl-82ab22aa"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab22ab"><p class="cl-82aafd2a"><span class="cl-82a8828e">official</span></p></td><td class="cl-82ab22b4"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab22a1"><p class="cl-82aafd2a"><span class="cl-82a8828e">passionate</span></p></td><td class="cl-82ab22aa"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab2283"><p class="cl-82aafd2a"><span class="cl-82a8828e">helpful</span></p></td><td class="cl-82ab228c"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab22a1"><p class="cl-82aafd2a"><span class="cl-82a8828e">proof</span></p></td><td class="cl-82ab22aa"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab22ab"><p class="cl-82aafd2a"><span class="cl-82a8828e">medical</span></p></td><td class="cl-82ab22b4"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab22a1"><p class="cl-82aafd2a"><span class="cl-82a8828e">professional</span></p></td><td class="cl-82ab22aa"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab22ab"><p class="cl-82aafd2a"><span class="cl-82a8828e">moral</span></p></td><td class="cl-82ab22b4"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab2296"><p class="cl-82aafd2a"><span class="cl-82a8828e">safe</span></p></td><td class="cl-82ab22a0"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82ab22ab"><p class="cl-82aafd2a"><span class="cl-82a8828e">administrative</span></p></td><td class="cl-82ab22b4"><p class="cl-82aafd2a"><span class="cl-82a8828e">trust</span></p></td></tr></tbody></table></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="tabwid"><style>.cl-82c2b62c{}.cl-82bd679e{font-family:'DejaVu Sans';font-size:10pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-82bd67a8{font-family:'DejaVu Sans';font-size:10pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-82bfaec8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-82bfcb42{width:0.935in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb4c{width:1.222in;background-color:rgba(207, 207, 207, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb56{width:0.935in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb60{width:1.222in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb6a{width:0.935in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb6b{width:1.222in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb6c{width:0.935in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb74{width:1.222in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb75{width:0.935in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb7e{width:1.222in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb7f{width:0.935in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb80{width:1.222in;background-color:rgba(239, 239, 239, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb88{width:0.935in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-82bfcb89{width:1.222in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-82c2b62c'><thead><tr style="overflow-wrap:break-word;"><th  colspan="2"class="cl-82bfcb42"><p class="cl-82bfaec8"><span class="cl-82bd679e">Tabla 6. Adjetivos Relacionados con la confianza en el toot 116036946032124872</span></p></th></tr><tr style="overflow-wrap:break-word;"><th class="cl-82bfcb56"><p class="cl-82bfaec8"><span class="cl-82bd679e">palabra</span></p></th><th class="cl-82bfcb60"><p class="cl-82bfaec8"><span class="cl-82bd679e">sentimiento</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-82bfcb6a"><p class="cl-82bfaec8"><span class="cl-82bd67a8">engaging</span></p></td><td class="cl-82bfcb6b"><p class="cl-82bfaec8"><span class="cl-82bd67a8">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82bfcb56"><p class="cl-82bfaec8"><span class="cl-82bd67a8">powerful</span></p></td><td class="cl-82bfcb60"><p class="cl-82bfaec8"><span class="cl-82bd67a8">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82bfcb6c"><p class="cl-82bfaec8"><span class="cl-82bd67a8">true</span></p></td><td class="cl-82bfcb74"><p class="cl-82bfaec8"><span class="cl-82bd67a8">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82bfcb75"><p class="cl-82bfaec8"><span class="cl-82bd67a8">united</span></p></td><td class="cl-82bfcb7e"><p class="cl-82bfaec8"><span class="cl-82bd67a8">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82bfcb7f"><p class="cl-82bfaec8"><span class="cl-82bd67a8">innocent</span></p></td><td class="cl-82bfcb80"><p class="cl-82bfaec8"><span class="cl-82bd67a8">trust</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-82bfcb88"><p class="cl-82bfaec8"><span class="cl-82bd67a8">pretty</span></p></td><td class="cl-82bfcb89"><p class="cl-82bfaec8"><span class="cl-82bd67a8">trust</span></p></td></tr></tbody></table></div>
+</div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

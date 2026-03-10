@@ -49,11 +49,22 @@ CSS sections
 # Infobox
 
 ```
+
+
+
+```
+
+```
 ::: {.infobox data-latex=""}
 >
 :::
 
 
+```
+
+
+
+```
 
  # Figure Legend
 ::: {.fig_legend data-latex=""}
@@ -64,6 +75,7 @@ CSS sections
 # Empty line
 
 ```
+
 
 
 ```
