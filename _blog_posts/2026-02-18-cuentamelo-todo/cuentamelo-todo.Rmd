@@ -1,7 +1,8 @@
 ---
 title: "¡Cuéntamelo todo.... pero con mates!"
 description: |
-  Si una imagen vale más que mil palabras... ¿cuánto vale una imagen hecha de palabras?... La minería de texto nos permite realizar estudios sociales partiendo de grandes volúmenes de textos. Partiendo  de miles de publicaciones en redes sociales, podemos identificar los temas de discusión asociados a un tema concreto, los sentimeintos asociados a ellos y su evolución en el tiempo.
+  Si una imagen vale más que mil palabras... ¿cuánto vale una imagen hecha de palabras?... La minería de texto nos permite realizar estudios sociales partiendo de grandes volúmenes de textos. Analizando miles de publicaciones en redes sociales, podemos identificar los temas de discusión asociados a un tema concreto, los sentimeintos asociados a ellos y su evolución en el tiempo. 
+  Acomódate en el sofá y ve a por una taza de café, que esto es largo de contar... ¡Disfruta!
 author:
   - name: Erick García-García, Ph.D.
 date:  "March 12, 2026"
@@ -70,7 +71,7 @@ library(ggraph)
 }
 ```
 
-# ¡Cuéntamelo todo.... pero con mates!
+# 💬 ¡Cuéntamelo todo.... pero con mates!
 
 ¿Te imaginas poder leer miles, o cientos de miles, de artículos o publicaciones en segundos?, ¿ser capaz de identificar temas, clasificar los documentos con base en su contenido, crear redes que nos ayuden a entender las relaciones entre los documentos e incluso explorar las emociones asociadas a cada publicación o tema de discusión? Suena atrevido, ¿verdad?
 
@@ -134,7 +135,12 @@ Como Mastodon es una red descentralizada, antes de descargar nada debemos elegir
 #| warning: false
 #| include: false
 
-trump <- read_rds("trump2k.rds") %>% mutate(id = as.character(id)) %>% 
+#download.file(
+#  url = "https://mega.nz/file/RlFjTRoK#Uyc0bizwrMMvIt_eNlmRJgudeRRk8TxV2TzEJVAQwbM",
+#  destfile = "trump20k.rds"
+#  )
+              
+trump <- read_rds("trump20k.rds") %>% mutate(id = as.character(id)) %>% 
   filter(language == "en" | language == "en-GB")
 ```
 
@@ -302,7 +308,7 @@ Para cada publicación, eliminamos los *tokens* correspondientes a las etiquetas
 
 A través de múltiples iteraciones identificamos "palabras" comunes que en realidad no guardan significado y las eliminamos de las lista de *tokens* de cada publicación (consultar el *script* de programación para ver la lista completa en el repositorio de [La Casa de Datos](https://github.com/lacasadedatos/R_scripts "Ver código del análisis") en Github).
 
-Tras esta limpieza exahustiva, y tras eliminar los tokens repetidos en cada publicación, el número total de *tokens* fue de `r totalNum_tokens`, con un total de `r trump_tokensClean$word %>% unique() %>% length()` palabras únicas. El número máximo de *tokens* por *toot* fue de 598 y el mínimo de 1. La media de tokens por toot fue de 17.7, con una desviación estándar de 24.21.
+Tras esta limpieza exhaustiva, y tras eliminar los tokens repetidos en cada publicación, el número total de *tokens* fue de `r totalNum_tokens`, con un total de `r trump_tokensClean$word %>% unique() %>% length()` palabras únicas. El número máximo de *tokens* por *toot* fue de 598 y el mínimo de 1. La media de tokens por toot fue de 17.7, con una desviación estándar de 24.21.
 
 # 🖼️ Una imagen vale más que mil palabras...
 
@@ -345,7 +351,7 @@ wordcloud(words = trump_tokenCounts$word,
 
 En la Figura 1 vemos que algunas de las palabras que aparecen con mayor frecuencia son "epstien" e "ice", seguidas de "amp" y "card". El resto de palabras podrían asociarse simplemente a la administración del gobierno estadounidense y a temas de carácter general.
 
-A fecha de la publicación de este post, el nombre de Epstein ha aparecido incontables veces en los medios de comunicación tradicionales y en las redes sociales, como un criminal con lazos con altos cargos del gobierno de Estados Unidos y otros países que manejaba una red chantaje basada en la prostitución y abuso de niños y adolescentes. Búsquedas simples en Internet usando los tériminos *trump + ice*, *trump + amp* y *trump + card*, nos revelan que "ice" se refiere a la agencia americana de aduanas e inmigración ([Immigration and Customs Enforcement](https://www.ice.gov/), ICE). "AMP" podría referirse a la asociación de Musulmanes Americanos por Palestina ([American Muslims for Palestine](https://www.ampalestine.org/media/media-room/statements/amp-calls-trump-administration-immediately-restrain-israel-and-hold-it), AMP). Card podría hacer referencia a la llamada "[Trump Gold Card](https://trumpcard.gov/)", que es una forma acelerada de obtener la residencia americana de forma acelerada tras una contribución de 1 millón de dólares.
+A fecha de la publicación de este post, el nombre de Epstein ha aparecido incontables veces en los medios de comunicación tradicionales y en las redes sociales, como un criminal con lazos con altos cargos del gobierno de Estados Unidos y otros países que manejaba una red chantaje basada en la prostitución y abuso de niños y adolescentes. Búsquedas simples en Internet usando los términos *trump + ice*, *trump + amp* y *trump + card*, nos revelan que "ice" se refiere a la agencia americana de aduanas e inmigración ([Immigration and Customs Enforcement](https://www.ice.gov/), ICE). "AMP" podría referirse a la asociación de Musulmanes Americanos por Palestina ([American Muslims for Palestine](https://www.ampalestine.org/media/media-room/statements/amp-calls-trump-administration-immediately-restrain-israel-and-hold-it), AMP). Card podría hacer referencia a la llamada "[Trump Gold Card](https://trumpcard.gov/)", que es una forma acelerada de obtener la residencia americana de forma acelerada tras una contribución de 1 millón de dólares.
 
 Las nubes de palabras no muestran su contexto y por si solas no son muy eficientes para ayudarnos a identificar temas de discusión. Esto se ve reflejado en la mayoría de las palabras de la Figura 1 podrían asociarse simplemente a temas administrativos del gobierno federal estadounidense.
 
@@ -491,14 +497,14 @@ gen_wordGraph2(trump_tokensClean2, 110, 0.2)+
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 3**. Identifiación de temas de discusión generales (general topics) por análisis correlación de palabras (tokens) por redes tras la eliminación de palabras irrelevantes. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.
+**Figura 3**. Identificación de temas de discusión generales (general topics) por análisis correlación de palabras (tokens) por redes tras la eliminación de palabras irrelevantes. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.
 :::
 
 Tras eliminar las palabras irrelevantes a aumentar ligeramente el número mínimo de repeticiones tenemos grupos de palabras que comienzan a estructurar claramente temas de discusión.
 
 Tomando como referencia el número de publicaciones en el que aparecen las palabras, destacan las redes relacionadas con Epstein y con la agencia americana de aduanas e inmigración ICE que ya mencionamos arriba. En este último conjunto de palabras aparecen las palabras "alex", "pretti", "shooting" y "killing", que se relacionan con el [asesinato de Alex Pretti](https://abcnews.com/US/alex-pretti-icu-nurse-killed-federal-agent-minneapolis/story?id=129525591) por parte de agentes de ICE en Minnesota, ocurrido el 24 de enero de 2026.
 
-A nivel del grado de correlación, destaca el grupo de palabras que contiene "kai", "granddaugther", "worthy", "lpga" y "event". La palabra "lpga" corresponde a la asociación femenina de golf prfesional ([Ladies Professional Golf Association](https://www.lpga.com/), LPGA) dentro de la que participa la nieta de Donald Trump llamada [Kai](https://en.wikipedia.org/wiki/Kai_Trump).
+A nivel del grado de correlación, destaca el grupo de palabras que contiene "kai", "granddaugther", "worthy", "lpga" y "event". La palabra "lpga" corresponde a la asociación femenina de golf profesional ([Ladies Professional Golf Association](https://www.lpga.com/), LPGA) dentro de la que participa la nieta de Donald Trump llamada [Kai](https://en.wikipedia.org/wiki/Kai_Trump).
 
 Otros temas de discusión evidentes se relacionan con Rusia, China y Ucrania; con la junta de paz de Gaza (Gaza Peace Board) y con asuntos militares y nucleares relacionados con Irán. Además, Algunos pares de palabras aislados, como "tarifs" y "trade", o "white" y "house", identifican otros posibles temas de discusión.
 
@@ -576,7 +582,7 @@ En la Figura 5 podemos identificar claramente algunos subtemas. Junto al nombre 
 
 # 💖 Análisis de sentimientos
 
-Para poder explorar las em yoociones asociadas a los temas de discusión utilizamos los llamados "diccionarios de sentimientos". Estos son tablas de palabras a las que se les ha asociado un aspecto emocional. En un diccionario de sentimientos básico, cada palabra del diccionario está etiquetada como "positiva" o "negativa"; por ejemplo, bueno - positivo, malo - negativo. En diccionarios más complejos, además de la etiqueta "positiva" o "negativa" cada palabra tiene asociada una emoción, como confianza, dicha, asco o ira.
+Para poder explorar las emociones asociadas a los temas de discusión utilizamos los llamados "diccionarios de sentimientos". Estos son tablas de palabras a las que se les ha asociado un aspecto emocional. En un diccionario de sentimientos básico, cada palabra del diccionario está etiquetada como "positiva" o "negativa"; por ejemplo, bueno - positivo, malo - negativo. En diccionarios más complejos, además de la etiqueta "positiva" o "negativa" cada palabra tiene asociada una emoción, como confianza, dicha, asco o ira.
 
 ```{r}
 #| message: false
@@ -724,7 +730,7 @@ ggplot(fullSents_AdjCounts) +
 
 La figura 8 muestra que, partiendo de los adjetivos, las emociones más comunes en los toots fueron la confianza (trust) y el miedo (fear).
 
-# Identificación de temas relacionados con la confianza 🫱🏽‍🫲🏿 y el miedo 🧟
+# 🫱🏽‍🫲🏿 🧟 Identificación de temas relacionados con la confianza y el miedo
 
 Nuestro primer paso fue identificar aquellos toots en los que aparecieran los 20 adjetivos más comunes asociados a la confianza y el miedo; la lista de estos adjetivos se muestra en la Tabla 3.
 
@@ -885,7 +891,7 @@ ggplot(sent_byDate) +
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 11**. Análisis de la carga emocional de los toots publicados cada día entre el 25 de enero y el 19 de febrero de 2026 (Date). Cada uno de los adjetivos contenidos en el conjunto total de toots fué etiquetado como "positivo" o "negativos" de acuerdo al diccionario de sentimientos Bing. A los calificativos positivos se les asignó el valor de +1 y a los negativos -1 y posteriormente se calculó la media (Mean emotional load). El color de las barras corresponde avalor de la carga emocional; los valores negativos tienden al rojo y los positivos al azul.
+**Figura 11**. Análisis de la carga emocional de los toots publicados cada día entre el 25 de enero y el 19 de febrero de 2026 (Date). Cada uno de los adjetivos contenidos en el conjunto total de toots fué etiquetado como "positivo" o "negativos" de acuerdo al diccionario de sentimientos Bing. A los calificativos positivos se les asignó el valor de +1 y a los negativos -1 y posteriormente se calculó la media (Mean emotional load). El color de las barras corresponde al valor de la carga emocional; los valores negativos tienden al rojo y los positivos al azul.
 :::
 
 La Figura 11 muestra que, excepto por el 19 de febrero, la carga emocional contenida en los toots de cada día de análisis es negativa. Destacan el 25 de enero y el 6 de febrero como las fechas con la carga emocional más negativa y el 19 de febrero como el único día con una carga emocional positiva.
@@ -900,7 +906,7 @@ La Figura 11 muestra que, excepto por el 19 de febrero, la carga emocional conte
 ```         
 ```
 
-# Enero 25 {style="font-size: 18px"}
+## Enero 25 {style="font-size: 18px"}
 
 El número de toots recuperados del 25 de enero fue de 251, con 5269 tokens. La Figura 12 muestra los temas de discusión del 25 de enero a través del análisis de redes. Al igual que con los gráficos de redes anteriores, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 10 repeticiones y el nivel de correlación a 0.35.
 
@@ -1096,7 +1102,7 @@ La Figura 16 muestra una nube de palabras dominada por el calificativo "worthy" 
 ```
 
 ::: {.infobox data-latex=""}
-> ❤️ 😡 El análisis de redes nos ha permitido identificar los temas de discusión asociados a temas de discusión que generaron una fuerte respuesta emocional en fechas concretas; las nubes de palabras, por su parte, nos permitieron identificar las emociones asociadas a estas respuestas. 🚀
+> ❤️ 🤬 El análisis de redes nos ha permitido identificar los temas de discusión asociados a temas de discusión que generaron una fuerte respuesta emocional en fechas concretas; las nubes de palabras, por su parte, nos permitieron identificar las emociones asociadas a estas respuestas. 🚀
 :::
 
 ```         
@@ -1104,7 +1110,7 @@ La Figura 16 muestra una nube de palabras dominada por el calificativo "worthy" 
 
 # 🏷️ Clasificación de toots
 
-En las secciones anteriores, hemos podico identificar temas de discusión asociados a emociones concretas como la confianza y el miedo y hemos podido identificar respuestas emocionales a eventos concretos a lo largo del tiempo. Ahora nos preguntamos si podemos clasificar los toots relacionados con Donald Trump, con base en su contenido emocional.
+En las secciones anteriores, hemos podido identificar temas de discusión asociados a emociones concretas como la confianza y el miedo y hemos podido identificar respuestas emocionales a eventos concretos a lo largo del tiempo. Ahora nos preguntamos si podemos clasificar los toots relacionados con Donald Trump, con base en su contenido emocional.
 
 Para abordar esta pregunto hacemos otra vez uso del diccionario de sentimientos NRC, asignando a cada adjetivo al menos una de las emociones básicas de [Plutchik](https://en.wikipedia.org/wiki/Robert_Plutchik#Plutchik's_wheel_of_emotions) (Figura 8). Para cada toot, contamos el número de adjetivos correspondiente a cada emoción, así como en número total de tokens en cada toot; la Tabla 4 muestra algunos de los toots con más de 50 tokens.
 
@@ -1151,7 +1157,7 @@ sents_perID %>%
 
 Antes de poder abordar la clasificación debemos crear una métrica *ad hoc* (*índice de* *carga emocional,* IdCE)que nos permita valorar el contenido emocional de cada toot en función de su extensión. Por ejemplo, un toot de 10 palabras en las que 2 pertenecen a la emoción "ira" debe tener un peso mayor que un toot de 120 palabras en las que 2 pertenecen a la misma emoción. Para ello, multiplicamos en número de tokens asociados a cada emoción por su proporción con respecto al total. De esta forma, un toot de 10 palabras, de las cuales 2 están asociadas a la ira, tendría un IdCE de ira = 2 x (2/10) = 0.4, un toot de 100 palabras con 20 asociadas a la ira tendría un IdCE de ira = 20 x (20/100) = 4 y un un toot de 200 palabras con 20 asociadas a esta emoción tendría un IdCE de ira = 20 x (20/200) = 2.
 
-Tras haber calculado los IdCe de cada emoción para cada uno de los toots creamos un gráfico tipo mapa de calor ([heatmap](https://www.geeksforgeeks.org/data-visualization/what-is-heatmap-data-visualization-and-how-to-use-it/) tipo parrila), aplicando un análisis de agrupación de los toots por K-medias con un valor de k = 3 (tres grupos esperados; ver nuestro post "[Decisiones difíciles](https://lacasadedatos.github.io/blog/blog_posts/2026-01-05-decisiones-difciles/)"), así como una [agrupación jerárquica](https://www.geeksforgeeks.org/machine-learning/hierarchical-clustering/) de las emociones (Figura 17).
+Tras haber calculado los IdCe de cada emoción para cada uno de los toots creamos un gráfico tipo mapa de calor ([heatmap](https://www.geeksforgeeks.org/data-visualization/what-is-heatmap-data-visualization-and-how-to-use-it/) tipo parrilla), aplicando un análisis de agrupación de los toots por K-medias con un valor de k = 3 (tres grupos esperados; ver nuestro post "[Decisiones difíciles](https://lacasadedatos.github.io/blog/blog_posts/2026-01-05-decisiones-difciles/)"), así como una [agrupación jerárquica](https://www.geeksforgeeks.org/machine-learning/hierarchical-clustering/) de las emociones (Figura 17).
 
 ```{r}
 #| echo: FALSE
@@ -1202,16 +1208,16 @@ toots_Neutral <- clustered_tokens %>% filter(cluster == 1)
 
 ```{r}
 #| echo: FALSE
-set.seed(1976)
-gen_wordGraph2(toots_Positive, 50, 0.3)+
+set.seed(48)
+gen_wordGraph2(toots_Positive, 50, 0.23)+
   ggtitle("A) Trust toots - Cluster 2")
 ```
 
 ```{r}
 #| echo: FALSE
 set.seed(1976)
-gen_wordGraph2(toots_Negative, 15, 0.2)+
-  ggtitle("C) Negative toots - Cluster 3")
+gen_wordGraph2(toots_Negative, 13, 0.25)+
+  ggtitle("B) Negative toots - Cluster 3")
 ```
 
 ```{r}
@@ -1222,8 +1228,32 @@ gen_wordGraph2(toots_Neutral, 80, 0.2)+
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 18**. Análisis correlación de palabras (tokens) por redes utilizando los toots correspondientes a los *k-grupos* (clusters)identificados a través del índice de carga emocional (IdCE) usando el algoritmo de aprendizaje automático K-medias. A) toots del *k-grupo* 3 caracterizado por IdCE de confianza alto, B) toots del *k-grupo* 2 caracterizado por IdCEs altos para todas las emociones "negativas" (miedo, ira, asco y tristeza), C) toots del *k-grupo* 1 que carece de una carga emocional concreta. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.
+**Figura 18**. Análisis correlación de palabras (tokens) por redes utilizando los toots correspondientes a los *k-grupos* (clusters) identificados a través del índice de carga emocional (IdCE) usando el algoritmo de aprendizaje automático K-medias. A) toots del *k-grupo* 3, caracterizado por IdCE de confianza (trust) alto; B) toots del *k-grupo* 2 (negative toots), caracterizado por IdCEs altos para todas las emociones "negativas" (miedo, ira, asco y tristeza); C) toots del *k-grupo* 1 (neutral toots), que carece de una carga emocional concreta. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.
 :::
+
+La Figura 18A nos muestra que el tema de discusión principal relacionado con la confianza es la participación de la nieta de Donald Trump en la liga profesional de golf femenino, aunque también aparecen las palabras ICE y Epstein. Dentro del *k-grupo* 3, relacionado principalmente con emociones negativas (Figura 18B), aparecen los temas relacionados con Epstein, Bad Bunny, la agencia ICE y Alex Pretti. Dentro de los temas de discusión del *k-grupo* 1 (toots "neutrales", Figura 18C) aparecen Epstien, Irán, el vídeo racista de los Obama, la agencia ICE y el asesinato de Alex Pretti.
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 🤔 Llama la atención que dentro del *k-grupo* 2, caracterizado por la confianza como emoción principal, aparezcan las palabras Epstein e ICE, al igual que en el *k-grupo* 3 de emociones negativas... ¿Esto significa que existe una fuerte polarización de las opiniones, emociones o posturas?
+:::
+
+```         
+```
+
+# 🧶 Desmadejando la madeja
+
+A pesar de su increíble capacidad para dar un panorama general de los temas principales en un conjunto masivo de textos, las técnicas de minería de textos tienen algunas debilidades importantes; específicamente en la parte de la interpretación de resultados.
+
+Al sobre-simplificar un texto descomponiéndolo en pequeñas unidades (tokens a nivel de palabra en este estudio), se pierde una parte importante del contexto: las polarizaciones (e.g., estoy feliz vs. no estoy feliz), la ironía, el sarcasmo, los coloquialismos y regionalismos. Las técnicas de minería de textos con frecuencia no capturan matices emocionales profundos ni intenciones subyacentes, ya que carecen del contexto amplio. Además, el contenido y calidad de los diccionarios de sentimientos también puede introducir sesgos importantes en la interpretación de los resultados.
+
+Al final de la sección anterior, vimos que los temas de discusión relacionados con las palabras ICE y Epstein aparecían tanto en el grupo de toots con una aparente carga emocional negativa, como en el grupo de toots con una aparente carga emocional positiva (caracterizada principalmente por la confianza). ¿Ésto significa que hay dos grupos de toots con cargas opuestas relacionadas a los mismos eventos?
+
+Para contestar esta pregunta, elegimos al azar 20 toots del *k-grupo* 2 (confianza) y analizamos el íntegramente el texto original de algunos de ellos. Como veremos a continuación, pasar por alto un examen de los textos originales podría conducirnos fácilmente a conclusiones erróneas.
+
+Tras la lectura de los textos originales, seleccionamos dos de los toots de mayor extensión (números de identificación "115957194868532631" y ""116036946032124872"); uno de ellos relacionado con el asesinato de Alex Pretti y el otro con Jeffrey Epstein. Las Tablas 5 y 6 muestran los adjetivos encontrados en estos toots asociados a la confianza.
 
 ```{r}
 #| echo: FALSE
@@ -1242,53 +1272,79 @@ trump_clean %>% filter(id == "116036946032124872") %>% pull(content) %>% str_rem
 
 ```
 
-```         
-```
-
-::: {.long_quote data-latex=""}
-> 🔍 "El hombre fuerte asesinado por agentes federales en Minneapolis estaba sosteniendo un teléfono, no una pistola The New York Timesstronga aDavid Guttenfelder The New York TimesUnrestinar en MinneapolisCompartir un tiroteo actualizado de Alex Jeffrey Prettialilia Quién fue bonito?alalil Timelinealilia Video Analysisalilia Trumps Responsealilia Shooting of ReneeGoodaliulstrongMan asesinado por agentes federales en Minneapolis estaba sosteniendo un teléfono, ni un GunstrongstrongVideos analizados por The New York Times parecen contradecir los relatos federales del tiroteo. El hombre, un enfermero de I.C.U., era un ciudadano estadounidense sin antecedentes penales, dijo el jefe de la policía de la ciudad. 24, 2026, Actualizado en enero. 25, 2026, 1211 p.m. ETa aa VIDEO ANALYSISa a.Funcionarios oficiales trataron de retratar a un residente de Minneapolis de 37 años asesinado por agentes de la Patrulla Fronteriza el sábado como un terrorista doméstico, diciendo que quería masacrar a las fuerzas del orden, incluso cuando surgieron videos que parecían contradecir directamente su relato.El hombre, Alex Jeffrey Pretti, era una enfermera de cuidados intensivos descrita por el jefe de policía de Minneapolis como un ciudadano estadounidense sin antecedentes penales. Funcionarios federales dijeron que estaba armado, pero no hay señal en videos analizados por The New York Times que tiró de su arma, o que los agentes incluso sabían que tenía una hasta que ya estaba atrapado en la acera. La pistola blinda cuando otros dos agentes abrieron fuego, disparándole por la espalda y mientras yacía en el suelo. Al menos 10 disparos fueron disparados, matándolo. Sr. Pretti tenía un permiso legal para portar un arma de fuego, dijo el jefe de policía, Brian OHara.El tiroteo en una mañana frígida en el barrio de Minneapolis Whittier renovó protestas y enfrentamientos con las fuerzas del orden en una ciudad donde las tensiones han llegado a un punto de ruptura después de semanas de una agresiva acción federal de inmigración. Agentes federales desplegaron gases lacrimógenos y golpes de flash para alejar a los manifestantes de la escena del tiroteo mientras exigían que agentes de la policía local arrestaran a los agentes que mataron al Sr. Los funcionarios dijeron que las protestas en Minneapolis habían permanecido en su mayoría pacíficas, con algunas excepciones. Pero al caer el atardecer, los funcionarios desplegaron la Guardia Nacional para asegurarse de que las manifestaciones no se tornaran violentas. Al menos 1.000 personas acudieron a una vigilia para Mr. Pretti en Whittier Park el sábado por la noche, a pesar de las temperaturas bajo cero.Un colega de Mr. Pretti, Dimitri Drekonja, dijo que había trabajado como enfermera en el hospital de Asuntos de Veteranos en Minneapolis. Era un gran colega y un gran amigo, Sr. Drekonja dijo. La mirada predeterminada en su cara era una sonrisa.strongHeres lo que estaban cubriendotrongullistrongVideo analysisstrong Video video publicado en las redes sociales y verificado por The Times muestra Mr. Pretti entre una mujer y un agente que la roció. Otros agentes luego rocian con pimienta Mr. Pretti, que sostiene un teléfono en una mano y nada en la otra. Su arma permanece oculta hasta que los agentes federales la encuentran y se la quitan. La carga fija o abierta es legal para los titulares de permisos en Minnesota. Pretti pretendía atacar a agentes federales. Gregory Bovino, el funcionario a cargo de las operaciones de los presidentes de la Patrulla Fronteriza, dijo que el Sr. Pretti estaba decidido a una masacre. Kristi Noem, secretario de Seguridad Nacional, dijo, Esto parece una situación en la que un individuo llegó al lugar para infligir el máximo daño. Sus relatos contradicen directamente las pruebas de video del encuentro.Un Leer más alilistrongInvestigadores bloquearon a Drew Evans, quien encabeza la Oficina de Aprehensión Criminal de Minnesota, dijo que los agentes federales inicialmente habían prohibido a los investigadores estatales la escena del tiroteo de los sábados. Sr. Evans dijo que su agencia dio el raro paso de obtener una orden de registro para acceder a una acera pública, pero aún así estaba bloqueada. Los funcionarios federales finalmente abandonaron la escena después de chocar con los manifestantes, pero las manifestaciones habían crecido lo suficiente para ese momento como para impedir que agentes estatales investigaran.Las autoridades federales autoinvestigativas dijeron que el Departamento de Seguridad Nacional, que incluye ICE y la Patrulla Fronteriza, dirigiría la investigación federal de tiroteo, con ayuda del FBI. Pero altos funcionarios del Departamento de Seguridad Nacional y Justicia dijeron que ya estaba claro que el Sr. Alto al alcalde Jacob Frey acusó a la administración Trump de haber aterrorizado a la administración de Trump de aterrorizar a su ciudad. Cuántos estadounidenses más necesitan para morir o resultar gravemente heridos por este funcionamiento para terminar?, preguntó. Al menos otras dos personas han sido tiroteadas allí por agentes federales este mes, entre ellas Renee Good, de 37 años, quien fue asesinada en enero. 7. A Read more alilistrongForce of goodstrong Accolades llegó para Mr. Bastante de los que lo conocían. Ruth Anway, otra enfermera que trabajaba con él, describió al Sr. Bonito como un colega apasionado y amable amigo con un agudo sentido del humor. Quería ser útil, ayudar a la humanidad, y tener una carrera que fuera una fuerza de bien en el mundo, dijo. 25, 2026, 1212 a.m. ET, Jan. 25, 2026, Por un Mitch Smitha, reportero del Medio OesteLawyers para el estado de Minnesota, así como las ciudades de Minneapolis y St. Paul, renovó sus llamados el sábado por la noche para que un juez federal bloquee temporalmente el aumento de la aplicación de la ley de inmigración. Una audiencia sobre ese caso está programada para el lunes.La necesidad de ayuda de emergencia es urgente e innegable, dijeron los abogados en una carta.a aJan. 24, 2026, 1151 p.m. - ET Jan. 24, 2026a Shawn HubleraMayor Karen Bass de Los Ángeles dijo que la ciudad había presentado un escrito de amicus en una demanda federal pidiendo el cese del despliegue de agentes federales por parte de las administraciones Trump en Minneapolis y St. Paul. Esta violencia tiene que detenerse y el Presidente debe remover estas fuerzas armadas y federales de Minneapolis y otras ciudades estadounidenses, dijo en un comunicado.a clase astronga Read Bondis Carta a la gobernadora general de Minnesota Pam Bondi envió una carta al gobernador. Tim Walz, de Minnesota, el sábado que lo culpó a él y a otros funcionarios demócratas por permitir la ansia en el estado. No estaba claro de inmediato si la carta había sido enviada antes o después del tiroteo fatal de Alex Pretti.a aJan. 24, 2026, 1140 p.m. - ET Jan. 24, 2026a Mitch Smitha, reporteros del Medio Oeste Testigos describieron el tiroteo fatal en archivos de la corte.astrong Agentes federales en Minneapolis en la escena del tiroteo fatal el sábado. CreditDavid Guttenfelder The New York TimesUn médico que vive cerca de la escena donde Alex Jeffrey Pretti fue asesinado a tiros por agentes federales en Minneapolis el sábado describió en una corte jurada que los agentes inicialmente dudaron y pidieron pruebas de una licencia médica cuando el médico trató de acercarse y prestar ayuda. Y una persona que dijo que estaba parada cerca del Sr. Pretti cuestionó el relato del Departamento de Seguridad Nacional de ese incidente en otra demanda judicial jurada.El tiroteo contra el Sr. Pretti, de 37 años, renovó las protestas y enfrentamientos con las fuerzas del orden en una ciudad donde las tensiones por una agresiva acción federal de inmigración son altas. Imágenes de video del encuentro parecían contradecir partes de los gobiernos federales narrando lo sucedido, y los últimos archivos judiciales plantearon más preguntas.El doctor, cuyo nombre fue redactado de la versión pública del archivo de la corte, se describió como un pediatra y dijo que habían presenciado partes del encuentro desde un apartamento cercano. Aunque su vista era de lejos, describieron haber visto a un hombre siendo empujado al suelo y luego disparado varias veces. Después de los disparos, describieron salir, diciéndole a un agente que eran un médico y pidiendo revisar a la persona que había recibido un disparo.El médico dijo que inicialmente fueron rechazados, pero finalmente se les permitió ir a la persona después de ser acariciada.Normalmente, no habría sido tan persistente, dijo el médico en su declaración, pero como médico, sentí una obligación profesional y moral de ayudar a este hombre, especialmente porque ninguno de los agentes lo estaba ayudando.El médico describió la búsqueda de un pulso, no encontrar ninguno, y luego comenzó C.P.R. Al parecer, el hombre recibió varios disparos, dijo el médico. Poco después de que comenzó C.P.R., el personal médico de emergencia llegó y se hizo cargo, dijo el médico.a astronga Lea una declaración de Testigo en el Shootingastrong PrettiEl médico describió en un tribunal jurado cómo los agentes dudaron inicialmente cuando el médico trató de acercarse y prestar ayuda a Alex Jeffrey Pretti en Minneapolis el sábado.Regresando a casa mientras las protestas se intensificaban.Estaba sollozando y temblando sin control, dijeron en el comunicado.Una vez que los gases lacrimógenos comenzaron a filtrarse en su apartamento desde la calle de abajo, dijeron que se subieron a un auto y condujeron a una casa de amigos.No estoy seguro de cuándo regresaré a mi apartamento, escribió el médico. No me siento a salvo en mi ciudad.Casi inmediatamente después de que los agentes dispararon al Sr. El sábado por la mañana, funcionarios federales afirmaron que había puesto en peligro a los agentes con un arma que llevaba, y algunos lo acusaron más tarde de terrorismo doméstico.Pero videos en las redes sociales que fueron verificados por The New York Timesa parecen contradecir partes del relato del Departamento de Seguridad Nacional del tiroteo, y el jefe de policía de Minneapolis, Brian OHara, dijo que el Sr. Se cree que Pretti tiene licencia para portar legalmente un arma.Otra persona que dijo que presenció el tiroteo también presentó un...
-:::
-
-```         
-```
-
-```         
-```
-
-::: {.long_quote data-latex=""}
-> "Sí, eso es correcto, el Departamento de Justicia de EE.UU., que ha dejado clara su lealtad última y absoluta a Donald Trump incluso en violación de la ley, acaba de eliminar el memorándum de la fiscalía del Departamento de Justicia de 86 páginas, que contiene el FBI y su Unidad de Delitos contra la Trata de Personas Niños, señala sobre los 10 co-conspiradores contra los que la Oficina estaba desarrollando un caso en 2019 antes incluso de que Epstein fuera arrestado de nuevo, de sus liberaciones de Epstein Files. Ese sería el mismo memorándum del Departamento de Justicia que expone al director del FBI, Kash Patel, como un mentiroso que se perjuró bajo juramento. Ese también sería el mismo memo de DoJ de 86 páginas que efectivamente prueba que Trump, su fiscal general Pam Bondi, y su adjunto AG Todd Blanche junto con muchas otras personas en la administración Trump están participando en una conspiración criminal para proteger a los violadores de niños ricos y poderosos, incluyendo que parece, el propio Donald Trump.profition-memo-desaishes-after-press-inpress-inquiryar-AA1VTdVA archivar a classellipsisweb.archive.orgweb20260820 2041 DOJ Epstein prosecution memo desaparece después de la investigación de la prensaUn memorándum de la fiscalía del Departamento de Justicia de 86 páginas que incluyó detalles sobre posibles co-conspiradores de Jeffrey Epstein misteriosamente desaparecidos de los DOJsDespués de que la agencia fuera preguntada sobre el documento por el Miami Herald, reveló el sábado la reportera de investigación Julie Brown.Contrary a lo que el FBI y el Departamento de Justicia han dicho durante el último año, resulta que realmente hay una lista del FBI de otras personas sospechosas de posibles irregularidades en relación con Jeffrey Epstein, Brown, quien escribe para el Herald, escribió en su Substack Saturday.Uno de los documentos que describe la DLa investigación sobre los posibles co-conspiradores de Jeffrey Epstein el memo de la fiscalía de 86 páginas de los DOJs desapareció misteriosamente del sitio web de los gobiernos esta semana después de que le preguntamos al Departamento de Justicia al respecto.El Herald publicó un informe el sábado anterior sobre el memorándum de la fiscalía, que señaló que había sido retirado desde entonces del sitio web de los DOJs en el momento de la publicación. Una copia del memo, sin embargo, fue preservada por Brown antes de su eliminación y contiene detalles sobre los posibles co-conspiradores de Epstein, aunque con sus nombres redactados.Francamente, no voy a perder mi tiempo rumiando sobre si la administración Trump entiende o no que Internet es para siempre, o cómo funciona el efecto Streisand, especialmente dado el comportamiento absolutamente cómplice de los medios corporativos estadounidenses a lo largo de la cobertura de todo el EpEscándalo, hasta al menos su primer arresto. El hecho es que la administración de Trump está llena de bootlicking nazis, compinches cómplices, y tipos que publican comentarios nacionalistas blancos en la sección de comentarios bajo manijas anónimas. Estas personas inteligentes, pero francamente no tienen que estar en un entorno mediático donde cada nueva mentira de la administración Trump sea tratada como si pudiera ser verdad, e incluso cuando se exponen como mentiras, rara vez se levantan de nuevo en esos mismos puntos de venta. El hecho es que la administración Trump acaba de retirar el documento clave que prueba que todo el Departamento de Justicia, y el presidente de los Estados Unidos, están violando la ley para encubrir un anillo pedófilo multimillonario, por una razón - y no, no es posible que la razón sea inocente. Esta es otra historia que debería ser noticia de primera plana mañana, pero podría no ser porque el memo de 86 páginas que debería derribar a toda la administración Trump en este momento, no fue noticia de primera plana en primer lugar.Puedes sentir cómo quieres sentirte, pero eso me parece bastante sospechoso supongo que los chantajistas pedófilos, multimillonarios y los medios de comunicación que poseen, tienen que seguir juntos. Grita a classh-tard una mención de classu-url por llamar mi atención esta historia hoy temprano. a Epsteina a Trumpa FBIa Departamento de EpsteinFilesabraOfJusticea a Coverupabra Billionairesa a 10Coconspiratorsa a PamBondia a ToddBlanchea"
-:::
-
-```         
-```
-
 ```{r}
 #| echo: FALSE
-#| include: FALSE
 
 APretti_trust <- fullSents_Adjs %>% 
   filter(id == "115957194868532631" & sentiment == "trust")
 
 Epstein_trust <- fullSents_Adjs %>% 
   filter(id == "116036946032124872" & sentiment == "trust")
-
-
-
 ```
 
 ```{r}
-#| echo: FALSE
 APretti_trust %>% 
   select(3:4) %>% 
   setNames(c("palabra", "sentimiento")) %>% 
   flextable::flextable() %>% 
-  add_header_lines("Tabla 5. Adjetivos Relacionados con la confianza en el toot 115957194868532631") %>%
+  add_header_lines("Tabla 5. Adjetivos relacionados con la confianza  toot 115957194868532631 - Alex Pretti") %>%
   fontsize(part= "all", size = 10) %>% 
   theme_zebra() %>%
   flextable::align(align = "left",
                    part = c("all")) %>% 
-  autofit()
+  width(width = 3)
+```
 
+El toot "115957194868532631" es un extenso recuento sobre el asesinato de Alex Pretti (el texto completo se puede visualizar aquí). A continuación, buscamos algunas de las palabras de la Tabla 5 dentro del texto original para entender su contexto. A continuación se muestran algunas frases que utilizan estas palabras.
+
+```         
+```
+
+::: {.long_quote data-latex=""}
+> 🗟 The video **verified** by The New York Times shows the fatal shooting of a man by federal agents in Minneapolis...
+>
+> -   ::: {.long_quote data-latex=""}
+>     El video **verificado** por The New York Times muestra el tiroteo mortal de un hombre por agentes federales en Minneapolis...
+>     :::
+>
+> Pretti had a **legal** permit to carry a firearm, said the police chief...
+>
+> -   ::: {.long_quote data-latex=""}
+>     Pretti tenía un permiso **legal** para portar un arma de fuego, dijo el jefe de policía...
+>     :::
+>
+> Officials said protests in Minneapolis had remained mostly **peaceful**, with a few exceptions.
+>
+> -   ::: {.long_quote data-latex=""}
+>     Los funcionarios dijeron que las protestas en Minneapolis habían permanecido en su mayoría **pacíficas**, con algunas excepciones.
+>     :::
+>
+> Bovino, the **official** in charge of the presidents Border Patrol operations, said that Mr. Pretti was intent on a massacre...
+>
+> -   ::: {.long_quote data-latex=""}
+>     Bovino, el **funcionario** a cargo de las operaciones de los presidentes de la Patrulla Fronteriza, dijo que el Sr. Pretti estaba decidido a una masacre...
+>     :::
+>
+> He [A. pretti ] wanted to be **helpful**, to help humanity, and have a career that was a force of good in the world, she said...
+>
+> -   ::: {.long_quote data-latex=""}
+>     Él [A. Pretti ] quería ser **útil**, ayudar a la humanidad, y tener una carrera que fuera una fuerza de bien en el mundo, dijo...
+>     :::
+>
+> Ruth Anway, another nurse who worked with him, described Mr. Pretti as a **passionate** colleague and kind friend with a sharp sense of humor..
+>
+> -   ::: {.long_quote data-latex=""}
+>     Ruth Anway, otra enfermera que trabajaba con él, describió al Sr. Pretti como un colega **apasionado** y amable amigo con un agudo sentido del humor..
+>     :::
+>
+> ...agents initially hesitated and asked for **proof** of a **medical** license when the doctor tried to approach and render aid...
+>
+> -   ::: {.long_quote data-latex=""}
+>     ...los agentes inicialmente dudaron y pidieron **pruebas** de una licencia **médica** cuando el médico trató de acercarse y prestar ayuda...
+>     :::
+:::
+
+```         
 ```
 
 ```{r}
@@ -1297,12 +1353,132 @@ Epstein_trust %>%
   select(3:4) %>% 
   setNames(c("palabra", "sentimiento")) %>% 
   flextable::flextable() %>% 
-  add_header_lines("Tabla 6. Adjetivos Relacionados con la confianza en el toot 116036946032124872") %>%
+  add_header_lines("Tabla 6. Adjetivos relacionados con la confianza, toot 116036946032124872 - Epstein") %>%
   fontsize(part= "all", size = 10) %>% 
   theme_zebra() %>%
   flextable::align(align = "left",
                    part = c("all")) %>% 
-  autofit()
+  width(width = 3)
+
+```
+
+El toot "116036946032124872" es una crítica sobre el ocultamiento de documentos que relacionan a Donald Trump con Jeffrey Epstein (el texto completo se puede visualizar aquí). Igual que para el toot anterior, buscamos algunas de las palabras de la Tabla , dentro del texto original para entender su contexto. A continuación se muestran algunas frases que utilizan estas palabras.
+
+```         
+```
+
+::: {.long_quote data-latex=""}
+> 🗟 ...many other people in the Trump administration are **engaging** in a criminal conspiracy to protect rich and **powerful** child rapists...
+>
+> -   ::: {.long_quote data-latex=""}
+>     ...muchas otras personas en la administración Trump están **participando** en una conspiración criminal para proteger a los violadores de niños ricos y **poderosos**...
+>     :::
+>
+> ... they dont have to be in a media environment where every new lie by the Trump administration is treated as if it might be **true**...
+>
+> -   ::: {.long_quote data-latex=""}
+>     ...no tienen que estar en un entorno mediático donde cada nueva mentira de la administración Trump sea tratada como si pudiera ser **verdad**...
+>     :::
+>
+> ...the Trump administration just took down the key document that proves the entire Justice Department, and the President of the **United** States, are violating the law to cover up for a billionaire pedophile ring, for a reason - and no, it is not possible that reason is **innocent**.
+>
+> -   ::: {.long_quote data-latex=""}
+>     ...la administración Trump acaba de eliminar el documento clave que prueba que todo el Departamento de Justicia, y el presidente de Estados **Unidos**, están violando la ley para encubrir una red de un pedófilo multimillonario, por una razón - y no, no es posible que la razón sea **inocente**.
+>     :::
+>
+> You can feel how you want to feel, but that seems **pretty** suspicious to me I guess pedophile blackmailers, billionaires, and the media outlets they own, gotta stick together.
+>
+> -   ::: {.long_quote data-latex=""}
+>     Puedes sentir cómo quieras sentirte, pero eso me parece **bastante** sospechoso, supongo que los chantajistas pedófilos, multimillonarios y los medios de comunicación que poseen, tienen que permanecer juntos.
+>     :::
+:::
+
+```         
+```
+
+Como hemos podido ver, en el contexto original, muchas de las palabras relacionadas con el sentimiento de "confianza" según el diccionario de sentimientos NRC, en realidad se están usando en un contexto que no implica necesariamente una sensación genuina de confianza respecto ninguno de los dos temas.
+
+La Tabla 7 muestra los 10 adjetivos más comunes utilizados en los toots del *k-grupo* 2 (confianza). Como mostramos en los recuadros anteriores, en su contexto original, muchas de estas palabras podrían estar siendo usadas para describir hechos neutrales sin que exista una sensación de confianza de fondo.
+
+```{r}
+#| echo: FALSE
+toots_PositiveIDs <- toots_Positive$id %>% unique()
+
+fullSents_Adjs %>% 
+  filter(id %in% toots_PositiveIDs & sentiment == "trust") %>% 
+  count(word, sort = TRUE) %>% head(10) %>% 
+  setNames(c("palabra", "n")) %>% 
+  flextable::flextable() %>% 
+    add_header_lines("Tabla 7. Adjetivos relacionados con la confianza en los toots del k-grupo 2") %>%
+    fontsize(part= "all", size = 10) %>% 
+  theme_zebra() %>%
+  flextable::align(align = "left",
+                   part = c("all")) %>% 
+  width(width = 3)
+
+```
+
+Llama la atención la alta frecuencia de la palabra "worthy", digno o digna; pues, como vimos en el análisis de redes, esta palabra aparece con muy alta frecuencia asociada a la nieta de Donald Trump. ¿Esto implica que Kai Trump está siendo descrita como una persona "digna"?
+
+Tras aplicar un filtro para identificar todos los toots que incluyen la palabra Kai, recuperamos 390; de los cuales, 343 incluyen la palabra worthy. Tras analizar el texto original de una muestra de estos toots, encontramos que casi el 90% de ellos (87.9%) contenían el siguiente cuestionamiento, sin ningún texto adicional:
+
+```         
+```
+
+::: {.long_quote data-latex=""}
+> 🗟 "Is Donald Trumps granddaughter Kai **worthy** of place in LPGA event?"
+>
+> -   ::: {.long_quote data-latex=""}
+>     ¿Es la nieta de Donald Trump Kai **digna** de participar en un evento de la LPGA?
+>     :::
+:::
+
+```         
+```
+
+Lo anterior implica que, más que un tema de discusión como tal, el asunto de Kai Trump no es más que una reproducción de esta frase en un gran conjunto de toots.
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 🧠 Aunque la clasificación de toots con base en su "contenido emocional" también nos ha permitido identificar claramente temas de discusión, el la lectura de de algunos de los textos originales nos ha revelado que este análisis es necesario para poder interpretar correctamente el supuesto "contenido emocional.
+:::
+
+```         
+```
+
+# 🧵Conclusiones
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+#| eval: false
+#| echo: false
+kai_Toots <- trump_tokensClean2 %>%
+  filter(word == "kai") %>% pull(id)
+
+
+set.seed(1976)
+kai_tootSample <- sample(x = kai_Toots, 50)
+
+words_to_remove <- Hmisc::Cs(href, relnofollow, noopener, targetblank, Link, classmention, hashtag, span, translateno, classinvisible, strongRead, "\\w+alilia\\b")
+pattern <- paste(words_to_remove, collapse = "|")
+
+
+#kai
+trump_clean %>% filter(id == "116047581526059946") %>% pull(content) %>% str_remove_all(., pattern)
+
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+#| eval: false
+trump_clean %>% filter(id %in% kai_Toots) %>% pull(content) %>% str_remove_all(., pattern) %>% 
+  str_detect(.," Is Donald Trumps granddaughter Kai worthy of place in LPGA event?") %>% mean()
 ```
 
 ```{r}
@@ -1345,7 +1521,7 @@ kaiLess_regularized_sentsMatrix <- kaiLess_regularized_sents %>%
   as.matrix()
 
 
-library(pheatmap)
+
 # create a heatmap
 set.seed(28)
 kaiLess_sents_heatmap <- pheatmap(kaiLess_regularized_sentsMatrix, 
@@ -1379,6 +1555,9 @@ kaiLess_toots_kClusterstoots_Neutral <- kaiLess_clustered_tokens %>%
 set.seed(1976)
 gen_wordGraph2(kaiLess_toots_kClusterstoots_Positive, 20, 0.3)+
   ggtitle("A) Trust toots - Cluster 2")
+
+
+
 
 
 

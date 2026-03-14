@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "🧠 Hecho con Inteligencia Natural..."
 image: "images/logo.png"
 links:
   - label: '<i class="fas fa-home"></i> Web de Casa de Lletres'
@@ -40,7 +40,6 @@ El análisis de datos masivos con estructuras y patrones complejos, a través de
 <center>![](images/data_analysis.png){width="256"}</center>
 
 ```         
-
 ```
 
 <div>
@@ -52,7 +51,6 @@ El análisis de datos masivos con estructuras y patrones complejos, a través de
 </div>
 
 ```         
-
 ```
 
 Para organizaciones sociales, el aprendizaje automático tiene también un gran potencial transformador; puede ayudarnos a predecir patrones de donación y personalizar estrategias de recaudación de fondos, identificar individuos o áreas de interés para la asignación estratégica de recursos, evaluar la opinión pública sobre proyectos y campañas, detectar anomalías, predecir fallos, etc.
@@ -60,7 +58,6 @@ Para organizaciones sociales, el aprendizaje automático tiene también un gran 
 <center>![](images/social_analysis.png){width="256"}</center>
 
 ```         
-
 ```
 
 <div>
@@ -72,7 +69,6 @@ Para organizaciones sociales, el aprendizaje automático tiene también un gran 
 </div>
 
 ```         
-
 ```
 
 El aprendizaje automático nos permite extraer además información valiosa de investigaciones pasadas. Las bases de datos inactivas o archivadas, a menudo olvidadas, contienen un tesoro de información valiosa. El aprendizaje automático nos ofrece una anueva perspectiva para analizarlas. Los Algoritmos de clasificación, regresión y agrupamiento (“clustering”) pueden descubrir patrones ocultos, tendencias históricas y relaciones inesperadas que los métodos estadísticos tradicionales no revelan.
@@ -80,7 +76,6 @@ El aprendizaje automático nos permite extraer además información valiosa de i
 <center>![](images/box.png){width="256"}</center>
 
 ```         
-
 ```
 
 <div>
@@ -92,7 +87,6 @@ El aprendizaje automático nos permite extraer además información valiosa de i
 </div>
 
 ```         
-
 ```
 
 ------------------------------------------------------------------------
