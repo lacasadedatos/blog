@@ -1,5 +1,5 @@
 ---
-title: "¡Cuéntamelo otra vez, pero más despacito!"
+title: "¡Cuéntamelo otra vez, pero despacito!"
 description: |
   Si una imagen vale más que mil palabras... 
 author:
@@ -21,6 +21,22 @@ output:
     code_download: true
 ---
 
+# 🐢 ¡Cuéntamelo otra vez, pero despacito!
+
+En nuestro *post* anterior, "¡[Cuéntamelo todo, pero con mates](https://lacasadedatos.github.io/blog/blog_posts/2026-02-18-cuentamelo-todo/)!", ya abordamos un interesante proyecto de minería de textos (si no lo has leído ya, te recomendamos que lo leas antes de explorar este *post*). Usando como fuente 20,000 publicaciones (llamados *toots)* de la red social descentralizada Mastodon (mastodon.social) fechadas entre el 25 de enero y 19 de 2026, y aplicando distintas técnicas de minería de textos, pudimos identificar y validar una serie de temas de discusión relacionados con Donald Trump. A través de análisis de redes, nubes de palabras y algoritmos de agrupación, pudimos además explorar las respuestas emocionales asociadas a distintos eventos.
+
+En esta ocasión, utilizando la misma fuente de datos, desarrollaremos un proyecto más pequeño: nuestro objetivo será identificar respuestas emocionales dentro de las publicaciones de mastodon.social a lo largo del tiempo y ver si podemos asociarlas a temas de discusión específicos.
+
+# 🧰 Las herramientas de trabajo
+
+En nuestro *post* anterior explicamos el proceso de limpieza de los datos y su transformación en unidades de análisis, llamadas *tokens* (en nuestro caso, 1 *token* = 1 palabra), para la minería de datos.
+
+En esta ocasión, basta recordar que nuestros datos ya procesados son las listasn de palabras únicas que corresponde a cada *toot*, una vez que las palabras "vacías"(palabras sin significado como artículos, pronombres, preposiciones, etc.; "stop words" en inglés) fueron eliminadas.
+
+Otras de nuestras herramientas son los [diccionarios de sentimientos](https://www.numberanalytics.com/blog/sentiment-lexicons-computational-linguistics-guide) Bing y NRC para la lengua inglesa. El diccionario [Bing](https://emilhvitfeldt.github.io/textdata/reference/lexicon_bing.html) categoriza las palabras de forma binaria en positivas y negativas y contiene un total de `r unique(sentiments_bing$word) %>% length()` palabras etiquetadas. El diccionario [NRC](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm), además de clasificar las palabras como positivas o negativas, las asocia con ocho emociones básicas según [Plutchik](https://en.wikipedia.org/wiki/Robert_Plutchik#Plutchik's_wheel_of_emotions) (ira, miedo, anticipación, confianza, sorpresa, tristeza, alegría y asco), con un total de `r unique(sentiments_nrc$word) %>% length()` palabras etiquetadas.
+
+Al igual que en el *post* anterior, para explorar mejor las emociones contenidas dentro del conjunto de *toots*, aplicamos un filtro ara recuperar únicamente aquellos *tokens* que corresponden a adjetivos, ya que [esta categoría de palabras tiene mayor contenido emocional](https://www.nature.com/articles/s44271-025-00255-0#ref-CR92) que otras categorías de palabras (al menos en la lengua inglesa y posiblemente en Español también). La [lista de adjetivos](https://patternbasedwriting.com/elementary_writing_success/list-4800-adjectives/) que usamos para recuperar específicamente los adjetivos contenidos en nuestro conjunto de *toots* contiene un total de 4840 palabras; lo que nos permitió recuperar un total de 34,264 *tokens*, provenientes de 10,997 *toots*.
+
 # 🗓️ Evolución de sentimientos a lo largo del tiempo
 
 Para evaluar la evolución de sentimientos a lo largo del tiempo, volvemos a hacer uso del diccionario Bing y la lista de adjetivos extraídos de nuestro conjunto de toots.
@@ -30,6 +46,31 @@ El diccionario Bing etiqueta cada palabra como "positiva" o "negativa". Asignand
 Para evaluar la evolución de la carga emocional de los toots en el tiempo, los agrupamos por fecha de publicación, usando un día como unidad de tiempo. La Figura 11 muestra el valor medio de la carga emocional de los toots para cada día del análisis.
 
 ```{r}
+#| message: false
+#| warning: false
+#| include: false
+#| label: "load libs"
+library(tidyverse)
+library(flextable)
+library(gridExtra)
+library(ggplot2)
+library(rtoot)
+library(tidytext)
+library(data.table)
+library(grDevices) #png function
+library(wordcloud)#wordcloud
+library(RColorBrewer)
+library(stopwords)
+library(tidytext)
+library(widyr)
+library(igraph)
+library(ggraph)
+`%notin%` <- Negate(`%in%`)
+```
+
+```{r}
+
+load("trump_objects_mar17.RData")
 trump_sentsAdjectives <- trump_ajdectives %>% 
   inner_join(sentiments_bing) %>% 
   mutate(sentiment = factor(sentiment))
