@@ -21,35 +21,17 @@ output:
     code_download: true
 ---
 
-# 🐢 ¡Cuéntamelo otra vez, pero despacito!
-
-En nuestro *post* anterior, "¡[Cuéntamelo todo, pero con mates](https://lacasadedatos.github.io/blog/blog_posts/2026-02-18-cuentamelo-todo/)!", ya abordamos un interesante proyecto de minería de textos (si no lo has leído ya, te recomendamos que lo leas antes de explorar este *post*). Usando como fuente 20,000 publicaciones (llamados *toots)* de la red social descentralizada Mastodon (mastodon.social) fechadas entre el 25 de enero y 19 de 2026, y aplicando distintas técnicas de minería de textos, pudimos identificar y validar una serie de temas de discusión relacionados con Donald Trump. A través de análisis de redes, nubes de palabras y algoritmos de agrupación, pudimos además explorar las respuestas emocionales asociadas a distintos eventos.
-
-En esta ocasión, utilizando la misma fuente de datos, desarrollaremos un proyecto más pequeño: nuestro objetivo será identificar respuestas emocionales dentro de las publicaciones de mastodon.social a lo largo del tiempo y ver si podemos asociarlas a temas de discusión específicos.
-
-# 🧰 Las herramientas de trabajo
-
-En nuestro *post* anterior explicamos el proceso de limpieza de los datos y su transformación en unidades de análisis, llamadas *tokens* (en nuestro caso, 1 *token* = 1 palabra), para la minería de datos.
-
-En esta ocasión, basta recordar que nuestros datos ya procesados son las listasn de palabras únicas que corresponde a cada *toot*, una vez que las palabras "vacías"(palabras sin significado como artículos, pronombres, preposiciones, etc.; "stop words" en inglés) fueron eliminadas.
-
-Otras de nuestras herramientas son los [diccionarios de sentimientos](https://www.numberanalytics.com/blog/sentiment-lexicons-computational-linguistics-guide) Bing y NRC para la lengua inglesa. El diccionario [Bing](https://emilhvitfeldt.github.io/textdata/reference/lexicon_bing.html) categoriza las palabras de forma binaria en positivas y negativas y contiene un total de `r unique(sentiments_bing$word) %>% length()` palabras etiquetadas. El diccionario [NRC](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm), además de clasificar las palabras como positivas o negativas, las asocia con ocho emociones básicas según [Plutchik](https://en.wikipedia.org/wiki/Robert_Plutchik#Plutchik's_wheel_of_emotions) (ira, miedo, anticipación, confianza, sorpresa, tristeza, alegría y asco), con un total de `r unique(sentiments_nrc$word) %>% length()` palabras etiquetadas.
-
-Al igual que en el *post* anterior, para explorar mejor las emociones contenidas dentro del conjunto de *toots*, aplicamos un filtro ara recuperar únicamente aquellos *tokens* que corresponden a adjetivos, ya que [esta categoría de palabras tiene mayor contenido emocional](https://www.nature.com/articles/s44271-025-00255-0#ref-CR92) que otras categorías de palabras (al menos en la lengua inglesa y posiblemente en Español también). La [lista de adjetivos](https://patternbasedwriting.com/elementary_writing_success/list-4800-adjectives/) que usamos para recuperar específicamente los adjetivos contenidos en nuestro conjunto de *toots* contiene un total de 4840 palabras; lo que nos permitió recuperar un total de 34,264 *tokens*, provenientes de 10,997 *toots*.
-
-# 🗓️ Evolución de sentimientos a lo largo del tiempo
-
-Para evaluar la evolución de sentimientos a lo largo del tiempo, volvemos a hacer uso del diccionario Bing y la lista de adjetivos extraídos de nuestro conjunto de toots.
-
-El diccionario Bing etiqueta cada palabra como "positiva" o "negativa". Asignando el valor de +1 a cada uno de los calificativos "positivos" y un valor de -1 a los "negativos" podemos extraer una métrica de la "carga emocional" de un determinado conjunto de toots; en nuestro caso, la media.
-
-Para evaluar la evolución de la carga emocional de los toots en el tiempo, los agrupamos por fecha de publicación, usando un día como unidad de tiempo. La Figura 11 muestra el valor medio de la carga emocional de los toots para cada día del análisis.
-
 ```{r}
 #| message: false
 #| warning: false
 #| include: false
-#| label: "load libs"
+#| label: "load libs and data objects"
+# Download the r object containing the PRE-PROCESSED DATA
+#download.file(
+#  url = "https://mega.nz/file/R59D3YiJ#bSS2-1VDmgXIxJmkdIp9OL5pOn-k66SgF0X9Ca8MwA0",
+#  destfile = trump_objects_mar17.RData"
+#  )
+# read the file
 library(tidyverse)
 library(flextable)
 library(gridExtra)
@@ -66,11 +48,42 @@ library(widyr)
 library(igraph)
 library(ggraph)
 `%notin%` <- Negate(`%in%`)
+load("trump_objects_mar17.RData")
 ```
+
+# 🐢 ¡Cuéntamelo otra vez, pero despacito!
+
+En nuestro *post* anterior, "¡[Cuéntamelo todo, pero con mates](https://lacasadedatos.github.io/blog/blog_posts/2026-02-18-cuentamelo-todo/)!", ya abordamos un interesante proyecto de minería de textos (si no lo has leído ya, te recomendamos que lo leas antes de explorar este *post*). Usando como fuente 20,000 publicaciones (llamados *toots)* de la red social descentralizada [Mastodon](https://docs.joinmastodon.org/) ([mastodon.social](https://mastodon.social/explore)) fechadas entre el 25 de enero y 19 de 2026, y aplicando distintas técnicas de minería de textos, pudimos identificar y validar una serie de temas de discusión relacionados con Donald Trump (*hashtag #Trump*). A través de análisis de redes, nubes de palabras y algoritmos de agrupación, pudimos además explorar las respuestas emocionales asociadas a distintos eventos.
+
+En esta ocasión, utilizando la misma fuente de datos, desarrollamos un proyecto más pequeño, con el objetivo de identificar respuestas emocionales asociadas a las publicaciones de Mastodon a lo largo del tiempo y asociarlas a temas de discusión específicos.
+
+# 🧰 Las herramientas de trabajo
+
+En nuestro *post* anterior explicamos el proceso de limpieza de los datos y su transformación en unidades de análisis, llamadas *tokens* (en nuestro caso, 1 *token* = 1 palabra), para la minería de datos.
+
+En esta ocasión, basta recordar que nuestros datos ya procesados son las listasn de palabras únicas que corresponde a cada *toot*, una vez que las palabras "vacías"(palabras sin significado como artículos, pronombres, preposiciones, etc.; "stop words" en inglés) fueron eliminadas.
+
+Otras de nuestras herramientas son los [diccionarios de sentimientos](https://www.numberanalytics.com/blog/sentiment-lexicons-computational-linguistics-guide) Bing y NRC para la lengua inglesa. El diccionario [Bing](https://emilhvitfeldt.github.io/textdata/reference/lexicon_bing.html) categoriza las palabras de forma binaria en positivas y negativas y contiene un total de `r unique(sentiments_bing$word) %>% length()` palabras etiquetadas. El diccionario [NRC](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm), además de clasificar las palabras como positivas o negativas, las asocia con ocho emociones básicas según [Plutchik](https://en.wikipedia.org/wiki/Robert_Plutchik#Plutchik's_wheel_of_emotions) (ira, miedo, anticipación, confianza, sorpresa, tristeza, alegría y asco), con un total de `r unique(sentiments_nrc$word) %>% length()` palabras etiquetadas.
+
+Al igual que en el *post* anterior, para explorar mejor las emociones contenidas dentro del conjunto de *toots*, aplicamos un filtro ara recuperar únicamente aquellos *tokens* que corresponden a adjetivos, ya que [esta categoría de palabras tiene mayor contenido emocional](https://www.nature.com/articles/s44271-025-00255-0#ref-CR92) (al menos en la lengua inglesa y posiblemente en Español también). La [lista de adjetivos](https://patternbasedwriting.com/elementary_writing_success/list-4800-adjectives/) que usamos para recuperar específicamente los adjetivos contenidos en nuestro conjunto de *toots* contiene un total de 4840 palabras; lo que nos permitió recuperar un total de 34,264 *tokens*, provenientes de 10,997 *toots*.
+
+# 🗓️ Evolución de sentimientos a lo largo del tiempo
+
+Para evaluar la evolución de respuestas emocionales contenidas en los *toots* a lo largo del tiempo, usamos el diccionario Bing. Etiquetamos todos los adjetivos dentro de nuestro conjunto de *toots* como "positivos" o "negativos", asignando el valor de +1 a cada uno de los calificativos "positivos" y un valor de -1 a los "negativos". De esta manera, podemos calcular la media de la carga emocional polarizada de un determinado conjunto de *toots*. De los 34,264 *tokens* correspondientes correspondientes a adjetivos, pudimos etiquetar 6,492 como negativos (18.9% del total) y 4,393 como positivos (12.8% del total) la media de la carga emocional fue de -0.192 para todo el conjunto de *toots*.
+
+A continuación, creamos un conjunto de *toots* para cada día, partiendo de la fecha de publicación. La Figura 1 muestra el valor medio de la carga emocional contenida en cada conjunto de *toots*.
 
 ```{r}
 
-load("trump_objects_mar17.RData")
+```
+
+```{r}
+ #| message: false
+ #| warning: false
+ #| echo: FALSE
+ #| include: FALSE
+ 
+# tag adjectives as positive or negative
 trump_sentsAdjectives <- trump_ajdectives %>% 
   inner_join(sentiments_bing) %>% 
   mutate(sentiment = factor(sentiment))
@@ -89,6 +102,8 @@ trump_pos_vs_neg %>%
 ```{r}
 #| include: FALSE
 #| echo: FALSE
+
+# Add numbers to negative or positive tags
 trump_pos_vs_neg <- trump_pos_vs_neg %>% 
   mutate(value = if_else(sentiment == "positive", 1, -1)) %>% 
   mutate(date =  as_date(trump_pos_vs_neg$created_at)) %>% 
@@ -115,14 +130,14 @@ ggplot(sent_byDate) +
   coord_flip()+
   theme_minimal()+
   labs(
-    x = "Date",
+    x = "",
     y = "Mean emotional load",
     fill = "Sentiment"
   )
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 11**. Análisis de la carga emocional de los toots publicados cada día entre el 25 de enero y el 19 de febrero de 2026 (Date). Cada uno de los adjetivos contenidos en el conjunto total de toots fué etiquetado como "positivo" o "negativos" de acuerdo al diccionario de sentimientos Bing. A los calificativos positivos se les asignó el valor de +1 y a los negativos -1 y posteriormente se calculó la media (Mean emotional load). El color de las barras corresponde al valor de la carga emocional; los valores negativos tienden al rojo y los positivos al azul.
+**Figura 1**. Análisis de la carga emocional polarizada de los *toots* publicados cada día entre el 25 de enero y el 19 de febrero de 2026. Cada uno de los adjetivos contenidos en el conjunto total de *toots* fué etiquetado como "positivo" o "negativo" de acuerdo al diccionario de sentimientos Bing. A los calificativos positivos se les asignó el valor de +1 y a los negativos -1; posteriormente se calculó la media para cada día (Mean emotional load). El color de las barras corresponde al valor de la carga emocional; los valores negativos tienden al rojo y los positivos al azul.
 :::
 
 La Figura 11 muestra que, excepto por el 19 de febrero, la carga emocional contenida en los toots de cada día de análisis es negativa. Destacan el 25 de enero y el 6 de febrero como las fechas con la carga emocional más negativa y el 19 de febrero como el único día con una carga emocional positiva.
@@ -131,15 +146,17 @@ La Figura 11 muestra que, excepto por el 19 de febrero, la carga emocional conte
 ```
 
 ::: {.infobox data-latex=""}
-> 📆 Analizar la carga emocional asociada a los toots a lo largo del tiempo nos he permitido identificar respuestas emocionales positivas o negativas en fechas concretas... ¿Podemos asociar esas respuestas emocionales a eventos concretos?...
+> 📆 Analizar la carga emocional asociada a los toots a lo largo del tiempo nos ha permitido identificar respuestas emocionales, positivas o negativas, en fechas concretas... Pero... ¿podemos asociar esas respuestas emocionales a eventos concretos?...
 :::
 
 ```         
 ```
 
+Al igual que en nuestro [*post* anterior](https://lacasadedatos.github.io/blog/blog_posts/2026-02-18-cuentamelo-todo/#conversando-con-el-mastodonte), utilizamos un análisis de redes para identificar los temas de discusión asociados a estas respuestas emocionales, utilizando aa librería [**igraph**](https://www.geeksforgeeks.org/r-language/network-visualization-in-r-using-igraph/) de R. En nuestro caso, cada red se construye a partir de los niveles de correlación de los *tokens* dentro de cada *toot*: las palabras que aparecen juntas en muchos documentos tendrán un mayor grado de correlación que las palabras que aparecen juntas solo en unos cuantos de ellos. De esta manera, construimos redes de palabras para aquellos días en los que identificamos respuestas emocionales concretas; esto es, puntos máximos o mínimos en los valores de carga emocional polarizada.
+
 ## Enero 25 {style="font-size: 18px"}
 
-El número de toots recuperados del 25 de enero fue de 251, con 5269 tokens. La Figura 12 muestra los temas de discusión del 25 de enero a través del análisis de redes. Al igual que con los gráficos de redes anteriores, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 10 repeticiones y el nivel de correlación a 0.35.
+La Figura 1 muestra que el día que comienza nuestro análisis tiene el segundo valor más bajo de carga emocional polarizada (-0.318). El número de *toots* recuperados del 25 de enero fue de 251, con un total de 5,269 *tokens*. La Figura 2 muestra los temas de discusión del 25 de enero, identificados a través del análisis de redes. Para encontrar un balance entre el número de nodos y la claridad de las relaciones entre ellos, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 10 repeticiones y el nivel de correlación a 0.35. Es decir, ajustamos nuestros parámetros para identificar palabras que aparezcan en al menos 10 *toots* con un nivel de correlación de 0.35.
 
 ```{r}
 #| message: false
@@ -161,12 +178,18 @@ gen_wordGraph2(trump_january2, 10, 0.35)+
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 12**. Identificación de temas de discusión (topics) por análisis correlación de palabras (tokens) por redes, utilizando únicamente los toots publicados el 25 de enero (Jan. 25th) de 2026. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.
+**Figura 2**. Identificación de temas de discusión (topics) por análisis correlación de palabras (*tokens*) por redes, utilizando únicamente los *toots* publicados el 25 de enero (Jan. 25th) de 2026. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras.
 :::
 
-En la Figura 12 , el tema de discusión que emerge es, nuevamente, el asesinato de [Alex Pretti](https://abcnews.com/Politics/minute-minute-timeline-fatal-shooting-alex-pretti-federal/story?id=129547199), lo que no resulta en modo alguno sorprendente, ya que este hecho ocurrió precisamente el 24 de enero.
+El tema de discusión que emerge claramente en la Figura 2 es el [asesinato de Alex Pretti](https://abcnews.com/US/alex-pretti-icu-nurse-killed-federal-agent-minneapolis/story?id=129525591) por parte de agentes de ICE ([Immigration and Customs Enforcement](https://www.ice.gov/), ICE) en Minnesota, ocurrido el 24 de enero.
 
-También podemos visualizar la cara emocional de los toots publicados en esta fecha, utilizando los tokens correspondientes a los adjetivos contenidos en ellos (Figura 13).
+Además de las palabras "killing" (asesinato), "alex", "pretti" que forman un núcleo, aparecen las palabras "video" y "evidence", lo que probablemente hace referencia a la [evidencia en vídeo](https://www.huffpost.com/entry/same-video-different-story-ice-minnesota_l_69611f3be4b0a26aea5a2d8b) del uso de violencia letal no justificada por parte de los agentes de ICE.
+
+También encontramos la palabra "protests" dentro de la red, que posiblemente hace referencia a la serie de [protestas que tuvieron lugar el 25 de enero](https://www.theguardian.com/us-news/2026/jan/24/protests-alex-pretti-killing-federal-agents-ice) como respuesta a este evento.
+
+Aparece además la palabra "bovino", que hace referencia a [Greg Bovino](https://eu.usatoday.com/story/news/nation/2026/01/26/greg-bovino-agents-victims-pretti-minneapolis-shooting/88361659007/), jefe de la patrulla fronteriza de Estados Unidos, quien calificó a los agentes de ICE que abatieron a tiros a Alex Pretti como las "víctimas" del evento sin que pudiera aportar pruebas de que Alex Pretti tuviera intenciones de hacer daño o matar a los agentes.
+
+También podemos visualizar la cara emocional de los *toots* publicados en esta fecha, creando una nube de palabras con los *tokens* correspondientes a los adjetivos contenidos en cada toot (Figura 3).
 
 ```{r}
 #| include: FALSE
@@ -190,15 +213,25 @@ wordcloud(words = jan25_sentsCounts$word,
           colors=rev(brewer.pal(10, "Spectral")))
 ```
 
-<center>![](jan25_sents.png){width="500"}</center>
+<center> ![](jan25_sents.png){width="420"} </center>
 
 :::: {.fig_legend data-latex=""}
 ::: {.fig_legend data-latex=""}
-**Figura 13**. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 25 de enero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
+**Figura 3**. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 25 de enero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
 :::
 ::::
 
-A pesar de la subjetividad subyacente en la interpretación de cualquier hecho que tenga un componente emocional, podríamos decir que los calificativos usados para hablar de los hechos relacionados con Alex Pretti se corresponden con la naturaleza de los propios hechos.
+A pesar de la subjetividad asociada a la interpretación de cualquier hecho que tenga un componente emocional, podemos afirmar que los calificativos usados para hablar de los hechos relacionados con el asesinato de Alex Pretti se corresponden con la naturaleza de los propios hechos.
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 📆 Partiendo de la respuesta emocional negativa observada el 25 de enero, hemos podido identificar temas de discusión específicos, validarlos a través de sencillas búsquedas en Internet y complementarlos con una nubes de palabra que refleja claramente la respuesta emocional asociada a los temas de discusión.
+:::
+
+```         
+```
 
 ## Febrero 6 {style="font-size: 18px"}
 

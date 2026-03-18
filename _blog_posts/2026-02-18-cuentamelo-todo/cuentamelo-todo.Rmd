@@ -91,7 +91,7 @@ Al ser una red social descentralizada, Mastodon prioriza la privacidad, el contr
 
 ## El señor de pelo color zanahoria y extraño copete... {style="font-size: 18px"}
 
-Donald Trump​​​​​ es una figura pública controvertida. Su segunda presidencia en los Estados Unidos comenzó el 20 de enero de 2025 cuando asumió su cargo como el 47º presidente. Su mandato se ha caracterizado por decisiones políticas inesperadas y la salida a la luz documentos que revelan actos de corrupción gubernamental a una escala insospechada.
+Donald Trump es una figura pública controvertida. Su segunda presidencia en los Estados Unidos comenzó el 20 de enero de 2025 cuando asumió su cargo como el 47º presidente. Su mandato se ha caracterizado por decisiones políticas inesperadas y la salida a la luz documentos que revelan actos de corrupción gubernamental a una escala insospechada.
 
 En este *post* hemos decidido experimentar un poco utilizando a "Donald Trump" como tema de discusión principal, en un interesante ejercicio de minería de textos con Mastodon.
 
@@ -99,9 +99,9 @@ En este *post* hemos decidido experimentar un poco utilizando a "Donald Trump" c
 
 La librería [rtoot](https://cran.r-project.org/web/packages/rtoot/vignettes/rtoot.html) de [R](https://www.r-project.org/) nos permite conectarnos a Mastodon y descargar a nuestro entorno de programación las publicaciones (llamadas *toots*) públicas más recientes, o bien aquellas que hayan sido etiquetadas utilizando algún *hashtag* específico.
 
-Para este *post* utilizamos rtooth para descargar 20,000 publicaciones etiquetadas con el hastag *#trump*.
+Para este *post* utilizamos rtooth para descargar 20,000 publicaciones etiquetadas con el *hashtag* *#trump*.
 
-Como Mastodon es una red descentralizada, antes de descargar nada debemos elegir una *instancia* desde la cual descargaremos las publicaciones. En este caso hemos elegido la instancia *mastodon.social,* ya que es el servidor más grande de la red, con más de 300,000 usuarios activos y más de 1.5 millones de cuentas registradas.
+Como Mastodon es una red descentralizada, antes de descargar nada debemos elegir una *instancia* desde la cual descargaremos las publicaciones. En este caso hemos elegido la instancia [*mastodon.social*](https://mastodon.social/explore)*,* ya que es el servidor más grande de la red, con más de 300,000 usuarios activos y más de 1.5 millones de cuentas registradas.
 
 ```         
 ```
@@ -345,7 +345,7 @@ wordcloud(words = trump_tokenCounts$word,
           colors=rev(brewer.pal(10, "Spectral")))
 ```
 
-<center>![](wordcloud2_0K_en.png){width="500"}</center>
+<center>![](wordcloud2_0K_en.png){width="420"}</center>
 
 ::: {.fig_legend data-latex=""}
 **Figura 1**. Nube de palabras asociadas a Donald Trump, en *toots* de Mastodon (mastodon.social) publicados entre el 25 de enero y el 19 de febrero de 2026. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
@@ -414,7 +414,7 @@ graph_from_data_frame(d = word_correlations, # distance?
 
 La librería [**igraph**](https://www.geeksforgeeks.org/r-language/network-visualization-in-r-using-igraph/) de R es una herramienta muy poderosa que nos permite identificar temas de discusión a través de la visualización de redes de palabras (grafos). La red se construye a partir de los niveles de correlación de los *tokens* dentro de cada documento (en nuestro caso, cada *toot*): las palabras que aparecen juntas en muchos documentos tendrán un mayor grado de correlación que las palabras que aparecen juntas solo en unos cuantos de ellos.
 
-La Figura 2 muestra una primera aproximación a la identificación de temas de discusión por análisis de redes, utilizando un grado de correlación de 0.2 y un mínimo de repeticiones de 100; es decir, que dos palabras aparezcan de forma conjunta en al menos 100 *toots*.
+La Figura 2 muestra una primera aproximación a la identificación de temas de discusión por análisis de redes, utilizando un grado de correlación de 0.2 y un mínimo de repeticiones de 100. Es decir, ajustamos nuestros parámetros para identificar palabras que aparezcan en al menos 100 *toots*,con un nivel de correlación de 0.2.
 
 ```{r}
 #| echo: FALSE
@@ -518,7 +518,9 @@ Otros conjuntos de palabras señalan a Rusia, China y Ucrania; la junta de paz d
 ```
 
 ::: {.infobox data-latex=""}
-> 👓 El análisis de redes nos ha permitido identificar claramente algunos temas de discusión... ¿Pero podemos ir más allá?... ¿Podemos identificar subtemas dentro de los temas principales?
+> 👓 El análisis de redes nos ha permitido identificar claramente distintos temas de discusión; mismos que pudimos validar con búsquedas sencillas de información en Internet.
+>
+> ¿Pero podemos ir más allá?... ¿Podemos identificar subtemas contenidos dentro de los temas principales?
 :::
 
 ```         
