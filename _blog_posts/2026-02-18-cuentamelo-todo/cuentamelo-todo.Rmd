@@ -73,7 +73,7 @@ library(ggraph)
 
 # 💬 ¡Cuéntamelo todo.... pero con mates!
 
-Si una imagen vale más que mil palabras... ¿cuánto vale una imagen hecha de palabras?... La Ciencia de Datos nos permite realizar estudios sociales partiendo de grandes volúmenes de textos. Al analizar miles de publicaciones en redes sociales, podemos identificar los temas de discusión asociados a un tópico concreto, así como las respuestas emocionales asociadas. A esto llamamos **minería de textos.**
+Si una imagen vale más que mil palabras... ¿cuánto vale una imagen hecha de palabras?... La Ciencia de Datos nos permite realizar estudios sociales partiendo de grandes volúmenes de textos. Al analizar miles de publicaciones en redes sociales, podemos identificar los temas de discusión asociados a un tópico concreto, así como las respuestas emocionales asociadas. A esto lo llamamos **minería de textos.**
 
 La **minería de textos** (*text mining*) es una rama de la Ciencia de Datos que nos ayuda a extraer información e identificar patrones en grandes volúmenes de texto no estructurado; es decir, texto que no sigue un formato predefinido, correos electrónicos, redes sociales, artículos, *chats* o documentos PDF. Esta disciplina combina técnicas de lingüística, estadística y Aprendizaje Automático para analizar cientos o miles de documentos, identificar tendencias, clasificar contenido y descubrir relaciones ocultas entre conceptos, temas y subtemas de discusión.
 
@@ -427,7 +427,7 @@ gen_wordGraph(trump_tokensClean, 100, 0.2)
 <center>![](word_graph_zoom.png){width="350"}</center>
 
 ::: {.fig_legend data-latex=""}
-**Figura 2**. Identificación de temas de discusión por redes. Cada punto de la red corresponde a una palabra (token). La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El panel inferior corresponde a una ampliación de la nube de puntos que aparece en el centro de la imagen del panel superior.
+**Figura 2**. Identificación de temas de discusión por redes. Cada punto de la red corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El panel inferior corresponde a una ampliación de la nube de puntos que aparece en el centro de la imagen del panel superior.
 :::
 
 En la Figura 2 comienzan a aparecer conjuntos de palabras que parecen apuntar a temas de discusión específicos. En la parte superior izquierda del grafo vemos las palabras "epstein" y "files" asociadas con otras palabras como "sex" y "child".
@@ -503,7 +503,7 @@ gen_wordGraph2(trump_tokensClean2, 110, 0.2)+
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 3**. Identificación de temas de discusión por redes, tras la eliminación de palabras irrelevantes. Cada punto corresponde a una palabra (*token*). La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras se corresnponde con el número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras.
+**Figura 3**. Identificación de temas de discusión por redes en publicaciones de Mastodon con la etiqueta \#*Trump*, tras la eliminación de palabras irrelevantes. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras se corresnponde con el número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras.
 :::
 
 Tras eliminar las palabras irrelevantes y aumentar ligeramente el número mínimo de repeticiones emergen grupos de palabras que a estructuran claramente algunos temas de discusión.
@@ -518,7 +518,7 @@ Otros conjuntos de palabras señalan a Rusia, China y Ucrania; la junta de paz d
 ```
 
 ::: {.infobox data-latex=""}
-> 👓 El análisis de redes nos ha permitido identificar claramente distintos temas de discusión; mismos que pudimos validar con búsquedas sencillas de información en Internet.
+> 👓 El análisis de redes nos ha permitido identificar claramente algunos temas de discusión; mismos que pudimos validar con búsquedas sencillas de información en Internet.
 >
 > ¿Pero podemos ir más allá?... ¿Podemos identificar subtemas contenidos dentro de los temas principales?
 :::
@@ -547,7 +547,7 @@ gen_wordGraph2(epstein_tokens, 30, 0.27)+
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 4**. Identificación de temas de discusión (topics) por análisis de redes, utilizando únicamente los *toots* que contienen la palabra "epstein". Cada punto corresponde a una palabra (*token*). La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras.
+**Figura 4**. Identificación de temas de discusión (topics) por análisis de redes, utilizando únicamente los *toots* que contienen la palabra "epstein" en publicaciones de Mastodon con la etiqueta \#*Trump*. Cada punto corresponde a una palabra (*token*). La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras.
 :::
 
 En la Figura 4 podemos identificar claramente algunos subtemas de discusión. En un conjunto de puntos aparece el nombre de Epstein relacionado con la [Casa Blanca y el abuso sexual de mujeres y niños](https://www.pbs.org/newshour/nation/the-latest-epstein-files-release-includes-famous-names-and-new-details-about-an-earlier-investigation). Dentro de otro conjunto encontramos el nombre de la Fiscal [General Pam Bondi quien lleva el caso Epstein](https://www.bbc.com/news/articles/cq6ql2n917zo) y que, a través del departamento de justicia de Estados Unidos, sacó a la luz millones de documentos de la red de tráfico sexual y pedofilia; documentos que revelan lazos entre el fallecido Jeffrery Epstein y personalidades como [Elon Musk](https://www.theguardian.com/technology/2026/jan/30/elon-musk-epstein-files-island-visits), el secretario de comercio estadounidense [Howard Lutnick](https://www.cbsnews.com/news/howard-lutnick-jeffrey-epstein-in-business-together/) y otras [personalidades internacionales](https://en.wikipedia.org/wiki/List_of_people_named_in_the_Epstein_files).
@@ -682,7 +682,7 @@ wordcloud(words = trump_posAdjCounts$word,
 <center>![](trump_WcPosAdjs.png){width="420"}</center>
 
 ::: {.fig_legend data-latex=""}
-**Figura 6**. Nube de adjetivos "positivos" en publicaciones de Mastodon (mastodon.social) comprendidas entre el 25 de enero y el 19 de febrero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
+**Figura 6**. Nube de adjetivos "positivos" en publicaciones de Mastodon (mastodon.social) comprendidas entre el 25 de enero y el 19 de febrero de 2026, con la etiqueta \#*Trump*. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
 :::
 
 ```{r}
@@ -708,7 +708,7 @@ wordcloud(words = trump_negAdjCounts$word,
 
 :::: {.fig_legend data-latex=""}
 ::: {.fig_legend data-latex=""}
-**Figura 7**. Nube de adjetivos "negativos" en publicaciones de Mastodon (mastodon.social) comprendidas entre el 25 de enero y el 19 de febrero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
+**Figura 7**. Nube de adjetivos "negativos" en publicaciones de Mastodon (mastodon.social) comprendidas entre el 25 de enero y el 19 de febrero de 2026, con la etiqueta \#*Trump*. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
 :::
 ::::
 
@@ -745,7 +745,7 @@ ggplot(fullSents_AdjCounts) +
 
 :::: {.fig_legend data-latex=""}
 ::: {.fig_legend data-latex=""}
-**Figura 8**. Frecuencia de adjetivos asociados a cada una de las 8 emociones básicas de Plutchik, en publicaciones de Mastodon (mastodon.social) comprendidas entre el 25 de enero y el 19 de febrero de 2026, relacionadas con Donald Trump. Trust, confianza; fear, miedo; anger, ira; sadness, tristeza; disgust, asco; anticipation, anticipación; joy, alegría; surprise, sorpresa.
+**Figura 8**. Frecuencia de adjetivos asociados a cada una de las 8 emociones básicas de Plutchik, en publicaciones de Mastodon (mastodon.social) comprendidas entre el 25 de enero y el 19 de febrero de 2026, con la etiqueta \#*Trump*. Trust, confianza; fear, miedo; anger, ira; sadness, tristeza; disgust, asco; anticipation, anticipación; joy, alegría; surprise, sorpresa.
 :::
 ::::
 
@@ -755,7 +755,7 @@ La figura 8 muestra que, partiendo de un análisis de los adjetivos, las emocion
 ```
 
 ::: {.infobox data-latex=""}
-> 🤨️ Las emociones más comunes dentro de nuestro conjunto de *toots* fueron la confianza y el miedo... ¿Ésto qué puede significar?...
+> 🤨️ Las emociones más comunes dentro de nuestro conjunto de *toots* fueron la confianza y el miedo... ¿Ésto qué significa?...
 :::
 
 ```         
@@ -846,7 +846,7 @@ gen_wordGraph2(trust_tokens, 70, 0.3)+
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 9**. Identificación de temas de discusión (topics) por análisis correlación de palabras (*tokens*) por redes, utilizando únicamente los *toots* que contienen adjetivos asociados a confianza (trust). Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras. A través de ensayo y error, ajustamos los parámetros del grafo a un mínimo de 70 repeticiones, y un nivel de correlación de 0.3, para encontrar un balance entre el número de nodos y la claridad de las relaciones entre ellos.
+**Figura 9**. Identificación de temas de discusión (topics) por análisis correlación de palabras por redes, utilizando únicamente los *toots* que contienen adjetivos asociados a confianza (trust). Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras. A través de ensayo y error, ajustamos los parámetros del grafo a un mínimo de 70 repeticiones, y un nivel de correlación de 0.3, para encontrar un balance entre el número de nodos y la claridad de las relaciones entre ellos.
 :::
 
 La Figura 9 muestra claramente un conjunto de palabras relacionado con [la participación de Kai trump](https://www.fogolf.com/1158845/is-donald-trumps-granddaughter-kai-worthy-of-place-in-lpga-event-499/), nieta de Donald Trump, en la liga femenina de golf que ya mencionamos arriba. Este conjunto contiene las palabras más comunes y con el más alto grado de correlación dentro de todos los *toots* asociados al sentimiento de confianza.
@@ -861,7 +861,7 @@ gen_wordGraph2(fear_tokens, 50, 0.32)+
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 10**. Identificación de temas de discusión (topics) por análisis correlación de palabras (*tokens*) por redes, utilizando únicamente los *toots* que contienen adjetivos asociados al miedo (fear). Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras. A través de ensayo y error, ajustamos los parámetros del grafo a un mínimo de 50 repeticiones, y un nivel de correlación de 0.32, para encontrar un balance entre el número de nodos y la claridad de las relaciones entre ellos.
+**Figura 10**. Identificación de temas de discusión (topics) por análisis correlación de palabras por redes, utilizando únicamente los *toots* que contienen adjetivos asociados al miedo (fear). Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras. A través de ensayo y error, ajustamos los parámetros del grafo a un mínimo de 50 repeticiones, y un nivel de correlación de 0.32, para encontrar un balance entre el número de nodos y la claridad de las relaciones entre ellos.
 :::
 
 La Figura 10 identifica tres temas de discusión asociados con miedo que ya hemos mencionado: el asesinato de Alex Pretti, las pláticas militares sobre Irán y Jeffrey Epstein. Aparece además un nuevo subtema con las palabras "bad", "bunny", "super" y "bowl", que podrían hacer referencia a la controvertida actuación del rapero [Bad Bunny en el Super Bowl](https://eu.usatoday.com/story/sports/nfl/2026/02/07/why-are-people-mad-bad-bunny-performing-super-bowl-halftime/88437960007/) el 9 de febrero. Bad Bunny ha sido un crítico de la administración de Donald Trump y de la agencia ICE.
@@ -996,7 +996,7 @@ gen_wordGraph2(toots_Neutral, 80, 0.2)+
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 12**. Identificación de temas de discusión (topics) por análisis correlación de palabras (*tokens*) por redes, utilizando únicamente los *toots* correspondientes a los 3 *k-grupos* (clusters) identificacos con base en su índice de carga emocional (IdCE) con el algoritmo de aprendizaje automático K-medias. A) toots del *k-grupo* 3, caracterizado por IdCE de confianza (trust) alto; B) *toots* del *k-grupo* 2 (negative *toots*), caracterizado por IdCEs altos para todas las emociones "negativas" (miedo, ira, asco y tristeza); C) *toots* del *k-grupo* 1 (neutral *toots*), que carece de una carga emocional concreta. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras. A través de ensayo y error, ajustamos los parámetros de cada grafo para encontrar un balance entre el número de nodos y la claridad de las relaciones entre ellos: A) un mínimo de 13 repeticiones y un nivel de correlación de 0.23, B) un mínimo de 50 repeticiones y un nivel de correlación de 0.25, C) un mínimo de 80 repeticiones y un nivel de correlación de 0.2.
+**Figura 12**. Identificación de temas de discusión (topics) por análisis correlación de palabras por redes, utilizando únicamente los *toots* correspondientes a los 3 *k-grupos* (clusters) identificados con base en su índice de carga emocional (IdCE) usando el algoritmo de aprendizaje automático K-medias. A) *toots* del *k-grupo* 3, caracterizado por IdCE de confianza (trust) alto; B) *toots* del *k-grupo* 2 (negative *toots*), caracterizado por IdCEs altos para todas las emociones "negativas" (miedo, ira, asco y tristeza); C) *toots* del *k-grupo* 1 (neutral *toots*), que carece de una carga emocional concreta. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras. A través de ensayo y error, ajustamos los parámetros de cada grafo para encontrar un balance entre el número de nodos y la claridad de las relaciones entre ellos: A) un mínimo de 13 repeticiones y un nivel de correlación de 0.23, B) un mínimo de 50 repeticiones y un nivel de correlación de 0.25, C) un mínimo de 80 repeticiones y un nivel de correlación de 0.2.
 :::
 
 La Figura 12A nos muestra que el tema de discusión principal relacionado con la confianza es la participación de la nieta de Donald Trump en la liga profesional de golf femenino, aunque también aparecen las palabras ICE y Epstein. Dentro del *k-grupo* 3, relacionado principalmente con emociones negativas (Figura 12B), aparecen los temas relacionados con Epstein, Bad Bunny, la agencia ICE y Alex Pretti. Dentro de los temas de discusión del *k-grupo* 1 (*toots* "neutrales", Figura 12C) aparecen Jeffrey Epstien, Irán, la agencia ICE y el asesinato de Alex Pretti.
@@ -1158,7 +1158,7 @@ El *toot* "116036946032124872" es una crítica sobre la ocultación de documento
 > You can feel how you want to feel, but that seems **pretty** suspicious to me I guess pedophile blackmailers, billionaires, and the media outlets they own, gotta stick together.
 >
 > -   ::: {.long_quote data-latex=""}
->     Puedes sentir cómo quieras sentirte, pero eso me parece **bastante** sospechoso, supongo que los chantajistas pedófilos, multimillonarios y los medios de comunicación que poseen, tienen que permanecer juntos.
+>     Puedes sentirte cómo quieras sentirte, pero eso me parece **bastante** sospechoso, supongo que los chantajistas pedófilos, multimillonarios y los medios de comunicación que poseen, tienen que permanecer juntos.
 >     :::
 :::
 
@@ -1361,7 +1361,7 @@ wordcloud(words = biased_trustAdjsCounts$word,
 ![](wordClouds_by_sent.png){width="420"}
 
 ::: {.fig_legend data-latex=""}
-**Figura 14**. Nube de palabras asociadas a las emociones de miedo (A), ira (B), tristeza (C) y confianza (D) contenidas en en *toots* de Mastodon (mastodon.social) publicados entre el 25 de enero y el 19 de febrero de 2026. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
+**Figura 14**. Nube de palabras asociadas a las emociones de miedo (A), ira (B), tristeza (C) y confianza (D) contenidas en en *toots* de Mastodon (mastodon.social) publicados entre el 25 de enero y el 19 de febrero de 2026, con la etiqueta \#*Trump*. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
 :::
 
 Finalmente, ¿qué opinión nos merece el recuento de las 4 semanas de la administración de Donald Trump contenidas en nuestro conjunto de *toots*?... Como todo aquello que tiene una carga emocional tiene un componente de subjetividad, te dejamos con la imagen de arriba para que saques tus propias conclusiones.
@@ -1374,11 +1374,11 @@ Finalmente, ¿qué opinión nos merece el recuento de las 4 semanas de la admini
 
 -   Analizar las emociones contenidas en los *toots* nos ha servido como una herramienta adicional para identificar nuevos temas de discusión usando análisis de redes.
 
--   Nuestro intento de clasificar los *toots* con base en su contenido emocional nos permitió confirmar la existencia de algunos temas de discusión
+-   Nuestro intento de clasificar los *toots* con base en su contenido emocional nos permitió confirmar la presencia de temas de discusión específicos.
 
 -   Nuestro intento de clasificar los *toots* con base en su contenido emocional también nos permitió identificar una aparente paradoja entre contenidos y posturas emocionales.
 
--   Resolver la aparente paradoja entre contenidos y posturas emocionales nos permitió identificar el sesgo emocional introducido por la repetición íntegra de un mismo texto en un conjunto de publicaciones.
+-   Resolver la paradoja entre contenidos y posturas emocionales nos permitió identificar el sesgo emocional introducido por la repetición íntegra de un mismo texto en un conjunto de publicaciones.
 
 -   La clasificación de textos con base en su contenido emocional tiene potencial para identificar y/o validar temas de discusión, pero se hace necesaria una revisión de los textos originales antes de extraer conclusiones definitivas.
 

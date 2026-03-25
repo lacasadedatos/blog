@@ -1,10 +1,10 @@
 ---
 title: "¡Cuéntamelo otra vez, pero despacito!"
 description: |
-  Si una imagen vale más que mil palabras... 
+  A los seres humanos muchos eventos nos generan una reacción inmediata. Nuestra opinión no solo se forma, sino que viene acompañada de una emoción que evoluciona conforme pasan los días y se suceden nuevos acontecimientos. Imagina poder observar esas emociones en tiempo real, analizarlas, comprenderlas y seguir su evolución…  Gracias a la Ciencia de Datos, usando conjuntos masivos de publicaciones en redes sociales, es posible detectar las respuestas emocionales asociadas a eventos concretos y ver su evolución en el tiempo. Para estudios sociales, ¡hay una mina de oro allí fuera!... Un tesoro de información que nos permite entender mejor el comportamiento humano, sus sentimientos y las dinámicas que moldean nuestra realidad.  
 author:
   - name: Erick García-García, Ph.D.
-date:  "March 30, 2026"
+date:  "March 25, 2026"
 categories: [R, word clouds, network analysis, k-means, clustering, topic modeling, text mining]
 output:
   distill::distill_article:
@@ -26,12 +26,7 @@ output:
 #| warning: false
 #| include: false
 #| label: "load libs and data objects"
-# Download the r object containing the PRE-PROCESSED DATA
-#download.file(
-#  url = "https://mega.nz/file/R59D3YiJ#bSS2-1VDmgXIxJmkdIp9OL5pOn-k66SgF0X9Ca8MwA0",
-#  destfile = trump_objects_mar17.RData"
-#  )
-# read the file
+
 library(tidyverse)
 library(flextable)
 library(gridExtra)
@@ -48,22 +43,31 @@ library(widyr)
 library(igraph)
 library(ggraph)
 `%notin%` <- Negate(`%in%`)
+
+# Download the r object containing the PRE-PROCESSED DATA
+#download.file(
+#  url = "https://mega.nz/file/R59D3YiJ#bSS2-1VDmgXIxJmkdIp9OL5pOn-k66SgF0X9Ca8MwA0",
+#  destfile = trump_objects_mar17.RData"
+#  )
+# read the file
+
+
 load("trump_objects_mar17.RData")
 ```
 
 # 🐢 ¡Cuéntamelo otra vez, pero despacito!
 
-En nuestro *post* anterior, "¡[Cuéntamelo todo, pero con mates](https://lacasadedatos.github.io/blog/blog_posts/2026-02-18-cuentamelo-todo/)!", ya abordamos un interesante proyecto de minería de textos (si no lo has leído ya, te recomendamos que lo leas antes de explorar este *post*). Usando como fuente 20,000 publicaciones (llamados *toots)* de la red social descentralizada [Mastodon](https://docs.joinmastodon.org/) ([mastodon.social](https://mastodon.social/explore)) fechadas entre el 25 de enero y 19 de 2026, y aplicando distintas técnicas de minería de textos, pudimos identificar y validar una serie de temas de discusión relacionados con Donald Trump (*hashtag #Trump*). A través de análisis de redes, nubes de palabras y algoritmos de agrupación, pudimos además explorar las respuestas emocionales asociadas a distintos eventos.
+En nuestro *post* anterior, "¡[Cuéntamelo todo, pero con mates](https://lacasadedatos.github.io/blog/blog_posts/2026-02-18-cuentamelo-todo/)!", ya abordamos un interesante proyecto de minería de textos (si no lo has leído ya, te recomendamos que lo leas antes de explorar este *post*). Usando como fuente 20,000 publicaciones (llamados *toots)* de la red social descentralizada [Mastodon](https://docs.joinmastodon.org/) ([mastodon.social](https://mastodon.social/explore)) fechadas entre el 25 de enero y 19 de 2026, y aplicando distintas técnicas de minería de textos, pudimos identificar y validar una serie de temas de discusión relacionados con Donald Trump (*hashtag #Trump*). A través de análisis de redes, nubes de palabras y algoritmos de agrupación, pudimos, además, explorar las respuestas emocionales asociadas a distintos eventos.
 
-En esta ocasión, utilizando la misma fuente de datos, desarrollamos un proyecto más pequeño, con el objetivo de identificar respuestas emocionales asociadas a las publicaciones de Mastodon a lo largo del tiempo y asociarlas a temas de discusión específicos.
+En esta ocasión, utilizando la misma fuente de datos, analizamos las publicaciones a lo largo del tiempo para identificar fechas con una fuerte respuesta emocional y asociarlas a temas de discusión específicos.
 
 # 🧰 Las herramientas de trabajo
 
-En nuestro *post* anterior explicamos el proceso de limpieza de los datos y su transformación en unidades de análisis, llamadas *tokens* (en nuestro caso, 1 *token* = 1 palabra), para la minería de datos.
+En nuestro *post* anterior explicamos el proceso de limpieza de los datos y su transformación en unidades de análisis, llamadas *tokens* (en nuestro caso, 1 *token* = 1 palabra), antes de poder aplicar técnicas de minería de datos.
 
-En esta ocasión, basta recordar que nuestros datos ya procesados son las listasn de palabras únicas que corresponde a cada *toot*, una vez que las palabras "vacías"(palabras sin significado como artículos, pronombres, preposiciones, etc.; "stop words" en inglés) fueron eliminadas.
+Para este *post* basta recordar que nuestros datos ya procesados son la lista de palabras únicas que corresponde a cada uno de los *toot*, una vez que las palabras "vacías" (palabras sin significado como artículos, pronombres, preposiciones, etc.; "stop words" en inglés) fueron eliminadas.
 
-Otras de nuestras herramientas son los [diccionarios de sentimientos](https://www.numberanalytics.com/blog/sentiment-lexicons-computational-linguistics-guide) Bing y NRC para la lengua inglesa. El diccionario [Bing](https://emilhvitfeldt.github.io/textdata/reference/lexicon_bing.html) categoriza las palabras de forma binaria en positivas y negativas y contiene un total de `r unique(sentiments_bing$word) %>% length()` palabras etiquetadas. El diccionario [NRC](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm), además de clasificar las palabras como positivas o negativas, las asocia con ocho emociones básicas según [Plutchik](https://en.wikipedia.org/wiki/Robert_Plutchik#Plutchik's_wheel_of_emotions) (ira, miedo, anticipación, confianza, sorpresa, tristeza, alegría y asco), con un total de `r unique(sentiments_nrc$word) %>% length()` palabras etiquetadas.
+También usamos como herramientas los [diccionarios de sentimientos](https://www.numberanalytics.com/blog/sentiment-lexicons-computational-linguistics-guide) Bing y NRC para la lengua inglesa. El diccionario [Bing](https://emilhvitfeldt.github.io/textdata/reference/lexicon_bing.html) categoriza las palabras de forma binaria en positivas y negativas y contiene un total de `r unique(sentiments_bing$word) %>% length()` palabras etiquetadas. El diccionario [NRC](https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm), además de clasificar las palabras como positivas o negativas, las asocia con ocho emociones básicas según [Plutchik](https://en.wikipedia.org/wiki/Robert_Plutchik#Plutchik's_wheel_of_emotions) (ira, miedo, anticipación, confianza, sorpresa, tristeza, alegría y asco), con un total de `r unique(sentiments_nrc$word) %>% length()` palabras etiquetadas.
 
 Al igual que en el *post* anterior, para explorar mejor las emociones contenidas dentro del conjunto de *toots*, aplicamos un filtro ara recuperar únicamente aquellos *tokens* que corresponden a adjetivos, ya que [esta categoría de palabras tiene mayor contenido emocional](https://www.nature.com/articles/s44271-025-00255-0#ref-CR92) (al menos en la lengua inglesa y posiblemente en Español también). La [lista de adjetivos](https://patternbasedwriting.com/elementary_writing_success/list-4800-adjectives/) que usamos para recuperar específicamente los adjetivos contenidos en nuestro conjunto de *toots* contiene un total de 4840 palabras; lo que nos permitió recuperar un total de 34,264 *tokens*, provenientes de 10,997 *toots*.
 
@@ -74,14 +78,11 @@ Para evaluar la evolución de respuestas emocionales contenidas en los *toots* a
 A continuación, creamos un conjunto de *toots* para cada día, partiendo de la fecha de publicación. La Figura 1 muestra el valor medio de la carga emocional contenida en cada conjunto de *toots*.
 
 ```{r}
-
-```
-
-```{r}
- #| message: false
- #| warning: false
- #| echo: FALSE
- #| include: FALSE
+#| echo: FALSE
+#| include: FALSE
+#| message: false
+#| warning: false
+ 
  
 # tag adjectives as positive or negative
 trump_sentsAdjectives <- trump_ajdectives %>% 
@@ -137,26 +138,26 @@ ggplot(sent_byDate) +
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 1**. Análisis de la carga emocional polarizada de los *toots* publicados cada día entre el 25 de enero y el 19 de febrero de 2026. Cada uno de los adjetivos contenidos en el conjunto total de *toots* fué etiquetado como "positivo" o "negativo" de acuerdo al diccionario de sentimientos Bing. A los calificativos positivos se les asignó el valor de +1 y a los negativos -1; posteriormente se calculó la media para cada día (Mean emotional load). El color de las barras corresponde al valor de la carga emocional; los valores negativos tienden al rojo y los positivos al azul.
+**Figura 1**. Análisis de la carga emocional polarizada de los *toots* publicados cada día entre el 25 de enero y el 19 de febrero de 2026, con la etiqueta \#*Trump*. Cada uno de los adjetivos contenidos en el conjunto total de *toots* fué etiquetado como "positivo" o "negativo" de acuerdo al diccionario de sentimientos Bing. A los calificativos positivos se les asignó el valor de +1 y a los negativos -1; posteriormente se calculó la media para cada día (Mean emotional load). El color de las barras corresponde al valor de la carga emocional; los valores negativos tienden al rojo y los positivos al azul.
 :::
 
-La Figura 11 muestra que, excepto por el 19 de febrero, la carga emocional contenida en los toots de cada día de análisis es negativa. Destacan el 25 de enero y el 6 de febrero como las fechas con la carga emocional más negativa y el 19 de febrero como el único día con una carga emocional positiva.
+La Figura 1 muestra que, excepto por el 19 de febrero, la carga emocional contenida en los *toots* fue negativa. Destacan el 25 de enero y el 6 y 10 de febrero como las fechas con la carga emocional más negativa, así como el 19 de febrero como el único día con una carga emocional positiva.
 
 ```         
 ```
 
 ::: {.infobox data-latex=""}
-> 📆 Analizar la carga emocional asociada a los toots a lo largo del tiempo nos ha permitido identificar respuestas emocionales, positivas o negativas, en fechas concretas... Pero... ¿podemos asociar esas respuestas emocionales a eventos concretos?...
+> 📆 Analizar la carga emocional asociada a los *toots* a lo largo del tiempo nos ha permitido identificar respuestas emocionales intensas, positivas o negativas, en fechas concretas... Pero... ¿podemos asociar esas respuestas emocionales a eventos concretos?...
 :::
 
 ```         
 ```
 
-Al igual que en nuestro [*post* anterior](https://lacasadedatos.github.io/blog/blog_posts/2026-02-18-cuentamelo-todo/#conversando-con-el-mastodonte), utilizamos un análisis de redes para identificar los temas de discusión asociados a estas respuestas emocionales, utilizando aa librería [**igraph**](https://www.geeksforgeeks.org/r-language/network-visualization-in-r-using-igraph/) de R. En nuestro caso, cada red se construye a partir de los niveles de correlación de los *tokens* dentro de cada *toot*: las palabras que aparecen juntas en muchos documentos tendrán un mayor grado de correlación que las palabras que aparecen juntas solo en unos cuantos de ellos. De esta manera, construimos redes de palabras para aquellos días en los que identificamos respuestas emocionales concretas; esto es, puntos máximos o mínimos en los valores de carga emocional polarizada.
+Al igual que en nuestro [*post* anterior](https://lacasadedatos.github.io/blog/blog_posts/2026-02-18-cuentamelo-todo/#conversando-con-el-mastodonte), utilizamos un análisis de redes para identificar los temas de discusión asociados a estas respuestas emocionales, utilizando la librería [**igraph**](https://www.geeksforgeeks.org/r-language/network-visualization-in-r-using-igraph/) de R. En nuestro caso, cada red se construye a partir de los niveles de correlación de los *tokens* dentro de cada *toot*; es decir, las palabras que aparecen juntas en muchos documentos tendrán un mayor grado de correlación que las palabras que aparecen juntas únicamente en unos cuantos. Así, construimos redes de palabras para aquellos días en los que identificamos respuestas emocionales concretas; esto es, puntos máximos o mínimos en los valores de carga emocional polarizada a lo largo del tiempo.
 
 ## Enero 25 {style="font-size: 18px"}
 
-La Figura 1 muestra que el día que comienza nuestro análisis tiene el segundo valor más bajo de carga emocional polarizada (-0.318). El número de *toots* recuperados del 25 de enero fue de 251, con un total de 5,269 *tokens*. La Figura 2 muestra los temas de discusión del 25 de enero, identificados a través del análisis de redes. Para encontrar un balance entre el número de nodos y la claridad de las relaciones entre ellos, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 10 repeticiones y el nivel de correlación a 0.35. Es decir, ajustamos nuestros parámetros para identificar palabras que aparezcan en al menos 10 *toots* con un nivel de correlación de 0.35.
+La Figura 1 muestra el segundo valor más bajo de carga emocional polarizada (-0.318) precisamente el día que comienza nuestro análisis, el 25 de enero. El número de *toots* recuperados en esta fecha es de 251, con un total de 5,269 *tokens*. La Figura 2 muestra los temas de discusión del 25 de enero, identificados a través del análisis de redes. Para encontrar un balance entre el número de nodos (palabras) y la claridad de las relaciones entre ellos, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 10 repeticiones y el nivel de correlación a 0.35. Es decir, ajustamos nuestros parámetros para identificar palabras que aparezcan en al menos 10 *toots* con un nivel de correlación de 0.35.
 
 ```{r}
 #| message: false
@@ -164,7 +165,7 @@ La Figura 1 muestra que el día que comienza nuestro análisis tiene el segundo 
 #| echo: FALSE
 #| include: FALSE
 
-trump_january2 <- trump_tokensClean2 %>%
+trump_january25 <- trump_tokensClean2 %>%
   mutate(date = as_date(created_at)) %>%
   filter(date != "2025-08-26") %>% 
   filter(date == "2026-01-25")
@@ -172,24 +173,24 @@ trump_january2 <- trump_tokensClean2 %>%
 
 ```{r}
 #| echo: FALSE
-set.seed(48)
-gen_wordGraph2(trump_january2, 10, 0.35)+
+set.seed(1976)
+gen_wordGraph2(trump_january25, 10, 0.33)+
   ggtitle("Topics Jan. 25th")
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 2**. Identificación de temas de discusión (topics) por análisis correlación de palabras (*tokens*) por redes, utilizando únicamente los *toots* publicados el 25 de enero (Jan. 25th) de 2026. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras.
+**Figura 2**. Identificación de temas de discusión (topics) por análisis correlación de palabras por redes, utilizando únicamente los *toots* publicados el 25 de enero (Jan. 25th) de 2026, con la etiqueta \#*Trump*. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras so corresponde con número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras.
 :::
 
-El tema de discusión que emerge claramente en la Figura 2 es el [asesinato de Alex Pretti](https://abcnews.com/US/alex-pretti-icu-nurse-killed-federal-agent-minneapolis/story?id=129525591) por parte de agentes de ICE ([Immigration and Customs Enforcement](https://www.ice.gov/), ICE) en Minnesota, ocurrido el 24 de enero.
+El tema de discusión que emerge claramente en la Figura 2 incluye las palabras más frecuentes, "alex" y "pretti". Una búsquede sencilla en Internet usando estos dos términos revela que el tema de discusión es el [asesinato de Alex Pretti](https://abcnews.com/US/alex-pretti-icu-nurse-killed-federal-agent-minneapolis/story?id=129525591) por parte de agentes de ICE ([Immigration and Customs Enforcement](https://www.ice.gov/), ICE) en Minnesota, ocurrido el 24 de enero.
 
-Además de las palabras "killing" (asesinato), "alex", "pretti" que forman un núcleo, aparecen las palabras "video" y "evidence", lo que probablemente hace referencia a la [evidencia en vídeo](https://www.huffpost.com/entry/same-video-different-story-ice-minnesota_l_69611f3be4b0a26aea5a2d8b) del uso de violencia letal no justificada por parte de los agentes de ICE.
+Además de las palabras "killing" (asesinato), "alex", "pretti", aparecen las palabras "video" y "evidence", lo que probablemente hace referencia a la [evidencia en vídeo](https://www.huffpost.com/entry/same-video-different-story-ice-minnesota_l_69611f3be4b0a26aea5a2d8b) del uso de violencia letal no justificada por parte de los agentes de ICE.
 
 También encontramos la palabra "protests" dentro de la red, que posiblemente hace referencia a la serie de [protestas que tuvieron lugar el 25 de enero](https://www.theguardian.com/us-news/2026/jan/24/protests-alex-pretti-killing-federal-agents-ice) como respuesta a este evento.
 
-Aparece además la palabra "bovino", que hace referencia a [Greg Bovino](https://eu.usatoday.com/story/news/nation/2026/01/26/greg-bovino-agents-victims-pretti-minneapolis-shooting/88361659007/), jefe de la patrulla fronteriza de Estados Unidos, quien calificó a los agentes de ICE que abatieron a tiros a Alex Pretti como las "víctimas" del evento sin que pudiera aportar pruebas de que Alex Pretti tuviera intenciones de hacer daño o matar a los agentes.
+Aparece además la palabra "bovino", que muy probablemente hace referencia a [Greg Bovino](https://eu.usatoday.com/story/news/nation/2026/01/26/greg-bovino-agents-victims-pretti-minneapolis-shooting/88361659007/), jefe de la patrulla fronteriza de Estados Unidos, quien calificó a los agentes de ICE que abatieron a tiros a Alex Pretti como las "víctimas" del evento, sin que pudiera aportar pruebas de que Alex Pretti tuviera intenciones de hacer daño o matar a los agentes.
 
-También podemos visualizar la cara emocional de los *toots* publicados en esta fecha, creando una nube de palabras con los *tokens* correspondientes a los adjetivos contenidos en cada toot (Figura 3).
+También podemos visualizar la cara emocional de los *toots* publicados en esta fecha, creando una nube de palabras con los adjetivos contenidos en cada *toot* (Figura 3).
 
 ```{r}
 #| include: FALSE
@@ -213,11 +214,11 @@ wordcloud(words = jan25_sentsCounts$word,
           colors=rev(brewer.pal(10, "Spectral")))
 ```
 
-<center> ![](jan25_sents.png){width="420"} </center>
+<center>![](jan25_sents.png){width="420"}</center>
 
 :::: {.fig_legend data-latex=""}
 ::: {.fig_legend data-latex=""}
-**Figura 3**. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 25 de enero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
+**Figura 3**. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 25 de enero de 2026, con la etiqueta \#*Trump*. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
 :::
 ::::
 
@@ -227,7 +228,7 @@ A pesar de la subjetividad asociada a la interpretación de cualquier hecho que 
 ```
 
 ::: {.infobox data-latex=""}
-> 📆 Partiendo de la respuesta emocional negativa observada el 25 de enero, hemos podido identificar temas de discusión específicos, validarlos a través de sencillas búsquedas en Internet y complementarlos con una nubes de palabra que refleja claramente la respuesta emocional asociada a los temas de discusión.
+> 📆 Partiendo de la respuesta emocional negativa observada el 25 de enero, hemos podido identificar temas de discusión específicos, validarlos a través de sencillas búsquedas de información en Internet y complementarlos con una nube de palabras que refleja claramente la respuesta emocional asociada a estos temas.... ¡No está nada mal!...
 :::
 
 ```         
@@ -235,7 +236,7 @@ A pesar de la subjetividad asociada a la interpretación de cualquier hecho que 
 
 ## Febrero 6 {style="font-size: 18px"}
 
-El número de toots recuperados del 06 de febrero fue de 737, con 13,098 tokens. La Figura 14 muestra los temas de discusión del 6 de febrero a través del análisis de redes.Al igual que con los gráficos de redes anteriores, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 15 repeticiones y el nivel de correlación a 0.35.
+La Figura 2 señala el 06 de febrero como el día con el valor más bajo de carga emocional polarizada (-0.394). El número de *toots* recuperados para esta fecha fue de 737, con un total de 13,098 *tokens*. La Figura 4 muestra los temas de discusión del 6 de febrero, identificados a través del análisis de redes. Esta vez, ajustamos el número mínimo de repeticiones a 15 y el nivel de correlación a 0.35.
 
 ```{r}
 #| message: false
@@ -257,14 +258,14 @@ gen_wordGraph2(trump_feb6, 15, 0.35)+
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 13**. Identificación de temas de discusión (topics) por análisis correlación de palabras (tokens) por redes, utilizando únicamente los toots publicados el 6 de febrero (Feb. 6th) de 2026. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.
+**Figura 4**. Identificación de temas de discusión (topics) por análisis correlación de palabras por redes, utilizando únicamente los *toots* publicados el 6 de febrero (Feb. 6th) de 2026, con la etiqueta \#*Trump*. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras se corresponde con el número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras.
 :::
 
-En la Figura 13 se distinguen claramente dos temas de discusión, uno que contiene las palabras más comunes dentro del conjunto de toots ("video", "obamas", "racist") y otro relacionado con [Kai Trump y su participación en la liga femenina de golf](https://www.fogolf.com/1158845/is-donald-trumps-granddaughter-kai-worthy-of-place-in-lpga-event-499/) que ya hemos mencionado antes. La partipación de Kai Trump en esta liga se anunció precisamente en esta fecha.
+El tema de discusión principal que emerge en la Figura 4 incluye las 3 palabras palabras más comunes dentro del conjunto de toots: "video", "obamas", "racist". Tras una sencilla búsqueda en Internet usando estos términos encontramos información sobre la publicación de un [vídeo publicado en las redes sociales de Donald Trump](#0) en donde el expresidente americano Barak Obama y su esposa, ambos afroamericanos, aparecían retratados como simios.
 
-Tras una sencilla búsqueda en Internet usando los términos "video", "obamas" y "racist" encontramos la publicación y eliminación posterior de un [vídeo publicado en las redes sociales de Donald Trump](https://www.firstpost.com/explainers/trump-shares-obama-ape-video-racist-imagery-history-13977245.html)en donde el expresidente americano Barak Obama y su esposa, ambos afroamericanos, aparecían retratados como simios.
+En la Figura 4 también aparece un conjunto de nodos independiente que incluye las palabras "granddaugther", "kai", "lpga", "event" y "worthy". Este tema de discusión hace referencia la nieta de Donald Trump, [Kai Trump y su participación en la liga femenina de golf profesional](https://www.fogolf.com/1158845/is-donald-trumps-granddaughter-kai-worthy-of-place-in-lpga-event-499/), que se anunció precisamente en esta fecha y que, más que un tema de discusión, es un artefacto generado por la repetición sostenida de un mismo *toot* (ver el análisis completo en nuestro [*post* anterior](https://lacasadedatos.github.io/blog/blog_posts/2026-02-18-cuentamelo-todo/#conversando-con-el-mastodonte)).
 
-Podemos visualizar la cara emocional de los toots publicados en esta fecha, utilizando los tokens correspondientes a los adjetivos contenidos en ellos (Figura 14).
+También podemos visualizar la cara emocional de los *toots* publicados el 6 de febrero, creando una nube de palabras con los adjetivos contenidos en cada *toot* (Figura 5).
 
 ```{r}
 #| include: FALSE
@@ -289,19 +290,97 @@ wordcloud(words = feb6_sentsCounts$word,
           colors=rev(brewer.pal(10, "Spectral")))
 ```
 
-<center>![](feb6_sents.png){width="500"}</center>
+<center>![](feb6_sents.png){width="420"}</center>
 
 :::: {.fig_legend data-latex=""}
 ::: {.fig_legend data-latex=""}
-**Figura 14**. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 6 de febrero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
+**Figura 5**. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 6 de febrero de 2026, con la etiqueta \#*Trump*. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
 :::
 ::::
 
-La Figura 14 muestra una nube de palabras dominada por el calificativo "racist", lo que sugiere una respuesta emocional coherente con contenido del controvertido vídeo publicado en esta fecha.
+La Figura 5 muestra una nube de palabras dominada por el calificativo "racist", lo que sugiere una respuesta emocional coherente con contenido del controvertido vídeo publicado en esta fecha en las redes sociales de Donald Trump.
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 📆 Al igual que con el 25 de enero, la intensa respuesta emocional negativa observada el 6 de febrero nos permitió identificar y validar un tema de discusión específico, y complementarlo con una nube de palabras que refleja claramente la respuesta emocional asociada a este evento.
+:::
+
+```         
+```
+
+## Febrero 10 {style="font-size: 18px"}
+
+En la Figura 2 también podemos observar otra caída de la carga emocional polarizada el 10 de febrero (-0.272). El número de *toots* recuperados para esta fecha fue de 644, con un total de 10,988 *tokens*. La Figura 6 muestra los temas de discusión del 10 de febrero, identificados a través del análisis de redes. Esta vez, ajustamos el número mínimo de repeticiones a 15 y el nivel de correlación a 0.27.
+
+```{r}
+#| echo: FALSE
+#| message: false
+#| warning: false
+trump_feb10 <- trump_tokensClean2 %>%
+  mutate(date = as_date(created_at)) %>%
+  filter(date == "2026-02-10")
+
+set.seed(48)
+gen_wordGraph2(trump_feb10, 15, 0.27)+
+  ggtitle("Topics Feb. 10th")
+```
+
+::: {.fig_legend data-latex=""}
+**Figura 6**. Identificación de temas de discusión (topics) por análisis correlación de palabras (*tokens*) por redes, utilizando únicamente los *toots* publicados el 10 de febrero (Feb. 10th) de 2026, con la etiqueta \#*Trump*. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras se corresponde con el número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras.
+:::
+
+En esta fecha, identificamos distintos grupos de palabras. El grupo que contiene las palabras más comunes, "epstein" y "files" (documentos), hace referencia a la [red de pedofilia y prostitución de Jeffrey Epstein](https://www.justice.gov/epstein). El 10 de febrero se levantó la censura de algunos documentos relacionados con esta red, revelando [los nombres de figuras plublicas implicadas](https://www.cnn.com/2026/02/10/politics/epstein-files-unredacted-names) en esta red que no habían sido revelados antes.
+
+Otro conjunto de palabras incluye "gordie", "howe", "bridge", "canada". También en esta fecha, Donald Trump amenazó con [bloquear la apertura de le puente Gordie Howe International Bridge](https://www.bbc.com/news/articles/cpw052pkvl0o) que conecta la provincia canadiense de Ontario con el estado americano de Michigan. Aunque el puente fue construido entre los dos países, el presidente americano alegaba condiciones desventajosas para los Estados Unidos respecto a la propiedad y gestión del mismo.
+
+Otro conjunto de palabras más pequeño está compuesto de las palabras "bad", "bunny", "halftime" y hace referencia a la [actuación del rapero Bad Bunny en el medio tiempo de la final de fútbol americano](https://thesource.com/2026/02/10/bad-bunny-sets-new-super-bowl-halftime-record-with-historic-2026-performance/) que, supuestamente, rompió récords históricos de audiencia.
+
+```{r}
+
+
+#| include: FALSE
+feb10_sentsCounts <- trump_sentsAdjectives %>%  
+  mutate(date =  as_date(trump_sentsAdjectives$created_at)) %>% 
+  filter(date == "2026-02-10") %>% 
+  count(word, sort = TRUE) %>%
+  data.table::as.data.table()
+
+set.seed(78)
+
+
+png("feb10_sents.png", width=5,height=4, units='in', res=300)
+par(mar = rep(0, 4))
+wordcloud(words = feb10_sentsCounts$word, 
+          freq = feb10_sentsCounts$n,scale=c(3.5,0.5),
+          max.words=90, 
+          colors=rev(brewer.pal(10, "Spectral")))
+```
+
+<center>![](feb10_sents.png){width="420"}</center>
+
+:::: {.fig_legend data-latex=""}
+::: {.fig_legend data-latex=""}
+**Figura 7**. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 6 de febrero de 2026, con la etiqueta \#*Trump*. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
+:::
+::::
+
+La Figura 7 muestra una nube de palabras dominada por el calificativo "bad", e incluye palabras como criminal, ilegal, poderoso (powerful), corrupto (corrupt), sufrimiento (suffering), etc. Al igual que las nubes de palabras de las fechas anteriores, la nube de palabras creada para el 10 de febrero sugiere una respuesta emocional coherente con los temas de discusión identificados.
+
+```         
+```
+
+::: {.infobox data-latex=""}
+> 📆 Aunque la respuesta emocional negativa observada el 10 de febrero fue de menor magnitud que la de las dos fechas anteriores, también nos permitió identificar y validar temas de discusión específicos, acompañados de una respuesta emocional coherente con ellos.
+:::
+
+```         
+```
 
 ## Febrero 19 {style="font-size: 18px"}
 
-El número de toots recuperados del 19 de febrero fue de 192, con apenas 3276 tokens. La Figura 15 muestra los temas de discusión de esta fecha a través del análisis de redes.Al igual que con los gráficos de redes anteriores, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 7 repeticiones y el nivel de correlación a 0.27.
+El 19 de febrero fue la única fecha en donde el valor de la carga emocional polarizada alcanzó un valor positivo, aunque muy bajo (apenas 0.067). El número de *toots* recuperados para esta fecha fue de 192, con apenas 3,276 *tokens*. La Figura 8 muestra los temas de discusión del 19 de febrero, identificados a través del análisis de redes. Al igual que con los gráficos de redes anteriores, a través de ensayo y error, ajustamos el número mínimo de repeticiones a 7 repeticiones y el nivel de correlación a 0.27.
 
 ```{r}
 #| message: false
@@ -318,18 +397,17 @@ trump_feb19 <- trump_tokensClean2 %>%
 ```{r}
 #| echo: FALSE
 set.seed(48)
-gen_wordGraph2(trump_feb19, 7, 0.27)
+gen_wordGraph2(trump_feb19, 7, 0.27)+
+  ggtitle("Topics Feb. 19th")
 ```
 
 ::: {.fig_legend data-latex=""}
-**Figura 15**. Análisis correlación de palabras (tokens) por redes utilizando únicamente los toots publicados el 19 de febrero de 2026. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras corresponde al número de veces que aparecen en el conjunto de toots. El color de las líneas se corresponde con el grado de correlación entre las palabras.
+**Figura 8**. Identificación de temas de discusión (topics) por análisis correlación de palabras (*tokens*) por redes, utilizando únicamente los *toots* publicados el 19 de febrero (Feb. 19th) de 2026, con la etiqueta \#*Trump*. Cada punto corresponde a una palabra. La distancia entre puntos (en unidades arbitrarias) se corresponde con el grado de correlación entre palabras o grupos de palabras. El color de las palabras se corresponde con el número de veces que aparecen en el conjunto de *toots*. El color de las líneas se corresponde con el grado de correlación entre las palabras.
 :::
 
-En la Figura 14 se distinguen claramente tres temas de discusión; uno de ellos relacionado con Irán, otro con la nieta de Donald Trump (a quien ya hemos mencionado arriba), otro de ellos relacionado con la junta de paz en Gaza y otro con el gobierno federal.
+En la Figura 8 se distinguen claramente cuatro temas de discusión; uno de ellos relacionado con Irán, otro con la nieta de Donald Trump (a quien ya hemos mencionado arriba), otro de ellos relacionado con la [junta de paz en Gaza](https://www.bbc.com/mundo/articles/cjw17lxv147o), y otro con el gobierno federal.
 
-Una búsqueda de noticias en Internet utilizando los términos "Donald Trump" y "news" acotada al 19 de febrero nos revela que en esta fecha, el presidente americano dio un [discurso](https://rollcall.com/factbase/trump/transcript/doanld-trump-speech-board-of-peace-february-19-2026/) en la primera reunión de la Junta de Paz en Gaza, desde donde envió un ultimátum al gobierno de Irán. Advirtió que "[pasarían cosas malas](https://www.forbes.com/sites/saradorn/2026/02/19/trump-warns-iran-of-bad-things-as-us-troop-buildup-hits-middle-east/)*"* si el gobierno de Irán no accede a reducir significativamente su programa de armas nucleares. Esta advertencia fue lanzada al tiempo que Estados Unidos acumulaba una presencia militar masiva en la región en preparación para un ataque potencial, mismo que [comenzó el 28 de febrero](https://www.nytimes.com/2026/02/28/world/middleeast/iran-attacks-what-to-know.html).
-
-Al igual que antes, podemos visualizar la cara emocional de los toots publicados en esta fecha, utilizando los tokens correspondientes a los adjetivos contenidos en ellos (Figura 16).
+De acuerdo a la información recuperada de Internet, en esta fecha, el presidente americano dio un [discurso](#0) en la primera reunión de la Junta de Paz en Gaza, desde donde envió un ultimátum al gobierno de Irán. Advirtió que "[pasarían cosas malas](#0)*"* si el gobierno de Irán no accedía a reducir significativamente su programa de armas nucleares. Esta advertencia fue lanzada al tiempo que Estados Unidos acumulaba una presencia militar masiva en la región en preparación para un ataque potencial, mismo que [comenzó el 28 de febrero](#0).
 
 ```{r}
 #| include: FALSE
@@ -356,18 +434,30 @@ wordcloud(words = feb19_sentsCounts$word,
 
 :::: {.fig_legend data-latex=""}
 ::: {.fig_legend data-latex=""}
-**Figura 16**. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 19 de febrero de 2026, relacionadas con Donald Trump. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
+**Figura 9**. Nube de adjetivos contenidos en las publicaciones de Mastodon (mastodon.social) del 19 de febrero de 2026, con la etiqueta \#*Trump*. El tamaño de las palabras se corresponde con la frecuencia con la que aparecen en el conjunto de publicaciones.
 :::
 ::::
 
-La Figura 16 muestra una nube de palabras dominada por el calificativo "worthy" (digno), e incluye palabras como "authoritarian" (autoritario), "wise" (sabio), y "diplomatic" (diplomático), que tienen una connotación positiva.
+La Figura 9 muestra una nube de palabras dominada por el calificativo "worthy" (digno), mismo que, como ya mencionamos arriba, es un artefacto producto de la repetición de un mismo *toot* (ver el análisis completo en nuestro [*post* anterior](https://lacasadedatos.github.io/blog/blog_posts/2026-02-18-cuentamelo-todo/#conversando-con-el-mastodonte)). La nube de palabras generada para esta fecha incluye además palabras como "authoritarian" (autoritario), "wise" (sabio), y "diplomatic" (diplomático), lo que podría sugiere una respuesta emocional positiva a la postura de Donald Trump con respecto a Irán.
 
 ```         
 ```
 
 ::: {.infobox data-latex=""}
-> ❤️ 🤬 El análisis de redes nos ha permitido identificar los temas de discusión asociados a temas de discusión que generaron una fuerte respuesta emocional en fechas concretas; las nubes de palabras, por su parte, nos permitieron identificar las emociones asociadas a estas respuestas. 🚀
+> 📆 A pesar de que la respuesta emocional positova observada el 19 de febrero fue muy pequeña comparada con las respuestas emocionales negativas observadas en fechas anteriores, también pudimos identificar y validar temas de discusión específicos, acompañados de una respuesta emocional que parece ser coherente con ellos.
 :::
 
 ```         
 ```
+
+# 🧵 Conclusiones
+
+En este *post* hemos podido comprobar, nuevamente, la efectividad de distintas técnicas de minería de textos para identificar temas de discusión específicos dentro de un conjunto masivo de publicaciones de redes sociales.
+
+Estas técnicas nos han permitido además visualizar respuestas emocionales a lo largo del tiempo; al etiquetar como "positivos" o "negativos" los adjetivos contenidos en cada una de las publicaciones pudimos identificar respuestas emocionales en fechas concretas. El análisis de redes no spermitió identificar los temas de discusión asociados a estas respuestas emocionales.
+
+Pudimos validar la existencia de los temas de discusión reflejados en los gráficos de redes con sencillas búsquedas de información en Internet, usando como términos de búsqueda las palabras que predominan en estos gráficos.
+
+Las nubes de palabras nos permitieron complementar en análisis de temas los de discusión, brindándonos un reflejo de las emociones asociadas a los temas de discusión identificados, verificando la existencia de una respuesta emocional coherente con el contenido de los temas de discusión.
+
+El código completo de este análisis está disponible en el repositorio de [La Casa de Datos](https://github.com/lacasadedatos/R_scripts "Ver código del análisis") en Github.
